@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <!-- 基本的な設定をinclude -->
+  <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+  <!-- SQLのlogだけを出力する -->
+  <logger name="jdbc" level="OFF"/>
+  <logger name="jdbc.sqltiming" level="DEBUG"/>
+</configuration>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>form sample</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="container">
+  <h3>complete</h3>
+
+  <table class="table" th:object="${form}">
+    <tr>
+      <td>name</td>
+      <td th:text="*{name}"></td>
+    </tr>
+    <tr>
+      <td>country code</td>
+      <td th:text="*{countryCode}"></td>
+    </tr>
+    <tr>
+      <td>age</td>
+      <td th:text="*{age}"></td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td th:text="*{email}"></td>
+    </tr>
+    <tr>
+      <td>card number</td>
+      <td th:text="*{card}"></td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    sql-script-encoding: UTF-8
+    driver-class-name: org.hsqldb.jdbcDriver
+    url: jdbc:hsqldb:file:/tmp/hsqldb_jpa_db1
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update

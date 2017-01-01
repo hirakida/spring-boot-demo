@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>form sample</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="container">
+  <h3>form sample</h3>
+
+  <form th:action="@{''}" th:object="${form}" method="post">
+    <table class="table">
+      <tr>
+        <td class="col-md-4">name</td>
+        <td class="col-md-8">
+          <input type="text" th:field="*{name}" />
+          <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                class="alert-danger"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>country code</td>
+        <td>
+          <input type="text" th:field="*{countryCode}" />
+          <span th:if="${#fields.hasErrors('countryCode')}" th:errors="*{countryCode}"
+                class="alert-danger"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>age</td>
+        <td>
+          <input type="text" th:field="*{age}" />
+          <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"
+                class="alert-danger"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>email</td>
+        <td>
+          <input type="text" th:field="*{email}" />
+          <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                class="alert-danger"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>card number</td>
+        <td>
+          <input type="text" th:field="*{card}" />
+          <span th:if="${#fields.hasErrors('card')}" th:errors="*{card}"
+                class="alert-danger"></span>
+        </td>
+      </tr>
+    </table>
+
+    <input type="submit" value="submit" />
+  </form>
+</div>
+
+</body>
+</html>

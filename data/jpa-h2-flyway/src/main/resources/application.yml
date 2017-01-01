@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    sql-script-encoding: UTF-8  # SQLファイルの文字コード
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:h2:file:/tmp/jpatest
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: validate  # DDLの実行をJPAではなくFlywayで実行する
