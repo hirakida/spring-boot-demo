@@ -22,6 +22,12 @@
           url: "/account/" + $(this).data("id")
         });
       });
+      $('.put-one').click(function () {
+        $.ajax({
+          type: "PUT",
+          url: "/account/" + $(this).data("id")
+        });
+      });
     });
     /*]]>*/
   </script>
@@ -42,6 +48,9 @@
         <td th:text="${account.name}"></td>
       </tr>
     </table>
+    <button class="btn put-one"
+            th:attr="data-id=${account.id}">キャッシュを変更
+    </button>
     <button class="btn clear-one"
             th:attr="data-id=${account.id}">キャッシュクリア
     </button>

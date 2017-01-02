@@ -9,10 +9,10 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>async</module>
     <module>cache</module>
-    <module>rest-template</module>
-    <module>scheduling</module>
+    <module>retry</module>
+    <module>aop</module>
+    <module>event</module>
   </modules>
 
   <parent>
@@ -30,8 +30,7 @@
     <lombok.version>1.16.6</lombok.version>
     <commons-lang3.version>3.4</commons-lang3.version>
     <commons-io.version>2.4</commons-io.version>
-    <httpcomponents.version>4.5.2</httpcomponents.version>
-    <okhttp3.version>3.5.0</okhttp3.version>
+    <guava.version>20.0</guava.version>
   </properties>
 
   <dependencyManagement>
@@ -46,18 +45,6 @@
         <groupId>org.webjars</groupId>
         <artifactId>bootstrap</artifactId>
         <version>${bootstrap.version}</version>
-      </dependency>
-
-      <!-- misc -->
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient</artifactId>
-        <version>${httpcomponents.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.squareup.okhttp3</groupId>
-        <artifactId>okhttp</artifactId>
-        <version>${okhttp3.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -90,6 +77,11 @@
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
       <version>${commons-io.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
     </dependency>
   </dependencies>
 

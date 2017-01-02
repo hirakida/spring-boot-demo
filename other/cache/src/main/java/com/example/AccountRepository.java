@@ -11,4 +11,11 @@ public class AccountRepository {
                       .name("name" + id)
                       .build();
     }
+
+    public Account update(long id) {
+        return Account.builder()
+                      .id(id)
+                      .name("name" + (id + 1))
+                      .build();
+    }
 }

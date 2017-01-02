@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -21,15 +22,23 @@ public class AccountService {
 
     // cacheする
     @Cacheable(value = "value1", key = "'account:' + #accountId")
-    public Account findById(long accountId) {
-        // cacheされている場合はこのlogは出ない
-        log.info("AccountService::findById");
+    public Account cacheable(long accountId) {
+        // cacheされている場合はメソッドが呼ばれないので、このlogは出ない
+        log.info("AccountService::cacheable");
         return accountRepository.findById(accountId);
+    }
+
+    @CachePut(value = "value1", key = "'account:' + #accountId")
+    public Account cachePut(long accountId) {
+        // 毎回呼ばれてcacheを更新する
+        // cacheableの結果も変わる
+        log.info("AccountService::cachePut");
+        return accountRepository.update(accountId);
     }
 
     // Listをcacheする
     @Cacheable(value = "value1", key = "'accounts'")
-    public List<Account> findAll() {
+    public List<Account> cacheableAll() {
         log.info("AccountService::findAll");
         return Arrays.asList(1L, 2L, 3L).stream()
                      .map(accountRepository::findById)
@@ -37,21 +46,21 @@ public class AccountService {
     }
 
     // クラス内から@Cacheableのメソッドを呼出してもキャッシュされない
-    public List<Account> findById2() {
-        log.info("AccountService::findById2");
+    public List<Account> findById() {
+        log.info("AccountService::findById");
         return Arrays.asList(1L, 2L, 3L).stream()
-                     .map(this::findById)
+                     .map(this::cacheable)
                      .collect(toList());
     }
 
     // clear cache
     @CacheEvict(value = "value1", key = "'account:' + #accountId")
-    public void delete(long accountId) {
-        log.info("AccountService::delete");
+    public void cacheEvict(long accountId) {
+        log.info("AccountService::cacheEvict");
     }
 
     @CacheEvict(value = "value1", key = "'accounts'")
-    public void deleteAll() {
-        log.info("AccountService::deleteAll");
+    public void cacheEvictAll() {
+        log.info("AccountService::cacheEvictAll");
     }
 }

@@ -55,7 +55,8 @@ public class WebController {
         @NotEmpty
         @Length(max = 20)
         private String name;
-        @CountryCode    // 独自のアノテーションでバリデーション
+        // 追加したアノテーション
+        @CountryCode(notEmpty = true)
         private String countryCode;
         @NotNull
 //        @Min(18)

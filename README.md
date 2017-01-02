@@ -1,1 +1,1 @@
-# spring-boot-web-sample
+# spring-boot-sample

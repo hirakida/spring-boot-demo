@@ -16,7 +16,7 @@ import javax.validation.Payload;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * annotation
+ * validatorのannotation
  */
 @Documented
 @Constraint(validatedBy = CountryCode.CountryCodeValidator.class)
@@ -24,7 +24,7 @@ import org.apache.commons.lang3.StringUtils;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CountryCode {
 
-    String message() default "Invalid CountryCode.";
+    String message() default "Invalid CountryCode";
 
     Class<?>[] groups() default {};
 

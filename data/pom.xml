@@ -9,7 +9,6 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>jdbc-h2</module>
     <module>jpa-h2</module>
     <module>jpa-h2-flyway</module>
     <module>jpa-hsqldb</module>

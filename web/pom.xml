@@ -9,6 +9,7 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>client</module>
     <module>thymeleaf-sample</module>
     <module>freemarker-sample</module>
     <module>jsp-sample</module>
@@ -26,17 +27,25 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
-    <jquery.version>3.1.1</jquery.version>
-    <bootstrap.version>3.3.7</bootstrap.version>
     <lombok.version>1.16.6</lombok.version>
     <commons-lang3.version>3.4</commons-lang3.version>
     <commons-io.version>2.4</commons-io.version>
+    <webjars-locator.version>0.32</webjars-locator.version>
+    <jquery.version>3.1.1</jquery.version>
+    <bootstrap.version>3.3.7</bootstrap.version>
+    <httpcomponents.version>4.5.2</httpcomponents.version>
+    <okhttp3.version>3.5.0</okhttp3.version>
     <nekohtml.version>1.9.22</nekohtml.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
       <!-- webjars -->
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>webjars-locator</artifactId>
+        <version>${webjars-locator.version}</version>
+      </dependency>
       <dependency>
         <groupId>org.webjars</groupId>
         <artifactId>jquery</artifactId>
@@ -46,6 +55,18 @@
         <groupId>org.webjars</groupId>
         <artifactId>bootstrap</artifactId>
         <version>${bootstrap.version}</version>
+      </dependency>
+
+      <!-- client -->
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${httpcomponents.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.squareup.okhttp3</groupId>
+        <artifactId>okhttp</artifactId>
+        <version>${okhttp3.version}</version>
       </dependency>
 
       <dependency>
