@@ -1,0 +1,17 @@
+spring:
+# spring-bootではMessageSourceAutoConfigurationでmessageSourceがDIされる
+#  messages:
+#    basename: messages
+#    encoding: UTF-8
+# UTF-8のCharacterEncodingFilterが自動で適用される
+#  http:
+#    encoding:
+#      enabled: true
+#      charset: UTF-8
+  thymeleaf:
+    cache: false
+
+# 組み込みTomcatのuri-encodingのdefault値はUTF-8
+#server:
+#  tomcat:
+#    uri-encoding: UTF-8

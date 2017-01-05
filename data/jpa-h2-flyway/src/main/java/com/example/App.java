@@ -8,13 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.example.entity.Account;
-import com.example.repository.AccountRepository;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import lombok.extern.slf4j.Slf4j;
 
 @SpringBootApplication
+@EnableJpaAuditing
 @Slf4j
 public class App implements CommandLineRunner {
 

@@ -9,10 +9,12 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>actuator</module>
     <module>cache</module>
     <module>retry</module>
     <module>aop</module>
     <module>event</module>
+    <module>cache-memcached</module>
   </modules>
 
   <parent>
@@ -25,17 +27,36 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
+    <webjars-locator.version>0.32</webjars-locator.version>
     <jquery.version>3.1.1</jquery.version>
     <bootstrap.version>3.3.7</bootstrap.version>
     <lombok.version>1.16.6</lombok.version>
     <commons-lang3.version>3.4</commons-lang3.version>
     <commons-io.version>2.4</commons-io.version>
     <guava.version>20.0</guava.version>
+    <simple-spring-memcached.version>3.6.1</simple-spring-memcached.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
+      <!-- simple-spring-memcached -->
+      <dependency>
+        <groupId>com.google.code.simple-spring-memcached</groupId>
+        <artifactId>spring-cache</artifactId>
+        <version>${simple-spring-memcached.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.code.simple-spring-memcached</groupId>
+        <artifactId>spymemcached-provider</artifactId>
+        <version>${simple-spring-memcached.version}</version>
+      </dependency>
+
       <!-- webjars -->
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>webjars-locator</artifactId>
+        <version>${webjars-locator.version}</version>
+      </dependency>
       <dependency>
         <groupId>org.webjars</groupId>
         <artifactId>jquery</artifactId>
@@ -51,10 +72,6 @@
 
   <dependencies>
     <!-- spring-boot -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
@@ -10,13 +11,16 @@
 
   <modules>
     <module>client</module>
-    <module>thymeleaf-sample</module>
+    <module>thymeleaf-jetty</module>
+    <module>thymeleaf-tomcat</module>
     <module>freemarker-sample</module>
     <module>jsp-sample</module>
     <module>websocket-sample</module>
     <module>validator</module>
+    <module>properties</module>
   </modules>
 
+  <!-- Spring Bootの設定情報群を継承 -->
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -42,6 +46,7 @@
     <dependencies>
       <!-- webjars -->
       <dependency>
+        <!-- webjars-locatorを使うとtemplate内でpathからversionを隠蔽できる -->
         <groupId>org.webjars</groupId>
         <artifactId>webjars-locator</artifactId>
         <version>${webjars-locator.version}</version>
@@ -108,6 +113,7 @@
     </dependency>
   </dependencies>
 
+  <!-- Spring BootのappをビルドするためのMaven plugin -->
   <build>
     <plugins>
       <plugin>

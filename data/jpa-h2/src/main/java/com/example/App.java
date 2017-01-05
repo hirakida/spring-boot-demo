@@ -35,7 +35,8 @@ public class App implements CommandLineRunner {
 
         // findAll
         List<Account> accounts = accountRepository.findAll();
-        log.info("findAll: {}", accounts);
+
+        accounts.forEach(account -> log.info(" {}", account));
         log.info("##### jpa-h2 end #####");
     }
 

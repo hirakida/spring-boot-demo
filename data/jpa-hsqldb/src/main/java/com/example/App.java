@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import lombok.extern.slf4j.Slf4j;
 
 @SpringBootApplication
+@EnableJpaAuditing
 @Slf4j
 public class App implements CommandLineRunner {
 
@@ -22,10 +24,8 @@ public class App implements CommandLineRunner {
     public void run(String... strings) throws IOException {
         log.info("##### jpa-hsqldb start #####");
 
-        // delete all
         accountRepository.deleteAll();
 
-        // insert
         IntStream.rangeClosed(1, 6)
                  .forEach(i -> {
                      Account account = new Account();
@@ -33,10 +33,9 @@ public class App implements CommandLineRunner {
                      accountRepository.saveAndFlush(account);
                  });
 
-        // findAll
         List<Account> accounts = accountRepository.findAll();
-        log.info("findAll: {}", accounts);
 
+        log.info(" {}", accounts);
         log.info("##### jpa-hsqldb start #####");
     }
 

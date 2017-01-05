@@ -3,7 +3,7 @@ spring:
 #    initialize: false  # falseにすればschema.sqlを実行しない
     sql-script-encoding: UTF-8
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:file:/tmp/h2_mybatis_db1
+    url: jdbc:h2:file:/tmp/h2_mybatis_db1;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password:
 mybatis:

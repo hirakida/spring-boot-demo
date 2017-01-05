@@ -3,9 +3,14 @@ spring:
 #    initialize: false  # falseにすればschema.sqlを実行しない
     sql-script-encoding: UTF-8
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:file:/tmp/h2_db1
+    url: jdbc:h2:file:/tmp/h2_jpa_db1
     username: sa
     password:
+    tomcat: # Tomcat JDBCの設定
+      max-active: 20  # 最大接続数
+      max-idle: 10    # プールに保存しておく最大コネクション数
+      min-idle: 5     # プールに保存しておく最小コネクション数
+      initial-size: 1
   jpa:
     hibernate:
       ddl-auto: update
