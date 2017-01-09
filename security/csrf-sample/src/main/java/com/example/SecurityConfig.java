@@ -18,6 +18,12 @@ import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * CSRF対策はデフォルトで適用される
+ * デフォルトではPOST, PUT, DELETE, PATCH methodのrequestに対してCSRF tokenのチェックが行われる
+ * CsrfFilter.DEFAULT_CSRF_MATCHER
+ * CSRF tokenはsession単位に生成される
+ */
 @Configuration
 @EnableWebSecurity
 @Slf4j
@@ -32,11 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
         http.authorizeRequests()
             .anyRequest().permitAll()
             .and()
             .exceptionHandling()
-            .accessDeniedHandler(accessDeniedHandler());
+                .accessDeniedHandler(accessDeniedHandler());
+        // @formatter:on
     }
 
     @Bean
@@ -45,10 +53,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             @Override
             public void handle(HttpServletRequest request,
                                HttpServletResponse response,
-                               AccessDeniedException accessDeniedException) throws IOException,
-                                                                                   ServletException {
-                log.error("error", accessDeniedException);
-                super.handle(request, response, accessDeniedException);
+                               AccessDeniedException e) throws IOException,
+                                                               ServletException {
+                // InvalidCsrfTokenExceptionはtokenが一致しなかった場合
+                // MissingCsrfTokenExceptionはサーバーにtokenが保存されていなかった場合
+                log.error("error", e);
+                super.handle(request, response, e);
             }
         };
     }

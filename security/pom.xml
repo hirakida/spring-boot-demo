@@ -11,6 +11,7 @@
   <modules>
     <module>login-sample</module>
     <module>csrf-sample</module>
+    <module>csrf-spring-session</module>
   </modules>
 
   <parent>

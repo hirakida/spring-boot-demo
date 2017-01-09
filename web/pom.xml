@@ -10,14 +10,16 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>template-sample/thymeleaf-jetty</module>
+    <module>template-sample/thymeleaf-tomcat</module>
+    <module>template-sample/freemarker-tomcat</module>
+    <module>template-sample/jsp</module>
     <module>client</module>
-    <module>thymeleaf-jetty</module>
-    <module>thymeleaf-tomcat</module>
-    <module>freemarker-sample</module>
-    <module>jsp-sample</module>
     <module>websocket-sample</module>
     <module>validator</module>
     <module>properties</module>
+    <module>messagesource</module>
+    <module>scope-sample</module>
   </modules>
 
   <!-- Spring Bootの設定情報群を継承 -->

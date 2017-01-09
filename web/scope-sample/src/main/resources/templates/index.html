@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="container">
+
+  <table class="table">
+    <tr>
+      <td><a href="/">page1</a></td>
+    </tr>
+    <tr>
+      <td><a href="/page2">page2</a></td>
+    </tr>
+  </table>
+
+  <table class="table">
+    <tr>
+      <th>type</th>
+      <th>id</th>
+      <th>name</th>
+      <th>count</th>
+    </tr>
+    <tr>
+      <td>prototype</td>
+      <td th:text="${prototypeBean.id}"></td>
+      <td th:text="${prototypeBean.name}"></td>
+      <td th:text="${prototypeBean.count}"></td>
+    </tr>
+    <tr>
+      <td>request</td>
+      <td th:text="${requestBean.id}"></td>
+      <td th:text="${requestBean.name}"></td>
+      <td th:text="${requestBean.count}"></td>
+    </tr>
+    <tr>
+      <td>session</td>
+      <td th:text="${sessionBean.id}"></td>
+      <td th:text="${sessionBean.name}"></td>
+      <td th:text="${sessionBean.count}"></td>
+    </tr>
+    <tr>
+      <td>application</td>
+      <td th:text="${appBean.id}"></td>
+      <td th:text="${appBean.name}"></td>
+      <td th:text="${appBean.count}"></td>
+    </tr>
+    <tr>
+      <td>singleton</td>
+      <td th:text="${singletonBean.id}"></td>
+      <td th:text="${singletonBean.name}"></td>
+      <td th:text="${singletonBean.count}"></td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

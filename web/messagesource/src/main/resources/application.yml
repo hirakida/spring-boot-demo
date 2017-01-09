@@ -1,0 +1,7 @@
+spring:
+# spring-bootではMessageSourceAutoConfigurationでmessageSourceがDIされる
+#  messages:
+#    basename: messages
+#    encoding: UTF-8
+  thymeleaf:
+    cache: false

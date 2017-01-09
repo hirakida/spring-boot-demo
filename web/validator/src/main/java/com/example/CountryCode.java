@@ -46,7 +46,7 @@ public @interface CountryCode {
 
         @Override
         public boolean isValid(String code, ConstraintValidatorContext context) {
-            if (!notEmpty && StringUtils.isEmpty(code)) {
+            if (notEmpty && StringUtils.isEmpty(code)) {
                 return true;
             }
             return Arrays.asList(Locale.getISOCountries()).contains(code);

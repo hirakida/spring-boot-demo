@@ -53,6 +53,7 @@ public class WebController {
     private static class Form {
         // Stringは未入力の場合にdefaultで空文字が代入されるため、NotNullは使えない
         @NotEmpty
+//        @Size(max = 20)
         @Length(max = 20)
         private String name;
         // 追加したアノテーション

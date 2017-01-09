@@ -10,11 +10,10 @@
 
   <modules>
     <module>actuator</module>
-    <module>cache</module>
     <module>retry</module>
     <module>aop</module>
     <module>event</module>
-    <module>cache-memcached</module>
+    <module>filter</module>
   </modules>
 
   <parent>
@@ -34,23 +33,10 @@
     <commons-lang3.version>3.4</commons-lang3.version>
     <commons-io.version>2.4</commons-io.version>
     <guava.version>20.0</guava.version>
-    <simple-spring-memcached.version>3.6.1</simple-spring-memcached.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
-      <!-- simple-spring-memcached -->
-      <dependency>
-        <groupId>com.google.code.simple-spring-memcached</groupId>
-        <artifactId>spring-cache</artifactId>
-        <version>${simple-spring-memcached.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.google.code.simple-spring-memcached</groupId>
-        <artifactId>spymemcached-provider</artifactId>
-        <version>${simple-spring-memcached.version}</version>
-      </dependency>
-
       <!-- webjars -->
       <dependency>
         <groupId>org.webjars</groupId>
@@ -72,6 +58,10 @@
 
   <dependencies>
     <!-- spring-boot -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
