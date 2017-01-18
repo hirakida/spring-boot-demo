@@ -6,17 +6,34 @@
   <title>index</title>
   <meta charset="UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    $(function () {
+      alert(/*[[${text}]]*/);
+    });
+    /*]]>*/
+  </script>
 </head>
 <body>
 
 <div class="container">
-  <h3 th:text="${message}"></h3>
+  <h3>thymeleaf sample</h3>
 
   <table class="table">
     <tr>
-      <td>
-        <a th:href="@{/message_source}">MessageSource test</a>
-      </td>
+      <td>th:text</td>
+      <td th:text="${text}"></td>
+    </tr>
+    <tr>
+      <td>th:utext</td>
+      <!--/* unescaped text */-->
+      <td th:utext="${text}"></td>
+    </tr>
+    <tr>
+      <td>th:inline</td>
+      <!--/* [[...]]の中はinline処理される */-->
+      <td th:inline="text">inline [[${text}]]</td>
     </tr>
   </table>
 </div>

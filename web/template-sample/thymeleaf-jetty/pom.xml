@@ -32,6 +32,7 @@
     </dependency>
 
     <!-- webjars -->
+    <!-- webjars-locatorを使うとtemplate内でpathからversionを隠蔽できる -->
     <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>webjars-locator</artifactId>

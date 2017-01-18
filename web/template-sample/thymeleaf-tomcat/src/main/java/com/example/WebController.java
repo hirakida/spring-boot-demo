@@ -9,7 +9,8 @@ public class WebController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("message", "thymeleaf-tomcat sample");
+        String text = "<b>text</b>";
+        model.addAttribute("text", text);
         return "index";
     }
 }
