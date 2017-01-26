@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    $(function () {
+      var ws = new WebSocket("ws://localhost:8080/webSocket/random");
+      ws.onopen = function () {
+        $("#info").text("onopen");
+      };
+      ws.onclose = function () {
+        $("#info").text("onclose");
+      };
+      ws.onmessage = function (message) {
+        $("#info").text("onmessage");
+        $("#result").append(message.data).append("</br>");
+      };
+      ws.onerror = function (event) {
+        $("#info").text("onerror");
+        alert("接続に失敗しました。");
+      };
+
+      // データを送信する
+      $("#submit_button").click(function () {
+        ws.send($("#message").val());
+        $("#message").val("");
+      });
+    });
+    /*]]>*/
+  </script>
+</head>
+<body>
+
+<div class="container">
+  <div>
+    <label for="info">status</label>
+    <span id="info"></span>
+  </div>
+
+  <div>
+    <label for="message">message</label>
+    <input type="text" id="message" />
+    <input type="button" id="submit_button" value="submit" />
+  </div>
+
+  <!-- messageの出力先 -->
+  <div id="result"></div>
+</div>
+
+</body>
+</html>

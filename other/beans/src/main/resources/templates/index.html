@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="container">
+  <table class="table">
+    <tr>
+      <th>name</th>
+      <th>message</th>
+    </tr>
+
+    <tr>
+      <td th:text="${componentBean.name}"></td>
+      <td th:text="${componentBean.message}"></td>
+    </tr>
+    <tr>
+      <!--/* @Componentはtemplateから直接参照できる */-->
+      <td th:text="${@componentLazyBean.name}"></td>
+      <td th:text="${@componentLazyBean.message}"></td>
+    </tr>
+    <tr>
+      <td th:text="${dataBean.name}"></td>
+      <td th:text="${dataBean.message}"></td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

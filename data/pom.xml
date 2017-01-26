@@ -17,6 +17,7 @@
     <module>mongodb</module>
     <module>doma-h2</module>
     <module>mybatis-h2</module>
+    <module>transaction</module>
   </modules>
 
   <parent>

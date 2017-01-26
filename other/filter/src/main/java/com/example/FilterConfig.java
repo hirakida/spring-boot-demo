@@ -4,33 +4,34 @@ import java.util.Collections;
 
 import javax.servlet.DispatcherType;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 
-import com.example.CustomFilter.RequestFilter1;
-import com.example.CustomFilter.RequestFilter2;
+import com.example.filter.RequestFilter1;
+import com.example.filter.RequestFilter2;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Configuration
+@RequiredArgsConstructor
 @Slf4j
 public class FilterConfig {
 
-    @Autowired
-    RequestFilter1 requestFilter1;
+    final RequestFilter1 requestFilter1;
 
-    @Autowired
-    RequestFilter2 requestFilter2;
+    final RequestFilter2 requestFilter2;
 
     @Bean
     public FilterRegistrationBean filterRegistrationBean1() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean(requestFilter1);
-        registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);  // 優先度を指定。数値が小さいほうが先に適用される
+        // 優先度を指定。数値が小さいほうが先に適用される
+        registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         registrationBean.setDispatcherTypes(DispatcherType.REQUEST);
-        registrationBean.setUrlPatterns(Collections.singletonList("/filter/*"));    // filterが適用されるpattern
+        // filterが適用されるpattern
+        registrationBean.setUrlPatterns(Collections.singletonList("/filter/*"));
         return registrationBean;
     }
 

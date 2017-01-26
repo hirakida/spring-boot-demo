@@ -2,7 +2,6 @@ package com.example;
 
 import java.util.stream.IntStream;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import lombok.AllArgsConstructor;
 
 @SpringBootApplication
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor
 public class App implements CommandLineRunner {
 
     private final MessageSender messageSender;

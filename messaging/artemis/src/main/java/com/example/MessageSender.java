@@ -1,6 +1,5 @@
 package com.example;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
@@ -11,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor
 public class MessageSender {
 
     private final JmsMessagingTemplate jmsMessagingTemplate;

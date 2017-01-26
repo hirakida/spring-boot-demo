@@ -10,10 +10,10 @@
 
   <modules>
     <module>actuator</module>
-    <module>retry</module>
     <module>aop</module>
     <module>event</module>
     <module>filter</module>
+    <module>beans</module>
   </modules>
 
   <parent>
@@ -26,7 +26,6 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
-    <webjars-locator.version>0.32</webjars-locator.version>
     <jquery.version>3.1.1</jquery.version>
     <bootstrap.version>3.3.7</bootstrap.version>
     <lombok.version>1.16.6</lombok.version>
@@ -38,11 +37,6 @@
   <dependencyManagement>
     <dependencies>
       <!-- webjars -->
-      <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>webjars-locator</artifactId>
-        <version>${webjars-locator.version}</version>
-      </dependency>
       <dependency>
         <groupId>org.webjars</groupId>
         <artifactId>jquery</artifactId>

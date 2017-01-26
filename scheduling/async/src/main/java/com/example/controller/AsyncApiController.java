@@ -35,18 +35,18 @@ public class AsyncApiController {
 
     @GetMapping("/async1")
     public void async1() {
-        log.info("Controller start");
+        log.info("async1 Controller start");
         asyncService.async();
-        log.info("Controller end");
+        log.info("async1 Controller end");
     }
 
     // DeferredResultを使って非同期処理の結果をSpring MVCに通知する
     @GetMapping("/async2")
     public DeferredResult<Result> deferredResult() {
-        log.info("Controller start");
+        log.info("async2 Controller start");
         DeferredResult<Result> deferredResult = new DeferredResult<>();
         asyncService.async(deferredResult);
-        log.info("Controller end");
+        log.info("async2 Controller end");
         return deferredResult;
     }
 
@@ -54,21 +54,21 @@ public class AsyncApiController {
     // springが提供しているFutureのsub interface
     @GetMapping("/async3")
     public ListenableFuture<Result> listenableFuture() {
-        log.info("Controller start");
+        log.info("async3 Controller start");
         ListenableFuture<Result> future = asyncService.listenableFuture();
         future.addCallback(result -> log.info("{}", result),
                            e -> log.error("error", e));
-        log.info("Controller end");
+        log.info("async3 Controller end");
         return future;
     }
 
     // java標準のCompletableFutureを使う
     @GetMapping("/async4")
     public CompletableFuture<Result> completableFuture(@RequestParam(defaultValue = "1000") long millis) {
-        log.info("Controller start");
+        log.info("async4 Controller start");
         CompletableFuture<Result> future = asyncService.completableFuture(millis);
         future.thenAccept(result -> log.info("{}", result));
-        log.info("Controller end");
+        log.info("async Controller end");
         return future;
     }
 
