@@ -10,5 +10,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new GenderFormatter());
+        registry.addFormatter(new LocalDateTimeFormatter());
     }
 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="container">
+  <h1>my page</h1>
+  <p sec:authorize="hasRole('ADMIN')">
+    <a th:href="@{/admin}">admin</a>
+  </p>
+  <p>
+    <a th:href="@{/account}">account</a>
+  </p>
+  <p>
+    <a th:href="@{/logout}">logout</a>
+  </p>
+
+  <table class="table" sec:authorize="isAuthenticated()">
+    <tr>
+      <td>userDetails</td>
+      <td th:text="${userDetails}"></td>
+    </tr>
+    <tr>
+      <td>authentication</td>
+      <td th:text="${authentication}"></td>
+    </tr>
+    <tr>
+      <td>userDetails</td>
+      <td th:text="${userDetails2}"></td>
+    </tr>
+    <tr>
+      <td>grantedAuthorities</td>
+      <td th:text="${grantedAuthorities}"></td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

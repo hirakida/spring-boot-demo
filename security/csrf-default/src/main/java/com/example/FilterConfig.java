@@ -37,9 +37,11 @@ public class FilterConfig {
                                         FilterChain filterChain) throws ServletException, IOException {
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
-                Arrays.stream(cookies)
-                      .forEach(cookie -> log.info("cookie name:{} value:{}",
-                                                  cookie.getName(), cookie.getValue()));
+                log.info("cookies");
+                Arrays.asList(cookies)
+                      .forEach(cookie -> log.info("name:{} value:{} secure:{} domain:{} path:{} maxAge:{}",
+                                                  cookie.getName(), cookie.getValue(), cookie.getSecure(),
+                                                  cookie.getDomain(), cookie.getPath(), cookie.getMaxAge()));
             }
             filterChain.doFilter(request, response);
         }

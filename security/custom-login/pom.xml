@@ -9,7 +9,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>csrf-spring-session</artifactId>
+  <artifactId>custom-login</artifactId>
 
   <dependencies>
     <!-- spring -->
@@ -25,14 +25,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-redis</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.session</groupId>
-      <artifactId>spring-session</artifactId>
-    </dependency>
+    <!-- spring-boot-starter-parentでversion管理されているためversion指定は不要 -->
     <dependency>
       <groupId>org.thymeleaf.extras</groupId>
       <artifactId>thymeleaf-extras-springsecurity4</artifactId>
@@ -47,11 +40,5 @@
       <groupId>org.webjars</groupId>
       <artifactId>bootstrap</artifactId>
     </dependency>
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-core</artifactId>
-      <version>RELEASE</version>
-    </dependency>
   </dependencies>
-
 </project>

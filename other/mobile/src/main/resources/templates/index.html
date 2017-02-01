@@ -3,32 +3,33 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>form sample</title>
+  <title>index</title>
   <meta charset="UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
 
 <div class="container">
-  <h3>formatter test</h3>
   <table class="table">
     <tr>
-      <th>male</th>
-      <td th:text="${{male}}"></td>
-      <td th:text="${male}"></td>
+      <td>isNormal</td>
+      <td th:text="${isNormal}"></td>
     </tr>
     <tr>
-      <th>female</th>
-      <td th:text="${{female}}"></td>
-      <td th:text="${female}"></td>
+      <td>isMobile</td>
+      <td th:text="${isMobile}"></td>
     </tr>
     <tr>
-      <th>localDateTime</th>
-      <td th:text="${{localDateTime}}"></td>
-      <td th:text="${localDateTime}"></td>
+      <td>isTablet</td>
+      <td th:text="${isTablet}"></td>
+    </tr>
+    <tr>
+      <td>DevicePlatform</td>
+      <td th:text="${DevicePlatform}"></td>
     </tr>
   </table>
 </div>
 
 </body>
 </html>
+

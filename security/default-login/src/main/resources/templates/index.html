@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" />
+</head>
+<body>
+
+<div class="container">
+  <h1>top page</h1>
+  <p>
+    <a th:href="@{/login}" class="btn btn-default">login</a>
+  </p>
+
+  <table th:object="${account}">
+    <tr>
+      <td>id</td>
+      <td th:text="*{id}"></td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td th:text="*{name}"></td>
+    </tr>
+    <tr>
+      <td>password</td>
+      <td th:text="*{password}"></td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

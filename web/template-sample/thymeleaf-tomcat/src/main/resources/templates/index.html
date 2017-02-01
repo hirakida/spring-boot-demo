@@ -35,6 +35,16 @@
       <!--/* [[...]]の中はinline処理される */-->
       <td th:inline="text">inline [[${text}]]</td>
     </tr>
+    <tr>
+      <td>@viewHelper.message</td>
+      <!--/* DIコンテナに登録されているbeanを参照 */-->
+      <td th:text="${@viewHelper.message}"></td>
+    </tr>
+    <tr>
+      <td>T(com.example.ViewUtil).message</td>
+      <!--/* DIコンテナに登録されていないstatic methodを参照 */-->
+      <td th:text="${T(com.example.ViewUtil).message}"></td>
+    </tr>
   </table>
 </div>
 

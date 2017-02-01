@@ -1,0 +1,7 @@
+security:
+  # default userの設定
+  # AuthenticationManagerBuilderを設定していると、この設定は効かないみたい
+  user:
+    name: default
+    password: default
+    role: USER
