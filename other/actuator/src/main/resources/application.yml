@@ -1,3 +1,10 @@
 management:
   context-path: /manage   # endpointsのcontext-pathを変更
-  port: 8081
+#  port: 8080 # portを変更できる
+  security:
+    enabled: false
+security:
+  user:
+    name: user
+    password: user
+    role: ACTUATOR

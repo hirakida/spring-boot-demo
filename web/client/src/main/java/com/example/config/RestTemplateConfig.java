@@ -18,6 +18,7 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
+import org.springframework.http.client.OkHttpClientHttpRequestFactory;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
@@ -34,7 +35,7 @@ public class RestTemplateConfig {
     public RestOperations restOperations() {
         return new RestTemplateBuilder()
                 .additionalCustomizers(new RestTemplateCustomizerImpl())
-                .requestFactory(new HttpComponentsClientHttpRequestFactory())
+                .requestFactory(httpComponentsClientHttpRequestFactory())
                 .build();
     }
 
@@ -42,8 +43,43 @@ public class RestTemplateConfig {
     public RestOperations okHttp3RestOperations() {
         return new RestTemplateBuilder()
                 .additionalCustomizers(new RestTemplateCustomizerImpl())
-                .requestFactory(new OkHttp3ClientHttpRequestFactory())
+                .requestFactory(okHttp3ClientHttpRequestFactory())
                 .build();
+    }
+
+    @Bean(name = "okHttpRestOperations")
+    public RestOperations okHttpRestOperations() {
+        return new RestTemplateBuilder()
+                .additionalCustomizers(new RestTemplateCustomizerImpl())
+                .requestFactory(okHttpClientHttpRequestFactory())
+                .build();
+    }
+
+    @Bean
+    public HttpComponentsClientHttpRequestFactory httpComponentsClientHttpRequestFactory() {
+        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+        factory.setConnectTimeout(5000);
+        factory.setReadTimeout(5000);
+        factory.setConnectionRequestTimeout(5000);
+        return factory;
+    }
+
+    @Bean
+    public OkHttp3ClientHttpRequestFactory okHttp3ClientHttpRequestFactory() {
+        OkHttp3ClientHttpRequestFactory factory = new OkHttp3ClientHttpRequestFactory();
+        factory.setConnectTimeout(5000);
+        factory.setReadTimeout(5000);
+        factory.setWriteTimeout(5000);
+        return factory;
+    }
+
+    @Bean
+    public OkHttpClientHttpRequestFactory okHttpClientHttpRequestFactory() {
+        OkHttpClientHttpRequestFactory factory = new OkHttpClientHttpRequestFactory();
+        factory.setConnectTimeout(5000);
+        factory.setReadTimeout(5000);
+        factory.setWriteTimeout(5000);
+        return factory;
     }
 
     public static class RestTemplateCustomizerImpl implements RestTemplateCustomizer {

@@ -13,11 +13,13 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import lombok.Value;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * REST APIのException Handler
+ * REST API Exception Handler
  */
 @ControllerAdvice
+@Slf4j
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
@@ -31,7 +33,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
      * client error
      */
     @ExceptionHandler(HttpClientErrorException.class)
-    public ResponseEntity<Object> handleUnauthorizedException(HttpClientErrorException e, WebRequest request) {
+    public ResponseEntity<Object> handleHttpClientErrorException(HttpClientErrorException e,
+                                                                 WebRequest request) {
+        log.warn("{}", request, e);
         HttpStatus status = e.getStatusCode();
         return handleExceptionInternal(e, ErrorResponse.of(status), null, status, request);
     }
@@ -39,9 +43,18 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     /**
      * server error
      */
-    @ExceptionHandler({ HttpServerErrorException.class,
-                        RestClientException.class })
-    public ResponseEntity<Object> handleRestClientException(Exception e, WebRequest request) {
+    @ExceptionHandler(HttpServerErrorException.class)
+    public ResponseEntity<Object> handleHttpServerErrorException(HttpServerErrorException e,
+                                                                 WebRequest request) {
+        log.warn("{}", request, e);
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+        return handleExceptionInternal(e, ErrorResponse.of(status), null, status, request);
+    }
+
+    @ExceptionHandler(RestClientException.class)
+    public ResponseEntity<Object> handleRestClientException(RestClientException e,
+                                                            WebRequest request) {
+        log.warn("{}", request, e);
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         return handleExceptionInternal(e, ErrorResponse.of(status), null, status, request);
     }
@@ -50,7 +63,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
      * timeout
      */
     @ExceptionHandler(ResourceAccessException.class)
-    public ResponseEntity<Object> handleResourceAccessException(ResourceAccessException e, WebRequest request) {
+    public ResponseEntity<Object> handleResourceAccessException(ResourceAccessException e,
+                                                                WebRequest request) {
+        log.warn("{}", request, e);
         HttpStatus status = HttpStatus.REQUEST_TIMEOUT;
         return handleExceptionInternal(e, ErrorResponse.of(status), null, status, request);
     }

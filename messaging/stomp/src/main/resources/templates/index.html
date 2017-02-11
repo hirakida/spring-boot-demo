@@ -7,14 +7,21 @@
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
-<div>
-  <button id="connect">Connect</button>
-  <button id="disconnect" disabled="disabled">Disconnect</button>
-</div>
-<div>
-  <input type="text" id="name" placeholder="Your Name" />
-  <button id="send" disabled="disabled">Send</button>
-  <div id="response"></div>
+
+<div class="container">
+  <div class="well">
+    <button id="connect">Connect</button>
+    <button id="disconnect" disabled="disabled">Disconnect</button>
+  </div>
+  <div class="well">
+    <input type="text" id="name" placeholder="Your Name" />
+    <button id="sendName" disabled="disabled">Send</button>
+    <input type="text" id="message" placeholder="message" />
+    <button id="sendMessage" disabled="disabled">Send</button>
+  </div>
+  <div class="panel">
+    <div id="response"></div>
+  </div>
 </div>
 </body>
 <script th:src="@{/stomp.js}" src="/stomp.js"></script>
@@ -23,11 +30,13 @@
   var HelloStomp = function () {
     this.connectButton = document.getElementById('connect');
     this.disconnectButton = document.getElementById('disconnect');
-    this.sendButton = document.getElementById('send');
+    this.sendNameButton = document.getElementById('sendName');
+    this.sendMessageButton = document.getElementById('sendMessage');
 
     this.connectButton.addEventListener('click', this.connect.bind(this));
     this.disconnectButton.addEventListener('click', this.disconnect.bind(this));
-    this.sendButton.addEventListener('click', this.sendName.bind(this));
+    this.sendNameButton.addEventListener('click', this.sendName.bind(this));
+    this.sendMessageButton.addEventListener('click', this.sendMessage.bind(this));
   };
 
   /**
@@ -45,14 +54,16 @@
   HelloStomp.prototype.onConnected = function (frame) {
     console.log('Connected: ' + frame);
     // メッセージを購読し、コールバック処理を登録
-    this.stompClient.subscribe(/*[[${subscribePath}]]*/, this.onSubscribeGreeting.bind(this));
+    this.stompClient.subscribe(/*[[${subscribe1}]]*/, this.onSubscribe.bind(this));
+    this.stompClient.subscribe(/*[[${subscribe2}]]*/, this.onSubscribe.bind(this));
+    this.stompClient.subscribe(/*[[${subscribe3}]]*/, this.onSubscribe.bind(this));
     this.setConnected(true);
   };
 
   /**
    * subscribeしたメッセージを受信したときの処理
    */
-  HelloStomp.prototype.onSubscribeGreeting = function (message) {
+  HelloStomp.prototype.onSubscribe = function (message) {
     var response = document.getElementById('response');
     var p = document.createElement('p');
     p.appendChild(document.createTextNode(message.body));
@@ -64,7 +75,12 @@
    */
   HelloStomp.prototype.sendName = function () {
     var name = document.getElementById('name').value;
-    this.stompClient.send(/*[[${messagePath}]]*/, {}, name);
+    this.stompClient.send(/*[[${greetingsPath}]]*/, {}, name);
+  };
+
+  HelloStomp.prototype.sendMessage = function () {
+    var message = document.getElementById('message').value;
+    this.stompClient.send(/*[[${messagePath}]]*/, {}, message);
   };
 
   HelloStomp.prototype.disconnect = function () {
@@ -78,7 +94,8 @@
   HelloStomp.prototype.setConnected = function (connected) {
     this.connectButton.disabled = connected;
     this.disconnectButton.disabled = !connected;
-    this.sendButton.disabled = !connected;
+    this.sendNameButton.disabled = !connected;
+    this.sendMessageButton.disabled = !connected;
   };
 
   new HelloStomp();

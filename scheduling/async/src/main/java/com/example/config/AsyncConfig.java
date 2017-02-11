@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AsyncConfig extends AsyncConfigurerSupport {
 
-    // デフォルトでは要求ごとにスレッドを生成するSimpleAsyncTaskExecutorになっているため、
+    // デフォルトではその都度スレッドを生成するSimpleAsyncTaskExecutorになっているため、
     // スレッドプールを使用する
     @Override
     public TaskExecutor getAsyncExecutor() {

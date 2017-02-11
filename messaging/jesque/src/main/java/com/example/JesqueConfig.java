@@ -4,16 +4,16 @@ import static net.greghaines.jesque.utils.JesqueUtils.entry;
 import static net.greghaines.jesque.utils.JesqueUtils.map;
 
 import java.util.Collections;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.TaskExecutor;
 
 import net.greghaines.jesque.Config;
 import net.greghaines.jesque.ConfigBuilder;
@@ -48,32 +48,36 @@ public class JesqueConfig {
     @Value("${spring.redis.database}")
     private int database;
 
-    ExecutorService executor;
+    @Autowired
+    private TaskExecutor taskExecutor;
 
-    WorkerImpl worker;
+    @Autowired
+    private Worker worker;
 
     @PostConstruct
     public void init() {
         log.info("PostConstruct");
-        executor = Executors.newSingleThreadExecutor();
-        worker = new WorkerImpl(config(),
-                                Collections.singletonList(QUEUE_NAME),
-                                new MapBasedJobFactory(map(
-                                        entry("Job1", Job1.class),
-                                        entry("Job2", Job2.class),
-                                        entry("Job3", Job3.class))));
-        worker.getWorkerEventEmitter()
-              .addListener(new WorkerListenerImpl(), WorkerEvent.WORKER_ERROR);
-        worker.getWorkerEventEmitter()
-              .addListener(new WorkerListenerImpl(), WorkerEvent.JOB_FAILURE);
-        executor.execute(worker);
+        taskExecutor.execute(worker());
     }
 
     @PreDestroy
     public void destroy() {
         log.info("PreDestroy");
         worker.end(true);
-        executor.shutdown();
+    }
+
+    @Bean
+    public Worker worker() {
+        Worker worker = new WorkerImpl(config(),
+                                       Collections.singletonList(QUEUE_NAME),
+                                       new MapBasedJobFactory(map(entry("Job1", Job1.class),
+                                                                  entry("Job2", Job2.class),
+                                                                  entry("Job3", Job3.class))));
+        worker.getWorkerEventEmitter()
+              .addListener(workerListener(), WorkerEvent.WORKER_ERROR);
+        worker.getWorkerEventEmitter()
+              .addListener(workerListener(), WorkerEvent.JOB_FAILURE);
+        return worker;
     }
 
     @Bean
@@ -91,6 +95,11 @@ public class JesqueConfig {
                                   .withPort(port)
                                   .withDatabase(database)
                                   .build();
+    }
+
+    @Bean
+    public WorkerListener workerListener() {
+        return new WorkerListenerImpl();
     }
 
     public static class WorkerListenerImpl implements WorkerListener {

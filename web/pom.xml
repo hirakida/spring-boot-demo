@@ -32,20 +32,22 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.4.2.RELEASE</version>
+    <version>1.5.1.RELEASE</version>
     <relativePath/>
   </parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
-    <lombok.version>1.16.6</lombok.version>
     <commons-lang3.version>3.4</commons-lang3.version>
     <commons-io.version>2.4</commons-io.version>
+    <modelmapper-spring.version>0.7.7</modelmapper-spring.version>
     <jquery.version>3.1.1</jquery.version>
     <bootstrap.version>3.3.7</bootstrap.version>
+    <!-- http client -->
     <httpcomponents.version>4.5.2</httpcomponents.version>
     <okhttp3.version>3.5.0</okhttp3.version>
+    <okhttp.version>2.7.5</okhttp.version>
   </properties>
 
   <dependencyManagement>
@@ -73,6 +75,17 @@
         <artifactId>okhttp</artifactId>
         <version>${okhttp3.version}</version>
       </dependency>
+      <dependency>
+        <groupId>com.squareup.okhttp</groupId>
+        <artifactId>okhttp</artifactId>
+        <version>${okhttp.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.modelmapper.extensions</groupId>
+        <artifactId>modelmapper-spring</artifactId>
+        <version>${modelmapper-spring.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -92,7 +105,6 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>

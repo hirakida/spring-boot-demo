@@ -5,3 +5,5 @@ security:
     name: default
     password: default
     role: USER
+management:
+  context-path: /manage

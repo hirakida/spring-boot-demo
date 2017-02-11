@@ -2,11 +2,12 @@ package com.example;
 
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.CreditCardNumber;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,11 +16,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.annotation.CountryCode;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Controller
+@AllArgsConstructor
 public class WebController {
+
+    final ModelMapper modelMapper;
 
     @GetMapping("/")
     public String get(Model model) {
@@ -36,15 +43,18 @@ public class WebController {
             model.addAttribute("form", form);
             return "index";
         }
-        redirectAttributes.addFlashAttribute("form", form);
+        // copy
+        Account account1 = new Account();
+        BeanUtils.copyProperties(form, account1);
+        Account account2 = modelMapper.map(form, Account.class);
+
+        // flash attribute
+        redirectAttributes.addFlashAttribute("account", account1);
         return "redirect:/complete";
     }
 
     @GetMapping("/complete")
-    public String complete(Model model) {
-        if (!model.containsAttribute("form")) {
-            return "redirect:/";
-        }
+    public String complete() {
         return "complete";
     }
 
@@ -53,8 +63,7 @@ public class WebController {
     private static class Form {
         // Stringは未入力の場合にdefaultで空文字が代入されるため、NotNullは使えない
         @NotEmpty
-//        @Size(max = 20)
-        @Length(max = 20)
+        @Length(max = 20)   // @Size(max = 20) でも同じ
         private String name;
         // 追加したアノテーション
         @CountryCode(notEmpty = true)
@@ -66,7 +75,7 @@ public class WebController {
         private Integer age;
         @Email
         private String email;
-        @CreditCardNumber
+        //        @CreditCardNumber
         private String card;
     }
 }

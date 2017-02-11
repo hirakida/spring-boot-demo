@@ -9,17 +9,17 @@ import org.springframework.stereotype.Component;
 import net.greghaines.jesque.Job;
 import net.greghaines.jesque.client.Client;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Slf4j
 public class JesqueClient {
 
-    final Client client;
+    private final Client client;
 
-    final Clock clock;
+    private Clock clock;
 
     public void enqueue(String message, String jobName) {
         Job job = new Job(jobName, message);

@@ -16,6 +16,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String ADMIN = "ROLE_ADMIN";
     private static final String USER = "ROLE_USER";
+    private static final String ACTUATOR = "ROLE_ACTUATOR";
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -48,6 +49,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // authorities()の代わりにroles()を使うと自動でprefixにROLE_が付く
             .withUser("user").password("user").authorities(USER)
             .and()
-            .withUser("admin").password("admin").authorities(USER, ADMIN);
+            .withUser("admin").password("admin").authorities(USER, ADMIN, ACTUATOR);
     }
 }

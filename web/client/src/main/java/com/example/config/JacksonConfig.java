@@ -15,7 +15,6 @@ public class JacksonConfig {
     public Jackson2ObjectMapperBuilder jacksonBuilder() {
         return Jackson2ObjectMapperBuilder.json()
                                           .propertyNamingStrategy(SNAKE_CASE)
-                                          .indentOutput(true)
                                           .modules(new Jdk8Module());
     }
 }

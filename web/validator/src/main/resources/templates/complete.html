@@ -12,28 +12,34 @@
 <div class="container">
   <h3>complete</h3>
 
-  <table class="table" th:object="${form}">
-    <tr>
-      <td>name</td>
-      <td th:text="*{name}"></td>
-    </tr>
-    <tr>
-      <td>country code</td>
-      <td th:text="*{countryCode}"></td>
-    </tr>
-    <tr>
-      <td>age</td>
-      <td th:text="*{age}"></td>
-    </tr>
-    <tr>
-      <td>email</td>
-      <td th:text="*{email}"></td>
-    </tr>
-    <tr>
-      <td>card number</td>
-      <td th:text="*{card}"></td>
-    </tr>
-  </table>
+  <div class="row">
+    <a th:href="@{/}">top</a>
+  </div>
+
+  <div class="row" th:if="${account}">
+    <table class="table" th:object="${account}">
+      <tr>
+        <td>name</td>
+        <td th:text="*{name}"></td>
+      </tr>
+      <tr>
+        <td>country code</td>
+        <td th:text="*{countryCode}"></td>
+      </tr>
+      <tr>
+        <td>age</td>
+        <td th:text="*{age}"></td>
+      </tr>
+      <tr>
+        <td>email</td>
+        <td th:text="*{email}"></td>
+      </tr>
+      <tr>
+        <td>card number</td>
+        <td th:text="*{card}"></td>
+      </tr>
+    </table>
+  </div>
 </div>
 
 </body>

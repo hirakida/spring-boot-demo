@@ -1,6 +1,6 @@
 # mongodb-test
 
-mongodを起動する
+When using external mongodb.
 ```
  $ /usr/local/bin/mongod --config /usr/local/etc/mongod.conf
 ```
