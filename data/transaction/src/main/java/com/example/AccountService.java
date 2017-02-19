@@ -1,5 +1,6 @@
 package com.example;
 
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
@@ -8,6 +9,8 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
+
+import com.example.AccountEventListener.AccountEvent;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +28,8 @@ public class AccountService {
 
     final TransactionTemplate transactionTemplate;
 
+    final ApplicationEventPublisher applicationEventPublisher;
+
     /**
      * 宣言的トランザクション
      */
@@ -35,6 +40,9 @@ public class AccountService {
         account.setName(name);
         accountRepository.saveAndFlush(account);
         log.info("### create end ###");
+
+        AccountEvent event = new AccountEvent(account);
+        applicationEventPublisher.publishEvent(event);
         return account;
     }
 

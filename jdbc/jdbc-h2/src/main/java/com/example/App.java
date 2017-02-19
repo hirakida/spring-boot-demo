@@ -35,6 +35,11 @@ public class App implements CommandLineRunner {
         accountRepository.update(newAccount);
         log.info("update: {}", newAccount);
 
+        // batch update
+        accounts.forEach(account -> account.setName(account.getName() + '_'));
+        accountRepository.batchUpdate(accounts);
+        log.info("batchUpdate: {}", accounts);
+
         // delete
         accountRepository.delete(newAccount.getId());
 

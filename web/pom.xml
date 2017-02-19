@@ -14,18 +14,16 @@
     <module>template-sample/thymeleaf-tomcat</module>
     <module>template-sample/freemarker-tomcat</module>
     <module>template-sample/jsp</module>
+    <module>api</module>
+    <module>attribute</module>
+    <module>argument-resolver</module>
     <module>client</module>
     <module>validator</module>
     <module>properties</module>
-    <module>messagesource</module>
-    <module>scope-sample</module>
+    <module>message-source</module>
     <module>interceptor</module>
-    <module>api</module>
-    <module>argument-resolver</module>
     <module>formatter</module>
-    <module>attribute-sample/session-attribute</module>
-    <module>attribute-sample/flash-attribute</module>
-    <module>attribute-sample/model-attribute</module>
+    <module>matrix-variable</module>
   </modules>
 
   <!-- Spring Bootの設定情報群を継承 -->

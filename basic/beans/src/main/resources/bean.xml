@@ -3,8 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="dataBeanXml" class="com.example.bean.DataBean">
-    <property name="name" value="dataBean"/>
+  <bean id="fooXml" class="com.example.bean.Foo">
+    <property name="name" value="foo"/>
     <property name="message" value="from bean.xml"/>
   </bean>
 </beans>

@@ -4,19 +4,19 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.example</groupId>
-  <artifactId>spring-boot-scheduling-sample</artifactId>
+  <artifactId>spring-scheduling-sample</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
     <module>async</module>
-    <module>scheduling</module>
+    <module>scheduler</module>
   </modules>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.4.2.RELEASE</version>
+    <version>1.5.1.RELEASE</version>
     <relativePath/>
   </parent>
 

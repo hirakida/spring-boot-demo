@@ -2,8 +2,8 @@ package com.example.controller;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.concurrent.ListenableFuture;
@@ -27,16 +27,19 @@ import lombok.extern.slf4j.Slf4j;
  * Spring MVC管理外のスレッドで実行する
  */
 @RestController
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 @Slf4j
 public class AsyncApiController {
 
     private final AsyncService asyncService;
 
+    /**
+     * serviceの戻り値はvoid
+     */
     @GetMapping("/async1")
-    public void async1() {
+    public void async1(@RequestParam(defaultValue = "1000") long millis) {
         log.info("async1 Controller start");
-        asyncService.async();
+        asyncService.async(millis);
         log.info("async1 Controller end");
     }
 
@@ -50,8 +53,10 @@ public class AsyncApiController {
         return deferredResult;
     }
 
-    // ListenableFutureを使う
-    // springが提供しているFutureのsub interface
+    /**
+     * ListenableFuture
+     * springが提供しているFutureのsub interface
+     */
     @GetMapping("/async3")
     public ListenableFuture<Result> listenableFuture() {
         log.info("async3 Controller start");
@@ -62,13 +67,31 @@ public class AsyncApiController {
         return future;
     }
 
-    // java標準のCompletableFutureを使う
+    /**
+     * Future
+     */
     @GetMapping("/async4")
-    public CompletableFuture<Result> completableFuture(@RequestParam(defaultValue = "1000") long millis) {
+    public Future<Result> future(@RequestParam(defaultValue = "1000") long millis) {
         log.info("async4 Controller start");
+        Future<Result> future = asyncService.future(millis);
+        try {
+            log.info("{}", future.get());
+        } catch (Exception e) {
+            log.error("error", e);
+        }
+        log.info("async4 Controller end");
+        return future;
+    }
+
+    /**
+     * CompletableFuture
+     */
+    @GetMapping("/async5")
+    public CompletableFuture<Result> completableFuture(@RequestParam(defaultValue = "1000") long millis) {
+        log.info("async5 Controller start");
         CompletableFuture<Result> future = asyncService.completableFuture(millis);
         future.thenAccept(result -> log.info("{}", result));
-        log.info("async Controller end");
+        log.info("async5 Controller end");
         return future;
     }
 

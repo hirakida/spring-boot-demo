@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,10 +28,10 @@ public class AccountRepository {
         jdbcInsert = new SimpleJdbcInsert((JdbcTemplate) jdbcTemplate.getJdbcOperations())
                 .withTableName("account")
                 .usingGeneratedKeyColumns("id");
-        userRowMapper = (rs, i) -> Account.builder()
-                                          .id(rs.getInt("id"))
-                                          .name(rs.getString("name"))
-                                          .build();
+        userRowMapper = (rs, rowNum) -> Account.builder()
+                                               .id(rs.getInt("id"))
+                                               .name(rs.getString("name"))
+                                               .build();
     }
 
     public List<Account> findAll() {
@@ -57,6 +58,12 @@ public class AccountRepository {
         String sql = "UPDATE account SET name=:name WHERE id=:id";
         jdbcTemplate.update(sql, param);
         return user;
+    }
+
+    public int[] batchUpdate(List<Account> users) {
+        SqlParameterSource[] param = SqlParameterSourceUtils.createBatch(users.toArray());
+        String sql = "UPDATE account SET name=:name WHERE id=:id";
+        return jdbcTemplate.batchUpdate(sql, param);
     }
 
     public void delete(int id) {

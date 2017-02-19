@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    $(function () {
+      alert(/*[[${text}]]*/);
+    });
+    /*]]>*/
+  </script>
+</head>
+<body>
+
+<div class="container">
+  <h3>thymeleaf sample</h3>
+
+  <table class="table">
+    <tr>
+      <td>text</td>
+      <td th:text="${text}"></td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

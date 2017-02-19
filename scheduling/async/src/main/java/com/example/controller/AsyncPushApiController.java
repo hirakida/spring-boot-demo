@@ -2,7 +2,6 @@ package com.example.controller;
 
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,13 +19,15 @@ import lombok.extern.slf4j.Slf4j;
  * 非同期処理中にresponse dataをpushする
  */
 @RestController
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 @Slf4j
 public class AsyncPushApiController {
 
     private final AsyncPushService asyncPushService;
 
-    // ResponseBodyEmitterを使う
+    /**
+     * ResponseBodyEmitter
+     */
     @GetMapping("/push1")
     public ResponseBodyEmitter push1() {
         log.info("Controller start");
@@ -36,7 +37,9 @@ public class AsyncPushApiController {
         return emitter;
     }
 
-    // SseEmitterを使う
+    /**
+     * SseEmitter
+     */
     @GetMapping("/push2")
     public SseEmitter push2(@RequestParam(defaultValue = "1000") long millis) {
         log.info("Controller start");

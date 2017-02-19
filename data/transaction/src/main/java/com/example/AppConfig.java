@@ -9,10 +9,12 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @EnableJpaAuditing
 @RequiredArgsConstructor
+@Slf4j
 public class AppConfig {
 
     final PlatformTransactionManager platformTransactionManager;

@@ -24,6 +24,11 @@ public class ApiController {
         return gitHubApiClient.getUsers(userName);
     }
 
+    @GetMapping("/github/users/{userName}/async")
+    public GitHubUser usersWithAsync(@PathVariable String userName) {
+        return gitHubApiClient.getUsersWithAsync(userName);
+    }
+
     @GetMapping("/github/options")
     public Set<HttpMethod> options() {
         return gitHubApiClient.options();

@@ -54,6 +54,22 @@
                 class="alert-danger"></span>
         </td>
       </tr>
+      <tr>
+        <td>address1</td>
+        <td>
+          <input type="text" th:field="*{address.address1}" />
+          <span th:if="${#fields.hasErrors('address.address1')}" th:errors="*{address.address1}"
+                class="alert-danger"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>address2</td>
+        <td>
+          <input type="text" th:field="*{address.address2}" />
+          <span th:if="${#fields.hasErrors('address.address2')}" th:errors="*{address.address2}"
+                class="alert-danger"></span>
+        </td>
+      </tr>
     </table>
 
     <input type="submit" value="submit" />

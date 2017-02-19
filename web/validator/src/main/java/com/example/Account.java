@@ -11,4 +11,6 @@ public class Account {
     private Integer age;
     private String email;
     private String card;
+    private String address1;
+    private String address2;
 }

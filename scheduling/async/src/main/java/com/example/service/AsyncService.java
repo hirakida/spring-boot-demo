@@ -2,6 +2,7 @@ package com.example.service;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -19,9 +20,9 @@ public class AsyncService {
 
     // Asyncを付けると別スレッドで実行される
     @Async
-    public void async() {
+    public void async(long millis) {
         log.info("Service start");
-        run("async", 3000L);
+        run("async", millis);
         log.info("Service end");
     }
 
@@ -42,6 +43,14 @@ public class AsyncService {
     }
 
     @Async
+    public Future<Result> future(long millis) {
+        log.info("Service start");
+        Result result = run("future", millis);
+        log.info("Service end");
+        return new AsyncResult<>(result);
+    }
+
+    @Async
     public CompletableFuture<Result> completableFuture(long millis) {
         log.info("Service start");
         Result result = run("CompletableFuture", millis);
@@ -50,6 +59,10 @@ public class AsyncService {
     }
 
     private static Result run(String message, long millis) {
+        if (millis == 0) {
+            throw new IllegalArgumentException();
+        }
+
         Result result = Result.of(message, LocalDateTime.now());
         result.setStartAt(LocalDateTime.now());
         try {

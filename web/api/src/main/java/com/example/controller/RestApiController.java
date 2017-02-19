@@ -1,10 +1,12 @@
 package com.example.controller;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ForbiddenException;
 import com.example.Gender;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,6 +33,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api")
 @Slf4j
 public class RestApiController {
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @GetMapping("/v1/{id}")
     public Account get1(@PathVariable long id) {
@@ -52,6 +58,13 @@ public class RestApiController {
                              .body(account);
     }
 
+    @GetMapping("/v3/{id}")
+    public Response get3(@PathVariable long id) {
+        Account account = new Account(id, "name" + id, Gender.FEMALE, LocalDateTime.now());
+        Map<String, Object> map = objectMapper.convertValue(account, Map.class);
+        return new Response(account, map);
+    }
+
     @PostMapping("/v1")
     public Account post(@RequestBody @Validated Account account) {
         account.setId(3L);
@@ -68,5 +81,12 @@ public class RestApiController {
         @NotNull
         private Gender gender;
         private LocalDateTime createdAt;
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class Response {
+        private Account account;
+        private Map<String, Object> map;
     }
 }

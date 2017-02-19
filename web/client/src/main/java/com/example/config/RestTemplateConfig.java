@@ -92,7 +92,7 @@ public class RestTemplateConfig {
                     .detectRequestFactory(false)    // 2つのライブラリを使う場合は自動検出をoffにする
                     .uriTemplateHandler(uriTemplateHandler)
                     .errorHandler(new CustomResponseErrorHandler())
-                    .interceptors(singletonList(new CustomClientHttpRequestInterceptor()))
+                    .interceptors(singletonList(new ClientHttpRequestInterceptorImpl()))
                     .setConnectTimeout(5000)
                     .setReadTimeout(5000)
                     .configure(restTemplate);
@@ -115,7 +115,7 @@ public class RestTemplateConfig {
         }
     }
 
-    private static class CustomClientHttpRequestInterceptor implements ClientHttpRequestInterceptor {
+    private static class ClientHttpRequestInterceptorImpl implements ClientHttpRequestInterceptor {
         @Override
         public ClientHttpResponse intercept(HttpRequest request,
                                             byte[] body,

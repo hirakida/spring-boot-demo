@@ -9,10 +9,10 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>aop</module>
     <module>event</module>
     <module>filter</module>
     <module>beans</module>
+    <module>bean-scope</module>
   </modules>
 
   <parent>

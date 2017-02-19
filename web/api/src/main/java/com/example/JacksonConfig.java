@@ -23,11 +23,10 @@ public class JacksonConfig {
                                           // valueがnullの項目は表示されなくなる
 //                                          .serializationInclusion(JsonInclude.Include.NON_NULL)
 //                                          .indentOutput(true)
-//                                          .modules(new Jdk8Module(), customModule());
-                                          .modules(new Jdk8Module());
+                                          .modules(new Jdk8Module(), customModule());
     }
 
-    //    @Bean
+    @Bean
     public SimpleModule customModule() {
         SimpleModule module = new SimpleModule("customModule");
         module.addSerializer(LocalDateTime.class, new LocalDateTimeJsonSerializer());

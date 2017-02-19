@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>flash scope</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <h3>attribute sample</h3>
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <tr>
+        <th>
+          <a th:href="@{/model}">model attribute</a>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <a th:href="@{/flash}">flash attribute</a>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <a th:href="@{/session}">session attribute</a>
+        </th>
+      </tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
