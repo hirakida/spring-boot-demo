@@ -26,7 +26,7 @@ public class App implements CommandLineRunner {
         accountRepository.deleteAll();
 
         // insert
-        IntStream.rangeClosed(1, 6)
+        IntStream.rangeClosed(1, 10)
                  .forEach(i -> {
                      Account account = new Account();
                      account.setName("user" + i);

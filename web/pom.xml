@@ -10,9 +10,8 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>template-sample/thymeleaf-jetty</module>
-    <module>template-sample/thymeleaf-tomcat</module>
-    <module>template-sample/freemarker-tomcat</module>
+    <module>template-sample/thymeleaf</module>
+    <module>template-sample/freemarker</module>
     <module>template-sample/jsp</module>
     <module>api</module>
     <module>attribute</module>
@@ -22,6 +21,7 @@
     <module>properties</module>
     <module>message-source</module>
     <module>interceptor</module>
+    <module>jetty</module>
     <module>formatter</module>
     <module>matrix-variable</module>
   </modules>

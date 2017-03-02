@@ -13,6 +13,7 @@ public class AppConfig {
 
     public static final String TEXT_NAME = "text.queue";
     public static final String MESSAGE_QUEUE = "message.queue";
+    public static final String DELAYED_QUEUE = "delayed.queue";
 
     @Bean
     public Queue queue() {

@@ -13,6 +13,7 @@
     <module>mobile</module>
     <module>kafka</module>
     <module>retry</module>
+    <module>mail</module>
   </modules>
 
   <parent>

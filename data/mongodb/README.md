@@ -1,4 +1,4 @@
-# mongodb-test
+# data-mongodb sample
 
 When using external mongodb.
 ```

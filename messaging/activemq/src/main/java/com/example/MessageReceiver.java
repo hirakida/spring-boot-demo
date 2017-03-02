@@ -20,4 +20,9 @@ public class MessageReceiver {
     public void receiveMessage(Message<String> message) {
         log.info("receive message payload={} headers={}", message.getPayload(), message.getHeaders());
     }
+
+    @JmsListener(destination = AppConfig.DELAYED_QUEUE, concurrency = "1-5")
+    public void receiveDelayedMessage(Message<String> message) {
+        log.info("receive delayed message payload={} headers={}", message.getPayload(), message.getHeaders());
+    }
 }
