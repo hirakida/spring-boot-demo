@@ -10,9 +10,6 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>template-sample/thymeleaf</module>
-    <module>template-sample/freemarker</module>
-    <module>template-sample/jsp</module>
     <module>api</module>
     <module>attribute</module>
     <module>argument-resolver</module>

@@ -14,7 +14,6 @@
     <module>artemis</module>
     <module>stomp</module>
     <module>websocket</module>
-    <module>jesque</module>
   </modules>
 
   <parent>
