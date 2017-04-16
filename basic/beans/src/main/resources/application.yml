@@ -1,7 +1,0 @@
-spring:
-  thymeleaf:
-    cache: false
-management:
-  context-path: /manage
-  security:
-    enabled: false

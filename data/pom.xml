@@ -9,10 +9,6 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>jpa-h2</module>
-    <module>jpa-h2-flyway</module>
-    <module>jpa-h2-hikaricp</module>
-    <module>jpa-hsqldb</module>
     <module>mongodb</module>
     <module>transaction</module>
     <module>elasticsearch</module>

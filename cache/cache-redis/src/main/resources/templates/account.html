@@ -5,24 +5,11 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-  <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-  <script th:inline="javascript">
-    /*<![CDATA[*/
-    $(function () {
-      $('.clear-one').click(function () {
-        $.ajax({
-          type: "DELETE",
-          url: "/accounts/" + $(this).data("id")
-        });
-      });
-    });
-    /*]]>*/
-  </script>
 </head>
 <body>
 
 <div class="container">
-  <h1>cache sample</h1>
+  <h1>cache redis</h1>
 
   <div th:if="${account}">
     <table class="table">
@@ -35,11 +22,22 @@
         <td th:text="${account.name}"></td>
       </tr>
     </table>
-    <button class="btn clear-one"
+    <button id="clear" class="btn btn-default"
             th:attr="data-id=${account.id}">キャッシュクリア
     </button>
   </div>
 </div>
 
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript">
+  $(function () {
+    $('#clear').on('click', function () {
+      $.ajax({
+        type: "DELETE",
+        url: "/accounts/" + $(this).data("id")
+      });
+    });
+  });
+</script>
 </body>
 </html>

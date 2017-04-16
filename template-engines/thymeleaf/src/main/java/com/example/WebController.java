@@ -18,10 +18,4 @@ public class WebController {
         model.addAttribute("text", text);
         return "index";
     }
-
-    @GetMapping("/js")
-    public String js(Model model) {
-        model.addAttribute("text", "js_test");
-        return "js_test";
-    }
 }

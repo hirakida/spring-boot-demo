@@ -15,19 +15,19 @@
     <module>argument-resolver</module>
     <module>client</module>
     <module>validator</module>
-    <module>properties</module>
+    <module>configuration-properties</module>
     <module>message-source</module>
     <module>interceptor</module>
-    <module>jetty</module>
     <module>formatter</module>
     <module>matrix-variable</module>
+    <module>error-page</module>
   </modules>
 
   <!-- Spring Bootの設定情報群を継承 -->
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.1.RELEASE</version>
+    <version>1.5.2.RELEASE</version>
     <relativePath/>
   </parent>
 

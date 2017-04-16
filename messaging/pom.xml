@@ -5,15 +5,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.example</groupId>
-  <artifactId>spring-boot-messaging-sample</artifactId>
+  <artifactId>spring-messaging-sample</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
     <module>activemq</module>
     <module>artemis</module>
-    <module>stomp</module>
-    <module>websocket</module>
   </modules>
 
   <parent>

@@ -3,6 +3,7 @@ package com.example;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Locale;
 
@@ -19,11 +20,17 @@ public class LocalDateTimeFormatter implements Formatter<LocalDateTime> {
         if (StringUtils.isBlank(text)) {
             return null;
         }
-        return LocalDateTime.parse(text, formatter);
+        // convert from String to LocalDateTime
+        try {
+            return LocalDateTime.parse(text, formatter);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(e.toString(), 0);
+        }
     }
 
     @Override
     public String print(LocalDateTime localDateTime, Locale locale) {
+        // convert from LocalDateTime to String
         return localDateTime == null ? null : localDateTime.format(formatter);
     }
 }

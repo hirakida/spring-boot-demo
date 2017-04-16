@@ -11,8 +11,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         // viewを直接指定できる
-        registry.addViewController("404__")
-                .setViewName("error/404");
+        registry.addViewController("index")
+                .setViewName("index");
         // /redirectにアクセスされた場合は、リダイレクトする
         registry.addRedirectViewController("redirect", "/");
         // /faviconにアクセスされた場合は、ステータスコードを返却する

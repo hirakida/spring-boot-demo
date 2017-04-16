@@ -3,6 +3,7 @@ management:
 #  port: 8080 # portを変更できる
   security:
     enabled: false
+
 security:
   user:
     name: user

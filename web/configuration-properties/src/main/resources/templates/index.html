@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="container">
+  <h3>properties test</h3>
+  <table class="table">
+    <tr>
+      <th class="col-md-4">type</th>
+      <th class="col-md-4">key</th>
+      <th class="col-md-4">value</th>
+    </tr>
+    <tr>
+      <td>@Value</td>
+      <td>string1</td>
+      <td th:text="${str1_1}"></td>
+    </tr>
+    <tr>
+      <td>@Value</td>
+      <td>string2</td>
+      <td th:text="${str1_2}"></td>
+    </tr>
+    <tr>
+      <td>@Value</td>
+      <td>number1</td>
+      <td th:text="${number1_1}"></td>
+    </tr>
+    <tr>
+      <td>@Value</td>
+      <td>number2</td>
+      <td th:text="${number1_2}"></td>
+    </tr>
+
+    <tr>
+      <td>Environment</td>
+      <td>string1</td>
+      <td th:text="${str2_1}"></td>
+    </tr>
+    <tr>
+      <td>Environment</td>
+      <td>string2</td>
+      <td th:text="${str2_2}"></td>
+    </tr>
+    <tr>
+      <td>Environment</td>
+      <td>number1</td>
+      <td th:text="${number2_1}"></td>
+    </tr>
+    <tr>
+      <td>Environment</td>
+      <td>number2</td>
+      <td th:text="${number2_2}"></td>
+    </tr>
+
+    <tr>
+      <td>@ConfigurationProperties</td>
+      <td>string1</td>
+      <td th:text="${str3_1}"></td>
+    </tr>
+    <tr>
+      <td>@ConfigurationProperties</td>
+      <td>string2</td>
+      <td th:text="${str3_2}"></td>
+    </tr>
+    <tr>
+      <td>@ConfigurationProperties</td>
+      <td>number1</td>
+      <td th:text="${number3_1}"></td>
+    </tr>
+    <tr>
+      <td>@ConfigurationProperties</td>
+      <td>number2</td>
+      <td th:text="${number3_2}"></td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

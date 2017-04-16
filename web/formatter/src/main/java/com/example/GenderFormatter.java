@@ -8,23 +8,19 @@ import org.springframework.format.Formatter;
 
 public class GenderFormatter implements Formatter<Gender> {
 
-    /**
-     * codeの文字列をenumに変換
-     */
     @Override
     public Gender parse(String text, Locale locale) throws ParseException {
         if (StringUtils.isBlank(text)) {
             return null;
         }
+        // convert from String to enum
         return Gender.of(text)
                      .orElseThrow(() -> new ParseException(text, 0));
     }
 
-    /**
-     * enumをlabelに変換
-     */
     @Override
     public String print(Gender gender, Locale locale) {
+        // convert from enum to String
         return gender == null ? null : gender.getLabel();
     }
 }
