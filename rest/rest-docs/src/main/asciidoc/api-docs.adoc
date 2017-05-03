@@ -1,0 +1,57 @@
+= Spring REST Docs sample
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+
+[[apiController]]
+= ApiController
+
+[[api]]
+== getAll
+
+=== Http Request
+include::{snippets}/get-all-test/1/http-request.adoc[]
+
+=== Http Response
+include::{snippets}/get-all-test/1/http-response.adoc[]
+
+
+== get
+
+=== Http Request
+include::{snippets}/get-test/1/http-request.adoc[]
+
+=== Http Response
+include::{snippets}/get-test/1/http-response.adoc[]
+
+
+== put
+
+=== Http Request
+include::{snippets}/put-test/1/http-request.adoc[]
+
+=== Http Response
+include::{snippets}/put-test/1/http-response.adoc[]
+
+
+== post
+
+=== Http Request
+include::{snippets}/post-test/1/http-request.adoc[]
+
+=== Http Response
+include::{snippets}/post-test/1/http-response.adoc[]
+
+
+== delete
+
+=== Http Request
+include::{snippets}/delete-test/1/http-request.adoc[]
+
+=== Http Response
+include::{snippets}/delete-test/1/http-response.adoc[]

@@ -5,55 +5,66 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.example</groupId>
-  <artifactId>spring-data-sample</artifactId>
+  <artifactId>rest-sample</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
-    <module>mongodb</module>
-    <module>transaction</module>
-    <module>elasticsearch</module>
-    <module>redis</module>
+    <module>data-rest</module>
+    <module>rest-docs</module>
+    <module>rest-controller</module>
+    <module>async-rest-template</module>
+    <module>rest-template</module>
+    <module>rest-template-okhttp</module>
   </modules>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.2.RELEASE</version>
+    <version>1.5.3.RELEASE</version>
     <relativePath/>
   </parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
-    <mysql-connector-java.version>6.0.3</mysql-connector-java.version>
-    <log4jdbc-log4j2-jdbc4.1.version>1.16</log4jdbc-log4j2-jdbc4.1.version>
+    <spring-restdocs.version>1.2.0.RELEASE</spring-restdocs.version>
+    <!-- http client -->
+    <httpcomponents.version>4.5.2</httpcomponents.version>
+    <okhttp3.version>3.5.0</okhttp3.version>
+    <okhttp.version>2.7.5</okhttp.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
-      <!-- database -->
       <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>${mysql-connector-java.version}</version>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${httpcomponents.version}</version>
       </dependency>
-
-      <!-- misc -->
       <dependency>
-        <groupId>org.bgee.log4jdbc-log4j2</groupId>
-        <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
-        <version>${log4jdbc-log4j2-jdbc4.1.version}</version>
+        <groupId>com.squareup.okhttp3</groupId>
+        <artifactId>okhttp</artifactId>
+        <version>${okhttp3.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.squareup.okhttp</groupId>
+        <artifactId>okhttp</artifactId>
+        <version>${okhttp.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
 
   <dependencies>
-    <!-- spring-boot -->
-    <!--<dependency>-->
-    <!--<groupId>org.springframework.boot</groupId>-->
-    <!--<artifactId>spring-boot-devtools</artifactId>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>

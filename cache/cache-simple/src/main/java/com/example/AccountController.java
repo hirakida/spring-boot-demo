@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.AllArgsConstructor;
 
 @Controller
-@RequestMapping("/account")
+@RequestMapping("/accounts")
 @AllArgsConstructor
 public class AccountController {
 
@@ -32,23 +32,23 @@ public class AccountController {
         return "account";
     }
 
-    @GetMapping("/{accountId}")
-    public String get(@PathVariable long accountId, Model model) {
-        Account account = accountService.cacheable(accountId);
+    @GetMapping("/{id}")
+    public String get(@PathVariable long id, Model model) {
+        Account account = accountService.cacheable(id);
         model.addAttribute("account", account);
         return "account";
     }
 
-    @PutMapping("/{accountId}")
-    public String put(@PathVariable long accountId, Model model) {
-        Account account = accountService.cachePut(accountId);
+    @PutMapping("/{id}")
+    public String put(@PathVariable long id, Model model) {
+        Account account = accountService.cachePut(id);
         model.addAttribute("account", account);
         return "account";
     }
 
-    @DeleteMapping("/{accountId}")
-    public String delete(@PathVariable long accountId) {
-        accountService.cacheEvict(accountId);
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable long id) {
+        accountService.cacheEvict(id);
         return "account";
     }
 }
