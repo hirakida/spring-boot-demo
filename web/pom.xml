@@ -19,6 +19,8 @@
     <module>formatter</module>
     <module>matrix-variable</module>
     <module>error-page</module>
+    <module>freemarker</module>
+    <module>jsp</module>
   </modules>
 
   <!-- Spring Bootの設定情報群を継承 -->
