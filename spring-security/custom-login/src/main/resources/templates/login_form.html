@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>login_form</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link rel="stylesheet" type="text/css" href="//getbootstrap.com/examples/signin/signin.css" />
+</head>
+<body>
+<div class="container">
+  <form class="form-signin" method="post" th:action="@{/login_processing}">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <div th:if="${param.error}" class="alert alert-danger">Invalid username or password</div>
+    <input class="form-control" name="username" placeholder="username" required="required"
+           autofocus="autofocus" />
+    <input type="password" class="form-control" name="password" placeholder="password" required="required" />
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  </form>
+</div>
+</body>
+</html>

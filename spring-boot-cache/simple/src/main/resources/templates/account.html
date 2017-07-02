@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="container">
+  <h1>cache simple</h1>
+
+  <div th:if="${account}">
+    <table class="table">
+      <tr>
+        <th>id</th>
+        <th>name</th>
+      </tr>
+      <tr>
+        <td th:text="${account.id}"></td>
+        <td th:text="${account.name}"></td>
+      </tr>
+    </table>
+    <button class="btn btn-default" id="put-one"
+            th:attr="data-id=${account.id}">update cache
+    </button>
+    <button class="btn btn-default" id="clear-one"
+            th:attr="data-id=${account.id}">clear cache
+    </button>
+  </div>
+
+  <div th:if="${accounts}">
+    <table class="table">
+      <tr>
+        <th>id</th>
+        <th>name</th>
+      </tr>
+      <tr th:object="${account}" th:each="account: ${accounts}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{name}"></td>
+      </tr>
+    </table>
+    <button class="btn btn-default" id="clear-all">clear cache</button>
+  </div>
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript">
+  $(function () {
+    $('#clear-all').on('click', function () {
+      $.ajax({
+        type: "DELETE",
+        url: "/accounts"
+      });
+    });
+
+    $('#clear-one').on('click', function () {
+      $.ajax({
+        type: "DELETE",
+        url: "/accounts/" + $(this).data("id")
+      });
+    });
+
+    $('#put-one').on('click', function () {
+      $.ajax({
+        type: "PUT",
+        url: "/accounts/" + $(this).data("id")
+      });
+    });
+  });
+</script>
+</body>
+</html>

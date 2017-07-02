@@ -1,0 +1,12 @@
+management:
+  context-path: /actuator   # endpointsのcontext-pathを変更
+#  port: 8080 # portを変更できる
+  security:
+    enabled: false # Spring Boot 1.5からは、/infoと/health以外はデフォルトで認可が必要
+
+# /infoと/healthも認可対象にする場合
+#endpoints:
+#  health:
+#    sensitive: true
+#  info:
+#    sensitive: true

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="container">
+  <h1>redis</h1>
+
+  <div th:if="${account}">
+    <table class="table">
+      <tr>
+        <th>id</th>
+        <th>name</th>
+      </tr>
+      <tr>
+        <td th:text="${account.id}"></td>
+        <td th:text="${account.name}"></td>
+      </tr>
+    </table>
+    <button id="clear" class="btn btn-default"
+            th:attr="data-id=${account.id}">キャッシュクリア
+    </button>
+  </div>
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript">
+  $(function () {
+    $('#clear').on('click', function () {
+      $.ajax({
+        type: "DELETE",
+        url: "/accounts/" + $(this).data("id")
+      });
+    });
+  });
+</script>
+</body>
+</html>

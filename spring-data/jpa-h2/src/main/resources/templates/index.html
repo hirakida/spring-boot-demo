@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css"
+        th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <p></p>
+    <p>
+      <a class="btn btn-default" href="#addModal" data-toggle="modal">add</a>
+      <button id="deleteAll" class="btn btn-default">delete all</button>
+    </p>
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>action</th>
+      </tr>
+      </thead>
+      <tbody id="tbody">
+      <tr th:each="account : ${accounts}">
+        <td th:text="${account.id}"></td>
+        <td>
+          <input type="text" th:id="'name-text-' + ${account.id}" th:value="${account.name}" />
+        </td>
+        <td>
+          <button name="update" class="btn btn-default" th:attr="data-id=${account.id}">update</button>
+          <button name="delete" class="btn btn-default" th:attr="data-id=${account.id}">delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="modal" id="addModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel"
+       aria-hidden="true" data-show="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&#215;</span>
+            <span class="sr-only">close</span>
+          </button>
+          <h4 class="modal-title">add account</h4>
+        </div>
+        <div class="modal-body">
+          <p class="recipient">name</p>
+          <p><input type="text" id="addName" /></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="addButton" class="btn btn-primary">add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/modal.js}"></script>
+<script th:src="@{/webjars/bootstrap/transition.js}"></script>
+<script type="text/javascript">
+  $(function () {
+
+    // add
+    $('#addButton').on('click', function () {
+      var textbox = $('#addName');
+      var name = textbox.val();
+      var account = {
+        name: name
+      };
+      $.ajax({
+        type: 'POST',
+        url: '/api/accounts',
+        data: account
+      }).done(function (response) {
+        textbox.removeClass('bg-danger');
+        textbox.val('');
+        var id = response.id;
+        var row = '<tr>' +
+                  '<td>' + id + '</td>' +
+                  '<td>' +
+                  '<input type="text" id="name-text-' + id + '" value="' + response.name + '" />' +
+                  '</td>' +
+                  '<td>' +
+                  '<button name="update" class="btn btn-default" data-id="' + id + '">update</button> ' +
+                  '<button name="delete" class="btn btn-default" data-id="' + id + '">delete</button>' +
+                  '</td>' +
+                  '</tr>';
+        $('tbody').append(row);
+        $('#addModal').modal('hide');
+        console.log('Succeeded to add.');
+      }).fail(function (e) {
+        textbox.addClass('bg-danger');
+        console.log('Failed to add. name=' + name, e);
+      });
+    });
+
+    // update
+//    $('button[name=update]').on('click', function () {
+    $(document).on('click', 'button[name=update]', function () {
+      var target = $(this);
+      var id = target.data('id');
+      var textbox = $('#name-text-' + id);
+      var name = textbox.val();
+      var account = {
+        name: name
+      };
+      $.ajax({
+        type: 'PUT',
+        url: '/api/accounts/' + id,
+        data: account
+      }).done(function () {
+        textbox.removeClass('bg-danger');
+        console.log('Succeeded to update. name=' + name);
+      }).fail(function () {
+        textbox.addClass('bg-danger');
+        console.log('Failed to update. name=' + name);
+      });
+    });
+
+    // delete all
+    $('#deleteAll').on('click', function () {
+      $.ajax({
+        type: 'DELETE',
+        url: '/api/accounts'
+      }).done(function () {
+        $('#tbody').empty();
+        console.log('Succeeded to delete all.');
+      }).fail(function (e) {
+        console.log('Failed to delete all.', e);
+        alert('Failed to delete.');
+      });
+    });
+
+    // delete
+    $(document).on('click', 'button[name=delete]', function () {
+      var target = $(this);
+      var id = target.data('id');
+      $.ajax({
+        type: 'DELETE',
+        url: '/api/accounts/' + id
+      }).done(function () {
+        target.parents('tr').remove();
+        console.log('Succeeded to delete. id=' + id);
+      }).fail(function () {
+        console.log('Failed to delete. id=' + id, e);
+        alert('Failed to delete.');
+      });
+    });
+  });
+</script>
+</body>
+</html>

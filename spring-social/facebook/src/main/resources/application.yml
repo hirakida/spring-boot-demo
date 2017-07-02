@@ -1,0 +1,10 @@
+spring:
+  social:
+    facebook:
+      app-id: XXXXXXXXXX
+      app-secret: XXXXXXXXXX
+
+management:
+  context-path: /actuator
+  security:
+    enabled: false

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>facebook connected</title>
+  <link rel="stylesheet" type="text/css"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+
+<div class="container">
+  <h3>Facebook Connected</h3>
+
+  <div class="row">
+    <p>
+      <a th:href="@{/}" class="btn btn-info">top</a>
+    </p>
+  </div>
+  <div class="row">
+    <form id="disconnect" method="post">
+      <button type="submit" class="btn btn-default">Disconnect</button>
+      <input type="hidden" name="_method" value="delete" />
+    </form>
+  </div>
+</div>
+</body>
+</html>

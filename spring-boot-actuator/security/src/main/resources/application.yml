@@ -1,0 +1,10 @@
+management:
+  context-path: /actuator
+  security:
+    enabled: true
+
+security:
+  user:
+    name: user
+    password: user
+    role: ACTUATOR

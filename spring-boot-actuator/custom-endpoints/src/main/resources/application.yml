@@ -1,0 +1,7 @@
+management:
+  context-path: /actuator
+  security:
+    enabled: false
+security:
+  basic:
+    enabled: false

@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: local
+  application:
+    name: demo
+  cloud:
+    config:
+      profile: local # デフォルト値は default
+      label: master  # デフォルト値は master
+      uri: http://localhost:8888
+
+management:
+  security:
+    enabled: false

@@ -1,0 +1,37 @@
+buildscript {
+    ext {
+        springBootVersion = "1.5.4.RELEASE"
+        bootStrapVersion = "3.3.7"
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: "groovy"
+apply plugin: "idea"
+apply plugin: "org.springframework.boot"
+
+jar {
+    baseName = "web"
+    version = "0.0.1-SNAPSHOT"
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.codehaus.groovy:groovy")
+    compile("org.webjars:webjars-locator")
+    compile("org.webjars:bootstrap:$bootStrapVersion")
+    runtime("com.h2database:h2")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
