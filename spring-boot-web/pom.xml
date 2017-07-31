@@ -20,7 +20,6 @@
     <module>matrix-variable</module>
     <module>error-page</module>
     <module>freemarker</module>
-    <module>jsp</module>
     <module>jetty</module>
     <module>rest-controller</module>
   </modules>

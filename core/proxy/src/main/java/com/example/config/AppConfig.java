@@ -4,7 +4,7 @@ import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.example.domain.AccountService;
+import com.example.AccountService;
 
 @Configuration
 public class AppConfig {

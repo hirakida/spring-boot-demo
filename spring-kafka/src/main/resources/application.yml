@@ -1,0 +1,18 @@
+spring:
+  kafka:
+#    bootstrap-servers: localhost:9092
+    template:
+      default-topic: topic1
+    listener:
+      concurrency: 5
+#    producer:
+#      bootstrap-servers: localhost:9092
+    consumer:
+#      bootstrap-servers: localhost:9092
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: group1
+      auto-offset-reset: earliest
+  output:
+    ansi:
+      enabled: always

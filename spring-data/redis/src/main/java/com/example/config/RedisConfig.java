@@ -8,7 +8,7 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import com.example.domain.Account;
+import com.example.service.Account;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration

@@ -7,7 +7,7 @@ import java.time.format.ResolverStyle;
 
 import org.springframework.util.StringUtils;
 
-import com.example.domain.Gender;
+import com.example.entity.Gender;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;

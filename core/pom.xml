@@ -10,6 +10,7 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>beans</module>
     <module>mail</module>
     <module>event</module>
     <module>filter</module>

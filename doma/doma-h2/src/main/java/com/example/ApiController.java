@@ -8,9 +8,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.domain.Account;
-import com.example.domain.AccountRepository;
-
 import lombok.AllArgsConstructor;
 
 @RestController

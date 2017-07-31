@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.domain.Account;
-import com.example.domain.AccountRepository;
-import com.example.domain.User;
-import com.example.domain.UserRepository;
+import com.example.entity.Account;
+import com.example.service.AccountRepository;
+import com.example.entity.User;
+import com.example.service.UserRepository;
 
 import lombok.AllArgsConstructor;
 

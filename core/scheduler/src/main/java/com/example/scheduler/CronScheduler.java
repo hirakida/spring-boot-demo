@@ -47,6 +47,14 @@ public class CronScheduler {
     }
 
     /**
+     * 3分毎に実行する
+     */
+    @Scheduled(cron = "0 */3 * * * *", zone = ZONE)
+    public void cronSec5() {
+        log.info("[{}][cron 0 */3 * * * *]", LocalDateTime.now());
+    }
+
+    /**
      * 毎時0分0秒に実行する（1時間に1回）
      */
     @Scheduled(cron = "0 0 * * * *", zone = ZONE)

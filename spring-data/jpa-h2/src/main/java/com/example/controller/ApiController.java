@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.domain.Account;
-import com.example.domain.AccountRepository;
+import com.example.service.Account;
+import com.example.service.AccountRepository;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

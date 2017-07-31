@@ -4,8 +4,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 
-import com.example.domain.Account;
-
 @Configuration
 public class RepositoryRestConfig extends RepositoryRestConfigurerAdapter {
 

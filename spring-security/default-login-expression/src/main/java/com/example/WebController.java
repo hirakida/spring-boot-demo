@@ -5,8 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.domain.Account;
-import com.example.domain.AuthPrincipalAccount;
+import com.example.config.AuthPrincipalAccount;
 
 @Controller
 public class WebController {

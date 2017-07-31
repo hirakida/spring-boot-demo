@@ -6,8 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.domain.Account;
-import com.example.domain.AccountRepository;
+import com.example.service.Account;
+import com.example.service.AccountRepository;
 
 import lombok.AllArgsConstructor;
 

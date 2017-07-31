@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import com.example.config.MethodInterceptorImpl;
-import com.example.domain.AccountService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

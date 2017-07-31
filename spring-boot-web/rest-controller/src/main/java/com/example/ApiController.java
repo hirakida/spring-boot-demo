@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.domain.Account;
-import com.example.domain.Gender;
+import com.example.entity.Account;
+import com.example.entity.Gender;
 
 import lombok.extern.slf4j.Slf4j;
 

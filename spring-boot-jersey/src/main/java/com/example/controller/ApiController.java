@@ -14,8 +14,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
 
-import com.example.domain.Account;
-import com.example.domain.AccountRepository;
+import com.example.entity.Account;
+import com.example.repository.AccountRepository;
 
 import lombok.AllArgsConstructor;
 
