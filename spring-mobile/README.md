@@ -1,3 +1,3 @@
-# spring-mobile-demo
+# Spring Mobile
 
-http://projects.spring.io/spring-mobile/
+https://docs.spring.io/spring-mobile/docs/current/reference/html/  

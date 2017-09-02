@@ -1,7 +1,9 @@
 package com.example.config;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.AsyncConfigurerSupport;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -14,12 +16,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AsyncConfig extends AsyncConfigurerSupport {
 
-    // デフォルトではその都度スレッドを生成するSimpleAsyncTaskExecutorになっているため、
-    // スレッドプールを使用する
-    @Override
-    public TaskExecutor getAsyncExecutor() {
+    @Bean
+    public AsyncTaskExecutor asyncTaskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setThreadNamePrefix("async-executor-");
+        executor.setThreadNamePrefix("async-exec-");
         executor.setCorePoolSize(5);
         executor.setMaxPoolSize(10);
         executor.setQueueCapacity(10);
@@ -27,6 +27,11 @@ public class AsyncConfig extends AsyncConfigurerSupport {
         executor.setAwaitTerminationSeconds(5);
         executor.initialize();
         return executor;
+    }
+
+    @Override
+    public TaskExecutor getAsyncExecutor() {
+        return asyncTaskExecutor();
     }
 
     @Override

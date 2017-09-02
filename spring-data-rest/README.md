@@ -1,4 +1,7 @@
-# spring-data-rest-demo
+# Spring Data REST
+
+http://docs.spring.io/spring-data/rest/docs/current/reference/html/  
+https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples/spring-boot-sample-data-rest  
 
 ```
 # findAll
@@ -14,6 +17,3 @@ http://localhost:8080/api/accounts/{id}
 # findByName
 http://localhost:8080/api/accounts/search/findByName?name={name}
 ```
-
-http://docs.spring.io/spring-data/rest/docs/current/reference/html/  
-https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples/spring-boot-sample-data-rest

@@ -1,0 +1,8 @@
+spring:
+  rabbitmq:
+    listener:
+      simple:
+        max-concurrency: 5
+  output:
+    ansi:
+      enabled: always

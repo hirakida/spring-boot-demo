@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import org.seasar.doma.BatchDelete;
 import org.seasar.doma.BatchInsert;
+import org.seasar.doma.BatchUpdate;
 import org.seasar.doma.Dao;
 import org.seasar.doma.Delete;
 import org.seasar.doma.Insert;
@@ -43,6 +44,15 @@ public interface AccountRepository {
 
     @Update
     int update(Account account);
+
+    @Update(sqlFile = true)
+    int updateName(Account account);
+
+    @BatchUpdate
+    int[] update(List<Account> accounts);
+
+    @BatchUpdate(sqlFile = true)
+    int[] updateNames(List<Account> accounts);
 
     @Delete
     int delete(Account account);

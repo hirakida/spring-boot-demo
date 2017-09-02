@@ -1,43 +1,76 @@
 package com.example.controller;
 
-import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.async.AsyncRequestTimeoutException;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
+import com.example.service.StreamingService;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 非同期処理が終了してからhttp responseを送信する
- * Spring MVC管理下のスレッド(MvcAsync1など)で実行する
+ * HTTP Streaming
  */
 @RestController
+@RequestMapping("/streaming")
+@RequiredArgsConstructor
 @Slf4j
 public class StreamingApiController {
 
+    private final StreamingService streamingService;
+
     /**
+     * ResponseBodyEmitter
+     */
+    @GetMapping("/1")
+    public ResponseBodyEmitter responseBodyEmitter() {
+        log.info("ResponseBodyEmitter start");
+        // 引数にtimeoutを指定できる
+        ResponseBodyEmitter emitter = new ResponseBodyEmitter();
+        streamingService.async(emitter);
+        log.info("ResponseBodyEmitter end");
+        return emitter;
+    }
+
+    /**
+     * SseEmitter
+     */
+    @GetMapping("/2")
+    public SseEmitter sseEmitter() {
+        log.info("SseEmitter start");
+        SseEmitter sseEmitter = new SseEmitter();
+        streamingService.async(sseEmitter);
+        log.info("SseEmitter end");
+        return sseEmitter;
+    }
+
+    /**
+     * StreamingResponseBody
      * OutputStreamにdataを直接出力する
      */
-    @GetMapping("/streaming")
-    public StreamingResponseBody streaming() {
-        log.info("Streaming Controller start");
-
-        StreamingResponseBody responseBody = outputStream -> {
-            log.info("Streaming start");
-            for (int i = 0; i < 5; i++) {
-                try {
-                    TimeUnit.SECONDS.sleep(1);
-                } catch (InterruptedException e) {
-                    log.error("error", e);
-                }
-                outputStream.write(("msg" + i + "\r\n").getBytes());
-                outputStream.flush();
-            }
-            log.info("Streaming end");
-        };
-
-        log.info("Streaming Controller end");
+    @GetMapping("/3")
+    public StreamingResponseBody streamingResponseBody() {
+        log.info("StreamingResponseBody start");
+        StreamingResponseBody responseBody = streamingService.streaming();
+        log.info("StreamingResponseBody end");
         return responseBody;
+    }
+
+    @ExceptionHandler(AsyncRequestTimeoutException.class)
+    public String handleAsyncRequestTimeoutException(AsyncRequestTimeoutException e) {
+        log.error("error", e);
+        return SseEmitter.event()
+                         .data("timeout")
+                         .build().stream()
+                         .map(d -> d.getData().toString())
+                         .collect(Collectors.joining());
     }
 }

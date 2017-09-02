@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.exception.BadRequestException;
 import com.example.exception.DataNotFoundException;
 import com.example.exception.ForbiddenException;
 import com.example.exception.ServerErrorException;
@@ -13,8 +14,13 @@ public class WebController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("message", "error page sample");
+        model.addAttribute("message", "error page");
         return "index";
+    }
+
+    @GetMapping("/400")
+    public String badRequest() {
+        throw new BadRequestException("bad request exception");
     }
 
     @GetMapping("/403")

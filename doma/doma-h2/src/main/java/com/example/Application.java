@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,7 +22,6 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... strings) throws IOException {
         log.info("##### doma-h2 start #####");
-
         List<Account> accounts = accountRepository.findAll();
         accounts.forEach(account -> log.info("{}", account));
 
@@ -37,19 +35,6 @@ public class Application implements CommandLineRunner {
 
         Map<Long, List<Account>> accountMap = accountRepository.findAll(Collectors.groupingBy(Account::getId));
         accountMap.forEach((key, value) -> log.info("key={} value={}", key, value));
-
-        accountRepository.delete(accounts);
-
-        accounts = IntStream.rangeClosed(1, 6)
-                            .mapToObj(i -> {
-                                Account account = new Account();
-                                account.setName("user" + i);
-                                return account;
-                            }).collect(Collectors.toList());
-        accountRepository.insert(accounts);
-
-        accounts = accountRepository.findAll();
-        accounts.forEach(account -> log.info("{}", account));
         log.info("##### doma-h2 end #####");
     }
 

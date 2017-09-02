@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.example</groupId>
-  <artifactId>spring-boot-web-sample</artifactId>
+  <artifactId>spring-boot-web-demo</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
@@ -19,16 +19,17 @@
     <module>formatter</module>
     <module>matrix-variable</module>
     <module>error-page</module>
-    <module>freemarker</module>
     <module>jetty</module>
     <module>rest-controller</module>
+    <module>thymeleaf</module>
+    <module>freemarker</module>
   </modules>
 
   <!-- Spring Bootの設定情報群を継承 -->
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.6.RELEASE</version>
+    <version>1.5.7.RELEASE</version>
     <relativePath/>
   </parent>
 
@@ -66,7 +67,6 @@
   </dependencyManagement>
 
   <dependencies>
-    <!-- spring-boot -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
@@ -77,7 +77,6 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- misc -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>

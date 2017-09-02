@@ -1,7 +1,9 @@
 package com.example;
 
+import java.util.List;
+import java.util.Locale;
+
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpSession;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +13,7 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class HttpRequestInfo {
-    private HttpSession session;
-    private Cookie[] cookies;
+    private List<Cookie> cookies;
+    private Locale locale;
     private String userAgent;
 }

@@ -3,7 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>flash scope</title>
+  <title>index</title>
   <meta charset="UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 </head>
@@ -11,19 +11,24 @@
 
 <div class="container">
   <div class="row">
-    <h3>attribute sample</h3>
+    <h3>attribute demo</h3>
   </div>
 
   <div class="row">
     <table class="table">
       <tr>
         <th>
-          <a th:href="@{/model}">model attribute</a>
+          <a th:href="@{/model}">model</a>
         </th>
       </tr>
       <tr>
         <th>
-          <a th:href="@{/flash}">flash attribute</a>
+          <a th:href="@{/modelMap}">modelMap</a>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <a th:href="@{/modelAndView}">modelAndView</a>
         </th>
       </tr>
       <tr>
@@ -32,6 +37,25 @@
         </th>
       </tr>
     </table>
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <tr>
+        <td>key</td>
+        <td th:text="${key}"></td>
+      </tr>
+      <tr>
+        <td>message</td>
+        <td th:text="${message}"></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="row">
+    <form method="post" th:action="@{/flash}">
+      <input type="submit" value="flash scope" />
+    </form>
   </div>
 </div>
 

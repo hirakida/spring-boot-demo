@@ -17,15 +17,19 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
+    <tr  th:if="${demoComponent}">
       <td th:text="${demoComponent.name}"></td>
       <td th:text="${demoComponent.message}"></td>
     </tr>
-    <tr>
+    <tr th:if="${demoBean}">
+      <td th:text="${demoBean.name}"></td>
+      <td th:text="${demoBean.message}"></td>
+    </tr>
+    <tr th:if="${demoBean1}">
       <td th:text="${demoBean1.name}"></td>
       <td th:text="${demoBean1.message}"></td>
     </tr>
-    <tr>
+    <tr th:if="${demoBean2}">
       <td th:text="${demoBean2.name}"></td>
       <td th:text="${demoBean2.message}"></td>
     </tr>

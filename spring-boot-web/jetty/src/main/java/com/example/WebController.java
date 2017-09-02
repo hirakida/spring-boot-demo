@@ -9,7 +9,7 @@ public class WebController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("message", "jetty sample");
+        model.addAttribute("message", "jetty demo");
         return "index";
     }
 }

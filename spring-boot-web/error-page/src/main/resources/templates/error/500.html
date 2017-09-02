@@ -1,46 +1,18 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-  <title>index</title>
+  <title></title>
   <meta charset="UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
 
 <div class="container">
-  <h1>500 error</h1>
-
-  <table class="table">
-    <tr>
-      <th>status</th>
-      <td th:text="${status}"></td>
-    </tr>
-    <tr>
-      <th>error</th>
-      <td th:text="${error}"></td>
-    </tr>
-    <tr>
-      <th>exception</th>
-      <td th:text="${exception}"></td>
-    </tr>
-    <tr>
-      <th>message</th>
-      <td th:text="${message}"></td>
-    </tr>
-    <tr>
-      <th>timestamp</th>
-      <td th:text="${timestamp}"></td>
-    </tr>
-    <tr>
-      <th>path</th>
-      <td th:text="${path}"></td>
-    </tr>
-    <tr th:if="${trace}">
-      <th>trace</th>
-      <td th:text="${trace}"></td>
-    </tr>
+  <h3>500 error</h3>
+  <table layout:replace="error/fragment::table">
   </table>
 </div>
 

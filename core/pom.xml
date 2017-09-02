@@ -11,11 +11,8 @@
 
   <modules>
     <module>beans</module>
-    <module>mail</module>
     <module>event</module>
     <module>filter</module>
-    <module>aop</module>
-    <module>proxy</module>
     <module>scheduler</module>
     <module>async</module>
   </modules>

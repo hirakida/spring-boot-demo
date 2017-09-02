@@ -9,20 +9,17 @@
 <body>
 
 <div class="container">
-  <h3>argument resolver test</h3>
-  <table class="table" border="1" th:object="${requestInfo}">
+  <h3>argument resolver</h3>
+  <table class="table" th:object="${requestInfo}">
     <tr>
-      <th>userAgent</th>
+      <td>userAgent</td>
       <td th:text="*{userAgent}"></td>
     </tr>
-  </table>
-
-  <table class="table" border="1">
     <tr>
-      <th>cookie name</th>
-      <th>cookie value</th>
+      <td>locale</td>
+      <td th:text="*{locale}"></td>
     </tr>
-    <tr th:each="cookie : ${cookies}">
+    <tr th:each="cookie : *{cookies}">
       <td th:text="${cookie.name}"></td>
       <td th:text="${cookie.value}"></td>
     </tr>

@@ -1,9 +1,0 @@
-# spring-cloud-config client
-
-refresh 
-```
- $ curl -X POST http://localhost:8080/refresh 
-```
-
-http://cloud.spring.io/spring-cloud-config/  
-https://docs.pivotal.io/spring-cloud-services/1-3/common/config-server/configuration-clients.html
