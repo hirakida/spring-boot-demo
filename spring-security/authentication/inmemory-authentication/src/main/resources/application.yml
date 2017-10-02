@@ -1,0 +1,10 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+# AuthenticationManagerBuilderを設定していると、default userの設定は効かないみたい
+#security:
+#  user:
+#    name: default
+#    password: default
+#    role: USER

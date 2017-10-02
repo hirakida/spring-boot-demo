@@ -20,6 +20,7 @@ import javax.validation.constraints.Pattern;
 @Constraint(validatedBy = {})
 @Pattern(regexp = "\\d{2,4}-\\d{2,4}-\\d{4}")
 public @interface TelNo {
+
     String message() default "Invalid TelNo.";
 
     Class<?>[] groups() default {};

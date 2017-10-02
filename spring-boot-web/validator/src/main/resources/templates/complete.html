@@ -3,21 +3,18 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>form sample</title>
+  <title>validator</title>
   <meta charset="UTF-8" />
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
 
 <div class="container">
-  <h3>complete</h3>
-
-  <div class="row">
-    <a th:href="@{/}">top</a>
-  </div>
-
   <div class="row" th:if="${account}">
+    <h3>profile</h3>
     <table class="table" th:object="${account}">
+      <thead></thead>
+      <tbody>
       <tr>
         <td>name</td>
         <td th:text="*{name}"></td>
@@ -46,6 +43,7 @@
         <td>address2</td>
         <td th:text="*{address2}"></td>
       </tr>
+      </tbody>
     </table>
   </div>
 </div>

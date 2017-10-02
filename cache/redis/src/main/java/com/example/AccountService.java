@@ -16,12 +16,12 @@ public class AccountService {
 
     @Cacheable(key = "'account:' + #id")
     public Account cacheable(long id) {
-        log.info("@Cacheable");
+        log.info("@Cacheable id={}", id);
         return Account.of(id);
     }
 
     @CacheEvict(key = "'account:' + #id")
     public void cacheEvict(long id) {
-        log.info("@CacheEvict");
+        log.info("@CacheEvict id={}", id);
     }
 }

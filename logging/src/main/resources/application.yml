@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: dev
+  output:
+    ansi:
+      enabled: always
+#logging:
+#  path: ./log/

@@ -20,7 +20,7 @@ public class ResponseBodyAdviceImpl implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter returnType,
                             Class<? extends HttpMessageConverter<?>> converterType) {
-        log.info("ResponseBodyAdviceImpl::supports");
+        log.info("supports");
         return true;
     }
 
@@ -35,10 +35,9 @@ public class ResponseBodyAdviceImpl implements ResponseBodyAdvice<Object> {
                                   Class<? extends HttpMessageConverter<?>> selectedConverterType,
                                   ServerHttpRequest request,
                                   ServerHttpResponse response) {
-        log.info("ResponseBodyAdviceImpl::beforeBodyWrite");
         if (request instanceof ServletServerHttpRequest) {
             HttpServletRequest servletRequest = ((ServletServerHttpRequest) request).getServletRequest();
-            log.info("{}", servletRequest.getRequestURI());
+            log.info("beforeBodyWrite uri={}", servletRequest.getRequestURI());
         }
         return body;
     }

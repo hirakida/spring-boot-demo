@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Account {
-    // primary keyに@Idを付ける
-    // primary keyはStringにする
     @Id
     private String id;
     private String name;

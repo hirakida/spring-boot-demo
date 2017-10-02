@@ -13,16 +13,13 @@
     <module>attribute</module>
     <module>argument-resolver</module>
     <module>validator</module>
-    <module>configuration-properties</module>
     <module>message-source</module>
     <module>interceptor</module>
     <module>formatter</module>
     <module>matrix-variable</module>
     <module>error-page</module>
     <module>jetty</module>
-    <module>rest-controller</module>
-    <module>thymeleaf</module>
-    <module>freemarker</module>
+    <module>rest</module>
   </modules>
 
   <!-- Spring Bootの設定情報群を継承 -->

@@ -18,7 +18,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     //    @Bean
     public MappedInterceptor mappedInterceptor() {
-        return new MappedInterceptor(includePatterns, excludePatterns, new CustomHandlerInterceptor());
+        return new MappedInterceptor(includePatterns, excludePatterns, new AppHandlerInterceptor());
     }
 
     // resourceのpath毎にcacheSecondsを指定する場合に使用する
@@ -41,7 +41,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new CustomHandlerInterceptor())
+        registry.addInterceptor(new AppHandlerInterceptor())
                 .addPathPatterns(includePatterns)
                 .excludePathPatterns(excludePatterns);
         registry.addInterceptor(webContentInterceptor());

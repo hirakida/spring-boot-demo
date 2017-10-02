@@ -1,4 +1,0 @@
-SELECT
-  /*%expand*/*
-FROM
-  account

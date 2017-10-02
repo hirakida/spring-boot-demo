@@ -8,9 +8,24 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
+import org.springframework.web.filter.CommonsRequestLoggingFilter;
+
+import com.example.filter.RequestFilter1;
+import com.example.filter.RequestFilter2;
 
 @Configuration
 public class FilterConfig {
+
+    @Bean
+    public CommonsRequestLoggingFilter commonsRequestLoggingFilter() {
+        CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
+        filter.setIncludeClientInfo(true);
+        filter.setIncludeQueryString(true);
+        filter.setIncludeHeaders(true);
+        filter.setIncludePayload(true);
+        filter.setMaxPayloadLength(1500);
+        return filter;
+    }
 
     @Bean
     public FilterRegistrationBean filterRegistrationBean1(RequestFilter1 filter) {

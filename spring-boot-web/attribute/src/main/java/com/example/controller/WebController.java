@@ -1,11 +1,14 @@
 package com.example.controller;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,7 +24,8 @@ public class WebController {
     }
 
     @GetMapping
-    public String index() {
+    public String index(@RequestParam Optional<String> id) {
+        id.ifPresent(i -> System.out.println("id:" + i));
         return "index";
     }
 
@@ -55,6 +59,12 @@ public class WebController {
     public String post(RedirectAttributes redirectAttributes) {
         // リロードすると削除される
         redirectAttributes.addFlashAttribute("message", "flash attribute");
+        return "redirect:/";
+    }
+
+    @GetMapping("/redirect")
+    public String redirect(RedirectAttributes redirectAttributes, @RequestParam int id) {
+        redirectAttributes.addAttribute("id", id);
         return "redirect:/";
     }
 }

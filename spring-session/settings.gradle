@@ -1,0 +1,2 @@
+rootProject.name = 'spring-session-demo'
+include 'redis', 'redis-spring-security', 'mongodb'

@@ -1,0 +1,11 @@
+spring:
+  session:
+    store-type: redis
+  thymeleaf:
+    cache: false
+  output:
+    ansi:
+      enabled: always
+server:
+  session:
+    timeout: 60  # seconds

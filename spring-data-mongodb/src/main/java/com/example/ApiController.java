@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ApiController {
 
-    final AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
     @GetMapping("/accounts")
     public Page<Account> findAll(@PageableDefault Pageable pageable) {

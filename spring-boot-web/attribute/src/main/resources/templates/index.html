@@ -11,32 +11,7 @@
 
 <div class="container">
   <div class="row">
-    <h3>attribute demo</h3>
-  </div>
-
-  <div class="row">
-    <table class="table">
-      <tr>
-        <th>
-          <a th:href="@{/model}">model</a>
-        </th>
-      </tr>
-      <tr>
-        <th>
-          <a th:href="@{/modelMap}">modelMap</a>
-        </th>
-      </tr>
-      <tr>
-        <th>
-          <a th:href="@{/modelAndView}">modelAndView</a>
-        </th>
-      </tr>
-      <tr>
-        <th>
-          <a th:href="@{/session}">session attribute</a>
-        </th>
-      </tr>
-    </table>
+    <h3>attribute</h3>
   </div>
 
   <div class="row">
@@ -54,7 +29,7 @@
 
   <div class="row">
     <form method="post" th:action="@{/flash}">
-      <input type="submit" value="flash scope" />
+      <input class="btn" type="submit" value="flash scope" />
     </form>
   </div>
 </div>

@@ -1,0 +1,2 @@
+rootProject.name = 'spring-security-login-demo'
+include 'default-login', 'default-login-expression', 'custom-login'

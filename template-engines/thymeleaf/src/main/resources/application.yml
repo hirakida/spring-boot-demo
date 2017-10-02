@@ -1,0 +1,14 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+
+# UTF-8のCharacterEncodingFilterが自動で適用される
+#  http:
+#    encoding:
+#      enabled: true
+#      charset: UTF-8
+#server:
+# 組み込みTomcatのuri-encodingのdefault値はUTF-8
+#  tomcat:
+#    uri-encoding: UTF-8

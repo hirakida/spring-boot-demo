@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: local
+
+app:
+  number:
+    value1: 1
+    value2: 2
+  string:
+    value1: abcde
+    value2: fghij

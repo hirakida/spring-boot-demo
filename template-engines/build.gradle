@@ -1,0 +1,47 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.8.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile('org.springframework.boot:spring-boot-starter-web')
+        compile('org.webjars:webjars-locator')
+        compile('org.webjars:bootstrap:3.3.7')
+        runtime('org.springframework.boot:spring-boot-devtools')
+        compileOnly('org.projectlombok:lombok')
+    }
+}
+
+project(':freemarker') {
+    dependencies {
+        compile 'org.springframework.boot:spring-boot-starter-freemarker'
+    }
+}
+
+project(':thymeleaf') {
+    dependencies {
+        compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    }
+}
