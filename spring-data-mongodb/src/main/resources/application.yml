@@ -1,7 +1,0 @@
-spring:
-  data:
-    mongodb:
-      port: 27018
-  output:
-    ansi:
-      enabled: always
