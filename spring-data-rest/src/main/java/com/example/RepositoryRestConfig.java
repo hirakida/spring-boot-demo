@@ -7,9 +7,9 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapt
 @Configuration
 public class RepositoryRestConfig extends RepositoryRestConfigurerAdapter {
 
-    // responseにidを含める
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+        // expose account.id
         config.exposeIdsFor(Account.class);
     }
 }

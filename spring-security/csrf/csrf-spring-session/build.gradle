@@ -1,4 +1,0 @@
-dependencies {
-    compile('org.springframework.boot:spring-boot-starter-data-redis')
-    compile('org.springframework.session:spring-session')
-}

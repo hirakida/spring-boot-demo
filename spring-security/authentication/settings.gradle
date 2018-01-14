@@ -1,2 +1,0 @@
-rootProject.name = 'spring-security-authentication-demo'
-include 'inmemory-authentication'

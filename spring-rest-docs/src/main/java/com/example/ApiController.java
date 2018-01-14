@@ -14,49 +14,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.AllArgsConstructor;
+import com.example.core.Account;
+import com.example.core.AccountService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ApiController {
 
-    final AccountRepository repository;
+    private final AccountService accountService;
 
     @GetMapping("/accounts")
-    public List<Account> getAll() {
-        return repository.findAll();
+    public List<Account> findAll() {
+        return accountService.findAll();
     }
 
     @GetMapping("/accounts/{id}")
-    public Account get(@PathVariable int id) {
-        Account account = repository.findOne(id);
-        if (account == null) {
-            throw new DataNotFoundException();
-        }
-        return account;
+    public Account findOne(@PathVariable int id) {
+        return accountService.findOne(id);
     }
 
     @PutMapping("/accounts/{id}")
-    public Account put(@PathVariable int id,
-                       @RequestBody @Validated Account account) {
-        if (repository.findOne(id) == null) {
-            throw new DataNotFoundException();
-        }
-        return repository.save(account);
+    public Account update(@PathVariable int id,
+                          @RequestBody @Validated Account account) {
+        return accountService.update(account);
     }
 
     @DeleteMapping("/accounts/{id}")
     public void delete(@PathVariable int id) {
-        if (repository.findOne(id) == null) {
-            throw new DataNotFoundException();
-        }
-        repository.delete(id);
+        accountService.delete(id);
     }
 
     @PostMapping("/accounts")
-    public Account post(@RequestBody @Validated Account account) {
-        return repository.save(account);
+    public Account create(@RequestBody @Validated Account account) {
+        return accountService.create(account);
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)

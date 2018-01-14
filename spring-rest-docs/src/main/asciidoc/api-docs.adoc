@@ -12,40 +12,40 @@
 = ApiController
 
 [[api]]
-== getAll
+== findAll
 
 === Http Request
-include::{snippets}/get-all-test/1/http-request.adoc[]
+include::{snippets}/find-all-test/1/http-request.adoc[]
 
 === Http Response
-include::{snippets}/get-all-test/1/http-response.adoc[]
+include::{snippets}/find-all-test/1/http-response.adoc[]
 
 
-== get
+== fineOne
 
 === Http Request
-include::{snippets}/get-test/1/http-request.adoc[]
+include::{snippets}/find-one-test/1/http-request.adoc[]
 
 === Http Response
-include::{snippets}/get-test/1/http-response.adoc[]
+include::{snippets}/find-one-test/1/http-response.adoc[]
 
 
-== put
+== update
 
 === Http Request
-include::{snippets}/put-test/1/http-request.adoc[]
+include::{snippets}/update-test/1/http-request.adoc[]
 
 === Http Response
-include::{snippets}/put-test/1/http-response.adoc[]
+include::{snippets}/update-test/1/http-response.adoc[]
 
 
-== post
+== create
 
 === Http Request
-include::{snippets}/post-test/1/http-request.adoc[]
+include::{snippets}/create-test/1/http-request.adoc[]
 
 === Http Response
-include::{snippets}/post-test/1/http-response.adoc[]
+include::{snippets}/create-test/1/http-response.adoc[]
 
 
 == delete

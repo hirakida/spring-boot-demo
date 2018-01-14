@@ -25,6 +25,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.example.core.Account;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
@@ -36,10 +37,8 @@ public class ApiControllerTest {
 
     @Autowired
     private WebApplicationContext context;
-
     @Autowired
     private ObjectMapper objectMapper;
-
     @Autowired
     private TestRestTemplate testRestTemplate;
 
@@ -57,13 +56,13 @@ public class ApiControllerTest {
     }
 
     @Test
-    public void getAllTest() throws Exception {
+    public void findAllTest() throws Exception {
         mockMvc.perform(RestDocumentationRequestBuilders.get("/api/accounts"))
                .andExpect(status().isOk());
     }
 
     @Test
-    public void getTest() throws Exception {
+    public void findOneTest() throws Exception {
         List<Account> accounts = getAccounts();
         mockMvc.perform(RestDocumentationRequestBuilders.get("/api/accounts/{id}",
                                                              accounts.get(0).getId()))
@@ -73,7 +72,7 @@ public class ApiControllerTest {
     }
 
     @Test
-    public void putTest() throws Exception {
+    public void updateTest() throws Exception {
         List<Account> accounts = getAccounts();
         Account account = accounts.get(0);
         account.setName("updated Account");
@@ -88,7 +87,7 @@ public class ApiControllerTest {
     }
 
     @Test
-    public void postTest() throws Exception {
+    public void createTest() throws Exception {
         Account account = new Account();
         account.setName("new Account");
         account.setEmail("post@example.com");

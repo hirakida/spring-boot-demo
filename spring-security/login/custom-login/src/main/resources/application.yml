@@ -1,9 +1,0 @@
-spring:
-  thymeleaf:
-    cache: false
-  output:
-    ansi:
-      enabled: always
-security:
-  basic:
-    enabled: false
