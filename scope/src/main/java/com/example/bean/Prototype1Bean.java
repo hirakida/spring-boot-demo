@@ -8,9 +8,6 @@ import org.springframework.stereotype.Component;
 import lombok.Data;
 
 /**
- * prototype scope
- * 利用する度にインスタンス化される
- * <p>
  * prototypeでもScoped Proxyは利用可能だが、同じfieldの異なるメソッド呼び出しに対しても、
  * 実際には毎回異なるインスタンスに対してメソッドが呼び出される
  * <p>

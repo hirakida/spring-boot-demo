@@ -25,18 +25,18 @@ public class DemoComponent implements InitializingBean, DisposableBean {
         log.info("PostConstruct");
     }
 
-    // PostConstructの後で呼ばれる
-    @Override
-    public void afterPropertiesSet() {
-        log.info("afterPropertiesSet");
-    }
-
     @PreDestroy
     public void preDestroy() {
         log.info("PreDestroy");
     }
 
-    // PreDestroyの後で呼ばれる
+    // Called after PostConstruct
+    @Override
+    public void afterPropertiesSet() {
+        log.info("afterPropertiesSet");
+    }
+
+    // Called after PreDestroy
     @Override
     public void destroy() {
         log.info("destroy");

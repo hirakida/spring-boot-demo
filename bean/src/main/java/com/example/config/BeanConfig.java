@@ -10,10 +10,6 @@ import com.example.bean.DemoBean;
 @Configuration
 public class BeanConfig {
 
-    /**
-     * メソッド名がBean名、戻り値がBeanのインスタンスとして定義される
-     * initとdestroy methodを指定できる
-     */
     @Bean(initMethod = "init", destroyMethod = "destroy")
     @Primary
     public DemoBean demoBean1() {
@@ -24,7 +20,7 @@ public class BeanConfig {
     }
 
     @Bean(initMethod = "init", destroyMethod = "destroy")
-    @Lazy   // 参照する直前に生成される
+    @Lazy
     @LazyBean
     public DemoBean demoBean2() {
         DemoBean bean = new DemoBean();

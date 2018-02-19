@@ -1,18 +1,14 @@
 package com.example.bean;
 
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 import lombok.Data;
 
-/**
- * prototype scope
- */
 @Component
-@Scope(BeanDefinition.SCOPE_PROTOTYPE)
+@SessionScope
 @Data
-public class Prototype2Bean {
+public class SessionBean {
     private long id;
     private String name;
     private long count;

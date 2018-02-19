@@ -25,6 +25,10 @@
       <td th:text="${demoBean.name}"></td>
       <td th:text="${demoBean.message}"></td>
     </tr>
+    <tr th:if="${lazyBean}">
+      <td th:text="${lazyBean.name}"></td>
+      <td th:text="${lazyBean.message}"></td>
+    </tr>
     <tr th:if="${demoBean1}">
       <td th:text="${demoBean1.name}"></td>
       <td th:text="${demoBean1.message}"></td>

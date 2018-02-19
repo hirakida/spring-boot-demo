@@ -1,0 +1,4 @@
+management:
+  context-path: /manage
+  security:
+    enabled: false

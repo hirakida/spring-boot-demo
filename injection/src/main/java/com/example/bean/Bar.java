@@ -8,27 +8,17 @@ import lombok.extern.slf4j.Slf4j;
 
 @Data
 @Slf4j
-public class DemoBean {
+public class Bar {
     private String name;
     private String message;
 
     @PostConstruct
-    public void postConstruct() {
+    public void PostConstruct() {
         log.info("PostConstruct {}", this);
     }
 
     @PreDestroy
     public void preDestroy() {
         log.info("PreDestroy {}", this);
-    }
-
-    // Called after PostConstruct
-    public void init() {
-        log.info("init {}", this);
-    }
-
-    // Called after PreDestroy
-    public void destroy() {
-        log.info("destroy {}", this);
     }
 }
