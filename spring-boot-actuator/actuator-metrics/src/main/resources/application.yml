@@ -1,0 +1,14 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+  application:
+    name: actuator-metrics-demo
+#  metrics:
+#    export:
+#      redis:
+#        key: keys.metrics.demo
+#        prefix: spring.metrics.${spring.application.name:application}.${random.value:0000}
+management:
+  security:
+    enabled: false

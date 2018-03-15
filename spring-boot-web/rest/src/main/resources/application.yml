@@ -1,3 +1,0 @@
-spring:
-  jackson:
-    propertyNamingStrategy: SNAKE_CASE

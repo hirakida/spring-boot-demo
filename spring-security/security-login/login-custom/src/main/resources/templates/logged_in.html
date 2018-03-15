@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <title>logged_in</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+  <h1>logged in</h1>
+  <p>
+    <a th:href="@{/logout}" class="btn btn-default">logout</a>
+  </p>
+
+  <table class="table" sec:authorize="isAuthenticated()">
+    <thead></thead>
+    <tbody>
+    <tr th:if="${userDetails}">
+      <th>userDetails</th>
+      <td th:text="${userDetails}"></td>
+    </tr>
+    <tr th:if="${account}">
+      <th>account</th>
+      <td th:text="${account}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="table" sec:authorize="isAuthenticated()">
+    <thead></thead>
+    <tbody>
+    <tr>
+      <th>username</th>
+      <td sec:authentication="principal.username"></td>
+    </tr>
+    <tr>
+      <th>authorities</th>
+      <td sec:authentication="principal.authorities"></td>
+    </tr>
+    <tr>
+      <th>enabled</th>
+      <td sec:authentication="principal.enabled"></td>
+    </tr>
+    <tr>
+      <th>accountNonExpired</th>
+      <td sec:authentication="principal.accountNonExpired"></td>
+    </tr>
+    <tr>
+      <th>credentialsNonExpired</th>
+      <td sec:authentication="principal.credentialsNonExpired"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

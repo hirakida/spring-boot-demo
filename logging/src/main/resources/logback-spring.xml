@@ -1,30 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true">
-  <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
-  <!--<logger name="org.springframework.web" level="DEBUG"/>-->
   <include resource="org/springframework/boot/logging/logback/defaults.xml" />
   <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
 
-  <springProperty name="PROFILE" source="spring.profiles.active" defaultValue="local"/>
+  <springProperty name="PROFILE" source="spring.profiles.active" defaultValue="local" />
 
   <springProfile name="dev">
-    <property name="LOG_FILE_NAME" value="./log/${PROFILE}.log}" />
-    <appender name="APP_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-      <file>${LOG_FILE_NAME}</file>
-      <encoder>
-        <charset>UTF-8</charset>
-        <pattern>${FILE_LOG_PATTERN}</pattern>
-      </encoder>
-      <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-        <fileNamePattern>${LOG_FILE_NAME}.%d{yyyyMMdd-HHmm}.log</fileNamePattern>
-        <maxHistory>10</maxHistory>
-      </rollingPolicy>
-    </appender>
-
+    <property name="LOG_FILE" value="./log/${PROFILE}.log}" />
+    <include resource="logback/app-file-appender.xml" />
     <root level="INFO">
       <appender-ref ref="CONSOLE" />
-      <appender-ref ref="APP_LOG_FILE" />
+      <appender-ref ref="APP_FILE" />
     </root>
   </springProfile>
-
 </configuration>

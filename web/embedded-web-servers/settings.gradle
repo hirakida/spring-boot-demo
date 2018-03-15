@@ -1,0 +1,2 @@
+rootProject.name = 'embedded-web-servers-demo'
+include ':tomcat', 'jetty', 'undertow'

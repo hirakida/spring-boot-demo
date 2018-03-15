@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>name</th>
+      <th>message</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${pojoBean1}">
+      <td th:text="${pojoBean1.name}"></td>
+      <td th:text="${pojoBean1.message}"></td>
+    </tr>
+    <tr th:if="${pojoBean2}">
+      <td th:text="${pojoBean2.name}"></td>
+      <td th:text="${pojoBean2.message}"></td>
+    </tr>
+    <tr th:if="${pojoBean}">
+      <td th:text="${pojoBean.name}"></td>
+      <td th:text="${pojoBean.message}"></td>
+    </tr>
+    <tr th:if="${lazyBean}">
+      <td th:text="${lazyBean.name}"></td>
+      <td th:text="${lazyBean.message}"></td>
+    </tr>
+    <tr th:if="${beanImpl}">
+      <td th:text="${beanImpl.name}"></td>
+      <td th:text="${beanImpl.message}"></td>
+    </tr>
+    <tr th:if="${lifecycle}">
+      <td th:text="${lifecycle.name}"></td>
+      <td th:text="${lifecycle.message}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

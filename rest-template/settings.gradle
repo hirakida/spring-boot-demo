@@ -1,0 +1,2 @@
+rootProject.name = 'rest-template-demo'
+include ':rest-common', ':rest-httpclient', ':rest-httpasyncclient', ':rest-okhttp', ':rest-okhttp3'

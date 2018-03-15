@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+</head>
+<body>
+<div class="container">
+  <h3>thymeleaf</h3>
+  <table class="table">
+    <tr>
+      <td>th:text</td>
+      <td th:text="${text}"></td>
+    </tr>
+    <tr>
+      <td>th:utext</td>
+      <!--/* unescaped text */-->
+      <td th:utext="${text}"></td>
+    </tr>
+    <tr>
+      <td>th:inline</td>
+      <td th:inline="text">[[${text}]]</td>
+    </tr>
+    <tr>
+      <td>th:href</td>
+      <td><a th:href="@{/(param1=${data1}, param2=${data2})}">params</a></td>
+    </tr>
+    <tr>
+      <td>@webController.message</td>
+      <td th:text="${@webController.message}"></td>
+    </tr>
+    <tr>
+      <td>T(com.example.WebController).staticMessage</td>
+      <td th:text="${T(com.example.WebController).staticMessage}"></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

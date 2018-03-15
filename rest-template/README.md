@@ -1,3 +1,3 @@
 # RestTemplate
 
-https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-restclient.html
+https://docs.spring.io/spring/docs/current/spring-framework-reference/integration.html#rest-resttemplate

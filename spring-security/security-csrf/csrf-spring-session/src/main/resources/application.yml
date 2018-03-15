@@ -1,0 +1,9 @@
+spring:
+  session:
+    store-type: redis
+  output:
+    ansi:
+      enabled: always
+server:
+  session:
+    timeout: 360 # seconds

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+  <root level="INFO">
+    <appender-ref ref="CONSOLE" />
+  </root>
+  <logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager" level="DEBUG"/>
+  <logger name="org.springframework.orm.jpa.JpaTransactionManager" level="DEBUG"/>
+</configuration>

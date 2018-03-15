@@ -1,0 +1,10 @@
+security:
+  oauth2:
+    client:
+      client-id: #####
+      client-secret: #####
+      client-authentication-scheme: form
+      user-authorization-uri: https://access.line.me/dialog/oauth/weblogin
+      access-token-uri: https://api.line.me/v2/oauth/accessToken
+    resource:
+      user-info-uri: https://api.line.me/v2/profile

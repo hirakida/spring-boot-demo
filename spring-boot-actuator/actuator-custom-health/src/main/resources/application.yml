@@ -1,0 +1,11 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+management:
+  security:
+    enabled: false
+
+#endpoints:
+#  health:
+#    sensitive: false

@@ -1,0 +1,6 @@
+spring:
+  jackson:
+    propertyNamingStrategy: SNAKE_CASE
+  output:
+    ansi:
+      enabled: always

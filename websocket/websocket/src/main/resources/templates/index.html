@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+  <h3>WebSocket</h3>
+  <div class="row">
+    <div>
+      <button class="btn btn-primary" id="open">open</button>
+      <button class="btn btn-default" id="close" disabled="disabled">close</button>
+    </div>
+    <form id="form">
+      <input type="text" class="form-control" id="message" />
+    </form>
+  </div>
+  <div class="row">
+    <div class="panel">
+      <div id="response"></div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript">
+  $(function () {
+    var ws = null;
+
+    function onOpen() {
+      $('#open').prop('disabled', true);
+      $('#close').prop('disabled', false);
+      console.log('onopen');
+    }
+
+    function onClose() {
+      $('#open').prop('disabled', false);
+      $('#close').prop('disabled', true);
+      console.log('onclose');
+    }
+
+    function onMessage(message) {
+      var p = document.createElement('p');
+      p.textContent = message.data;
+      $('#response').prepend(p);
+      console.log('onmessage message=' + message.data);
+    }
+
+    function onError(event) {
+      console.log('onerror', event)
+    }
+
+    $('#open').on('click', function () {
+      if (ws === null) {
+        ws = new WebSocket('ws://localhost:8080/ws');
+        ws.onopen = onOpen;
+        ws.onmessage = onMessage;
+        ws.onclose = onClose;
+        ws.onerror = onError;
+      }
+    });
+
+    $('#close').on('click', function () {
+      if (ws !== null) {
+        ws.close();
+        ws = null;
+      }
+    });
+
+    $('#form').on('submit', function (event) {
+      event.preventDefault();
+      if (ws !== null) {
+        var message = $('#message');
+        if (message.val() !== "") {
+          ws.send(message.val());
+          message.val('');
+        }
+      }
+    });
+  });
+</script>
+</body>
+</html>

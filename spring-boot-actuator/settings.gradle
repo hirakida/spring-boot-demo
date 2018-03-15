@@ -1,0 +1,6 @@
+rootProject.name = 'spring-boot-actuator-demo'
+include 'actuator-custom-endpoints',
+        'actuator-custom-info',
+        'actuator-custom-health',
+        'actuator-metrics',
+        'actuator-security'

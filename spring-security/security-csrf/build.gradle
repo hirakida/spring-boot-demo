@@ -1,0 +1,45 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.9.RELEASE'
+        bootStrapVersion = '3.3.7'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+subprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+
+    group 'com.example'
+    version '0.0.1-SNAPSHOT'
+
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile('org.springframework.boot:spring-boot-starter-web')
+        compile('org.springframework.boot:spring-boot-starter-security')
+        compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+        compile("org.webjars:webjars-locator")
+        compile("org.webjars:bootstrap:${bootStrapVersion}")
+        compileOnly("org.projectlombok:lombok")
+        runtime('org.springframework.boot:spring-boot-devtools')
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+    }
+}
+
+project(':csrf-spring-session') {
+    dependencies {
+        compile('org.springframework.boot:spring-boot-starter-data-redis')
+        compile('org.springframework.session:spring-session')
+    }
+}

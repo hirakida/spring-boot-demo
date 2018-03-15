@@ -5,15 +5,15 @@ https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples/s
 
 ```
 # findAll
-http://localhost:8080/api/accounts
-http://localhost:8080/api/accounts?page={page}&size={size}
+http://localhost:8080/api/users
+http://localhost:8080/api/users?page={page}&size={size}
 
 # descending order
-http://localhost:8080/api/accounts?sort=id,desc
+http://localhost:8080/api/users?sort=id,desc
 
 # findById
-http://localhost:8080/api/accounts/{id}
+http://localhost:8080/api/users/{id}
 
 # findByName
-http://localhost:8080/api/accounts/search/findByName?name={name}
+http://localhost:8080/api/users/search/findByName?name={name}
 ```

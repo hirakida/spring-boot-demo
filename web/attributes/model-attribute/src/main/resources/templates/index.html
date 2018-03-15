@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+  <h3>model attribute</h3>
+  <div class="row">
+    <table class="table">
+      <tr>
+        <td>key</td>
+        <td th:text="${key}"></td>
+      </tr>
+      <tr>
+        <td>message</td>
+        <td th:text="${message}"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+spring:
+  session:
+    store-type: redis
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 0
+  thymeleaf:
+    cache: false
+  output:
+    ansi:
+      enabled: always
+server:
+  session:
+    timeout: 60  # seconds

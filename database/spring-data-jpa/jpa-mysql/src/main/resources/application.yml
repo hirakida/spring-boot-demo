@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    sql-script-encoding: UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/jpa_demo
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+  <h3>STOMP</h3>
+  <div class="row">
+    <button class="btn btn-primary" id="connect">Connect</button>
+    <button class="btn btn-default" id="disconnect" disabled="disabled">Disconnect</button>
+    <div class="form-group">
+      <label>name</label>
+      <input type="text" class="form-control" id="name" placeholder="your name" />
+    </div>
+  </div>
+  <div class="row">
+    <form id="form">
+      <label>message</label>
+      <input type="text" class="form-control" id="message" placeholder="message" />
+    </form>
+  </div>
+  <div class="panel">
+    <div id="response"></div>
+  </div>
+</div>
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  $(function () {
+    var stompClient = null;
+    var roomId = /*[[${roomId}]]*/;
+
+    $('#connect').on('click', function () {
+      if (stompClient === null) {
+        var socket = new WebSocket('ws://localhost:8080/ws');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+          console.log('connected: ' + frame);
+          $('#connect').prop('disabled', true);
+          $('#disconnect').prop('disabled', false);
+
+          stompClient.subscribe('/topic/room/' + roomId, function (message) {
+            console.log('subscribe: ' + message);
+            var p = document.createElement('p');
+            p.textContent = message.body;
+            $('#response').prepend(p);
+          });
+        });
+      }
+    });
+
+    $('#form').on('submit', function (event) {
+      event.preventDefault();
+      var message = $('#message');
+      if (stompClient !== null && message.val() !== "") {
+        var body = $('#name').val() + ' : ' + message.val();
+        message.val('');
+
+        // @SubscribeMapping
+        stompClient.send('/app/subscribe/room/' + roomId, {}, body);
+        // @MessageMapping
+//        stompClient.send('/app/message/room/' + roomId, {}, body);
+        // send directly to the broker
+//        stompClient.send('/topic/room/' + roomId, {}, body);
+      }
+    });
+
+    $('#disconnect').on('click', function () {
+      if (stompClient !== null) {
+        stompClient.disconnect();
+        stompClient = null;
+      }
+      $('#connect').prop('disabled', false);
+      $('#disconnect').prop('disabled', true);
+      console.log('disconnected:');
+    });
+  });
+  /*]]>*/
+</script>
+</body>
+</html>

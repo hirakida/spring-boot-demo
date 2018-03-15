@@ -9,9 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ApiController {
 
-    @GetMapping("/hello")
-    public String hello() {
-        log.info("hello!");
-        return "hello!";
+    @GetMapping("/")
+    public String log() {
+        log.debug("debug");
+        log.info("info");
+        log.warn("warn");
+        log.error("error");
+        return "log";
     }
 }

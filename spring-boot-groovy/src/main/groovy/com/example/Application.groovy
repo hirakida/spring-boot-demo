@@ -1,7 +1,7 @@
 package com.example
 
-import com.example.domain.Account
-import com.example.domain.AccountRepository
+import com.example.core.Account
+import com.example.core.AccountRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication

@@ -1,0 +1,8 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+# MessageSourceAutoConfiguration
+#  messages:
+#    basename: messages
+#    encoding: UTF-8

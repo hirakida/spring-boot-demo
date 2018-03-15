@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>validator</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+  <div class="row" th:if="${account}">
+    <h3><a href="/">profile</a></h3>
+    <table class="table" th:object="${account}">
+      <thead></thead>
+      <tbody>
+      <tr>
+        <td>name</td>
+        <td th:text="*{name}"></td>
+      </tr>
+      <tr>
+        <td>country code</td>
+        <td th:text="*{countryCode}"></td>
+      </tr>
+      <tr>
+        <td>age</td>
+        <td th:text="*{age}"></td>
+      </tr>
+      <tr>
+        <td>email</td>
+        <td th:text="*{email}"></td>
+      </tr>
+      <tr>
+        <td>card number</td>
+        <td th:text="*{card}"></td>
+      </tr>
+      <tr>
+        <td>address1</td>
+        <td th:text="*{address1}"></td>
+      </tr>
+      <tr>
+        <td>address2</td>
+        <td th:text="*{address2}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

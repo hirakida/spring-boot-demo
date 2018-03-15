@@ -1,0 +1,6 @@
+spring:
+  artemis:
+    mode: embedded
+  output:
+    ansi:
+      enabled: always

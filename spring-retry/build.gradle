@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.9.RELEASE'
+        springBootVersion = '1.5.10.RELEASE'
         guavaVersion = '20.0'
     }
     repositories {
@@ -19,7 +19,6 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -30,6 +29,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-devtools')
     compile("com.google.guava:guava:${guavaVersion}")
+    annotationProcessor('org.projectlombok:lombok')
     compileOnly('org.projectlombok:lombok')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

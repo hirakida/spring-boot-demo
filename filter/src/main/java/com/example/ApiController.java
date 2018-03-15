@@ -11,8 +11,8 @@ public class ApiController {
         return "index";
     }
 
-    @GetMapping("/2")
-    public String filter() {
-        return "filter";
+    @GetMapping("/internal")
+    public String internal() {
+        return "internal";
     }
 }

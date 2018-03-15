@@ -2,12 +2,11 @@ package com.example.filter;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.AbstractRequestLoggingFilter;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Component
+//@Component
 @Slf4j
 public class RequestLoggingFilter extends AbstractRequestLoggingFilter {
 

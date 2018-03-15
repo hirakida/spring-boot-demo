@@ -1,0 +1,7 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+server:
+  session:
+    timeout: 60 # seconds
