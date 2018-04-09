@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: local
+  application:
+    name: demo
+  cloud:
+    config:
+      profile: local # default
+      label:   # master
+      uri: http://localhost:8887
+  output:
+    ansi:
+      enabled: always
+
+management:
+  security:
+    enabled: false

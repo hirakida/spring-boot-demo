@@ -1,0 +1,11 @@
+spring:
+  kafka:
+#    bootstrap-servers: localhost:9092
+    template:
+      default-topic: topic1
+    producer:
+#      bootstrap-servers: localhost:9092
+      value-serializer: com.example.serialization.UserJsonSerializer
+  output:
+    ansi:
+      enabled: always

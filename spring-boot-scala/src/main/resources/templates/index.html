@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>index</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>createdAt</th>
+      <th>updatedAt</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${accounts}">
+      <td th:text="${account.id}"></td>
+      <td th:text="${account.name}"></td>
+      <td th:text="${account.createdAt}"></td>
+      <td th:text="${account.updatedAt}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

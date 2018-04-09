@@ -1,6 +1,6 @@
 package com.example;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,27 +12,23 @@ public class ApiController {
 
     private final MetricsService metricsService;
 
-    @GetMapping("/increment")
-    public String increment() {
+    @PostMapping("/increment")
+    public void increment() {
         metricsService.increment();
-        return "ok";
     }
 
-    @GetMapping("/decrement")
-    public String decrement() {
+    @PostMapping("/decrement")
+    public void decrement() {
         metricsService.decrement();
-        return "ok";
     }
 
-    @GetMapping("/reset")
-    public String reset() {
+    @PostMapping("/reset")
+    public void reset() {
         metricsService.reset();
-        return "ok";
     }
 
-    @GetMapping("/gauge")
-    public String gauge(@RequestParam long value) {
+    @PostMapping("/gauge")
+    public void gauge(@RequestParam long value) {
         metricsService.submit(value);
-        return "ok";
     }
 }

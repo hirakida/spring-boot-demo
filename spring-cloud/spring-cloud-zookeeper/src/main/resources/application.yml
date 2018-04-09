@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: zookeeper-demo
+  cloud:
+    zookeeper:
+      connect-string: localhost:2181
+  output:
+    ansi:
+      enabled: always
+
+management:
+  security:
+    enabled: false

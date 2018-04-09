@@ -1,14 +1,14 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.10.RELEASE'
+        springBootVersion = '1.5.11.RELEASE'
     }
     repositories {
         mavenCentral()
-        maven { url 'https://plugins.gradle.org/m2/' }
+//        maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath('gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.20')
+//        classpath('gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.21')
     }
 }
 
@@ -16,6 +16,7 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
     apply plugin: 'org.springframework.boot'
+//    apply plugin: 'com.gorylenko.gradle-git-properties'
 
     group = 'com.example'
     version = '0.0.1-SNAPSHOT'
@@ -30,6 +31,7 @@ subprojects {
         compile('org.springframework.boot:spring-boot-starter-web')
         compile('org.springframework.boot:spring-boot-starter-actuator')
         compile('org.springframework.boot:spring-boot-actuator-docs')
+        compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
         compile('org.jolokia:jolokia-core')
         annotationProcessor('org.projectlombok:lombok')
         compileOnly('org.projectlombok:lombok')
@@ -38,8 +40,10 @@ subprojects {
     }
 }
 
-project(':actuator-custom-info') {
-    apply plugin: 'com.gorylenko.gradle-git-properties'
+project(':actuator-custom') {
+    springBoot {
+        buildInfo()
+    }
 }
 
 project(':actuator-metrics') {

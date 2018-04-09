@@ -1,0 +1,22 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+management:
+  security:
+    enabled: false
+  info:
+    git:
+      mode: simple
+info:
+  app:
+    encoding: UTF-8
+    java:
+      source: 1.8
+      target: 1.8
+
+#endpoints:
+#  health:
+#    sensitive: false
+#  info:
+#    sensitive: false

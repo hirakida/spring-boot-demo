@@ -1,0 +1,12 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+management:
+  security:
+    enabled: false
+endpoints:
+  hello:
+    enabled: true
+    sensitive: false
+#    path: /hello2

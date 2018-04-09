@@ -1,0 +1,15 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+management:
+  port: 8081
+  context-path: /actuator
+  security:
+    enabled: false
+endpoints:
+  enabled: false
+  prometheus:
+    enabled: true
+  env:
+    enabled: true

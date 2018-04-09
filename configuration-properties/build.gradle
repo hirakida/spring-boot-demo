@@ -1,17 +1,23 @@
 buildscript {
-  ext {
-    springBootVersion = '1.5.10.RELEASE'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+    ext {
+        springBootVersion = '1.5.11.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven { url 'https://repo.spring.io/plugins-release' }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('io.spring.gradle:propdeps-plugin:0.0.9.RELEASE')
+    }
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'propdeps'
+apply plugin: 'propdeps-maven'
+apply plugin: 'propdeps-idea'
+apply plugin: 'propdeps-eclipse'
 apply plugin: 'org.springframework.boot'
 
 group = 'com.example'
@@ -20,16 +26,21 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-  mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-  compile('org.springframework.boot:spring-boot-starter-web')
-  compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-  compile('org.webjars:webjars-locator')
-  compile('org.webjars:bootstrap:4.0.0')
-  runtime('org.springframework.boot:spring-boot-devtools')
-  annotationProcessor('org.projectlombok:lombok')
-  compileOnly('org.projectlombok:lombok')
-  testCompile('org.springframework.boot:spring-boot-starter-test')
+    annotationProcessor('org.springframework.boot:spring-boot-configuration-processor')
+    annotationProcessor('org.projectlombok:lombok')
+
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.webjars:webjars-locator')
+    compile('org.webjars:bootstrap:4.0.0')
+    runtime('org.springframework.boot:spring-boot-devtools')
+    optional('org.springframework.boot:spring-boot-configuration-processor')
+    compileOnly('org.projectlombok:lombok')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
+compileJava.dependsOn(processResources)
