@@ -1,0 +1,11 @@
+spring:
+  data:
+    elasticsearch:
+      properties:
+        path:
+          home: build
+#      cluster-name:
+#      cluster-nodes: localhost:9200
+  output:
+    ansi:
+      enabled: always
