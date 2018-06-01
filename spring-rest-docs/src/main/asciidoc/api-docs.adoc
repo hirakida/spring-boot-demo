@@ -1,4 +1,4 @@
-= Spring REST Docs sample
+= Spring REST Docs Demo
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs

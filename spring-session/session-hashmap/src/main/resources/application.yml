@@ -1,9 +1,0 @@
-spring:
-  session:
-    store-type: hash_map
-  output:
-    ansi:
-      enabled: always
-server:
-  session:
-    timeout: 60  # seconds

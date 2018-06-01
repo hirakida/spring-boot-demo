@@ -1,0 +1,12 @@
+spring:
+  session:
+    store-type: mongodb
+  thymeleaf:
+    cache: false
+  output:
+    ansi:
+      enabled: always
+server:
+  servlet:
+    session:
+      timeout: 60s

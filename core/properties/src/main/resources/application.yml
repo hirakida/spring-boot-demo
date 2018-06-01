@@ -1,0 +1,5 @@
+app:
+  number:
+    value1: 11
+  string:
+    value1: abcde
