@@ -9,10 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import lombok.RequiredArgsConstructor;
-
 @Controller
-@RequiredArgsConstructor
 public class WebController {
 
     private static final String MESSAGE1 = "app.message1";
@@ -21,20 +18,20 @@ public class WebController {
     private static final String ARGS1 = "app.args1";
     private final MessageSource messageSource;
 
-    @ModelAttribute("message1_0")
+    public WebController(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
+
+    @ModelAttribute("message0")
     public String modelKey(Locale locale) {
         return messageSource.getMessage(MESSAGE1, new String[] { "guest" }, locale);
     }
 
-    /**
-     * messageに埋め込むargsもpropertiesから取得する場合
-     */
     @GetMapping("/")
     public String messageSource(Model model, Locale locale) {
-        DefaultMessageSourceResolvable[] args = getResolvableArgs();
+        DefaultMessageSourceResolvable[] args = { new DefaultMessageSourceResolvable(new String[] { ARGS1 }) };
         String message1 = messageSource.getMessage(MESSAGE1, args, locale);
         String message2 = messageSource.getMessage(MESSAGE2, args, locale);
-        // codeがない場合はNoSuchMessageExceptionが発生するのでdefaultMessageを指定する
         String message3 = messageSource.getMessage(MESSAGE3, args, "not found", locale);
         model.addAttribute("message1", message1);
         model.addAttribute("message2", message2);
@@ -42,15 +39,15 @@ public class WebController {
         return "index";
     }
 
-    /**
-     * DefaultMessageSourceResolvableを使う
-     */
     @GetMapping("/2")
     public String messageSource2(Model model, Locale locale) {
-        DefaultMessageSourceResolvable[] args = getResolvableArgs();
-        DefaultMessageSourceResolvable resolvable1 = getResolvable(MESSAGE1, args);
-        DefaultMessageSourceResolvable resolvable2 = getResolvable(MESSAGE2, args);
-        DefaultMessageSourceResolvable resolvable3 = getResolvable(MESSAGE3, args, "not found");
+        DefaultMessageSourceResolvable[] args = { new DefaultMessageSourceResolvable(new String[] { ARGS1 }) };
+        DefaultMessageSourceResolvable resolvable1 =
+                new DefaultMessageSourceResolvable(new String[] { MESSAGE1 }, args);
+        DefaultMessageSourceResolvable resolvable2 =
+                new DefaultMessageSourceResolvable(new String[] { MESSAGE2 }, args);
+        DefaultMessageSourceResolvable resolvable3 =
+                new DefaultMessageSourceResolvable(new String[] { MESSAGE3 }, args, "not found");
         String message1 = messageSource.getMessage(resolvable1, locale);
         String message2 = messageSource.getMessage(resolvable2, locale);
         String message3 = messageSource.getMessage(resolvable3, locale);
@@ -62,30 +59,16 @@ public class WebController {
 
     @GetMapping("/3")
     public String formatter(Model model) {
-        DefaultMessageSourceResolvable[] args = getResolvableArgs();
-        DefaultMessageSourceResolvable resolvable1 = getResolvable(MESSAGE1, args);
-        DefaultMessageSourceResolvable resolvable2 = getResolvable(MESSAGE2, args);
-        DefaultMessageSourceResolvable resolvable3 = getResolvable(MESSAGE3, args, "not found");
-        // MessageSourceResolvableをtemplateに渡してFormatterでStringに変換する
+        DefaultMessageSourceResolvable[] args = { new DefaultMessageSourceResolvable(new String[] { ARGS1 }) };
+        DefaultMessageSourceResolvable resolvable1 =
+                new DefaultMessageSourceResolvable(new String[] { MESSAGE1 }, args);
+        DefaultMessageSourceResolvable resolvable2 =
+                new DefaultMessageSourceResolvable(new String[] { MESSAGE2 }, args);
+        DefaultMessageSourceResolvable resolvable3 =
+                new DefaultMessageSourceResolvable(new String[] { MESSAGE3 }, args, "not found");
         model.addAttribute("message1", resolvable1);
         model.addAttribute("message2", resolvable2);
         model.addAttribute("message3", resolvable3);
         return "index";
-    }
-
-    private static DefaultMessageSourceResolvable[] getResolvableArgs() {
-        DefaultMessageSourceResolvable args1 = new DefaultMessageSourceResolvable(new String[] { ARGS1 });
-        return new DefaultMessageSourceResolvable[] { args1 };
-    }
-
-    private static DefaultMessageSourceResolvable getResolvable(String code,
-                                                                DefaultMessageSourceResolvable[] args) {
-        return new DefaultMessageSourceResolvable(new String[] { code }, args);
-    }
-
-    private static DefaultMessageSourceResolvable getResolvable(String code,
-                                                                DefaultMessageSourceResolvable[] args,
-                                                                String defaultMessage) {
-        return new DefaultMessageSourceResolvable(new String[] { code }, args, defaultMessage);
     }
 }

@@ -1,7 +1,3 @@
-spring:
-  output:
-    ansi:
-      enabled: always
 management:
   port: 8081
   context-path: /actuator

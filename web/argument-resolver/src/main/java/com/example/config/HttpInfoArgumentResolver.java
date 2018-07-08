@@ -27,8 +27,7 @@ public class HttpInfoArgumentResolver implements HandlerMethodArgumentResolver {
                                   ModelAndViewContainer mavContainer,
                                   NativeWebRequest nativeWebRequest,
                                   WebDataBinderFactory webDataBinderFactory) throws Exception {
-        Cookie[] cookies = nativeWebRequest.getNativeRequest(HttpServletRequest.class)
-                                           .getCookies();
+        Cookie[] cookies = nativeWebRequest.getNativeRequest(HttpServletRequest.class).getCookies();
         Locale locale = nativeWebRequest.getNativeRequest(HttpServletRequest.class).getLocale();
         String userAgent = nativeWebRequest.getHeader(HttpHeaders.USER_AGENT);
         return new HttpRequestInfo(Arrays.asList(cookies), locale, userAgent);

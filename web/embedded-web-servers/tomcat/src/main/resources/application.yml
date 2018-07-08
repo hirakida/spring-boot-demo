@@ -6,3 +6,4 @@ server:
   tomcat:
     accesslog:
       enabled: true
+    basedir: .

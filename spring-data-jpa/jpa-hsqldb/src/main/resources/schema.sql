@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS account (
--- hsqlはUNSIGNEDが指定できない
-  id INT PRIMARY KEY IDENTITY,
-  name VARCHAR(30) NOT NULL,
-  created_at DATETIME NOT NULL,
-  updated_at DATETIME NOT NULL
-);

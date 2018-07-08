@@ -1,0 +1,10 @@
+spring:
+  session:
+    store-type: mongodb
+server:
+  servlet:
+    session:
+      timeout: 60s
+      cookie:
+        max-age: 60s
+        name: SPRING_SESSION_MONGODB

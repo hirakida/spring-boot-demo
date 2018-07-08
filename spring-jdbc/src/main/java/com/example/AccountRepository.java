@@ -2,8 +2,8 @@ package com.example;
 
 import java.util.List;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -29,27 +29,26 @@ public class AccountRepository {
 
     public List<Account> findAll() {
         String sql = "SELECT id, name FROM account";
-        return jdbcTemplate.query(sql, rowMapper());
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Account.class));
     }
 
     public Account findById(int id) {
-        SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
         String sql = "SELECT id, name FROM account WHERE id=:id";
-        return jdbcTemplate.queryForObject(sql, param, rowMapper());
+        return jdbcTemplate.queryForObject(sql,
+                                           new MapSqlParameterSource("id", id),
+                                           new BeanPropertyRowMapper<>(Account.class));
     }
 
     public Account insert(Account account) {
-        SqlParameterSource param = new BeanPropertySqlParameterSource(account);
         // set auto increment id
-        Number key = jdbcInsert.executeAndReturnKey(param);
+        Number key = jdbcInsert.executeAndReturnKey(new BeanPropertySqlParameterSource(account));
         account.setId(key.intValue());
         return account;
     }
 
     public Account update(Account account) {
-        SqlParameterSource param = new BeanPropertySqlParameterSource(account);
         String sql = "UPDATE account SET name=:name WHERE id=:id";
-        jdbcTemplate.update(sql, param);
+        jdbcTemplate.update(sql, new BeanPropertySqlParameterSource(account));
         return account;
     }
 
@@ -59,14 +58,8 @@ public class AccountRepository {
         return jdbcTemplate.batchUpdate(sql, param);
     }
 
-    public void delete(int id) {
-        SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+    public void deleteById(int id) {
         String sql = "DELETE FROM account WHERE id=:id";
-        jdbcTemplate.update(sql, param);
-    }
-
-    private static RowMapper<Account> rowMapper() {
-        return (rs, rowNum) -> new Account(rs.getInt("id"),
-                                           rs.getString("name"));
+        jdbcTemplate.update(sql, new MapSqlParameterSource("id", id));
     }
 }

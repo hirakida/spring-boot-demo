@@ -9,38 +9,44 @@
 </head>
 <body>
 <div class="container">
-  <div class="row" th:if="${account}">
-    <h3><a href="/">profile</a></h3>
-    <table class="table" th:object="${account}">
+  <div class="row">
+    <h3><a href="/">Top</a></h3>
+  </div>
+  <div class="row" th:if="${account}" th:object="${account}">
+    <table class="table">
       <thead></thead>
       <tbody>
       <tr>
-        <td>name</td>
-        <td th:text="*{name}"></td>
+        <th scope="row">name</th>
+        <td><span th:text="*{name}"></span></td>
       </tr>
       <tr>
-        <td>country code</td>
-        <td th:text="*{countryCode}"></td>
+        <th scope="row">country code</th>
+        <td><span th:text="*{countryCode}"></span></td>
       </tr>
       <tr>
-        <td>age</td>
-        <td th:text="*{age}"></td>
+        <th scope="row">age</th>
+        <td><span th:text="*{age}"></span></td>
       </tr>
       <tr>
-        <td>email</td>
-        <td th:text="*{email}"></td>
+        <th scope="row">tel no</th>
+        <td><span th:text="*{telNo}"></span></td>
       </tr>
       <tr>
-        <td>card number</td>
-        <td th:text="*{card}"></td>
+        <th scope="row">email</th>
+        <td><span th:text="*{email}"></span></td>
       </tr>
       <tr>
-        <td>address1</td>
-        <td th:text="*{address1}"></td>
+        <th scope="row">card number</th>
+        <td><span th:text="*{card}"></span></td>
       </tr>
       <tr>
-        <td>address2</td>
-        <td th:text="*{address2}"></td>
+        <th scope="row">address1</th>
+        <td><span th:text="*{address1}"></span></td>
+      </tr>
+      <tr>
+        <th scope="row">address2</th>
+        <td><span th:text="*{address2}"></span></td>
       </tr>
       </tbody>
     </table>

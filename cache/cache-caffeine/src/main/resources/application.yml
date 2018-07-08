@@ -1,0 +1,12 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+  cache:
+    type: caffeine
+    cache-names: default
+    caffeine:
+      spec: maximumSize=10000,expireAfterAccess=60s
+logging:
+  level:
+    org.springframework.cache: trace

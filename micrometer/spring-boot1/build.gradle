@@ -1,7 +1,7 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.11.RELEASE'
-        micrometerVersion = '1.0.3'
+        springBootVersion = '1.5.14.RELEASE'
+        micrometerVersion = '1.0.6'
     }
     repositories {
         mavenCentral()

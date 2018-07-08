@@ -1,10 +1,10 @@
 package com.example.controller;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.BeanUtils;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.annotation.CountryCode;
+import com.example.annotation.TelNo;
 import com.example.entity.Account;
 
 import lombok.Data;
@@ -62,27 +63,19 @@ public class WebController {
     @Data
     @NoArgsConstructor
     public static class Form {
-        @NotNull
-        @Length(max = 20)   // same as @Size(max = 20)
-        private String name;
-        @NotNull
-        @Range(min = 18, max = 60)
-        private Integer age;
-        @Email
-        private String email;
-        @CountryCode(notEmpty = true)
-        private String countryCode;
-        @CreditCardNumber
-        private String card;
-        @Valid
-        private Address address;
+        private @NotNull @Length(max = 20) String name;
+        private @NotNull @Range(min = 18, max = 60) Integer age;
+        private @Email String email;
+        private @CountryCode(notEmpty = true) String countryCode;
+        private @TelNo String telNo;
+        private @CreditCardNumber String card;
+        private @Valid Address address;
     }
 
     @Data
     @NoArgsConstructor
     public static class Address {
-        @NotNull
-        private String address1;
+        private @NotNull String address1;
         private String address2;
     }
 }

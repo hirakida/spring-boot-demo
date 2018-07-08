@@ -1,0 +1,21 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+info:
+  aa:
+    encoding: UTF-8
+    java:
+      source: 1.8
+      target: 1.8

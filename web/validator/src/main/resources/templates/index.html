@@ -10,21 +10,20 @@
 <body>
 <div class="container">
   <div class="row">
-    <h3>profile</h3>
     <form th:action="@{''}" th:object="${form}" method="post">
       <table class="table">
         <thead></thead>
         <tbody>
         <tr>
-          <td class="col-md-4">name</td>
-          <td class="col-md-8">
+          <th scope="row">name</th>
+          <td>
             <input type="text" th:field="*{name}" />
             <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
                   class="alert-danger"></span>
           </td>
         </tr>
         <tr>
-          <td>country code</td>
+          <th scope="row">country code</th>
           <td>
             <input type="text" th:field="*{countryCode}" />
             <span th:if="${#fields.hasErrors('countryCode')}" th:errors="*{countryCode}"
@@ -32,7 +31,7 @@
           </td>
         </tr>
         <tr>
-          <td>age</td>
+          <th scope="row">age</th>
           <td>
             <input type="text" th:field="*{age}" />
             <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"
@@ -40,7 +39,7 @@
           </td>
         </tr>
         <tr>
-          <td>email</td>
+          <th scope="row">email</th>
           <td>
             <input type="text" th:field="*{email}" />
             <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
@@ -48,7 +47,15 @@
           </td>
         </tr>
         <tr>
-          <td>card number</td>
+          <th scope="row">tel no</th>
+          <td>
+            <input type="text" th:field="*{telNo}" />
+            <span th:if="${#fields.hasErrors('telNo')}" th:errors="*{telNo}"
+                  class="alert-danger"></span>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">card number</th>
           <td>
             <input type="text" th:field="*{card}" />
             <span th:if="${#fields.hasErrors('card')}" th:errors="*{card}"
@@ -56,7 +63,7 @@
           </td>
         </tr>
         <tr>
-          <td>address1</td>
+          <th scope="row">address1</th>
           <td>
             <input type="text" th:field="*{address.address1}" />
             <span th:if="${#fields.hasErrors('address.address1')}" th:errors="*{address.address1}"
@@ -64,7 +71,7 @@
           </td>
         </tr>
         <tr>
-          <td>address2</td>
+          <th scope="row">address2</th>
           <td>
             <input type="text" th:field="*{address.address2}" />
             <span th:if="${#fields.hasErrors('address.address2')}" th:errors="*{address.address2}"

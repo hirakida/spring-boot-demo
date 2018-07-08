@@ -10,6 +10,7 @@ public class Account {
     private String countryCode;
     private Integer age;
     private String email;
+    private String telNo;
     private String card;
     private String address1;
     private String address2;

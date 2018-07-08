@@ -6,11 +6,9 @@ import java.util.Locale;
 import javax.servlet.http.Cookie;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
 @AllArgsConstructor
 public class HttpRequestInfo {
     private List<Cookie> cookies;
