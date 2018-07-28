@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.core.User;
-import com.example.core.UserService;
-
 import lombok.RequiredArgsConstructor;
 
 @RestController

@@ -21,7 +21,13 @@ public class SSMConfig extends AbstractSSMConfiguration {
 
     public static final String CACHE_NAME = "default";
     private static final String ADDRESS = "127.0.0.1:11211";
-    private static final int EXPIRATION = 60;    // sec
+    private static final int EXPIRATION = 60; // sec
+
+    @Bean
+    @Override
+    public CacheFactory defaultMemcachedClient() {
+        return cacheFactory(CACHE_NAME);
+    }
 
     @Bean
     public CacheManager cacheManager() throws Exception {
@@ -31,13 +37,11 @@ public class SSMConfig extends AbstractSSMConfiguration {
         return ssmCacheManager;
     }
 
-    @Bean
-    @Override
-    public CacheFactory defaultMemcachedClient() {
+    private static CacheFactory cacheFactory(String cacheName) {
         CacheConfiguration cacheConfig = new CacheConfiguration();
         cacheConfig.setConsistentHashing(true);
         CacheFactory cacheFactory = new CacheFactory();
-        cacheFactory.setCacheName(CACHE_NAME);
+        cacheFactory.setCacheName(cacheName);
         cacheFactory.setCacheClientFactory(new MemcacheClientFactoryImpl());
         cacheFactory.setAddressProvider(new DefaultAddressProvider(ADDRESS));
         cacheFactory.setConfiguration(cacheConfig);

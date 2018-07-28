@@ -5,38 +5,36 @@ import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.core.Account;
-import com.example.core.AccountService;
+import com.example.core.User;
+import com.example.core.UserService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/accounts")
 @RequiredArgsConstructor
 public class ApiController {
 
-    private final AccountService accountService;
+    private final UserService userService;
 
-    @GetMapping
-    public List<Account> findAll() {
-        return accountService.findAll();
+    @GetMapping("/users")
+    public List<User> findAll() {
+        return userService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Account findOne(@PathVariable int id) {
-        return accountService.findOne(id);
+    @GetMapping("/users/{id}")
+    public User findById(@PathVariable int id) {
+        return userService.findById(id);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/users")
     public void cacheEvict() {
-        accountService.cacheEvict();
+        userService.cacheEvict();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/users/{id}")
     public void cacheEvict(@PathVariable int id) {
-        accountService.cacheEvict(id);
+        userService.cacheEvict(id);
     }
 }

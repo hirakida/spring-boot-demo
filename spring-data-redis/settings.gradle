@@ -1,2 +1,2 @@
 rootProject.name = 'spring-data-redis-demo'
-include 'redis-string', 'redis-json'
+include 'redis-template', 'redis-script', 'redis-pubsub', 'embedded-redis'
