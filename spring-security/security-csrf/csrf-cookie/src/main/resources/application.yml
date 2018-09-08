@@ -2,3 +2,7 @@ spring:
   output:
     ansi:
       enabled: always
+server:
+  servlet:
+    session:
+      timeout: 60s

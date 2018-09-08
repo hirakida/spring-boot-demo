@@ -9,7 +9,7 @@ public class HttpSessionConfig {
 
     @Bean
     @SessionScope
-    public AppSession appSession() {
-        return new AppSession();
+    public SessionBean sessionBean() {
+        return new SessionBean();
     }
 }

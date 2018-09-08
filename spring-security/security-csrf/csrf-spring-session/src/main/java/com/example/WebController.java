@@ -1,6 +1,7 @@
 package com.example;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +15,7 @@ import lombok.Data;
 public class WebController {
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String get(Model model) {
         model.addAttribute("form", new Form());
         return "index";
     }
@@ -30,9 +31,7 @@ public class WebController {
 
     @Data
     private static class Form {
-        @NotEmpty
-        private String lastName;
-        @NotEmpty
-        private String firstName;
+        private @NotEmpty String lastName;
+        private @NotEmpty String firstName;
     }
 }

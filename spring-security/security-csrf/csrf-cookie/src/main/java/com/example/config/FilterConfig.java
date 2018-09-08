@@ -23,8 +23,9 @@ import lombok.extern.slf4j.Slf4j;
 public class FilterConfig {
 
     @Bean
-    public FilterRegistrationBean filterRegistration() {
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean(new RequestLoggingFilter());
+    public FilterRegistrationBean<RequestLoggingFilter> filterRegistration() {
+        FilterRegistrationBean<RequestLoggingFilter> registrationBean =
+                new FilterRegistrationBean<>(new RequestLoggingFilter());
         registrationBean.setDispatcherTypes(DispatcherType.REQUEST);
         return registrationBean;
     }

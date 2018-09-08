@@ -3,5 +3,9 @@ spring:
     ansi:
       enabled: always
 server:
-  session:
-    timeout: 60 # seconds
+  servlet:
+    session:
+      timeout: 60s
+      cookie:
+        name: CSRF_SESSION
+        max-age: 60s

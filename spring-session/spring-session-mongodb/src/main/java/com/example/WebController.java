@@ -18,16 +18,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WebController {
 
-    private final AppSession appSession;
+    private final SessionBean sessionBean;
 
     @GetMapping("/")
     public String index(Model model) {
-        log.info("{}", appSession);
-        if (appSession.getUuid() == null) {
-            appSession.setUuid(UUID.randomUUID().toString());
-            appSession.setLocalDateTime(LocalDateTime.now());
+        log.info("{}", sessionBean);
+        if (sessionBean.getUuid() == null) {
+            sessionBean.setUuid(UUID.randomUUID().toString());
+            sessionBean.setLocalDateTime(LocalDateTime.now());
         }
-        model.addAttribute("appSession", appSession);
+        model.addAttribute("appSession", sessionBean);
         return "index";
     }
 

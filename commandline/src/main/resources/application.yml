@@ -1,0 +1,8 @@
+spring:
+  main:
+    banner-mode: "off"
+    web-application-type: none
+  jmx:
+    enabled: false
+  profiles:
+    active: dev

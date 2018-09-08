@@ -1,0 +1,18 @@
+spring:
+  session:
+    store-type: redis
+#      redis:
+#      flush-mode: on_save
+#      namespace:
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 0
+server:
+  servlet:
+    session:
+      cookie:
+        max-age: 60s
+        name: SPRING_SESSION_REDIS
+      timeout: 60s

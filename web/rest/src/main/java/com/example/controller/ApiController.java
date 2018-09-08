@@ -1,10 +1,10 @@
 package com.example.controller;
 
-import java.util.Optional;
+import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.core.Account;
-import com.example.core.AccountService;
-import com.example.core.Gender;
+import com.example.domain.Gender;
+import com.example.domain.User;
+import com.example.repository.UserRepository;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,40 +27,43 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ApiController {
 
-    private final AccountService accountService;
+    private final UserRepository userRepository;
 
-    @GetMapping("/v1/accounts/{id}")
-    public Account findById(@PathVariable long id) {
-        return accountService.findById(id);
+    @GetMapping("/users")
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
-    @GetMapping("/v2/accounts/{id}")
-    public ResponseEntity<Account> findByIdWithResponseEntity(@PathVariable long id) {
-        Account account = accountService.findById(id);
+    @GetMapping("/users/{id}")
+    public User getOne1(@PathVariable int id) {
+        return userRepository.getOne(id);
+    }
+
+    @GetMapping("/v2/users/{id}")
+    public ResponseEntity<User> getOne2(@PathVariable int id) {
+        User user = userRepository.getOne(id);
         return ResponseEntity.ok()
-                             .header("headerName" + id, "headerValue" + id)
-                             .body(account);
+                             .header("User-Id", String.valueOf(id))
+                             .body(user);
     }
 
-    @PostMapping("/accounts")
-    public Account post(@RequestBody @Validated AccountForm form) {
-        return accountService.create(form.toAccount());
+    @PostMapping("/users")
+    public User create(@RequestBody @Validated UserForm form) {
+        return userRepository.save(form.toAccount());
     }
 
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class AccountForm {
-        @NotEmpty
-        private String name;
-        @NotNull
-        private Gender gender;
-        private Optional<String> card;
+    public static class UserForm {
+        private @NotEmpty String name;
+        private @NotNull Gender gender;
+        private String card;
 
-        public Account toAccount() {
-            Account account = new Account();
-            BeanUtils.copyProperties(this, account);
-            return account;
+        public User toAccount() {
+            User user = new User();
+            BeanUtils.copyProperties(this, user);
+            return user;
         }
     }
 }
