@@ -34,7 +34,17 @@ public class RetryConfig {
         RetryTemplate template = new RetryTemplate();
         template.setRetryPolicy(retryPolicy);
         template.setBackOffPolicy(backOffPolicy);
-        template.registerListener(new RetryListenerImpl());
+        template.registerListener(retryListener());
         return template;
+    }
+
+    @Bean
+    public RetryListenerImpl retryListener() {
+        return new RetryListenerImpl();
+    }
+
+    @Bean
+    public ExceptionChecker exceptionChecker() {
+        return new ExceptionChecker();
     }
 }

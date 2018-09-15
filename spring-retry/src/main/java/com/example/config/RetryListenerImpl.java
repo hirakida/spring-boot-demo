@@ -14,7 +14,7 @@ public class RetryListenerImpl implements RetryListener {
                                                RetryCallback<T, E> callback,
                                                Throwable throwable) {
         if (throwable != null) {
-            log.debug("close {} {} {}", context, callback, throwable.getClass().getCanonicalName());
+            log.info("close {} {}", context, throwable.getClass().getCanonicalName());
         }
     }
 
@@ -23,14 +23,14 @@ public class RetryListenerImpl implements RetryListener {
                                                  RetryCallback<T, E> callback,
                                                  Throwable throwable) {
         if (throwable != null) {
-            log.debug("onError {} {} {}", context, callback, throwable.getClass().getCanonicalName());
+            log.error("onError context={} callback={}", context, callback, throwable);
         }
     }
 
     @Override
     public <T, E extends Throwable> boolean open(RetryContext context,
                                                  RetryCallback<T, E> callback) {
-        log.debug("open {} {}", context, callback);
+        log.info("open {}", context);
         return true;
     }
 }

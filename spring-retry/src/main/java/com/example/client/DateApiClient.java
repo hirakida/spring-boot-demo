@@ -18,7 +18,7 @@ public class DateApiClient {
     private static final String URL = "http://date.jsontest.com/";
     private final RestOperations restOperations = new RestTemplateBuilder().build();
 
-    @Retryable(exceptionExpression = "#{@retryExpressionHelper.shouldRetry(#root)}",
+    @Retryable(exceptionExpression = "#{@exceptionChecker.shouldRetry(#root)}",
             maxAttemptsExpression = "#{${app.retry.max-attempt}}",
             backoff = @Backoff(delayExpression = "#{${app.retry.delay}}"))
     public DateTime getDate() {
