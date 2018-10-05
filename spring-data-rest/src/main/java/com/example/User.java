@@ -1,6 +1,7 @@
 package com.example;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -30,9 +31,9 @@ public class User implements Serializable {
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
     @Column(nullable = false)
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 }

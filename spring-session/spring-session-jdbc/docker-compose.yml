@@ -1,0 +1,11 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    ports:
+    - "3307:3306"
+    environment:
+      MYSQL_DATABASE: session_jdbc_demo
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password

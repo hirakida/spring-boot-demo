@@ -1,34 +1,46 @@
 package com.example.controller;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.messaging.simp.annotation.SubscribeMapping;
+import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.stereotype.Controller;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequiredArgsConstructor
 @Slf4j
 public class WebSocketController {
 
-    private final SimpMessagingTemplate simpMessagingTemplate;
-
-    @SubscribeMapping("/subscribe/room/{id}")
-    public void subscribe(@DestinationVariable String id, String message,
-                          SimpMessageHeaderAccessor headerAccessor) {
-        log.info("subscribe id={} message={} headerAccessor={}", id, message, headerAccessor);
-        simpMessagingTemplate.convertAndSend("/topic/room/" + id, message);
-    }
-
     @MessageMapping("/message/room/{id}")
     @SendTo("/topic/room/{id}")
-    public String message(@DestinationVariable String id, String message) {
-        log.info("message={}", message);
-        return message;
+    public Payload message(@DestinationVariable String id, Payload payload) {
+        log.info("id={} payload={}", id, payload);
+        if (StringUtils.isEmpty(StringUtils.trim(payload.getMessage()))) {
+            throw new IllegalArgumentException("The message is empty.");
+        }
+        return payload;
+    }
+
+    @MessageExceptionHandler
+    @SendToUser("/queue/errors")
+    public Error handleException(Throwable e) {
+        return new Error(e.getMessage());
+    }
+
+    @Data
+    public static class Payload {
+        private String userName;
+        private String message;
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class Error {
+        private String message;
     }
 }

@@ -3,6 +3,9 @@ spring:
     listener:
       simple:
         max-concurrency: 5
+  devtools:
+    livereload:
+      enabled: false
   output:
     ansi:
       enabled: always

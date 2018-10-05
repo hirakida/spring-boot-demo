@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>validator</title>
+  <meta charset="UTF-8" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <h3><a href="/">Top</a></h3>
+  </div>
+  <div class="row" th:if="${account}" th:object="${account}">
+    <table class="table">
+      <thead></thead>
+      <tbody>
+      <tr>
+        <th scope="row">name</th>
+        <td><span th:text="*{name}"></span></td>
+      </tr>
+      <tr>
+        <th scope="row">country code</th>
+        <td><span th:text="*{countryCode}"></span></td>
+      </tr>
+      <tr>
+        <th scope="row">age</th>
+        <td><span th:text="*{age}"></span></td>
+      </tr>
+      <tr>
+        <th scope="row">tel no</th>
+        <td><span th:text="*{telNo}"></span></td>
+      </tr>
+      <tr>
+        <th scope="row">email</th>
+        <td><span th:text="*{email}"></span></td>
+      </tr>
+      <tr>
+        <th scope="row">card number</th>
+        <td><span th:text="*{card}"></span></td>
+      </tr>
+      <tr>
+        <th scope="row">address1</th>
+        <td><span th:text="*{address1}"></span></td>
+      </tr>
+      <tr>
+        <th scope="row">address2</th>
+        <td><span th:text="*{address2}"></span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

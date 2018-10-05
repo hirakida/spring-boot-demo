@@ -1,0 +1,10 @@
+server:
+  http2:
+    enabled: true
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: keystore.p12
+    key-store-password: xxxxxx
+    key-alias: http2
+    key-store-type: PKCS12

@@ -1,2 +1,0 @@
-rootProject.name = 'spring-async-demo'
-include ':async-streaming', ':async-callable', 'async-defferred-result', 'async-future', ':async-common'

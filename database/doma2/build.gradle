@@ -1,6 +1,7 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.10.RELEASE'
+        springBootVersion = '2.1.1.RELEASE'
+        domaStarterVersion = '1.1.1'
     }
     repositories {
         mavenCentral()
@@ -13,28 +14,26 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
-sourceCompatibility = 1.8
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
+sourceCompatibility = 11
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-web')
-    compile('org.seasar.doma.boot:doma-spring-boot-starter:1.1.1')
-    compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
-    runtime('org.springframework.boot:spring-boot-devtools')
-    runtime('com.h2database:h2')
+    annotationProcessor('org.projectlombok:lombok')
     compileOnly('org.projectlombok:lombok')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    annotationProcessor("org.seasar.doma.boot:doma-spring-boot-starter:${domaStarterVersion}")
+    implementation("org.seasar.doma.boot:doma-spring-boot-starter:${domaStarterVersion}")
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    runtimeOnly('com.h2database:h2')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 
 processResources.destinationDir = compileJava.destinationDir

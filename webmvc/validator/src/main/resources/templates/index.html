@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>validator</title>
+  <meta charset="UTF-8" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <form th:action="@{''}" th:object="${form}" method="post">
+      <table class="table">
+        <thead></thead>
+        <tbody>
+        <tr>
+          <th scope="row">name</th>
+          <td>
+            <input type="text" th:field="*{name}" />
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert-danger"></span>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">country code</th>
+          <td>
+            <input type="text" th:field="*{countryCode}" />
+            <span th:if="${#fields.hasErrors('countryCode')}" th:errors="*{countryCode}"
+                  class="alert-danger"></span>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">age</th>
+          <td>
+            <input type="text" th:field="*{age}" />
+            <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="alert-danger"></span>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">email</th>
+          <td>
+            <input type="text" th:field="*{email}" />
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert-danger"></span>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">tel no</th>
+          <td>
+            <input type="text" th:field="*{telNo}" />
+            <span th:if="${#fields.hasErrors('telNo')}" th:errors="*{telNo}" class="alert-danger"></span>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">card number</th>
+          <td>
+            <input type="text" th:field="*{card}" />
+            <span th:if="${#fields.hasErrors('card')}" th:errors="*{card}" class="alert-danger"></span>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">address1</th>
+          <td>
+            <input type="text" th:field="*{address.address1}" />
+            <span th:if="${#fields.hasErrors('address.address1')}" th:errors="*{address.address1}"
+                  class="alert-danger"></span>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">address2</th>
+          <td>
+            <input type="text" th:field="*{address.address2}" />
+            <span th:if="${#fields.hasErrors('address.address2')}" th:errors="*{address.address2}"
+                  class="alert-danger"></span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <input class="btn btn-primary" type="submit" value="submit" />
+    </form>
+  </div>
+</div>
+</body>
+</html>

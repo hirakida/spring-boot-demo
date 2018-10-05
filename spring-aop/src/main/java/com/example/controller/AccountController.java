@@ -55,11 +55,6 @@ public class AccountController {
         accountService.deleteById(id);
     }
 
-    @GetMapping("/exception")
-    public String exception() {
-        throw new RuntimeException();
-    }
-
     @Data
     public static class Request {
         private String name;

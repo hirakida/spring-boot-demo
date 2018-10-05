@@ -16,8 +16,8 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 
 import lombok.RequiredArgsConstructor;
 
-@EnableCaching
 @Configuration
+@EnableCaching
 @RequiredArgsConstructor
 public class CachingConfig extends CachingConfigurerSupport {
 

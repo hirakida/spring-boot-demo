@@ -18,6 +18,6 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Bean
     public TextWebSocketHandler textWebSocketHandler() {
-        return new AppTextWebSocketHandler();
+        return new TextWebSocketHandlerExt();
     }
 }

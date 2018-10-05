@@ -22,6 +22,9 @@ public class AccountService {
 
     public Account findById(long id) {
         log.info("findById id={}", id);
+        if (id > 10) {
+            throw new RuntimeException("id: " + id);
+        }
         return new Account(id, "name" + id);
     }
 

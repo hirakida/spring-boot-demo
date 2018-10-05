@@ -1,0 +1,9 @@
+spring:
+#  jackson:
+#    property-naming-strategy: SNAKE_CASE
+  devtools:
+    livereload:
+      enabled: false
+  output:
+    ansi:
+      enabled: always

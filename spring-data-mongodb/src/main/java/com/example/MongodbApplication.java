@@ -15,16 +15,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MongodbApplication implements CommandLineRunner {
 
-    private final AccountRepository accountRepository;
+    private final UserRepository userRepository;
 
     @Override
     public void run(String... strings) throws IOException {
 
         IntStream.rangeClosed(1, 6)
                  .forEach(i -> {
-                     Account account = new Account();
-                     account.setName("user" + i);
-                     accountRepository.save(account);
+                     User user = new User();
+                     user.setName("user" + i);
+                     userRepository.save(user);
                  });
     }
 

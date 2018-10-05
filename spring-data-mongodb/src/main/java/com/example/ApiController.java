@@ -24,43 +24,43 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ApiController {
 
-    private final AccountRepository accountRepository;
+    private final UserRepository userRepository;
 
-    @GetMapping("/accounts")
-    public Page<Account> findAll(@PageableDefault Pageable pageable) {
-        return accountRepository.findAll(pageable);
+    @GetMapping("/users")
+    public Page<User> findAll(@PageableDefault Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 
-    @DeleteMapping("/accounts")
-    public void deleteAll() {
-        accountRepository.deleteAll();
+    @GetMapping("/users/{id}")
+    public User findById(@PathVariable String id) {
+        return userRepository.findById(id)
+                             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/accounts")
+    @PostMapping("/users")
     public void create(@RequestBody @Validated Request request) {
-        Account account = new Account();
-        BeanUtils.copyProperties(request, account);
-        accountRepository.save(account);
+        User user = new User();
+        BeanUtils.copyProperties(request, user);
+        userRepository.save(user);
     }
 
-    @GetMapping("/accounts/{id}")
-    public Account findById(@PathVariable String id) {
-        return accountRepository.findById(id)
-                                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-    }
-
-    @PutMapping("/accounts/{id}")
+    @PutMapping("/users/{id}")
     public void update(@PathVariable String id, @RequestBody @Validated Request request) {
-        accountRepository.findById(id)
-                         .ifPresent(account -> {
-                             account.setName(request.getName());
-                             accountRepository.save(account);
+        userRepository.findById(id)
+                      .ifPresent(user -> {
+                             user.setName(request.getName());
+                             userRepository.save(user);
                          });
     }
 
-    @DeleteMapping("/accounts/{id}")
-    public void delete(@PathVariable String id) {
-        accountRepository.deleteById(id);
+    @DeleteMapping("/users")
+    public void deleteAll() {
+        userRepository.deleteAll();
+    }
+
+    @DeleteMapping("/users/{id}")
+    public void deleteById(@PathVariable String id) {
+        userRepository.deleteById(id);
     }
 
     @Data

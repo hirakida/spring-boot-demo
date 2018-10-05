@@ -1,7 +1,5 @@
 package com.example.controller;
 
-import java.util.Map;
-
 import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.Session;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,11 +31,5 @@ public class ApiController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable String id) {
         findByIndexNameSessionRepository.deleteById(id);
-    }
-
-    @GetMapping("/{indexName}/{indexValue}")
-    public Map<String, ? extends Session> findByIndexNameAndIndexValue(@PathVariable String indexName,
-                                                                       @PathVariable String indexValue) {
-        return findByIndexNameSessionRepository.findByIndexNameAndIndexValue(indexName, indexValue);
     }
 }

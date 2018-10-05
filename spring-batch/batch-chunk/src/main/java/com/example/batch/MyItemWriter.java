@@ -21,6 +21,6 @@ public class MyItemWriter implements ItemWriter<Member> {
     @Override
     public void write(List<? extends Member> members) throws Exception {
         log.info("write {}", members);
-        memberRepository.save(members);
+        memberRepository.saveAll(members);
     }
 }

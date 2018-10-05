@@ -15,8 +15,8 @@ import com.google.code.ssm.providers.spymemcached.MemcacheClientFactoryImpl;
 import com.google.code.ssm.spring.ExtendedSSMCacheManager;
 import com.google.code.ssm.spring.SSMCache;
 
-@EnableCaching
 @Configuration
+@EnableCaching
 public class SSMConfig extends AbstractSSMConfiguration {
 
     public static final String CACHE_NAME = "default";
@@ -26,7 +26,14 @@ public class SSMConfig extends AbstractSSMConfiguration {
     @Bean
     @Override
     public CacheFactory defaultMemcachedClient() {
-        return cacheFactory(CACHE_NAME);
+        CacheConfiguration cacheConfig = new CacheConfiguration();
+        cacheConfig.setConsistentHashing(true);
+        CacheFactory cacheFactory = new CacheFactory();
+        cacheFactory.setCacheName(CACHE_NAME);
+        cacheFactory.setCacheClientFactory(new MemcacheClientFactoryImpl());
+        cacheFactory.setAddressProvider(new DefaultAddressProvider(ADDRESS));
+        cacheFactory.setConfiguration(cacheConfig);
+        return cacheFactory;
     }
 
     @Bean
@@ -35,16 +42,5 @@ public class SSMConfig extends AbstractSSMConfiguration {
         SSMCache ssmCache = new SSMCache(defaultMemcachedClient().getObject(), EXPIRATION, true);
         ssmCacheManager.setCaches(Collections.singletonList(ssmCache));
         return ssmCacheManager;
-    }
-
-    private static CacheFactory cacheFactory(String cacheName) {
-        CacheConfiguration cacheConfig = new CacheConfiguration();
-        cacheConfig.setConsistentHashing(true);
-        CacheFactory cacheFactory = new CacheFactory();
-        cacheFactory.setCacheName(cacheName);
-        cacheFactory.setCacheClientFactory(new MemcacheClientFactoryImpl());
-        cacheFactory.setAddressProvider(new DefaultAddressProvider(ADDRESS));
-        cacheFactory.setConfiguration(cacheConfig);
-        return cacheFactory;
     }
 }

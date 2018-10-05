@@ -8,3 +8,4 @@ server:
       cookie:
         max-age: 60s
         name: SPRING_SESSION_NONE
+        http-only: true

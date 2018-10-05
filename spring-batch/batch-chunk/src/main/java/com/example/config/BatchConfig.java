@@ -14,8 +14,8 @@ import com.example.batch.MyItemReader;
 import com.example.batch.MyItemWriter;
 import com.example.entity.Member;
 import com.example.entity.User;
-import com.example.batch.listener.MyJobExecutionListener;
-import com.example.batch.listener.MyStepExecutionListener;
+import com.example.listener.MyJobExecutionListener;
+import com.example.listener.MyStepExecutionListener;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

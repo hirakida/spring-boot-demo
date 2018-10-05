@@ -9,8 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.core.Account;
-import com.example.core.AccountRepository;
+import com.example.core.User;
+import com.example.core.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,20 +19,19 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class Doma2Application implements CommandLineRunner {
-
-    private final AccountRepository accountRepository;
+    private final UserRepository userRepository;
 
     @Override
     public void run(String... strings) throws IOException {
         // use SelectType.STREAM
-        List<Account> accounts = accountRepository.findAll(stream -> stream.collect(Collectors.toList()));
-        accounts.forEach(account -> log.info("{}", account));
+        List<User> users = userRepository.findAll(stream -> stream.collect(Collectors.toList()));
+        users.forEach(user -> log.info("{}", user));
 
         // use SelectType.COLLECT
-        accounts = accountRepository.findAll(Collectors.toList());
-        accounts.forEach(account -> log.info("{}", account));
+        users = userRepository.findAll(Collectors.toList());
+        users.forEach(user -> log.info("{}", user));
 
-        Map<Long, List<Account>> accountMap = accountRepository.findAll(Collectors.groupingBy(Account::getId));
+        Map<Long, List<User>> accountMap = userRepository.findAll(Collectors.groupingBy(User::getId));
         accountMap.forEach((key, value) -> log.info("key={} value={}", key, value));
     }
 

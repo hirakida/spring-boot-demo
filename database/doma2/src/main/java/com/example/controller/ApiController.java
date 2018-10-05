@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
-import org.seasar.doma.boot.Pageables;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.annotation.Validated;
@@ -17,62 +16,48 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.core.Account;
-import com.example.core.AccountRepository;
+import com.example.core.User;
+import com.example.core.UserService;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-
-    private final AccountRepository accountRepository;
+    private final UserService userService;
 
     /**
-     * http://localhost:8080/accounts?page=0&size=2
+     * http://localhost:8080/users?page=0&size=2
      */
-    @GetMapping("/accounts")
-    public List<Account> findAll(@PageableDefault Pageable pageable) {
-        return accountRepository.findAll(Pageables.toSelectOptions(pageable));
+    @GetMapping("/users")
+    public List<User> findAll(@PageableDefault Pageable pageable) {
+        return userService.findAll(pageable);
     }
 
-    @GetMapping("/accounts/{id}")
-    public Account findById(@PathVariable long id) {
-        return accountRepository.findOne(id);
+    @GetMapping("/users/{id}")
+    public User findOne(@PathVariable long id) {
+        return userService.findOne(id);
     }
 
-    @PostMapping("/accounts")
-    public int create(@RequestBody @Validated AccountRequest request) {
-        Account account = new Account();
-        account.setName(request.getName());
-        account.setAge(request.getAge());
-        return accountRepository.insert(account);
+    @PostMapping("/users")
+    public int create(@RequestBody @Validated UserRequest request) {
+        return userService.create(request.getName(), request.getAge());
     }
 
-    @PutMapping("/accounts/{id}")
-    public int update(@PathVariable long id,
-                      @RequestBody @Validated AccountRequest request) {
-        Account account = accountRepository.findOne(id);
-        account.setName(request.getName());
-        account.setAge(request.getAge());
-        return accountRepository.update(account);
+    @PutMapping("/users/{id}")
+    public int update(@PathVariable long id, @RequestBody @Validated UserRequest request) {
+        return userService.update(id, request.getName(), request.getAge());
     }
 
-    @DeleteMapping("/accounts/{id}")
-    public int update(@PathVariable long id) {
-        Account account = accountRepository.findOne(id);
-        return accountRepository.delete(account);
+    @DeleteMapping("/users/{id}")
+    public int delete(@PathVariable long id) {
+        return userService.delete(id);
     }
 
     @Data
-    @AllArgsConstructor
-    public static class AccountRequest {
-        @NotNull
-        @Length(max = 30)
-        private String name;
-        @NotNull
-        private Integer age;
+    public static class UserRequest {
+        private @NotNull @Length(max = 30) String name;
+        private @NotNull Integer age;
     }
 }

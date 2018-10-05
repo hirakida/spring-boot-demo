@@ -16,12 +16,12 @@ public class ApiController {
 
     private final AccountRepository accountRepository;
 
-    @GetMapping("/api/accounts")
+    @GetMapping("/accounts")
     public List<Account> findAll() {
         return accountRepository.findAllList();
     }
 
-    @GetMapping("/api/accounts/{id}")
+    @GetMapping("/accounts/{id}")
     public Account findById(@PathVariable int id) {
         return accountRepository.findById(id)
                                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

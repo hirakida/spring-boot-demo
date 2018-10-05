@@ -1,0 +1,10 @@
+spring:
+  mail:
+    host: localhost
+    port: 1025
+  output:
+    ansi:
+      enabled: always
+  devtools:
+    livereload:
+      enabled: false

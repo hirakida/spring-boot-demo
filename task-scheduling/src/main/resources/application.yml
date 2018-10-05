@@ -1,0 +1,23 @@
+spring:
+#  task:
+#    scheduling:
+#      thread-name-prefix: scheduling-
+#      pool:
+#        size: 5
+  output:
+    ansi:
+      enabled: always
+management:
+  endpoints:
+    web:
+      exposure:
+        include: [scheduledtasks]
+
+cron:
+  once_a_minute: 0 * * * * *
+  once_an_hour:  0 0 * * * *
+  once_a_day:    0 0 0 * * *
+  four_times_per_minute: 0,15,30,45 * * * * *
+  ten_times_per_minute: 1-10 * * * * *
+  every_10_seconds: \*/10 * * * * *
+  every_3_minutes: 0 \*/3 * * * *

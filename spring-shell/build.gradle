@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.1.RELEASE'
+        springBootVersion = '2.0.6.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -25,8 +25,6 @@ repositories {
 }
 
 dependencies {
-    compile('org.springframework.shell:spring-shell-starter:2.0.0.RELEASE')
-    annotationProcessor('org.projectlombok:lombok')
-    compileOnly('org.projectlombok:lombok')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    implementation('org.springframework.shell:spring-shell-starter:2.0.1.RELEASE')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 }

@@ -1,19 +1,17 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.11.RELEASE'
+        springBootVersion = '2.0.5.RELEASE'
     }
-
     repositories {
         mavenCentral()
     }
-
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
     }
 }
 
 allprojects {
-    group = 'com.hirakida.spring.boot'
+    group = 'com.github.hirakida.spring.boot'
     version = '0.0.1-SNAPSHOT'
 }
 
@@ -22,6 +20,7 @@ subprojects {
     apply plugin: 'idea'
     apply plugin: 'maven'
     apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
 
     sourceCompatibility = 1.8
 
@@ -31,50 +30,36 @@ subprojects {
 
     repositories {
         mavenCentral()
-        maven { url "file://${rootProject.projectDir}/mvn-repo" }
-        maven { url 'https://hirakida.github.io/mvn-repo' }
+        maven { url "file://${rootProject.projectDir}/maven-repo" }
     }
 
     uploadArchives {
         repositories {
             mavenDeployer {
-                repository(url: "file://${rootProject.projectDir}/mvn-repo")
+                repository(url: "file://${rootProject.projectDir}/maven-repo")
             }
         }
-    }
-
-    dependencies {
-        annotationProcessor('org.projectlombok:lombok')
     }
 }
 
 project(':hello-spring-boot-autoconfigure') {
-    bootRepackage.enabled = false
+    bootJar.enabled = false
+    jar.enabled = true
 
     dependencies {
+        annotationProcessor('org.springframework.boot:spring-boot-configuration-processor')
+        compileOnly('org.springframework.boot:spring-boot-configuration-processor')
         compile('org.springframework.boot:spring-boot-starter')
-        compile('org.springframework.boot:spring-boot-configuration-processor')
         testCompile('org.springframework.boot:spring-boot-starter-test')
     }
 }
 
 project(':hello-spring-boot-starter') {
-    bootRepackage.enabled = false
+    bootJar.enabled = false
+    jar.enabled = true
 
     dependencies {
-        compile("com.hirakida.spring.boot:hello-spring-boot-autoconfigure:${version}")
+        compile("com.github.hirakida.spring.boot:hello-spring-boot-autoconfigure:${version}")
         compile('org.springframework.boot:spring-boot-starter')
-    }
-}
-
-project(':hello-spring-boot-example') {
-    uploadArchives.enabled = false
-
-    dependencies {
-        compile("com.hirakida.spring.boot:hello-spring-boot-starter:${version}")
-        compile('org.springframework.boot:spring-boot-starter-web')
-        compileOnly('org.projectlombok:lombok')
-        runtime('org.springframework.boot:spring-boot-devtools')
-        testCompile('org.springframework.boot:spring-boot-starter-test')
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.MethodInterceptorImpl;
+import com.example.interceptor.MethodInterceptorImpl;
 import com.example.entity.User;
 import com.example.service.UserService;
 

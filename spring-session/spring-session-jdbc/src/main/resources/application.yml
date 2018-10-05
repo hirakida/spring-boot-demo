@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    sql-script-encoding: UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3307/session_jdbc_demo?characterEncoding=utf8&useSSL=false
+    username: mysql
+    password: password
+    initialization-mode: always
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
+  jpa:
+    hibernate:
+      ddl-auto: update
+  output:
+    ansi:
+      enabled: always
+server:
+  servlet:
+    session:
+      cookie:
+        max-age: 60s
+        name: SPRING_SESSION_JDBC
+      timeout: 60s

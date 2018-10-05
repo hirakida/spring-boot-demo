@@ -5,7 +5,7 @@ spring:
   datasource:
     sql-script-encoding: UTF-8
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:file:/tmp/h2_batch2;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:file:/tmp/h2_batch_tasklet;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password:
   jpa:

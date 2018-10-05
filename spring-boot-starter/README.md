@@ -1,5 +1,7 @@
 
 ```
-./gradlew upload
-./gradlew hello-spring-boot-example:bootRun
+./gradlew clean build upload
+
+cd example
+./gradlew clean build bootRun
 ```
