@@ -6,16 +6,15 @@
 <head>
   <title>index</title>
   <meta charset="UTF-8" />
-  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
 <div class="container">
-  <div class="row">
+  <div class="row mt-1 mb-1">
     <a th:href="@{/logout}" class="btn btn-info">
       <span class="glyphicon glyphicon-log-out"></span>Log out
     </a>
   </div>
-
   <div class="row">
     <table class="table" th:object="${userDetails}">
       <thead></thead>

@@ -9,22 +9,21 @@
 </head>
 <body>
 <div class="container">
-  <h1>csrf</h1>
-  <form th:action="@{/}" th:object="${form}" method="post">
-    <div class="form-group">
-      <label>last name</label>
-      <input type="text" class="form-control" th:field="*{lastName}" />
-      <span th:if="${#fields.hasErrors('lastName')}"
-            th:errors="*{lastName}" class="alert-danger"></span>
-    </div>
-    <div class="form-group">
-      <label>first name</label>
-      <input type="text" class="form-control" th:field="*{firstName}" />
-      <span th:if="${#fields.hasErrors('firstName')}"
-            th:errors="*{firstName}" class="alert-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-default" >submit</button>
-  </form>
+  <div>
+    <form th:action="@{/}" th:object="${form}" method="post">
+      <div class="form-group">
+        <label>last name</label>
+        <input type="text" class="form-control" th:field="*{lastName}" />
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="alert-danger"></span>
+      </div>
+      <div class="form-group">
+        <label>first name</label>
+        <input type="text" class="form-control" th:field="*{firstName}" />
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="alert-danger"></span>
+      </div>
+      <button type="submit" class="btn btn-primary">submit</button>
+    </form>
+  </div>
 </div>
 </body>
 </html>

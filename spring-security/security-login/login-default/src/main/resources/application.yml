@@ -1,8 +1,8 @@
 spring:
+  security:
+    user:
+      name: user
+      password: user
   output:
     ansi:
       enabled: always
-security:
-  user:
-    name: user
-    password: user

@@ -1,4 +1,4 @@
-package com.example;
+package com.example.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .loginProcessingUrl("/login_processing")    // login処理を実行するurl
             .usernameParameter("username")
             .passwordParameter("password")
-            .defaultSuccessUrl("/logged_in", true)  // login成功後の遷移先
+            .defaultSuccessUrl("/success", true)  // login成功後の遷移先
             .failureUrl("/login?error");    // login失敗時の遷移先
 
         http.logout()

@@ -1,4 +1,4 @@
-package com.example;
+package com.example.controller;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -15,7 +15,7 @@ import lombok.Data;
 public class WebController {
 
     @GetMapping("/")
-    public String get(Model model) {
+    public String index(Model model) {
         model.addAttribute("form", new Form());
         return "index";
     }

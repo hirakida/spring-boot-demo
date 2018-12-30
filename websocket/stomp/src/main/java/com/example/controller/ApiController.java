@@ -18,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class ApiController {
-
     private final SimpUserRegistry simpUserRegistry;
     private final SimpMessagingTemplate simpMessagingTemplate;
 

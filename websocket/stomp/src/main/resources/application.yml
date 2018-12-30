@@ -1,9 +1,9 @@
 spring:
-  output:
-    ansi:
-      enabled: always
   resources:
     chain:
       strategy:
         content:
           enabled: true
+  output:
+    ansi:
+      enabled: always
