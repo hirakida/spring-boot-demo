@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+import com.example.repository.AccountRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,12 +17,10 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class DataJpaApplication implements CommandLineRunner {
-
     private final AccountRepository accountRepository;
 
     @Override
     public void run(String... strings) throws IOException {
-
         log.info("findByName: {}", accountRepository.findByName("user1"));
         log.info("findByNameLike: {}", accountRepository.findByNameLike("user%"));
         log.info("findByNameStartingWith: {}", accountRepository.findByNameStartingWith("user"));

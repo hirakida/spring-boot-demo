@@ -15,30 +15,29 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-
     private final AccountRepository accountRepository;
 
-    @GetMapping("/api/accounts")
+    @GetMapping("/accounts")
     public List<Account> findAll() {
         return accountRepository.findAll();
     }
 
-    @GetMapping("/api/accounts/{id}")
+    @GetMapping("/accounts/{id}")
     public Account findById(@PathVariable int id) {
         return accountRepository.findById(id);
     }
 
-    @PostMapping("/api/accounts")
+    @PostMapping("/accounts")
     public Account create(@RequestBody Account account) {
         return accountRepository.insert(account);
     }
 
-    @PutMapping("/api/accounts/{id}")
-    public Account create(@RequestBody Account account, @PathVariable int id) {
+    @PutMapping("/accounts/{id}")
+    public Account update(@RequestBody Account account, @PathVariable int id) {
         return accountRepository.update(account);
     }
 
-    @DeleteMapping("/api/accounts/{id}")
+    @DeleteMapping("/accounts/{id}")
     public void deleteById(@PathVariable int id) {
         accountRepository.deleteById(id);
     }

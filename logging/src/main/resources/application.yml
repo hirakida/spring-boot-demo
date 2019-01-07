@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: logging-demo
+  profiles:
+    active: dev
+  output:
+    ansi:
+      enabled: always
+logging:
+  path: ./log/
+#  file: logging-demo.log

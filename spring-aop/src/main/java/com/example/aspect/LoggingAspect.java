@@ -24,7 +24,7 @@ public class LoggingAspect {
     /**
      * Around
      */
-    @Around("controller()")
+    @Around("controller1()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("[Around][before] Signature={}", joinPoint.getSignature());
         try {
@@ -40,24 +40,21 @@ public class LoggingAspect {
     /**
      * Before
      */
-    @Before("execution(* com.example.controller.*.*(..))")
+    @Before("controller2()")
     public void before(JoinPoint joinPoint) {
-        log.info("[Before][* com.example.controller.*.*(..)] Signature={}",
-                 joinPoint.getSignature());
+        log.info("[Before][controller] Signature={}", joinPoint.getSignature());
     }
 
     // method name = findXxxx
     @Before("execution(* com.example.service.*.find*(..))")
     public void beforeService1(JoinPoint joinPoint) {
-        log.info("[Before][* com.example.service.*.find*(..)] Signature={}",
-                 joinPoint.getSignature());
+        log.info("[Before][* com.example.service.*.find*(..)] Signature={}", joinPoint.getSignature());
     }
 
     // method name = xxxxById
     @Before("execution(* com.example.service.*.*ById(..))")
     public void beforeService2(JoinPoint joinPoint) {
-        log.info("[Before][* com.example.service.*.*ById(..)] Signature={}",
-                 joinPoint.getSignature());
+        log.info("[Before][* com.example.service.*.*ById(..)] Signature={}", joinPoint.getSignature());
     }
 
     // return value = Account
@@ -70,14 +67,13 @@ public class LoggingAspect {
     // argument = long
     @Before("execution(* com.example.service.*.*(long))")
     public void beforeService4(JoinPoint joinPoint) {
-        log.info("[Before][* com.example.service.*.*(long)] Signature={}",
-                 joinPoint.getSignature());
+        log.info("[Before][* com.example.service.*.*(long)] Signature={}", joinPoint.getSignature());
     }
 
     /**
      * After
      */
-    @After("controller()")
+    @After("controller3()")
     public void afterController(JoinPoint joinPoint) {
         log.info("[After][controller] Signature={}", joinPoint.getSignature());
     }
@@ -90,7 +86,7 @@ public class LoggingAspect {
     /**
      * AfterReturning
      */
-    @AfterReturning("controller()")
+    @AfterReturning("controller4()")
     public void afterReturning(JoinPoint joinPoint) {
         log.info("[AfterReturning][controller] Signature={}", joinPoint.getSignature());
     }
@@ -98,16 +94,32 @@ public class LoggingAspect {
     /**
      * AfterThrowing
      */
-    @AfterThrowing(value = "controller()", throwing = "e")
+    @AfterThrowing(value = "controller3()", throwing = "e")
     public void afterThrowing(JoinPoint joinPoint, Exception e) throws Exception {
         log.error("[AfterThrowing] Signature={}", joinPoint.getSignature(), e);
     }
 
+    @Pointcut("execution(* com.example.controller.*.*(..))")
+    private void controller1() {
+    }
+
     @Pointcut("within(com.example.controller..*)")
-    private void controller() {
+    private void controller2() {
+    }
+
+    @Pointcut("@within(org.springframework.stereotype.Controller)")
+    private void controller3() {
+    }
+
+    @Pointcut("bean(*Controller)")
+    private void controller4() {
     }
 
     @Pointcut("@within(org.springframework.stereotype.Service)")
     private void service() {
+    }
+
+    @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
+    private void getMapping() {
     }
 }

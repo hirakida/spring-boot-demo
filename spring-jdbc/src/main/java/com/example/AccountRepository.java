@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class AccountRepository {
-
     private final NamedParameterJdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert jdbcInsert;
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+  <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+  <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+  <springProperty name="PROFILE" source="spring.profiles.active" defaultValue="local" />
+
+  <springProfile name="dev">
+    <property name="LOG_FILE" value="./log/${PROFILE}.log}" />
+    <include resource="logback/file-appender.xml" />
+    <root level="INFO">
+      <appender-ref ref="CONSOLE" />
+      <appender-ref ref="FILE" />
+    </root>
+  </springProfile>
+
+  <springProfile name="local">
+    <root level="DEBUG">
+      <appender-ref ref="CONSOLE" />
+    </root>
+  </springProfile>
+</configuration>
