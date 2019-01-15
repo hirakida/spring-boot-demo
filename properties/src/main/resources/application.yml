@@ -1,0 +1,12 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+  devtools:
+    livereload:
+      enabled: false
+app:
+  number:
+    value1: 1
+  string:
+    value1: abcde

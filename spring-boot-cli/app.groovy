@@ -1,5 +1,4 @@
-@Grab("thymeleaf-spring4")
-
+@Grab("thymeleaf-spring5")
 @Controller
 class app {
 
@@ -12,7 +11,7 @@ class app {
     @GetMapping("/api")
     @ResponseBody
     def api() {
-        new Response(id:1, name:"name1")
+        new Response(id: 1, name: "name1")
     }
 
     class Response {

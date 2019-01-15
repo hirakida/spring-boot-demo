@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class Producer {
-
     private final KafkaTemplate<String, User> kafkaTemplate;
 
     public ListenableFuture<SendResult<String, User>> sendDefault(String key, User user) {

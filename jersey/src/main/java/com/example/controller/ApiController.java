@@ -25,7 +25,6 @@ import lombok.RequiredArgsConstructor;
 @Path("/")
 @RequiredArgsConstructor
 public class ApiController {
-
     private final UserRepository userRepository;
 
     @GET

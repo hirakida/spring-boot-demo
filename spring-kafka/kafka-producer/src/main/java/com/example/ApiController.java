@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.Objects;
 import java.util.Random;
 
 import javax.validation.constraints.NotEmpty;
@@ -20,14 +21,14 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class ApiController {
-
     private final Producer producer;
 
     @PostMapping("/send")
     public Response send(@Validated @RequestBody Request request) {
         User user = new User(new Random().nextLong(), request.getName());
         producer.sendDefault(request.getKey(), user)
-                .addCallback(result -> log.info("callback: record={}", result.getProducerRecord()),
+                .addCallback(result -> log.info("callback: record={}",
+                                                Objects.requireNonNull(result).getProducerRecord()),
                              e -> log.error("callback: error", e));
         return new Response(request.getKey(), user);
     }
