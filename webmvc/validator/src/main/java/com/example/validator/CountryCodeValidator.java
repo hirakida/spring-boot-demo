@@ -11,7 +11,6 @@ import org.springframework.util.StringUtils;
 import com.example.annotation.CountryCode;
 
 public class CountryCodeValidator implements ConstraintValidator<CountryCode, String> {
-
     private boolean notEmpty;
 
     @Override

@@ -1,2 +1,2 @@
 
-https://spring.io/guides/gs/validating-form-input/
+https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#validation

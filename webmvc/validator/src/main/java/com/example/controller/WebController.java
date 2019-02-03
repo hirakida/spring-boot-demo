@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.annotation.CountryCode;
 import com.example.annotation.TelNo;
+import com.example.entity.Account;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,7 +31,6 @@ public class WebController {
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        // Convert empty string to null.
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
     }
 
@@ -75,19 +75,6 @@ public class WebController {
     @NoArgsConstructor
     public static class Address {
         private @NotNull String address1;
-        private String address2;
-    }
-
-    @Data
-    @NoArgsConstructor
-    public static class Account {
-        private String name;
-        private String countryCode;
-        private Integer age;
-        private String email;
-        private String telNo;
-        private String card;
-        private String address1;
         private String address2;
     }
 }
