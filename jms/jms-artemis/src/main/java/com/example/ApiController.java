@@ -10,17 +10,16 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-
-    private final Sender sender;
+    private final JmsMessageSender jmsMessageSender;
 
     @PostMapping("/text")
     public void sendText(@RequestBody Request request) {
-        sender.sendText(request.getText());
+        jmsMessageSender.sendText(request.getText());
     }
 
     @PostMapping("/message")
     public void sendMessage(@RequestBody Request request) {
-        sender.sendMessage(request.getText());
+        jmsMessageSender.sendMessage(request.getText());
     }
 
     @Data

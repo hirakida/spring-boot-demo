@@ -1,6 +1,8 @@
 package com.example;
 
-import javax.jms.Queue;
+import static com.example.JmsMessageListener.DELAYED_MESSAGE_QUEUE;
+import static com.example.JmsMessageListener.MESSAGE_QUEUE;
+import static com.example.JmsMessageListener.TEXT_QUEUE;
 
 import org.apache.activemq.ScheduledMessage;
 import org.springframework.jms.core.JmsMessagingTemplate;
@@ -15,28 +17,24 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class Sender {
-
+public class JmsMessageSender {
     private final JmsMessagingTemplate jmsMessagingTemplate;
     private final JmsTemplate jmsTemplate;
-    private final Queue textQueue;
 
     public void sendText(String data) {
-        jmsMessagingTemplate.convertAndSend(JmsConfig.TEXT_QUEUE, data);
-//        jmsMessagingTemplate.convertAndSend(textQueue, data);
+        jmsMessagingTemplate.convertAndSend(TEXT_QUEUE, data);
     }
 
     public void sendMessage(String data) {
-        Message<String> message = MessageBuilder.withPayload(data)
-                                                .build();
-        jmsMessagingTemplate.send(JmsConfig.MESSAGE_QUEUE, message);
+        Message<String> message = MessageBuilder.withPayload(data).build();
+        jmsMessagingTemplate.send(MESSAGE_QUEUE, message);
     }
 
     public void sendMessage(String data, long millisecond) {
-        jmsTemplate.convertAndSend(JmsConfig.DELAYED_QUEUE, data, message -> {
+        jmsTemplate.convertAndSend(DELAYED_MESSAGE_QUEUE, data, message -> {
             message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, millisecond);
             return message;
         });
-        log.info("Send to delayed queue {}", data);
+        log.info("Send to delayed message queue. {}", data);
     }
 }

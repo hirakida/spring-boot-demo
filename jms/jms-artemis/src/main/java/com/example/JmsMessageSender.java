@@ -9,17 +9,15 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class Sender {
-
+public class JmsMessageSender {
     private final JmsMessagingTemplate jmsMessagingTemplate;
 
     public void sendText(String text) {
-        jmsMessagingTemplate.convertAndSend(Receiver.TEXT_QUEUE, text);
+        jmsMessagingTemplate.convertAndSend(JmsMessageListener.TEXT_QUEUE, text);
     }
 
     public void sendMessage(String text) {
-        Message<String> message = MessageBuilder.withPayload(text)
-                                                .build();
-        jmsMessagingTemplate.send(Receiver.MESSAGE_QUEUE, message);
+        Message<String> message = MessageBuilder.withPayload(text).build();
+        jmsMessagingTemplate.send(JmsMessageListener.MESSAGE_QUEUE, message);
     }
 }

@@ -1,6 +1,7 @@
 buildscript {
     ext {
         springBootVersion = '2.1.2.RELEASE'
+        springfoxVersion = '2.9.2'
     }
     repositories {
         mavenCentral()
@@ -20,6 +21,10 @@ version = '0.0.1-SNAPSHOT'
 
 sourceCompatibility = 11
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 repositories {
     mavenCentral()
 }
@@ -27,9 +32,12 @@ repositories {
 dependencies {
     annotationProcessor('org.projectlombok:lombok')
     compileOnly('org.projectlombok:lombok')
-    implementation('org.springframework.boot:spring-boot-starter-artemis')
     implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.apache.activemq:artemis-jms-server')
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('org.springframework.boot:spring-boot-starter-security')
+    implementation("io.springfox:springfox-swagger2:${springfoxVersion}")
+    implementation("io.springfox:springfox-swagger-ui:${springfoxVersion}")
+    runtimeOnly('com.h2database:h2')
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }

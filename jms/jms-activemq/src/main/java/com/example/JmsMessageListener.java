@@ -8,19 +8,22 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class Receiver {
+public class JmsMessageListener {
+    public static final String TEXT_QUEUE = "text.queue";
+    public static final String MESSAGE_QUEUE = "message.queue";
+    public static final String DELAYED_MESSAGE_QUEUE = "delayed_message.queue";
 
-    @JmsListener(destination = JmsConfig.TEXT_QUEUE)
+    @JmsListener(destination = TEXT_QUEUE)
     public void receiveText(String text) {
         log.info("text: {}", text);
     }
 
-    @JmsListener(destination = JmsConfig.MESSAGE_QUEUE, concurrency = "1-5")
+    @JmsListener(destination = MESSAGE_QUEUE, concurrency = "1-5")
     public void receiveMessage(Message<String> message) {
         log.info("message: payload={} headers={}", message.getPayload(), message.getHeaders());
     }
 
-    @JmsListener(destination = JmsConfig.DELAYED_QUEUE, concurrency = "1-5")
+    @JmsListener(destination = DELAYED_MESSAGE_QUEUE, concurrency = "1-5")
     public void receiveDelayedMessage(Message<String> message) {
         log.info("delayed message: payload={} headers={}", message.getPayload(), message.getHeaders());
     }
