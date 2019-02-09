@@ -1,16 +1,13 @@
 buildscript {
     ext {
         springBootVersion = '2.1.2.RELEASE'
-        h2Version = '1.4.197'
+        domaStarterVersion = '1.1.1'
     }
     repositories {
         mavenCentral()
-        maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath('org.flywaydb:flyway-gradle-plugin:5.2.4')
-        classpath("com.h2database:h2:${h2Version}")
     }
 }
 
@@ -18,7 +15,6 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'org.flywaydb.flyway'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -31,16 +27,14 @@ repositories {
 
 dependencies {
     annotationProcessor('org.projectlombok:lombok')
+    annotationProcessor("org.seasar.doma.boot:doma-spring-boot-starter:${domaStarterVersion}")
     compileOnly('org.projectlombok:lombok')
-    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation("org.seasar.doma.boot:doma-spring-boot-starter:${domaStarterVersion}")
     implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.flywaydb:flyway-core')
-    runtimeOnly("com.h2database:h2:${h2Version}")
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    runtimeOnly('com.h2database:h2')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 
-flyway {
-    user = 'root'
-    url = 'jdbc:h2:file:/tmp/flyway_h2_db'
-}
+processResources.destinationDir = compileJava.destinationDir
+compileJava.dependsOn processResources
