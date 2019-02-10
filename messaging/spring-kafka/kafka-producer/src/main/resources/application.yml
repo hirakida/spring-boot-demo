@@ -1,11 +1,14 @@
 spring:
   kafka:
-#    bootstrap-servers: localhost:9092
+    #    bootstrap-servers: localhost:9092
     template:
       default-topic: topic1
     producer:
-#      bootstrap-servers: localhost:9092
-      value-serializer: com.example.serialization.UserJsonSerializer
+      #      bootstrap-servers: localhost:9092
+      value-serializer: com.example.producer.UserJsonSerializer
+  devtools:
+    livereload:
+      enabled: false
   output:
     ansi:
       enabled: always

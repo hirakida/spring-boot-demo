@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.entity.User;
+import com.example.model.User;
+import com.example.producer.MessageSender;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,15 +22,15 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class ApiController {
-    private final Producer producer;
+    private final MessageSender messageSender;
 
     @PostMapping("/send")
     public Response send(@Validated @RequestBody Request request) {
         User user = new User(new Random().nextLong(), request.getName());
-        producer.sendDefault(request.getKey(), user)
-                .addCallback(result -> log.info("callback: record={}",
-                                                Objects.requireNonNull(result).getProducerRecord()),
-                             e -> log.error("callback: error", e));
+        messageSender.sendDefault(request.getKey(), user)
+                     .addCallback(result -> log.info("callback: record={}",
+                                                     Objects.requireNonNull(result).getProducerRecord()),
+                                  e -> log.error("callback: error", e));
         return new Response(request.getKey(), user);
     }
 
