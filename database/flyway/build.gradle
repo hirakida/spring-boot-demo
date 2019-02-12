@@ -1,16 +1,12 @@
 buildscript {
     ext {
         springBootVersion = '2.1.2.RELEASE'
-        h2Version = '1.4.197'
     }
     repositories {
         mavenCentral()
-        maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath('org.flywaydb:flyway-gradle-plugin:5.2.4')
-        classpath("com.h2database:h2:${h2Version}")
     }
 }
 
@@ -18,7 +14,6 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'org.flywaydb.flyway'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -35,12 +30,7 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.flywaydb:flyway-core')
-    runtimeOnly("com.h2database:h2:${h2Version}")
+    runtimeOnly('com.h2database:h2')
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
-}
-
-flyway {
-    user = 'root'
-    url = 'jdbc:h2:file:/tmp/flyway_h2_db'
 }
