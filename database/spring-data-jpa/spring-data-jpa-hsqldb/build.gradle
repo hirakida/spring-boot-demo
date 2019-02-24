@@ -14,20 +14,12 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    set('domaStarterVersion', '1.1.1')
-}
-
 dependencies {
     annotationProcessor('org.projectlombok:lombok')
     compileOnly('org.projectlombok:lombok')
-    annotationProcessor("org.seasar.doma.boot:doma-spring-boot-starter:${domaStarterVersion}")
-    implementation("org.seasar.doma.boot:doma-spring-boot-starter:${domaStarterVersion}")
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     implementation('org.springframework.boot:spring-boot-starter-web')
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
-    runtimeOnly('com.h2database:h2')
+    runtimeOnly('org.hsqldb:hsqldb')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
-
-processResources.destinationDir = compileJava.destinationDir
-compileJava.dependsOn processResources

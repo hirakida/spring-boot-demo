@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    initialization-mode: always
+    sql-script-encoding: UTF-8
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  devtools:
+    livereload:
+      enabled: false
+  output:
+    ansi:
+      enabled: always

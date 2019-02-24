@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    initialization-mode: always
+    sql-script-encoding: UTF-8
+    url: jdbc:hsqldb:mem:hsqldb-db
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  devtools:
+    livereload:
+      enabled: false
+  output:
+    ansi:
+      enabled: always
