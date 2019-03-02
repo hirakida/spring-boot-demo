@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class RedisMessagePublisher {
-
     private final ChannelTopic channelTopic;
     private final StringRedisTemplate stringRedisTemplate;
 

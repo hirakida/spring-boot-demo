@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-
     private final RedisMessagePublisher publisher;
 
     @PostMapping("/{message}")
