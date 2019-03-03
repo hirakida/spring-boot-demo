@@ -5,6 +5,9 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RequestPredicates.contentType;
+import static org.springframework.web.reactive.function.server.ServerResponse.badRequest;
+import static org.springframework.web.reactive.function.server.ServerResponse.notFound;
+import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -23,8 +26,7 @@ import reactor.core.publisher.Mono;
 @Component
 @RequiredArgsConstructor
 public class ApiHandler {
-
-    private final UserRepository repository;
+    private final UserRepository userRepository;
 
     @Bean
     public RouterFunction<ServerResponse> route() {
@@ -38,20 +40,23 @@ public class ApiHandler {
 
     private Mono<ServerResponse> findById(ServerRequest request) {
         final String id = request.pathVariable("id");
-        return repository.findById(id)
-                         .flatMap(user -> ServerResponse.ok().body(Mono.just(user), User.class))
-                         .switchIfEmpty(ServerResponse.notFound().build());
+        return userRepository.findById(id)
+                             .flatMap(user -> ok().body(Mono.just(user), User.class))
+                             .switchIfEmpty(notFound().build());
     }
 
     private Mono<ServerResponse> findAll(ServerRequest request) {
         final Flux<User> users = request.queryParam("name")
-                                        .map(repository::findByName)
-                                        .orElseGet(repository::findAll);
-        return ServerResponse.ok().body(users, User.class);
+                                        .map(userRepository::findByName)
+                                        .orElseGet(userRepository::findAll);
+        return ok().body(users, User.class);
     }
 
     private Mono<ServerResponse> create(ServerRequest request) {
-        final Flux<User> users = request.bodyToFlux(User.class);
-        return ServerResponse.ok().build(repository.saveAll(users).then());
+        final Mono<User> user = request.bodyToMono(User.class);
+        return userRepository.saveAll(user)
+                             .single()
+                             .flatMap(res -> ok().build())
+                             .switchIfEmpty(badRequest().build());
     }
 }
