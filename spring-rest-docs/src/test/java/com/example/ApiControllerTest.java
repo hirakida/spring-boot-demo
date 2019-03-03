@@ -14,10 +14,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.JUnitRestDocumentation;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
@@ -26,27 +26,22 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.example.core.Account;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureRestDocs
 public class ApiControllerTest {
-
     @Rule
     public final JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation();
-
     @Autowired
     private WebApplicationContext context;
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
     private TestRestTemplate testRestTemplate;
-
     @LocalServerPort
     private int port;
-
     private MockMvc mockMvc;
 
     @Before
@@ -64,7 +59,7 @@ public class ApiControllerTest {
     }
 
     @Test
-    public void findOneTest() throws Exception {
+    public void findByIdTest() throws Exception {
         List<Account> accounts = getAccounts();
         mockMvc.perform(RestDocumentationRequestBuilders.get("/api/accounts/{id}",
                                                              accounts.get(0).getId()))
@@ -79,8 +74,7 @@ public class ApiControllerTest {
         Account account = accounts.get(0);
         account.setName("updated Account");
         account.setName("put@example.com");
-        mockMvc.perform(RestDocumentationRequestBuilders.put("/api/accounts/{id}",
-                                                             account.getId())
+        mockMvc.perform(RestDocumentationRequestBuilders.put("/api/accounts/{id}", account.getId())
                                                         .contentType(MediaType.APPLICATION_JSON)
                                                         .content(objectMapper.writeValueAsString(account)))
                .andExpect(status().isOk())
@@ -93,11 +87,10 @@ public class ApiControllerTest {
         Account account = new Account();
         account.setName("new Account");
         account.setEmail("post@example.com");
-        mockMvc.perform(RestDocumentationRequestBuilders.post("/api/accounts",
-                                                             account.getId())
+        mockMvc.perform(RestDocumentationRequestBuilders.post("/api/accounts", account.getId())
                                                         .contentType(MediaType.APPLICATION_JSON)
                                                         .content(objectMapper.writeValueAsString(account)))
-               .andExpect(status().isOk())
+               .andExpect(status().isCreated())
                .andDo(document("ApiController"));
     }
 
@@ -106,7 +99,7 @@ public class ApiControllerTest {
         List<Account> accounts = getAccounts();
         mockMvc.perform(RestDocumentationRequestBuilders.delete("/api/accounts/{id}",
                                                                 accounts.get(0).getId()))
-               .andExpect(status().isOk())
+               .andExpect(status().isNoContent())
                .andDo(document("ApiController",
                                pathParameters(parameterWithName("id").description("account id"))));
     }

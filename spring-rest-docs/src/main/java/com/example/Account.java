@@ -1,11 +1,9 @@
-package com.example.core;
+package com.example;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 import lombok.Data;
 
@@ -16,11 +14,9 @@ public class Account {
     @GeneratedValue
     private int id;
 
-    @NotEmpty
     @Column(nullable = false)
     private String name;
 
-    @NotEmpty
     @Column(nullable = false)
     private String email;
 }

@@ -21,13 +21,13 @@ include::{snippets}/find-all-test/1/http-request.adoc[]
 include::{snippets}/find-all-test/1/http-response.adoc[]
 
 
-== fineOne
+== fineById
 
 === Http Request
-include::{snippets}/find-one-test/1/http-request.adoc[]
+include::{snippets}/find-by-id-test/1/http-request.adoc[]
 
 === Http Response
-include::{snippets}/find-one-test/1/http-response.adoc[]
+include::{snippets}/find-by-id-test/1/http-response.adoc[]
 
 
 == update

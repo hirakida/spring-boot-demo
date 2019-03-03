@@ -2,6 +2,8 @@ package com.example;
 
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,47 +15,58 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.example.core.Account;
-import com.example.core.AccountService;
-
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class ApiController {
-
-    private final AccountService accountService;
+    private final AccountRepository accountRepository;
 
     @GetMapping("/accounts")
     public List<Account> findAll() {
-        return accountService.findAll();
+        return accountRepository.findAll();
     }
 
     @GetMapping("/accounts/{id}")
-    public Account findOne(@PathVariable int id) {
-        return accountService.findOne(id);
-    }
-
-    @PutMapping("/accounts/{id}")
-    public Account update(@PathVariable int id,
-                          @RequestBody @Validated Account account) {
-        return accountService.update(account);
-    }
-
-    @DeleteMapping("/accounts/{id}")
-    public void delete(@PathVariable int id) {
-        accountService.delete(id);
+    public Account findById(@PathVariable int id) {
+        return getById(id);
     }
 
     @PostMapping("/accounts")
-    public Account create(@RequestBody @Validated Account account) {
-        return accountService.create(account);
+    @ResponseStatus(HttpStatus.CREATED)
+    public Account create(@RequestBody @Validated Request request) {
+        Account account = new Account();
+        account.setName(request.getName());
+        account.setEmail(request.getEmail());
+        return accountRepository.save(account);
     }
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @SuppressWarnings("serial")
-    public static class DataNotFoundException extends RuntimeException {
+    @PutMapping("/accounts/{id}")
+    public Account update(@PathVariable int id, @RequestBody @Validated Request request) {
+        Account account = getById(id);
+        account.setName(request.getName());
+        account.setEmail(request.getEmail());
+        return accountRepository.save(account);
+    }
+
+    @DeleteMapping("/accounts/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
+        accountRepository.deleteById(id);
+    }
+
+    private Account getById(int id) {
+        return accountRepository.findById(id)
+                                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @Data
+    public static class Request {
+        private @NotEmpty String name;
+        private @NotEmpty String email;
     }
 }
