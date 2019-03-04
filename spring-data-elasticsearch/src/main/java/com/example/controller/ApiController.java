@@ -2,7 +2,11 @@ package com.example.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
+import org.elasticsearch.index.query.MatchQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -32,6 +36,13 @@ public class ApiController {
     @GetMapping("/users/{name}")
     public List<User> findByName(@PathVariable String name) {
         return userRepository.findByName(name);
+    }
+
+    @GetMapping(value = "/users", params = { "name", "text" })
+    public List<User> search(@RequestParam String name, @RequestParam String text) {
+        MatchQueryBuilder query = QueryBuilders.matchQuery(name, text);
+        return StreamSupport.stream(userRepository.search(query).spliterator(), false)
+                            .collect(Collectors.toList());
     }
 
     @PostMapping("/users")
