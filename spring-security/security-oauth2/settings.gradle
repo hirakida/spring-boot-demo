@@ -1,2 +1,2 @@
 rootProject.name = 'spring-security-oauth2-demo'
-include 'line', 'github'
+include 'oauth2-line', 'oauth2-github'

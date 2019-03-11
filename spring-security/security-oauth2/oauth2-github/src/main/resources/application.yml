@@ -4,7 +4,14 @@ security:
       client-id: #####
       client-secret: #####
       client-authentication-scheme: form
-      access-token-uri: https://github.com/login/oauth/access_token
       user-authorization-uri: https://github.com/login/oauth/authorize
+      access-token-uri: https://github.com/login/oauth/access_token
     resource:
       user-info-uri: https://api.github.com/user
+spring:
+  devtools:
+    livereload:
+      enabled: false
+  output:
+    ansi:
+      enabled: always

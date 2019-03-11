@@ -1,4 +1,4 @@
 .idea
 .gradle
 build
-application-secret.yml
+application-default.yml
