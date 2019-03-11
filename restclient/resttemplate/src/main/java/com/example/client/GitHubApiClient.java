@@ -5,31 +5,25 @@ import java.util.Set;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.example.model.GitHubUser;
-
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Component
 @RequiredArgsConstructor
-@Slf4j
 public class GitHubApiClient {
     public static final String API_URL = "https://api.github.com";
     private final RestOperations restOperations;
 
-    public GitHubUser getUsers(String userName) {
-        return restOperations.getForObject(getUsersUrl(userName), GitHubUser.class);
+    public User getUser(String username) {
+        return restOperations.getForObject(getUserUrl(), User.class, username);
     }
 
-    public Resource getUsersWithResource(String userName) {
-        ResponseEntity<Resource> response = restOperations.exchange(getUsersUrl(userName), HttpMethod.GET,
-                                                                    HttpEntity.EMPTY, Resource.class);
-        return response.getBody();
+    public Resource getUserWithResource(String username) {
+        return restOperations.exchange(getUserUrl(), HttpMethod.GET, HttpEntity.EMPTY, Resource.class, username)
+                             .getBody();
     }
 
     public Set<HttpMethod> options() {
@@ -38,10 +32,10 @@ public class GitHubApiClient {
         return restOperations.optionsForAllow(url);
     }
 
-    private static String getUsersUrl(String userName) {
+    private static String getUserUrl() {
         return UriComponentsBuilder.fromHttpUrl(API_URL)
                                    .path("/users/{username}")
-                                   .buildAndExpand(userName)
+                                   .build(false)
                                    .toUriString();
     }
 }

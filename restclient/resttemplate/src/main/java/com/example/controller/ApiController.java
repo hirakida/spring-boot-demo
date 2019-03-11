@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.client.GitHubApiClient;
-import com.example.model.GitHubUser;
+import com.example.client.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,14 +18,14 @@ import lombok.RequiredArgsConstructor;
 public class ApiController {
     private final GitHubApiClient gitHubApiClient;
 
-    @GetMapping("/users/{userName}")
-    public GitHubUser users(@PathVariable String userName) {
-        return gitHubApiClient.getUsers(userName);
+    @GetMapping("/users/{username}")
+    public User getUser(@PathVariable String username) {
+        return gitHubApiClient.getUser(username);
     }
 
-    @GetMapping("/users/{userName}/resource")
-    public Resource usersWithResource(@PathVariable String userName) {
-        return gitHubApiClient.getUsersWithResource(userName);
+    @GetMapping("/users/{username}/resource")
+    public Resource getUserWithResource(@PathVariable String username) {
+        return gitHubApiClient.getUserWithResource(username);
     }
 
     @GetMapping("/options")

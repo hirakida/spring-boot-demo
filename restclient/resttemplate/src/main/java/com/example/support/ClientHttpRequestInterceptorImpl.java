@@ -16,8 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ClientHttpRequestInterceptorImpl implements ClientHttpRequestInterceptor {
 
     @Override
-    public ClientHttpResponse intercept(HttpRequest request,
-                                        byte[] body,
+    public ClientHttpResponse intercept(HttpRequest request, byte[] body,
                                         ClientHttpRequestExecution execution) throws IOException {
         ClientHttpResponse response = execution.execute(request, body);
         if (response.getStatusCode().series() != Series.SUCCESSFUL) {

@@ -1,4 +1,4 @@
-package com.example.model;
+package com.example.client;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -13,7 +13,7 @@ import lombok.Data;
 @JsonNaming(SnakeCaseStrategy.class)
 @Data
 @SuppressWarnings("serial")
-public class GitHubUser implements Serializable {
+public class User implements Serializable {
     private long id;
     private String gravatarId;
     private String login;
