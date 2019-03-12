@@ -1,4 +1,0 @@
-rootProject.name = 'spring-boot-actuator-demo'
-include 'actuator-custom',
-        'actuator-metrics',
-        'actuator-security'

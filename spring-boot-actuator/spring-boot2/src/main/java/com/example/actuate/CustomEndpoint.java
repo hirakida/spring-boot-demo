@@ -11,10 +11,15 @@ import org.springframework.boot.actuate.endpoint.annotation.Selector;
 import org.springframework.boot.actuate.endpoint.annotation.WriteOperation;
 import org.springframework.stereotype.Component;
 
+/**
+ * GET http://localhost:8081/actuator/custom
+ * GET http://localhost:8081/actuator/custom/{key}
+ * POST http://localhost:8081/actuator/custom/{key}?value={value}
+ * DELETE http://localhost:8081/actuator/custom/{key}
+ */
 @Component
 @Endpoint(id = "custom")
 public class CustomEndpoint {
-
     private final Map<String, String> values = new ConcurrentHashMap<>();
 
     @ReadOperation
