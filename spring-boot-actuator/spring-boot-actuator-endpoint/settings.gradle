@@ -1,2 +1,0 @@
-rootProject.name = 'spring-boot-actuator-endpoint-demo'
-include ':hello-endpoint-autoconfigure', ':hello-endpoint-example'

@@ -12,14 +12,14 @@ import org.springframework.boot.actuate.endpoint.annotation.WriteOperation;
 import org.springframework.stereotype.Component;
 
 /**
- * GET http://localhost:8081/actuator/custom
- * GET http://localhost:8081/actuator/custom/{key}
- * POST http://localhost:8081/actuator/custom/{key}?value={value}
- * DELETE http://localhost:8081/actuator/custom/{key}
+ * GET http://localhost:8081/actuator/custom1
+ * GET http://localhost:8081/actuator/custom1/{key}
+ * POST http://localhost:8081/actuator/custom1/{key}?value={value}
+ * DELETE http://localhost:8081/actuator/custom1/{key}
  */
 @Component
-@Endpoint(id = "custom")
-public class CustomEndpoint {
+@Endpoint(id = "custom1")
+public class Custom1Endpoint {
     private final Map<String, String> values = new ConcurrentHashMap<>();
 
     @ReadOperation
