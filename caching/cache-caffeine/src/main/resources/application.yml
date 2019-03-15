@@ -1,12 +1,25 @@
 spring:
-  output:
-    ansi:
-      enabled: always
   cache:
     type: caffeine
     cache-names: default
     caffeine:
       spec: maximumSize=10000,expireAfterAccess=60s
+  datasource:
+    initialization-mode: always
+    url: jdbc:h2:mem:h2-db
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    show-sql: true
+  devtools:
+    livereload:
+      enabled: false
+  output:
+    ansi:
+      enabled: always
 logging:
   level:
     org.springframework.cache: trace

@@ -1,4 +1,6 @@
-package com.example.core;
+package com.example;
+
+import java.util.List;
 
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -13,17 +15,25 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class UserService {
-
     private final UserRepository userRepository;
 
+    @Cacheable(key = "'users'")
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
     @Cacheable(key = "'user:' + #id")
-    public User findById(long id) {
-        log.info("@Cacheable id:{}", id);
-        return userRepository.findById(id);
+    public User findById(int id) {
+        return userRepository.findById(id).orElseThrow();
+    }
+
+    @CacheEvict(key = "'users'")
+    public void deleteCache() {
+        log.info("@CacheEvict");
     }
 
     @CacheEvict(key = "'user:' + #id")
-    public void cacheEvict(long id) {
+    public void deleteCache(int id) {
         log.info("@CacheEvict id:{}", id);
     }
 }
