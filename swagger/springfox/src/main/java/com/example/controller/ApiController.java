@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -24,6 +25,8 @@ import com.example.repository.AccountRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import springfox.documentation.annotations.ApiIgnore;
@@ -36,20 +39,30 @@ public class ApiController {
     private final AccountRepository accountRepository;
 
     @GetMapping("/accounts")
-    @ApiOperation(value = "get account list", notes = "notes ...")
+    @ApiOperation(value = "Get account list", notes = "notes ...")
     public List<Account> findAll() {
         return accountRepository.findAll();
     }
 
     @GetMapping("/accounts/{id}")
-    @ApiOperation("get account")
+    @ApiOperation("Get account")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK", response = Account.class),
+            @ApiResponse(code = 404, message = "Not Found Account")
+    })
     public Account findById(@PathVariable int id) {
         return accountRepository.findById(id).orElseThrow();
     }
 
+    @GetMapping(value = "/accounts/", params = "name")
+    @ApiIgnore
+    public List<Account> findByName(@RequestParam String name) {
+        return accountRepository.findByName(name);
+    }
+
     @PostMapping("/accounts")
-    @ApiOperation("create account")
-    public ResponseEntity<Void> create(@RequestBody @Validated AccountRequest request) {
+    @ApiOperation("Create account")
+    public ResponseEntity<Void> create(@RequestBody @Validated Request request) {
         Account account = new Account();
         account.setName(request.getName());
         accountRepository.save(account);
@@ -57,8 +70,8 @@ public class ApiController {
     }
 
     @PutMapping("/accounts/{id}")
-    @ApiOperation("update account")
-    public Account update(@PathVariable int id, @RequestBody @Validated AccountRequest request) {
+    @ApiOperation("Update account")
+    public Account update(@PathVariable int id, @RequestBody @Validated Request request) {
         Account account = accountRepository.findById(id).orElseThrow();
         account.setName(request.getName());
         return accountRepository.save(account);
@@ -66,14 +79,9 @@ public class ApiController {
 
     @DeleteMapping("/accounts/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @ApiOperation("delete account")
+    @ApiOperation("Delete account")
     public void delete(@PathVariable int id) {
         accountRepository.deleteById(id);
-    }
-
-    @ApiIgnore
-    public void dummy() {
-        // dummy
     }
 
     private static URI buildUri(int id) {
@@ -84,7 +92,7 @@ public class ApiController {
     }
 
     @Data
-    public static class AccountRequest {
+    public static class Request {
         private @NotNull String name;
     }
 }

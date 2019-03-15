@@ -1,14 +1,16 @@
 spring:
   datasource:
     sql-script-encoding: UTF-8
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:file:/tmp/h2_jpa_swagger
+    url: jdbc:h2:mem:swagger-db
     username: sa
     password:
   jpa:
     hibernate:
       ddl-auto: update
     open-in-view: false
+  devtools:
+    livereload:
+      enabled: false
   output:
     ansi:
       enabled: always
