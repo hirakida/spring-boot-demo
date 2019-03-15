@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
 
-import org.apache.ibatis.session.RowBounds;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.entity.Account;
-import com.example.mapper.AccountMapper;
+import com.example.service.AccountService;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -27,42 +26,33 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-    private final AccountMapper accountMapper;
+    private final AccountService accountService;
 
     @GetMapping("/accounts")
     public List<Account> findAll(@PageableDefault Pageable pageable) {
-        return accountMapper.findAll(toRowBounds(pageable));
+        return accountService.findAll(pageable);
     }
 
     @GetMapping("/accounts/{id}")
     public Account findById(@PathVariable long id) {
-        return accountMapper.findOne(id);
+        return accountService.findById(id);
     }
 
     @PostMapping("/accounts")
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody @Validated Request request) {
-        Account account = new Account();
-        account.setName(request.getName());
-        accountMapper.insert(account);
+        accountService.create(request.getName());
     }
 
     @PutMapping("/accounts/{id}")
     public void update(@PathVariable long id, @RequestBody @Validated Request request) {
-        Account account = accountMapper.findOne(id);
-        account.setName(request.getName());
-        accountMapper.update(account);
+        accountService.update(id, request.getName());
     }
 
     @DeleteMapping("/accounts/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id) {
-        Account account = accountMapper.findOne(id);
-        accountMapper.delete(account.getId());
-    }
-
-    private static RowBounds toRowBounds(Pageable pageable) {
-        return new RowBounds((int) pageable.getOffset(), pageable.getPageSize());
+        accountService.delete(id);
     }
 
     @Data

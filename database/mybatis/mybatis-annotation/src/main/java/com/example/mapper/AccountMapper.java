@@ -20,10 +20,6 @@ public interface AccountMapper {
     @Select("SELECT id, name, created_at, updated_at FROM account WHERE id=#{id}")
     Optional<Account> findById(@Param("id") long id);
 
-    default Account findOne(long id) {
-        return findById(id).orElseThrow();
-    }
-
     @Select("SELECT id, name, created_at, updated_at FROM account WHERE name=#{name}")
     Account findByName(@Param("name") String name);
 

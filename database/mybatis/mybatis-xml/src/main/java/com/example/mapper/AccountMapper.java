@@ -9,7 +9,9 @@ import com.example.entity.Account;
 @Mapper
 public interface AccountMapper {
 
-    Account findOne(long id);
-
     List<Account> findAll();
+
+    List<Account> findByIds(List<Long> ids);
+
+    Account findById(long id);
 }
