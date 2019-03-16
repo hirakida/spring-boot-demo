@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class SchedulingTask {
+public class ScheduledTask {
     private final MessageSender messageSender;
 
     @Scheduled(cron = "0,30 * * * * *")
