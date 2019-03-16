@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class CacheManagerConfig implements CacheManagerCustomizer<SimpleCacheManager> {
-
     public static final String CACHE_NAME = "default";
 
     @Override

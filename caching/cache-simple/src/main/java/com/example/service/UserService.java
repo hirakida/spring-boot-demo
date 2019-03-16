@@ -1,4 +1,4 @@
-package com.example.core;
+package com.example.service;
 
 import java.util.List;
 
@@ -9,6 +9,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.example.config.CacheManagerConfig;
+import com.example.entity.User;
+import com.example.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,34 +20,31 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class UserService {
-
     private final UserRepository userRepository;
 
     @Cacheable(key = "'users'")
     public List<User> findAll() {
-        log.info("@Cacheable findAll");
         return userRepository.findAll();
     }
 
-    @CacheEvict(key = "'users'")
-    public void cacheEvictAll() {
-        log.info("@CacheEvict");
-    }
-
     @Cacheable(key = "'user:' + #id")
-    public User findOne(long id) {
-        log.info("@Cacheable id:{}", id);
-        return userRepository.findOne(id);
+    public User findById(int id) {
+        return userRepository.findById(id).orElseThrow();
     }
 
     @CachePut(key = "'user:' + #id")
-    public User cachePut(long id) {
+    public User updateCache(int id) {
         log.info("@CachePut id:{}", id);
-        return userRepository.findOne(id);
+        return userRepository.findById(id).orElseThrow();
+    }
+
+    @CacheEvict(key = "'users'")
+    public void deleteCache() {
+        log.info("@CacheEvict");
     }
 
     @CacheEvict(key = "'user:' + #id")
-    public void cacheEvict(long id) {
+    public void deleteCache(int id) {
         log.info("@CacheEvict id:{}", id);
     }
 }

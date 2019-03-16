@@ -1,9 +1,22 @@
 spring:
+  cache:
+    type: simple
+  datasource:
+    initialization-mode: always
+    url: jdbc:h2:mem:h2-db2
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    show-sql: true
+  devtools:
+    livereload:
+      enabled: false
   output:
     ansi:
       enabled: always
-  cache:
-    type: simple
 logging:
   level:
     org.springframework.cache: trace

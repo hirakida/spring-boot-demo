@@ -8,15 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.core.User;
-import com.example.core.UserService;
+import com.example.entity.User;
+import com.example.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-
     private final UserService userService;
 
     @GetMapping("/users")
@@ -24,23 +23,23 @@ public class ApiController {
         return userService.findAll();
     }
 
-    @DeleteMapping("/users")
-    public void cacheEvictAll() {
-        userService.cacheEvictAll();
-    }
-
     @GetMapping("/users/{id}")
-    public User findOne(@PathVariable long id) {
-        return userService.findOne(id);
+    public User findById(@PathVariable int id) {
+        return userService.findById(id);
     }
 
     @PutMapping("/users/{id}")
-    public User cachePut(@PathVariable long id) {
-        return userService.cachePut(id);
+    public User updateCache(@PathVariable int id) {
+        return userService.updateCache(id);
+    }
+
+    @DeleteMapping("/users")
+    public void deleteCache() {
+        userService.deleteCache();
     }
 
     @DeleteMapping("/users/{id}")
-    public void cacheEvict(@PathVariable long id) {
-        userService.cacheEvict(id);
+    public void deleteCache(@PathVariable int id) {
+        userService.deleteCache(id);
     }
 }
