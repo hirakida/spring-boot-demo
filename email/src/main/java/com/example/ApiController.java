@@ -11,7 +11,6 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-
     private final EmailHelper emailHelper;
 
     @PostMapping

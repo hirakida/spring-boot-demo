@@ -7,15 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.core.User;
-import com.example.core.UserService;
+import com.example.entity.User;
+import com.example.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-
     private final UserService userService;
 
     @GetMapping("/users")
@@ -29,12 +28,12 @@ public class ApiController {
     }
 
     @DeleteMapping("/users")
-    public void cacheEvict() {
-        userService.cacheEvict();
+    public void deleteCache() {
+        userService.deleteCache();
     }
 
     @DeleteMapping("/users/{id}")
-    public void cacheEvict(@PathVariable int id) {
-        userService.cacheEvict(id);
+    public void deleteCache(@PathVariable int id) {
+        userService.deleteCache(id);
     }
 }

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.support.RequestHandledEvent;
 import org.springframework.web.context.support.ServletRequestHandledEvent;
 
-import com.example.UserEvent;
+import com.example.event.UserEvent;
 
 import lombok.extern.slf4j.Slf4j;
 

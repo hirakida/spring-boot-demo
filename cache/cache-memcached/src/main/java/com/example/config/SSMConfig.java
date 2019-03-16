@@ -15,10 +15,9 @@ import com.google.code.ssm.providers.spymemcached.MemcacheClientFactoryImpl;
 import com.google.code.ssm.spring.ExtendedSSMCacheManager;
 import com.google.code.ssm.spring.SSMCache;
 
-@Configuration
 @EnableCaching
+@Configuration
 public class SSMConfig extends AbstractSSMConfiguration {
-
     public static final String CACHE_NAME = "default";
     private static final String ADDRESS = "127.0.0.1:11211";
     private static final int EXPIRATION = 60; // sec
