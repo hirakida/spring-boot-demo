@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.example.entity.User;
 import com.example.repository.UserRepository;
@@ -34,7 +33,7 @@ public class ApiController {
 
     @GetMapping("/users/{id}")
     public User findById(@PathVariable int id) {
-        return findOne(id);
+        return userRepository.findById(id).orElseThrow();
     }
 
     @PostMapping("/users")
@@ -47,7 +46,7 @@ public class ApiController {
 
     @PutMapping("/users/{id}")
     public User update(@RequestBody @Validated UserRequest request, @PathVariable int id) {
-        User user = findOne(id);
+        User user = userRepository.findById(id).orElseThrow();
         user.setName(request.getName());
         return userRepository.save(user);
     }
@@ -55,13 +54,7 @@ public class ApiController {
     @DeleteMapping("/users/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
-        User user = findOne(id);
-        userRepository.deleteById(user.getId());
-    }
-
-    private User findOne(int id) {
-        return userRepository.findById(id)
-                             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        userRepository.deleteById(id);
     }
 
     @Data

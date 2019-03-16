@@ -14,11 +14,9 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    set('domaStarterVersion', '1.1.1')
-}
-
 dependencies {
+    def domaStarterVersion = '1.1.1'
+
     annotationProcessor('org.projectlombok:lombok')
     compileOnly('org.projectlombok:lombok')
     annotationProcessor("org.seasar.doma.boot:doma-spring-boot-starter:${domaStarterVersion}")

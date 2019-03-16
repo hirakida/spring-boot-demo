@@ -1,11 +1,13 @@
 package com.example;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -17,16 +19,14 @@ import lombok.Data;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Data
-public class Account {
+@SuppressWarnings("serial")
+public class Person implements Serializable {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(nullable = false)
     private String name;
-
-    @Column
-    private boolean enabled;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

@@ -21,43 +21,43 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-    private final AccountRepository accountRepository;
+    private final UserRepository userRepository;
 
-    @GetMapping("/accounts")
-    public Page<Account> findAll(@PageableDefault Pageable pageable) {
-        return accountRepository.findAll(pageable);
+    @GetMapping("/users")
+    public Page<User> findAll(@PageableDefault Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 
-    @GetMapping("/accounts/{id}")
-    public Account findById(@PathVariable int id) {
-        return accountRepository.findById(id).orElseThrow();
+    @GetMapping("/users/{id}")
+    public User findById(@PathVariable int id) {
+        return userRepository.findById(id).orElseThrow();
     }
 
-    @PostMapping("/accounts")
+    @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public Account create(@Validated Request request) {
-        Account account = new Account();
-        account.setName(request.getName());
-        return accountRepository.save(account);
+    public User create(@Validated Request request) {
+        User user = new User();
+        user.setName(request.getName());
+        return userRepository.save(user);
     }
 
-    @PutMapping("/accounts/{id}")
-    public Account update(@PathVariable int id, @Validated Request request) {
-        Account account = accountRepository.findById(id).orElseThrow();
-        account.setName(request.getName());
-        return accountRepository.save(account);
+    @PutMapping("/users/{id}")
+    public User update(@PathVariable int id, @Validated Request request) {
+        User user = userRepository.findById(id).orElseThrow();
+        user.setName(request.getName());
+        return userRepository.save(user);
     }
 
-    @DeleteMapping("/accounts")
+    @DeleteMapping("/users")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAll() {
-        accountRepository.deleteAll();
+        userRepository.deleteAll();
     }
 
-    @DeleteMapping("/accounts/{id}")
+    @DeleteMapping("/users/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
-        accountRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
 
     @Data

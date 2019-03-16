@@ -12,15 +12,15 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-    private final AccountRepository accountRepository;
+    private final UserRepository userRepository;
 
-    @GetMapping("/accounts")
-    public Page<Account> findAll(@PageableDefault Pageable pageable) {
-        return accountRepository.findAll(pageable);
+    @GetMapping("/users")
+    public Page<User> findAll(@PageableDefault Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 
-    @GetMapping("/accounts/{id}")
-    public Account findById(@PathVariable int id) {
-        return accountRepository.findById(id).orElseThrow();
+    @GetMapping("/users/{id}")
+    public User findById(@PathVariable int id) {
+        return userRepository.findById(id).orElseThrow();
     }
 }

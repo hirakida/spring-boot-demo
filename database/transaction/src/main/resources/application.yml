@@ -8,6 +8,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  devtools:
+    livereload:
+      enabled: false
   output:
     ansi:
       enabled: always
