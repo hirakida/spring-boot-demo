@@ -1,7 +1,4 @@
 spring:
-  output:
-    ansi:
-      enabled: always
   cache:
     type: redis
 #    cache-names: default
@@ -15,6 +12,19 @@ spring:
         max-active: 8
         max-idle: 8
         min-idle: 0
+  datasource:
+    initialization-mode: always
+    url: jdbc:h2:mem:h2-db
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    show-sql: true
+  output:
+    ansi:
+      enabled: always
 logging:
   level:
     org.springframework.cache: trace

@@ -1,7 +1,6 @@
 package com.example.config;
 
 import java.time.Duration;
-import java.util.Collections;
 import java.util.Map;
 
 import org.springframework.cache.CacheManager;
@@ -16,11 +15,10 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 
 import lombok.RequiredArgsConstructor;
 
-@Configuration
 @EnableCaching
+@Configuration
 @RequiredArgsConstructor
 public class CachingConfig extends CachingConfigurerSupport {
-
     public static final String CACHE_NAME = "default";
     private static final long EXPIRATION = 60;
     private final RedisConnectionFactory redisConnectionFactory;
@@ -28,21 +26,18 @@ public class CachingConfig extends CachingConfigurerSupport {
     @Bean
     @Override
     public CacheManager cacheManager() {
-        Map<String, RedisCacheConfiguration> config =
-                Collections.singletonMap(CACHE_NAME, redisCacheConfiguration(EXPIRATION));
+        RedisCacheConfiguration configuration =
+                RedisCacheConfiguration.defaultCacheConfig()
+                                       .entryTtl(Duration.ofSeconds(EXPIRATION))
+                                       .disableCachingNullValues();
+        Map<String, RedisCacheConfiguration> configurationMap = Map.of(CACHE_NAME, configuration);
         return RedisCacheManager.builder(redisConnectionFactory)
-                                .withInitialCacheConfigurations(config)
+                                .withInitialCacheConfigurations(configurationMap)
                                 .build();
     }
 
     @Override
     public CacheErrorHandler errorHandler() {
         return new CacheErrorHandlerImpl();
-    }
-
-    private static RedisCacheConfiguration redisCacheConfiguration(long expiration) {
-        return RedisCacheConfiguration.defaultCacheConfig()
-                                      .entryTtl(Duration.ofSeconds(expiration))
-                                      .disableCachingNullValues();
     }
 }
