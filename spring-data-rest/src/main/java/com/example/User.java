@@ -22,7 +22,6 @@ import lombok.Data;
 @SuppressWarnings("serial")
 public class User implements Serializable {
     @Id
-    @Column(nullable = false)
     @GeneratedValue
     private int id;
 
