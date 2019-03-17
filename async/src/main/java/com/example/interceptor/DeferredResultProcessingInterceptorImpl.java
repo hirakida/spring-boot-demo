@@ -7,7 +7,7 @@ import org.springframework.web.context.request.async.DeferredResultProcessingInt
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MyDeferredResultProcessingInterceptor implements DeferredResultProcessingInterceptor {
+public class DeferredResultProcessingInterceptorImpl implements DeferredResultProcessingInterceptor {
 
     @Override
     public <T> void beforeConcurrentHandling(NativeWebRequest request, DeferredResult<T> deferredResult)

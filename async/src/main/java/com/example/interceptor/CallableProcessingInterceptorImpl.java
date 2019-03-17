@@ -1,6 +1,7 @@
 package com.example.interceptor;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.TimeoutException;
 
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.async.CallableProcessingInterceptor;
@@ -8,7 +9,7 @@ import org.springframework.web.context.request.async.CallableProcessingIntercept
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MyCallableProcessingInterceptor implements CallableProcessingInterceptor {
+public class CallableProcessingInterceptorImpl implements CallableProcessingInterceptor {
 
     @Override
     public <T> void beforeConcurrentHandling(NativeWebRequest request, Callable<T> task) throws Exception {
@@ -29,7 +30,7 @@ public class MyCallableProcessingInterceptor implements CallableProcessingInterc
     @Override
     public <T> Object handleTimeout(NativeWebRequest request, Callable<T> task) throws Exception {
         log.error("handleTimeout");
-        throw new IllegalStateException("timed out");
+        throw new TimeoutException("handleTimeout");
     }
 
     @Override

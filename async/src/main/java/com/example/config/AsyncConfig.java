@@ -11,8 +11,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Configuration
 @EnableAsync
+@Configuration
 @Slf4j
 public class AsyncConfig extends AsyncConfigurerSupport {
 

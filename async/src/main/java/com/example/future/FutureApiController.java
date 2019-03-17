@@ -1,16 +1,16 @@
-package com.example.controller;
+package com.example.future;
 
-import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.example.model.ResultData;
-import com.example.service.FutureService;
+import com.example.Result;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,41 +19,39 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class FutureApiController {
-
     private final FutureService futureService;
 
-    @GetMapping("/future1")
-    public ResultData future() {
+    @GetMapping("/future/1")
+    public Result future() {
         log.info("Future start");
-        Future<ResultData> future = futureService.future();
-        ResultData result;
+        Future<Result> future = futureService.future();
+        Result result;
         try {
             result = future.get();
         } catch (ExecutionException | InterruptedException e) {
-            log.error(e.toString());
-            result = new ResultData(e.toString(), LocalDateTime.now());
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE);
         }
         log.info("Future end");
         return result;
     }
 
-    @GetMapping("/future2")
-    public ListenableFuture<ResultData> listenableFuture() {
+    @GetMapping("/future/2")
+    public ListenableFuture<Result> listenableFuture() {
         log.info("ListenableFuture start");
-        ListenableFuture<ResultData> future = futureService.listenableFuture();
+        ListenableFuture<Result> future = futureService.listenableFuture();
         future.addCallback(result -> log.info("result: {}", result),
-                           e -> log.error("error", e));
+                           e -> log.error("{}", e.getMessage(), e));
         log.info("ListenableFuture end");
         return future;
     }
 
-    @GetMapping("/future3")
-    public CompletableFuture<ResultData> completableFuture() {
+    @GetMapping("/future/3")
+    public CompletableFuture<Result> completableFuture() {
         log.info("CompletableFuture start");
-        CompletableFuture<ResultData> future = futureService.completableFuture();
+        CompletableFuture<Result> future = futureService.completableFuture();
         future.whenComplete((result, e) -> {
             if (e != null) {
-                log.error("error", e);
+                log.error("{}", e.getMessage(), e);
             } else {
                 log.info("result: {}", result);
             }
