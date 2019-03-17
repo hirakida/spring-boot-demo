@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example;
 
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
@@ -10,11 +10,10 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class AppController {
-
+public class RootController {
     private final ConnectionRepository connectionRepository;
 
-    @GetMapping("/")
+    @GetMapping
     public String index() {
         Connection<Facebook> connection = connectionRepository.findPrimaryConnection(Facebook.class);
         if (connection == null) {

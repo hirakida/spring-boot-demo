@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: local
   social:
     facebook:
       app-id: XXXXXXXXXX

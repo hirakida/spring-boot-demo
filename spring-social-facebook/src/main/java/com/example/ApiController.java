@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example;
 
 import java.util.List;
 
@@ -17,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-
     private final Facebook facebook;
 
     @GetMapping("/profile")
@@ -42,7 +41,7 @@ public class ApiController {
         return facebook.friendOperations().getFriends();
     }
 
-    @GetMapping("/friendProfiles")
+    @GetMapping("/friend_profiles")
     public PagedList<User> friendProfiles() {
         return facebook.friendOperations().getFriendProfiles();
     }

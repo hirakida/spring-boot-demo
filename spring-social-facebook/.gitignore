@@ -1,3 +1,1 @@
-.idea
-target
-application-local.yml
+application-default.yml
