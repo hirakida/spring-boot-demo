@@ -10,7 +10,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
 import org.springframework.data.annotation.CreatedDate;
@@ -19,7 +18,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
 
-@Table
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Proxy(lazy = false)

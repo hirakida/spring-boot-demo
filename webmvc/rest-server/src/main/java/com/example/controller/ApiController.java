@@ -32,7 +32,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-
     private final UserRepository userRepository;
 
     @GetMapping("/users")
@@ -49,16 +48,14 @@ public class ApiController {
     public ResponseEntity<Void> create(@RequestBody @Validated UserForm form) {
         User user = userRepository.save(form.toUser());
         URI uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                                             .path("/users/" + user.getId())
-                                             .build()
-                                             .toUri();
+                                             .path("/users/" + user.getId()).build().toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("/users/{id}")
     public User update(@PathVariable int id, @RequestBody @Validated UserForm form) {
         User user = userRepository.getOne(id);
-        BeanUtils.copyProperties(form ,user);
+        BeanUtils.copyProperties(form, user);
         return userRepository.save(user);
     }
 

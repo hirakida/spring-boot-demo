@@ -1,7 +1,7 @@
 spring:
   datasource:
     sql-script-encoding: UTF-8
-    url: jdbc:h2:mem:/mybatis-db
+    url: jdbc:h2:mem:/mybatis_db
     username: sa
     password:
   devtools:

@@ -1,7 +1,8 @@
 package com.example.config;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-public class HttpInfoArgumentResolver implements HandlerMethodArgumentResolver {
+public class HttpRequestInfoArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
@@ -25,9 +26,14 @@ public class HttpInfoArgumentResolver implements HandlerMethodArgumentResolver {
                                   ModelAndViewContainer mavContainer,
                                   NativeWebRequest nativeWebRequest,
                                   WebDataBinderFactory webDataBinderFactory) throws Exception {
-        Cookie[] cookies = nativeWebRequest.getNativeRequest(HttpServletRequest.class).getCookies();
-        Locale locale = nativeWebRequest.getNativeRequest(HttpServletRequest.class).getLocale();
+        List<Cookie> cookies = Optional.ofNullable(nativeWebRequest.getNativeRequest(HttpServletRequest.class))
+                                       .map(HttpServletRequest::getCookies)
+                                       .map(List::of)
+                                       .orElse(List.of());
+        Locale locale = Optional.ofNullable(nativeWebRequest.getNativeRequest(HttpServletRequest.class))
+                                .map(HttpServletRequest::getLocale)
+                                .orElse(Locale.getDefault());
         String userAgent = nativeWebRequest.getHeader(HttpHeaders.USER_AGENT);
-        return new HttpRequestInfo(Arrays.asList(cookies), locale, userAgent);
+        return new HttpRequestInfo(cookies, locale, userAgent);
     }
 }
