@@ -1,9 +1,0 @@
-spring:
-  output:
-    ansi:
-      enabled: always
-server:
-  jetty:
-    accesslog:
-      enabled: true
-      filename: logs/access_log.log

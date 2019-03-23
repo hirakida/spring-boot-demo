@@ -1,0 +1,10 @@
+server:
+  ssl:
+    key-store-password: hirakida
+spring:
+  devtools:
+    livereload:
+      enabled: false
+  output:
+    ansi:
+      enabled: always

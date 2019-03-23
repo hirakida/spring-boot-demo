@@ -1,4 +1,3 @@
-# error-page
 
 ```
 resources/static/error/400.html

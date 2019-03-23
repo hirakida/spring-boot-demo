@@ -1,0 +1,9 @@
+spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+  devtools:
+    livereload:
+      enabled: false
+  output:
+    ansi:
+      enabled: always

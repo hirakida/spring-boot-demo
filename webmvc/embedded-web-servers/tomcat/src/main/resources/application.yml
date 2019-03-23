@@ -1,9 +1,0 @@
-spring:
-  output:
-    ansi:
-      enabled: always
-server:
-  tomcat:
-    accesslog:
-      enabled: true
-    basedir: .

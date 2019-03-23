@@ -3,7 +3,7 @@ package com.example;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.config.HttpRequestInfo;
+import com.example.support.HttpRequestInfo;
 
 @RestController
 public class ApiController {

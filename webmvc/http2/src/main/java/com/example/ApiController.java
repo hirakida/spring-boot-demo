@@ -1,6 +1,6 @@
 package com.example;
 
-import java.util.HashMap;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,10 +11,6 @@ public class ApiController {
 
     @GetMapping("/")
     public Map<String, Object> index() {
-        Map<String, Object> response = new HashMap<>();
-        response.put("key1", "value1");
-        response.put("key2", "value2");
-        response.put("key3", "value3");
-        return response;
+        return Map.of("datetime", LocalDateTime.now());
     }
 }

@@ -1,40 +1,35 @@
 package com.example;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.example.exception.BadRequestException;
-import com.example.exception.DataNotFoundException;
-import com.example.exception.ForbiddenException;
-import com.example.exception.ServerErrorException;
+import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 public class WebController {
 
     @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("message", "error page");
+    public String index() {
         return "index";
     }
 
     @GetMapping("/400")
     public String badRequest() {
-        throw new BadRequestException("bad request exception");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/403")
     public String forbidden() {
-        throw new ForbiddenException("forbidden exception");
+        throw new ResponseStatusException(HttpStatus.FORBIDDEN);
     }
 
     @GetMapping("/404")
     public String notFound() {
-        throw new DataNotFoundException("not found exception");
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/500")
-    public String serverError() {
-        throw new ServerErrorException("server error exception");
+    public String internalServerError() {
+        throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <title></title>
   <meta charset="UTF-8" />
@@ -11,7 +10,7 @@
 <body>
 <div class="container">
   <h3>400 error</h3>
-  <table layout:replace="error/fragment::table">
+  <table th:replace="error/fragment::table">
   </table>
 </div>
 </body>

@@ -6,5 +6,5 @@ server:
     enabled: true
     key-store: keystore.p12
     key-store-password: xxxxxx
-    key-alias: http2
+    key-alias: tomcat
     key-store-type: PKCS12
