@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.web;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -6,13 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.entity.Account;
-import com.example.security.AuthPrincipalAccount;
-import com.example.security.UserDetailsImpl;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@Slf4j
 public class WebController {
 
     @GetMapping("/")

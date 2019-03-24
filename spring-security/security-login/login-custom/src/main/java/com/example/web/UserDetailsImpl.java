@@ -1,4 +1,4 @@
-package com.example.security;
+package com.example.web;
 
 import org.springframework.security.core.userdetails.User;
 
