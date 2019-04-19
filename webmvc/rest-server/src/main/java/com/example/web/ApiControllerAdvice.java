@@ -3,6 +3,7 @@ package com.example.web;
 import java.util.NoSuchElementException;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.ConstraintViolationException;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,12 @@ public class ApiControllerAdvice {
     public ResponseEntity<Void> handleResponseStatusException(ResponseStatusException e) {
         log.info("{}", e.getMessage(), e);
         return ResponseEntity.status(e.getStatus()).build();
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public void handleBadRequestException(RuntimeException e) {
+        log.warn("{}", e.getMessage(), e);
     }
 
     @ExceptionHandler({

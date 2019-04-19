@@ -6,7 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.domain.User;
+import com.example.entity.User;
 import com.example.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
