@@ -1,0 +1,15 @@
+spring:
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+#    cache:
+#      cachecontrol:
+#        max-age: 1d
+  output:
+    ansi:
+      enabled: always
+logging:
+  level:
+    org.springframework.web.servlet.mvc.WebContentInterceptor: trace
