@@ -4,7 +4,7 @@ server:
     enabled: true
 #    enabled-protocols: [TLSv1.2]
     key-store: keystore.p12
-    key-store-password: xxxxxx
+    key-store-password: hirakida
     key-alias: tomcat
     key-store-type: PKCS12
 spring:

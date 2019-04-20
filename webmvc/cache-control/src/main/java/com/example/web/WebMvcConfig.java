@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.web;
 
 import java.util.Properties;
 

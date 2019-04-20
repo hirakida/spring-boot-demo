@@ -1,6 +1,6 @@
-package com.example.config;
+package com.example.web.config;
 
-import java.util.Collections;
+import java.util.List;
 
 import javax.servlet.DispatcherType;
 
@@ -9,10 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
-
-import com.example.support.OncePerRequestFilterExt;
-import com.example.support.RequestLoggingFilter;
-import com.example.support.ServletRequestListenerImpl;
 
 @Configuration
 public class FilterConfig {
@@ -29,22 +25,22 @@ public class FilterConfig {
     }
 
     @Bean
-    public FilterRegistrationBean<OncePerRequestFilterExt> requestFilterBean() {
+    public FilterRegistrationBean<OncePerRequestFilterExt> requestFilterBean1() {
         FilterRegistrationBean<OncePerRequestFilterExt> bean =
                 new FilterRegistrationBean<>(new OncePerRequestFilterExt());
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         bean.setDispatcherTypes(DispatcherType.REQUEST);
-        bean.setUrlPatterns(Collections.singletonList("/v1/*"));
+        bean.setUrlPatterns(List.of("/v1/*"));
         return bean;
     }
 
     @Bean
-    public FilterRegistrationBean<OncePerRequestFilterExt> requestFilerBeanV2() {
+    public FilterRegistrationBean<OncePerRequestFilterExt> requestFilterBean2() {
         FilterRegistrationBean<OncePerRequestFilterExt> bean =
                 new FilterRegistrationBean<>(new OncePerRequestFilterExt());
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE + 1);
         bean.setDispatcherTypes(DispatcherType.REQUEST);
-        bean.setUrlPatterns(Collections.singletonList("/v2/*"));
+        bean.setUrlPatterns(List.of("/v2/*"));
         return bean;
     }
 

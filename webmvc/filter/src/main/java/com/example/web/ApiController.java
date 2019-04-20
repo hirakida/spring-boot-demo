@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.web;
 
 import java.time.LocalDateTime;
 

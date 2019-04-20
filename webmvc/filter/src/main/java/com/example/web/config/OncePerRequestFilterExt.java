@@ -1,4 +1,4 @@
-package com.example.support;
+package com.example.web.config;
 
 import java.io.IOException;
 

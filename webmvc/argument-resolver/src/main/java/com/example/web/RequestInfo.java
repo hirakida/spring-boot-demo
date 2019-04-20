@@ -1,7 +1,6 @@
-package com.example.support;
+package com.example.web;
 
 import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.http.Cookie;
 
@@ -10,8 +9,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class HttpRequestInfo {
+public class RequestInfo {
     private List<Cookie> cookies;
-    private Locale locale;
-    private String userAgent;
 }

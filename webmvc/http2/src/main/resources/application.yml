@@ -5,6 +5,13 @@ server:
   ssl:
     enabled: true
     key-store: keystore.p12
-    key-store-password: xxxxxx
+    key-store-password: hirakida
     key-alias: tomcat
     key-store-type: PKCS12
+spring:
+  devtools:
+    livereload:
+      enabled: false
+  output:
+    ansi:
+      enabled: always
