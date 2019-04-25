@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @SpringBootApplication
 @RequiredArgsConstructor
-public class LoginApplication implements CommandLineRunner {
+public class Application implements CommandLineRunner {
     private final AccountService accountService;
 
     @Override
@@ -34,6 +34,6 @@ public class LoginApplication implements CommandLineRunner {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(LoginApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
