@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example;
 
 import java.io.IOException;
 
@@ -16,8 +16,8 @@ import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Configuration
 @EnableWebSecurity
+@Configuration
 @Slf4j
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -38,10 +38,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static AccessDeniedHandler accessDeniedHandler() {
         return new AccessDeniedHandlerImpl() {
             @Override
-            public void handle(HttpServletRequest request,
-                               HttpServletResponse response,
+            public void handle(HttpServletRequest request, HttpServletResponse response,
                                AccessDeniedException e) throws IOException, ServletException {
-                log.error(e.toString());
+                log.error(e.getMessage(), e);
                 super.handle(request, response, e);
             }
         };

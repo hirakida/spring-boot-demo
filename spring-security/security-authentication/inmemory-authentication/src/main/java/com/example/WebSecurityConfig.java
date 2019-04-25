@@ -1,5 +1,6 @@
 package com.example;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -7,16 +8,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    private static final String ADMIN = "ROLE_ADMIN";
-    private static final String USER = "ROLE_USER";
-    private static final String ACTUATOR = "ROLE_ACTUATOR";
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -28,26 +27,42 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/").permitAll()
-            .antMatchers("/admin/**").hasAnyAuthority(ADMIN)
-            .anyRequest().authenticated();  // 認証されているユーザーのみアクセスできる
+            .antMatchers("/admin/**").hasAnyRole(Role.ADMIN.name())
+            .anyRequest().authenticated();
 
         http.formLogin()
-            .defaultSuccessUrl("/mypage")
+            .defaultSuccessUrl("/home")
             .permitAll();
 
         http.logout()
-//            .logoutUrl("/logout")
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout**"))
             .logoutSuccessUrl("/");
     }
 
-    // AuthenticationManagerの設定
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()   // in-memoryで認証情報を管理
-            // authorities()の代わりにroles()を使うと自動でprefixにROLE_が付く
-            .withUser("user").password("user").authorities(USER)
+        auth.inMemoryAuthentication()
+            .withUser("guest1").password(password("guest1")).roles(Role.GUEST.name())
             .and()
-            .withUser("admin").password("admin").authorities(USER, ADMIN, ACTUATOR);
+            .withUser("user1").password(password("user1")).roles(Role.USER.name())
+            .and()
+            .withUser("user2").password(password("user2")).roles(Role.USER.name())
+            .and()
+            .withUser("admin1").password(password("admin1")).roles(Role.USER.name(), Role.ADMIN.name());
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    private String password(String password) {
+        return passwordEncoder().encode(password);
+    }
+
+    public enum Role {
+        GUEST,
+        USER,
+        ADMIN
     }
 }

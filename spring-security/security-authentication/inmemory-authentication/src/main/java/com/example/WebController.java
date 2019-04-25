@@ -25,25 +25,21 @@ public class WebController {
         return "index";
     }
 
-    @GetMapping("/mypage")
-    public String mypage(@AuthenticationPrincipal UserDetails userDetails,
-                         HttpServletRequest request,
-                         Model model) {
-        model.addAttribute("userDetails", userDetails);
-        // HttpServletRequestから取得する場合
-        // Authenticationが認証情報
+    @GetMapping("/home")
+    public String home(@AuthenticationPrincipal UserDetails userDetails,
+                       HttpServletRequest request, Model model) {
         Authentication authentication = (Authentication) request.getUserPrincipal();
-        // UserDetailsはユーザー情報
-        UserDetails userDetails2 = (UserDetails) authentication.getPrincipal();
-        // 認可情報
         Collection<? extends GrantedAuthority> grantedAuthorities = authentication.getAuthorities();
+        UserDetails userDetails2 = (UserDetails) authentication.getPrincipal();
+        log.info("{}", userDetails2);
+
+        model.addAttribute("userDetails", userDetails);
         model.addAttribute("authentication", authentication);
-        model.addAttribute("userDetails2", userDetails2);
         model.addAttribute("grantedAuthorities", grantedAuthorities);
-        return "mypage";
+        return "home";
     }
 
-    // Principal型を指定した場合
+    // Use Principal
     @GetMapping("/admin")
     public String admin(@AuthenticationPrincipal Principal principal, Model model) {
         UserDetails userDetails = (UserDetails) ((Authentication) principal).getPrincipal();
@@ -51,10 +47,9 @@ public class WebController {
         return "admin";
     }
 
-    // メソッド単位のアクセス制御
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/admin2")
-    public String admin2(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+    @GetMapping("/root")
+    public String root(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         model.addAttribute("userDetails", userDetails);
         return "admin";
     }

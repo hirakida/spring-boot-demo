@@ -4,20 +4,17 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-  <title>mypage</title>
+  <title>home</title>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
 <div class="container">
-  <h3>my page</h3>
-  <p>
-    <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}" class="btn btn-default">admin</a>
-    <a th:href="@{/logout}" class="btn btn-default">logout</a>
-  </p>
-
+  <div class="row mt-3">
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}" class="btn btn-primary">admin</a>
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/root}" class="btn btn-primary">root</a>
+    <a th:href="@{/logout}" class="btn btn-secondary">logout</a>
+  </div>
   <table class="table" sec:authorize="isAuthenticated()">
     <tr>
       <td>userDetails</td>
@@ -26,10 +23,6 @@
     <tr>
       <td>authentication</td>
       <td th:text="${authentication}"></td>
-    </tr>
-    <tr>
-      <td>userDetails</td>
-      <td th:text="${userDetails2}"></td>
     </tr>
     <tr>
       <td>grantedAuthorities</td>

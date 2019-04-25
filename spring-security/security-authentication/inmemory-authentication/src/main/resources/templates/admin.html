@@ -6,17 +6,14 @@
 <head>
   <title>admin</title>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
 <div class="container">
-  <h3>admin</h3>
-  <p>
-    <a th:href="@{/mypage}" class="btn btn-default">mypage</a>
-    <a th:href="@{/logout}" class="btn btn-default">logout</a>
-  </p>
+  <div class="row mt-3">
+    <a th:href="@{/home}" class="btn btn-primary">home</a>
+    <a th:href="@{/logout}" class="btn btn-secondary">logout</a>
+  </div>
   <table class="table" sec:authorize="isAuthenticated()">
     <tr>
       <td>userDetails</td>
