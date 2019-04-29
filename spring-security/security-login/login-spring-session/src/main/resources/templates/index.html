@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+  <div class="row mt-1 mb-1">
+    <a th:href="@{/logout}" class="btn btn-info">
+      <span class="glyphicon glyphicon-log-out"></span>Log out
+    </a>
+  </div>
+  <div class="row">
+    <table class="table" sec:authorize="isAuthenticated()">
+      <tbody>
+      <tr>
+        <th>username</th>
+        <td sec:authentication="principal.username"></td>
+      </tr>
+      <tr>
+        <th>password</th>
+        <td sec:authentication="principal.password"></td>
+      </tr>
+      <tr>
+        <th>authorities</th>
+        <td sec:authentication="principal.authorities"></td>
+      </tr>
+      <tr>
+        <th>enabled</th>
+        <td sec:authentication="principal.enabled"></td>
+      </tr>
+      <tr>
+        <th>accountNonExpired</th>
+        <td sec:authentication="principal.accountNonExpired"></td>
+      </tr>
+      <tr>
+        <th>accountNonLocked</th>
+        <td sec:authentication="principal.accountNonLocked"></td>
+      </tr>
+      <tr>
+        <th>credentialsNonExpired</th>
+        <td sec:authentication="principal.credentialsNonExpired"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

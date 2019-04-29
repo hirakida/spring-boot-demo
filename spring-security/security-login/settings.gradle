@@ -1,2 +1,2 @@
-rootProject.name = 'spring-security-login'
-include 'login-default', 'login-custom'
+rootProject.name = 'spring-security-login-demo'
+include 'login-default', 'login-custom', 'login-spring-session'

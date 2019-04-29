@@ -1,0 +1,17 @@
+spring:
+  security:
+    user:
+      name: user
+      password: user
+  session:
+    store-type: redis
+  output:
+    ansi:
+      enabled: always
+server:
+  servlet:
+    session:
+      timeout: 360s
+      cookie:
+        name: SPRING_SESSION
+        max-age: 360s
