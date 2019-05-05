@@ -1,4 +1,4 @@
-package com.example;
+package com.example.config;
 
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.broker.BrokerAvailabilityEvent;
@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class StompEventListener {
+public class MessagingEventListener {
 
     @EventListener
     public void onApplicationEvent(BrokerAvailabilityEvent event) {

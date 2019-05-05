@@ -28,9 +28,9 @@ connect.onclick = () => {
 
 form.onsubmit = event => {
   event.preventDefault();
-  if (stompClient !== null && message.value !== '') {
-    const body = {'userName': userName.value, 'message': message.value};
-    message.value = '';
+  if (stompClient !== null && form.message.value !== '') {
+    const body = {'userName': userName.value, 'message': form.message.value};
+    form.message.value = '';
     stompClient.send('/app/message/room/' + roomId, {}, JSON.stringify(body));
   }
 };

@@ -1,4 +1,4 @@
-package com.example;
+package com.example.controller;
 
 import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -8,22 +8,28 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = StompApplication.class,  webEnvironment = WebEnvironment.RANDOM_PORT)
-//@DirtiesContext
-public class RootControllerTest {
+import com.example.Application;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class, webEnvironment = WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+//@DirtiesContext
+public class ApiControllerTest {
     @Autowired
     private WebApplicationContext wac;
+    @MockBean
+    private SimpUserRegistry simpUserRegistry;
     @MockBean
     private SimpMessagingTemplate simpMessagingTemplate;
     private MockMvc mockMvc;

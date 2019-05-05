@@ -1,4 +1,6 @@
 'use strict';
+// const URL = 'ws://localhost:80/ws';
+const URL = 'ws://localhost:8080/ws';
 let ws = null;
 
 const onOpen = () => {
@@ -26,8 +28,7 @@ const onError = event => {
 
 openBtn.onclick = () => {
   if (ws === null) {
-    // ws = new WebSocket('ws://localhost:8080/ws');
-    ws = new WebSocket('ws://localhost:80/ws');
+    ws = new WebSocket(URL);
     ws.onopen = onOpen;
     ws.onmessage = onMessage;
     ws.onclose = onClose;
@@ -45,9 +46,9 @@ closeBtn.onclick = () => {
 form.onsubmit = event => {
   event.preventDefault();
   if (ws !== null) {
-    if (message.value !== '') {
-      ws.send(message.value);
-      message.value = '';
+    if (form.message.value !== '') {
+      ws.send(form.message.value);
+      form.message.value = '';
     }
   }
 };
