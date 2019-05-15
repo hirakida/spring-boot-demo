@@ -1,6 +1,10 @@
 package com.example.web;
 
+import java.security.Principal;
+
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +34,17 @@ public class WebController {
         return "logged_in";
     }
 
-    // expression: findOne(username)
+    // Principal
     @GetMapping("/success2")
-    public String success2(
+    public String success2(@AuthenticationPrincipal Principal principal, Model model) {
+        UserDetails userDetails = (UserDetails) ((Authentication) principal).getPrincipal();
+        model.addAttribute("userDetails", userDetails);
+        return "logged_in";
+    }
+
+    // expression: findOne(username)
+    @GetMapping("/success3")
+    public String success3(
             @AuthenticationPrincipal(expression = "@accountService.findOne(username)") Account account,
             Model model) {
         model.addAttribute("account", account);
@@ -40,8 +52,8 @@ public class WebController {
     }
 
     // expression: fineOne(userDetails)
-    @GetMapping("/success3")
-    public String success3(
+    @GetMapping("/success4")
+    public String success4(
             @AuthenticationPrincipal(expression = "@accountService.findOne(#this)") Account account,
             Model model) {
         model.addAttribute("account", account);
@@ -49,8 +61,8 @@ public class WebController {
     }
 
     // annotation + expression
-    @GetMapping("/success4")
-    public String success4(@AuthPrincipalAccount Account account, Model model) {
+    @GetMapping("/success5")
+    public String success5(@AuthPrincipalAccount Account account, Model model) {
         model.addAttribute("account", account);
         return "logged_in";
     }

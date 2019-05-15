@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/").permitAll()
-            .antMatchers("/admin/**").hasAnyRole(Role.ADMIN.name())
+            .antMatchers("/admin1/**").hasAnyRole(Role.ADMIN.name())
             .anyRequest().authenticated();
 
         http.formLogin()
@@ -42,13 +42,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-            .withUser("guest1").password(password("guest1")).roles(Role.GUEST.name())
+            .passwordEncoder(passwordEncoder())
+            .withUser("guest1").password(encodePassword("guest1")).roles(Role.GUEST.name())
             .and()
-            .withUser("user1").password(password("user1")).roles(Role.USER.name())
+            .withUser("user1").password(encodePassword("user1")).roles(Role.USER.name())
             .and()
-            .withUser("user2").password(password("user2")).roles(Role.USER.name())
+            .withUser("user2").password(encodePassword("user2")).roles(Role.USER.name())
             .and()
-            .withUser("admin1").password(password("admin1")).roles(Role.USER.name(), Role.ADMIN.name());
+            .withUser("admin1").password(encodePassword("admin1")).roles(Role.USER.name(), Role.ADMIN.name());
     }
 
     @Bean
@@ -56,13 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    private String password(String password) {
+    private String encodePassword(String password) {
         return passwordEncoder().encode(password);
-    }
-
-    public enum Role {
-        GUEST,
-        USER,
-        ADMIN
     }
 }

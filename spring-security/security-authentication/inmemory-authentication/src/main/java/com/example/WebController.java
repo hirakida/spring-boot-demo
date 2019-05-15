@@ -1,13 +1,6 @@
 package com.example;
 
-import java.security.Principal;
-import java.util.Collection;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -26,30 +19,21 @@ public class WebController {
     }
 
     @GetMapping("/home")
-    public String home(@AuthenticationPrincipal UserDetails userDetails,
-                       HttpServletRequest request, Model model) {
-        Authentication authentication = (Authentication) request.getUserPrincipal();
-        Collection<? extends GrantedAuthority> grantedAuthorities = authentication.getAuthorities();
-        UserDetails userDetails2 = (UserDetails) authentication.getPrincipal();
-        log.info("{}", userDetails2);
-
+    public String home(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         model.addAttribute("userDetails", userDetails);
-        model.addAttribute("authentication", authentication);
-        model.addAttribute("grantedAuthorities", grantedAuthorities);
+        model.addAttribute("grantedAuthorities", userDetails.getAuthorities());
         return "home";
     }
 
-    // Use Principal
-    @GetMapping("/admin")
-    public String admin(@AuthenticationPrincipal Principal principal, Model model) {
-        UserDetails userDetails = (UserDetails) ((Authentication) principal).getPrincipal();
+    @GetMapping("/admin1")
+    public String admin1(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         model.addAttribute("userDetails", userDetails);
         return "admin";
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/root")
-    public String root(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+    @PreAuthorize("hasRole(T(com.example.Role).ADMIN.name())")
+    @GetMapping("/admin2")
+    public String admin2(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         model.addAttribute("userDetails", userDetails);
         return "admin";
     }

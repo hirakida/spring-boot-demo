@@ -5,13 +5,21 @@
 <head>
   <title>index</title>
   <meta charset="UTF-8" />
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
 <div class="container">
-  <div>
-    <a th:href="@{/logout}">logout</a>
+  <div class="row mt-3">
+    <a th:href="@{/logout}" class="btn btn-primary">logout</a>
   </div>
-  <div th:text="${userDetails}"></div>
+  <table class="table">
+    <tbody>
+    <tr>
+      <td>userDetails</td>
+      <td th:text="${userDetails}"></td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 </body>
 </html>
