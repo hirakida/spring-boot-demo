@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example.userdetails;
 
 import java.io.Serializable;
 import java.util.List;

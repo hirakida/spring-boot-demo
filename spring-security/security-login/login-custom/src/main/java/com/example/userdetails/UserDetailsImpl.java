@@ -1,8 +1,6 @@
-package com.example.web;
+package com.example.userdetails;
 
 import org.springframework.security.core.userdetails.User;
-
-import com.example.entity.Account;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

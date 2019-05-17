@@ -1,4 +1,4 @@
-package com.example.web;
+package com.example;
 
 import java.security.Principal;
 
@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.entity.Account;
+import com.example.userdetails.Account;
+import com.example.userdetails.AuthenticationPrincipalAccount;
+import com.example.userdetails.UserDetailsImpl;
 
 @Controller
 public class WebController {
@@ -62,7 +64,7 @@ public class WebController {
 
     // annotation + expression
     @GetMapping("/success5")
-    public String success5(@AuthPrincipalAccount Account account, Model model) {
+    public String success5(@AuthenticationPrincipalAccount Account account, Model model) {
         model.addAttribute("account", account);
         return "logged_in";
     }

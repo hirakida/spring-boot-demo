@@ -1,4 +1,4 @@
-package com.example.web;
+package com.example.userdetails;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -12,5 +12,5 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @AuthenticationPrincipal(expression = "@accountService.findOne(#this)")
-public @interface AuthPrincipalAccount {
+public @interface AuthenticationPrincipalAccount {
 }
