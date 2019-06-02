@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.web;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.entity.User;
-import com.example.service.UserService;
+import com.example.core.User;
+import com.example.core.UserService;
 
 import lombok.RequiredArgsConstructor;
 

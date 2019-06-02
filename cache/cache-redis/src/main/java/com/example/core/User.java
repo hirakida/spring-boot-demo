@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example.core;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity

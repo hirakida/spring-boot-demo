@@ -29,7 +29,7 @@ public class ApiHandler {
     private final UserRepository userRepository;
 
     @Bean
-    public RouterFunction<ServerResponse> route() {
+    public RouterFunction<ServerResponse> routes() {
         return RouterFunctions.route(GET("/users/{id}").and(accept(APPLICATION_JSON)),
                                      this::findById)
                               .andRoute(GET("/users").and(accept(APPLICATION_JSON)),

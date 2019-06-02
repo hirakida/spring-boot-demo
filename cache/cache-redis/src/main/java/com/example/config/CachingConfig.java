@@ -20,7 +20,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CachingConfig extends CachingConfigurerSupport {
     public static final String CACHE_NAME = "default";
-    private static final long EXPIRATION = 60;
     private final RedisConnectionFactory redisConnectionFactory;
 
     @Bean
@@ -28,11 +27,10 @@ public class CachingConfig extends CachingConfigurerSupport {
     public CacheManager cacheManager() {
         RedisCacheConfiguration configuration =
                 RedisCacheConfiguration.defaultCacheConfig()
-                                       .entryTtl(Duration.ofSeconds(EXPIRATION))
+                                       .entryTtl(Duration.ofSeconds(60))
                                        .disableCachingNullValues();
-        Map<String, RedisCacheConfiguration> configurationMap = Map.of(CACHE_NAME, configuration);
         return RedisCacheManager.builder(redisConnectionFactory)
-                                .withInitialCacheConfigurations(configurationMap)
+                                .withInitialCacheConfigurations(Map.of(CACHE_NAME, configuration))
                                 .build();
     }
 

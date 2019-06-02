@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example.core;
 
 import java.util.List;
 
@@ -8,8 +8,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.example.config.CachingConfig;
-import com.example.entity.User;
-import com.example.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
