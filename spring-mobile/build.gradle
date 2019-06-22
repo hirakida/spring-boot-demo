@@ -1,27 +1,23 @@
 plugins {
     id 'java'
     id 'idea'
-    id 'org.springframework.boot' version '2.1.3.RELEASE'
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
 }
 
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 11
+sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
     maven { url 'https://repo.spring.io/milestone' }
 }
 
-ext {
-    set('springMobileVersion', '2.0.0.M3')
-}
-
 dependencies {
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation("org.springframework.mobile:spring-mobile-starter:${springMobileVersion}")
-    runtimeOnly('org.springframework.boot:spring-boot-devtools')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.mobile:spring-mobile-starter:2.0.0.M3'
+    runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
