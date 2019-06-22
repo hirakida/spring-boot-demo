@@ -1,0 +1,6 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+hello:
+  message: Hello, Spring Boot Starter!

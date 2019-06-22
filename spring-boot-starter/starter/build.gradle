@@ -1,0 +1,50 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.6.RELEASE' apply false
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'idea'
+    apply plugin: 'maven'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    group = 'com.github.hirakida.spring.boot'
+    version = '0.0.1'
+    sourceCompatibility = JavaVersion.VERSION_11
+
+    repositories {
+        mavenCentral()
+    }
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: "file://${rootProject.projectDir}/../maven-repo")
+            }
+        }
+    }
+}
+
+project(':hello-spring-boot-autoconfigure') {
+    bootJar.enabled = false
+    jar.enabled = true
+
+    dependencies {
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+        compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
+        implementation 'org.springframework.boot:spring-boot-starter'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+}
+
+project(':hello-spring-boot-starter') {
+    bootJar.enabled = false
+    jar.enabled = true
+
+    dependencies {
+        api project(':hello-spring-boot-autoconfigure')
+        implementation 'org.springframework.boot:spring-boot-starter'
+    }
+}

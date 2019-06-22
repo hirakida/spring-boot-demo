@@ -1,0 +1,23 @@
+plugins {
+    id 'idea'
+    id 'java'
+    id 'maven'
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_11
+
+repositories {
+//    maven { url "file://${rootProject.projectDir}/../maven-repo" }
+    maven { url 'http://hirakida.github.io/maven-repo/' }
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'com.github.hirakida.spring.boot:hello-spring-boot-starter:0.0.1'
+}
