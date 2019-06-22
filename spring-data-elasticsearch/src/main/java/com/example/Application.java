@@ -8,27 +8,28 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.entity.User;
-import com.example.repository.UserRepository;
+import com.example.core.User;
+import com.example.core.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @SpringBootApplication
 @RequiredArgsConstructor
-public class ElasticsearchApplication implements CommandLineRunner {
+public class Application implements CommandLineRunner {
     private final UserRepository userRepository;
 
     @Override
     public void run(String... strings) throws IOException {
+        userRepository.deleteAll();
         IntStream.rangeClosed(1, 5)
                  .forEach(i -> {
                      String name = "user" + i;
-                     userRepository.deleteByName(name);
-                     userRepository.save(User.of(name, LocalDateTime.now()));
+                     User user = User.of(name, "hello " + name, LocalDateTime.now());
+                     userRepository.save(user);
                  });
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(ElasticsearchApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }

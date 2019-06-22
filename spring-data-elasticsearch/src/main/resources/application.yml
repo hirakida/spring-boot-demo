@@ -2,6 +2,7 @@ spring:
   data:
     elasticsearch:
       cluster-name: docker-cluster
+      cluster-nodes: localhost:9300
   devtools:
     livereload:
       enabled: false
