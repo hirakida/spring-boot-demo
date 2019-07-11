@@ -7,28 +7,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.entity.Account;
-import com.example.mapper.AccountMapper;
+import com.example.entity.User;
+import com.example.mapper.UserMapper;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-    private final AccountMapper accountMapper;
+    private final UserMapper userMapper;
 
-    @GetMapping("/accounts")
-    public List<Account> findAll() {
-        return accountMapper.findAll();
+    @GetMapping("/users")
+    public List<User> findAll() {
+        return userMapper.findAll();
     }
 
-    @GetMapping(value = "/accounts", params = "ids")
-    public List<Account> findByIds(@RequestParam List<Long> ids) {
-        return accountMapper.findByIds(ids);
+    @GetMapping(value = "/users", params = "ids")
+    public List<User> findByIds(@RequestParam List<Long> ids) {
+        return userMapper.findByIds(ids);
     }
 
-    @GetMapping("/accounts/{id}")
-    public Account findById(@PathVariable long id) {
-        return accountMapper.findById(id);
+    @GetMapping("/users/{id}")
+    public User findById(@PathVariable long id) {
+        return userMapper.findById(id);
     }
 }

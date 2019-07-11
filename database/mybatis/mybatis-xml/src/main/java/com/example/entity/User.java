@@ -7,9 +7,11 @@ import lombok.Data;
 
 @Data
 @SuppressWarnings("serial")
-public class Account implements Serializable {
+public class User implements Serializable {
     private long id;
     private String name;
+    private Gender gender;
+    private Blood blood;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

@@ -1,6 +1,6 @@
-DELETE FROM `account`;
-INSERT INTO `account` (`name`, `created_at`, `updated_at`) VALUES ('name1', now(), now());
-INSERT INTO `account` (`name`, `created_at`, `updated_at`) VALUES ('name2', now(), now());
-INSERT INTO `account` (`name`, `created_at`, `updated_at`) VALUES ('name3', now(), now());
-INSERT INTO `account` (`name`, `created_at`, `updated_at`) VALUES ('name4', now(), now());
-INSERT INTO `account` (`name`, `created_at`, `updated_at`) VALUES ('name5', now(), now());
+DELETE FROM `user`;
+INSERT INTO `user` (`name`, `gender`, `blood`, `created_at`, `updated_at`) VALUES ('name1', 0, 'A', now(), now());
+INSERT INTO `user` (`name`, `gender`, `blood`, `created_at`, `updated_at`) VALUES ('name2', 0, 'B', now(), now());
+INSERT INTO `user` (`name`, `gender`, `blood`, `created_at`, `updated_at`) VALUES ('name3', 1, 'O', now(), now());
+INSERT INTO `user` (`name`, `gender`, `blood`, `created_at`, `updated_at`) VALUES ('name4', 1, 'AB', now(), now());
+INSERT INTO `user` (`name`, `gender`, `blood`, `created_at`, `updated_at`) VALUES ('name5', 0, 'A', now(), now());

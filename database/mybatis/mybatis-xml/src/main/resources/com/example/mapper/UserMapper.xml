@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.mapper.AccountMapper">
+<mapper namespace="com.example.mapper.UserMapper">
   <sql id="selectAll">
-    SELECT `id`, `name`, `created_at`, `updated_at` FROM `account`
+    SELECT `id`, `name`, `gender`, `blood`, `created_at`, `updated_at` FROM `user`
   </sql>
 
-  <select id="findAll" resultType="com.example.entity.Account">
+  <select id="findAll" resultType="com.example.entity.User">
     <include refid="selectAll"></include>
   </select>
 
-  <select id="findById" parameterType="long" resultType="com.example.entity.Account">
+  <select id="findById" parameterType="long" resultType="com.example.entity.User">
     <include refid="selectAll"></include>
     WHERE `id` = #{id}
   </select>
 
-  <select id="findByIds" parameterType="java.util.List" resultType="com.example.entity.Account">
+  <select id="findByIds" parameterType="java.util.List" resultType="com.example.entity.User">
     <include refid="selectAll"></include>
     WHERE id IN
     <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
