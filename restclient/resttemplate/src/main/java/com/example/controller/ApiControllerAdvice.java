@@ -3,7 +3,7 @@ package com.example.controller;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
@@ -21,8 +21,9 @@ import lombok.extern.slf4j.Slf4j;
 public class ApiControllerAdvice extends ResponseEntityExceptionHandler {
 
     @Override
-    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
-                                                             HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body,
+                                                             HttpHeaders headers, HttpStatus status,
+                                                             WebRequest request) {
         log.warn("{}", request, ex);
         return super.handleExceptionInternal(ex, body, headers, status, request);
     }
@@ -30,29 +31,29 @@ public class ApiControllerAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler(HttpClientErrorException.class)
     public ResponseEntity<Object> handleHttpClientErrorException(HttpClientErrorException e,
                                                                  WebRequest request) {
-        return handleExceptionInternal(e, new ErrorResponse(e.getStatusCode()), null,
-                                       e.getStatusCode(), request);
+        return handleExceptionInternal(e, new ErrorResponse(e.getStatusCode()),
+                                       HttpHeaders.EMPTY, e.getStatusCode(), request);
     }
 
     @ExceptionHandler(HttpServerErrorException.class)
     public ResponseEntity<Object> handleHttpServerErrorException(HttpServerErrorException e,
                                                                  WebRequest request) {
-        return handleExceptionInternal(e, new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR), null,
-                                       HttpStatus.INTERNAL_SERVER_ERROR, request);
+        return handleExceptionInternal(e, new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR),
+                                       HttpHeaders.EMPTY, HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
     @ExceptionHandler(RestClientException.class)
     public ResponseEntity<Object> handleRestClientException(RestClientException e,
                                                             WebRequest request) {
-        return handleExceptionInternal(e, new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR), null,
-                                       HttpStatus.INTERNAL_SERVER_ERROR, request);
+        return handleExceptionInternal(e, new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR),
+                                       HttpHeaders.EMPTY, HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
     @ExceptionHandler(ResourceAccessException.class)
     public ResponseEntity<Object> handleResourceAccessException(ResourceAccessException e,
                                                                 WebRequest request) {
-        return handleExceptionInternal(e, new ErrorResponse(HttpStatus.REQUEST_TIMEOUT), null,
-                                       HttpStatus.REQUEST_TIMEOUT, request);
+        return handleExceptionInternal(e, new ErrorResponse(HttpStatus.REQUEST_TIMEOUT),
+                                       HttpHeaders.EMPTY, HttpStatus.REQUEST_TIMEOUT, request);
     }
 
     @Value

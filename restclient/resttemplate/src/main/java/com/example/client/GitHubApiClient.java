@@ -1,5 +1,6 @@
 package com.example.client;
 
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.core.io.Resource;
@@ -18,21 +19,22 @@ public class GitHubApiClient {
     private final RestOperations restOperations;
 
     public User getUser(String username) {
-        return restOperations.getForObject(getUserUrl(), User.class, username);
+        return Optional.ofNullable(restOperations.getForObject(getUrl(), User.class, username))
+                       .orElseThrow();
     }
 
     public Resource getUserWithResource(String username) {
-        return restOperations.exchange(getUserUrl(), HttpMethod.GET, HttpEntity.EMPTY, Resource.class, username)
-                             .getBody();
+        return Optional.of(restOperations.exchange(getUrl(), HttpMethod.GET, HttpEntity.EMPTY,
+                                                   Resource.class, username))
+                       .map(HttpEntity::getBody)
+                       .orElseThrow();
     }
 
     public Set<HttpMethod> options() {
-        String url = UriComponentsBuilder.fromHttpUrl(API_URL)
-                                         .toUriString();
-        return restOperations.optionsForAllow(url);
+        return restOperations.optionsForAllow(API_URL);
     }
 
-    private static String getUserUrl() {
+    private static String getUrl() {
         return UriComponentsBuilder.fromHttpUrl(API_URL)
                                    .path("/users/{username}")
                                    .build(false)

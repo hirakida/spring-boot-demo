@@ -1,28 +1,29 @@
 plugins {
     id 'idea'
     id 'java'
-    id 'org.springframework.boot' version '2.1.3.RELEASE'
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
 }
 
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 11
+sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    def okhttpVersion = '3.13.1'
-
-    annotationProcessor('org.projectlombok:lombok')
-    compileOnly('org.projectlombok:lombok')
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.apache.httpcomponents:httpclient')
-    implementation("com.squareup.okhttp3:okhttp:${okhttpVersion}")
-    implementation("com.squareup.okhttp3:logging-interceptor:${okhttpVersion}")
-    runtimeOnly('org.springframework.boot:spring-boot-devtools')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    def okhttpVersion = '4.0.1'
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+    implementation 'org.apache.httpcomponents:httpclient'
+    implementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}"
+    compileOnly 'com.google.code.findbugs:annotations:3.0.1'
+    runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
