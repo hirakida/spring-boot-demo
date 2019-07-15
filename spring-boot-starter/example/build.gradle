@@ -12,9 +12,8 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
-//    maven { url "file://${rootProject.projectDir}/../maven-repo" }
-    maven { url 'http://hirakida.github.io/maven-repo/' }
     mavenCentral()
+    maven { url 'https://dl.bintray.com/hirakida/maven' }
 }
 
 dependencies {

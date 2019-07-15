@@ -1,5 +1,6 @@
 plugins {
     id 'org.springframework.boot' version '2.1.6.RELEASE' apply false
+    id 'com.jfrog.bintray' version '1.8.4' apply false
 }
 
 subprojects {
@@ -7,8 +8,10 @@ subprojects {
     apply plugin: 'java-library'
     apply plugin: 'idea'
     apply plugin: 'maven'
+    apply plugin: 'maven-publish'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'com.jfrog.bintray'
 
     group = 'com.github.hirakida.spring.boot'
     version = '0.0.1'
@@ -18,10 +21,18 @@ subprojects {
         mavenCentral()
     }
 
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                repository(url: "file://${rootProject.projectDir}/../maven-repo")
+    bintray {
+        user = project.property('bintray_user')
+        key = project.property('bintray_key')
+        configurations = ['archives']
+
+        pkg {
+            repo = 'maven'
+            name = project.archivesBaseName
+            licenses = ['MIT']
+            vcsUrl = 'https://github.com/hirakida/spring-boot-demo.git'
+            version {
+                name = project.version
             }
         }
     }
