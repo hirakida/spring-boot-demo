@@ -1,4 +1,4 @@
-package com.example.task;
+package com.example;
 
 import java.time.LocalDateTime;
 
@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class FixedTasks {
-
     /**
      * 5 seconds after the end of the last invocation
      */

@@ -15,16 +15,15 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class EventScheduler {
+public class ScheduledTask {
     private final ApplicationEventPublisher eventPublisher;
-    private static final AtomicInteger atomicInteger = new AtomicInteger(1);
+    private static final AtomicInteger COUNTER = new AtomicInteger(1);
 
     @Scheduled(fixedRate = 10000)
     public void publishEvent() {
-        int id = atomicInteger.getAndIncrement();
-        log.info("publish start {}", id);
-        UserEvent event = new UserEvent(new User(id, "name" + id));
-        eventPublisher.publishEvent(event);
-        log.info("publish end {}", id);
+        int count = COUNTER.getAndIncrement();
+        log.info("publish start {}", count);
+        eventPublisher.publishEvent(new UserEvent(new User(count, "name" + count)));
+        log.info("publish end {}", count);
     }
 }

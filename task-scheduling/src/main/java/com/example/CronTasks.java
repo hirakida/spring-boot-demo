@@ -1,4 +1,4 @@
-package com.example.task;
+package com.example;
 
 import java.time.LocalDateTime;
 
@@ -22,7 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class CronTasks {
-
     private static final String ZONE = "Asia/Tokyo";
     private final Environment environment;
 
