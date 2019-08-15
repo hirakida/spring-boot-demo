@@ -19,7 +19,7 @@ public class RedisConfig {
 
     @Bean
     public MessageListenerAdapter messageListenerAdapter() {
-        return new MessageListenerAdapter(new RedisMessageSubscriber());
+        return new MessageListenerAdapter(new MessageListenerImpl());
     }
 
     @Bean

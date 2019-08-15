@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example;
 
 import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener;
 import org.springframework.data.mongodb.core.mapping.event.AfterDeleteEvent;
@@ -7,12 +7,10 @@ import org.springframework.data.mongodb.core.mapping.event.AfterSaveEvent;
 import org.springframework.data.mongodb.core.mapping.event.BeforeDeleteEvent;
 import org.springframework.data.mongodb.core.mapping.event.BeforeSaveEvent;
 
-import com.example.entity.User;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class UserListener extends AbstractMongoEventListener<User> {
+public class UserEventListener extends AbstractMongoEventListener<User> {
 
     @Override
     public void onAfterLoad(AfterLoadEvent<User> event) {

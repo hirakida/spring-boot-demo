@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example;
 
 import java.util.List;
 
@@ -12,31 +12,30 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.entity.User;
-import com.example.repository.UserRepository;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class ApiController {
     private final UserRepository userRepository;
 
-    @GetMapping("/users")
+    @GetMapping
     public List<User> findAll() {
         return userRepository.findAllList();
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public User findById(@PathVariable int id) {
         return userRepository.findById(id).orElseThrow();
     }
 
-    @PostMapping("/users")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@RequestBody @Validated UserRequest request) {
         User user = new User();
@@ -44,14 +43,14 @@ public class ApiController {
         return userRepository.save(user);
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     public User update(@RequestBody @Validated UserRequest request, @PathVariable int id) {
         User user = userRepository.findById(id).orElseThrow();
         user.setName(request.getName());
         return userRepository.save(user);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
         userRepository.deleteById(id);

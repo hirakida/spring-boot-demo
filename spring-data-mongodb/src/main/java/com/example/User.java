@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class User {
     @Id
-    private int id;
+    private String id;
     private String name;
     @CreatedDate
     private LocalDateTime createdAt;

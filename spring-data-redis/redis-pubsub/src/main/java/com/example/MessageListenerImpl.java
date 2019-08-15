@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class RedisMessageSubscriber implements MessageListener {
+public class MessageListenerImpl implements MessageListener {
 
     @Override
     public void onMessage(Message message, @Nullable byte[] pattern) {

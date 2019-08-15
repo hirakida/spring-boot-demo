@@ -6,14 +6,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.entity.User;
-import com.example.repository.UserRepository;
-
 import lombok.RequiredArgsConstructor;
 
 @SpringBootApplication
 @RequiredArgsConstructor
-public class MongoApplication implements CommandLineRunner {
+public class Application implements CommandLineRunner {
     private final UserRepository userRepository;
 
     @Override
@@ -27,6 +24,6 @@ public class MongoApplication implements CommandLineRunner {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(MongoApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
