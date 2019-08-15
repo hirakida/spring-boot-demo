@@ -1,8 +1,6 @@
-package com.example.repository;
+package com.example;
 
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
-
-import com.example.entity.User;
 
 import reactor.core.publisher.Flux;
 

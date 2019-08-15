@@ -1,4 +1,4 @@
-package com.example;
+package com.example.config;
 
 import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener;
 import org.springframework.data.mongodb.core.mapping.event.AfterDeleteEvent;
@@ -6,6 +6,8 @@ import org.springframework.data.mongodb.core.mapping.event.AfterLoadEvent;
 import org.springframework.data.mongodb.core.mapping.event.AfterSaveEvent;
 import org.springframework.data.mongodb.core.mapping.event.BeforeDeleteEvent;
 import org.springframework.data.mongodb.core.mapping.event.BeforeSaveEvent;
+
+import com.example.User;
 
 import lombok.extern.slf4j.Slf4j;
 

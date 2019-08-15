@@ -7,7 +7,7 @@ import org.bson.Document;
 import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener;
 import org.springframework.data.mongodb.core.mapping.event.BeforeSaveEvent;
 
-import com.example.entity.User;
+import com.example.User;
 
 public class UserEventListener extends AbstractMongoEventListener<User> {
 

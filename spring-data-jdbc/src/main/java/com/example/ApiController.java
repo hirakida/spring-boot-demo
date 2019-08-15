@@ -1,12 +1,15 @@
 package com.example;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import javax.validation.constraints.NotNull;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,10 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
+@Slf4j
 public class ApiController {
     private final UserRepository userRepository;
 
@@ -37,14 +42,14 @@ public class ApiController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User create(@RequestBody @Validated UserRequest request) {
+    public User create(@RequestBody @Validated RequestData request) {
         User user = new User();
         user.setName(request.getName());
         return userRepository.save(user);
     }
 
     @PutMapping("/{id}")
-    public User update(@RequestBody @Validated UserRequest request, @PathVariable int id) {
+    public User update(@RequestBody @Validated RequestData request, @PathVariable int id) {
         User user = userRepository.findById(id).orElseThrow();
         user.setName(request.getName());
         return userRepository.save(user);
@@ -56,8 +61,14 @@ public class ApiController {
         userRepository.deleteById(id);
     }
 
+    @ExceptionHandler
+    public ResponseEntity<Object> handleNoSuchElementException(NoSuchElementException e) {
+        log.warn(e.getMessage(), e);
+        return ResponseEntity.notFound().build();
+    }
+
     @Data
-    public static class UserRequest {
+    public static class RequestData {
         private @NotNull String name;
     }
 }

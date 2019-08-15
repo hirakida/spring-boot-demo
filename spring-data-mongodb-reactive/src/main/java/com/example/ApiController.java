@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example;
 
 import org.reactivestreams.Publisher;
 import org.springframework.beans.BeanUtils;
@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.entity.User;
-import com.example.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
