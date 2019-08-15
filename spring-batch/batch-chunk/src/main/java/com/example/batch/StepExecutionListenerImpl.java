@@ -1,4 +1,4 @@
-package com.example.listener;
+package com.example.batch;
 
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.StepExecution;
@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class MyStepExecutionListener extends StepExecutionListenerSupport {
+public class StepExecutionListenerImpl extends StepExecutionListenerSupport {
 
     @Override
     public ExitStatus afterStep(StepExecution stepExecution) {

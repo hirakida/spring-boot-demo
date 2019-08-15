@@ -1,6 +1,5 @@
-package com.example.tasklet;
+package com.example.batch;
 
-import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -10,8 +9,8 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.stereotype.Component;
 
-import com.example.entity.User;
-import com.example.repository.UserRepository;
+import com.example.core.User;
+import com.example.core.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,11 +19,14 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class Tasklet1 implements Tasklet {
-
     private final UserRepository userRepository;
+    private final ScopeBean jobScopeBean;
+    private final ScopeBean stepScopeBean;
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+        log.info("{} {}", jobScopeBean, stepScopeBean);
+
         IntStream.rangeClosed(1, 5)
                  .forEach(i -> {
                      User user = new User();
@@ -33,8 +35,8 @@ public class Tasklet1 implements Tasklet {
                      userRepository.saveAndFlush(user);
                  });
 
-        List<User> users = userRepository.findAll();
-        users.forEach(user -> log.info("{}", user));
+        userRepository.findAll()
+                      .forEach(user -> log.info("{}", user));
         return RepeatStatus.FINISHED;
     }
 }

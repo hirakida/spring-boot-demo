@@ -1,6 +1,5 @@
-package com.example;
+package com.example.batch;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.batch.core.Job;
@@ -21,7 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class CronTasks {
-
     private final JobLauncher jobLauncher;
     private final Job job1;
     private final Job job2;
@@ -29,23 +27,22 @@ public class CronTasks {
 
     @Scheduled(cron = "0 * * * * *")
     public void job1() {
-        job(job1);
+        runJob(job1);
     }
 
     @Scheduled(cron = "20 * * * * *")
     public void job2() {
-        job(job2);
+        runJob(job2);
     }
 
     @Scheduled(cron = "40 * * * * *")
     public void job3() {
-        job(job3);
+        runJob(job3);
     }
 
-    private void job(Job job) {
-        Map<String, JobParameter> param = new HashMap<>();
-        param.put("time", new JobParameter(System.currentTimeMillis()));
-        JobParameters jobParameters = new JobParameters(param);
+    private void runJob(Job job) {
+        Map<String, JobParameter> params = Map.of("time", new JobParameter(System.currentTimeMillis()));
+        JobParameters jobParameters = new JobParameters(params);
         try {
             log.info("##### {} start #####", job.getName());
             jobLauncher.run(job, jobParameters);
@@ -54,7 +51,7 @@ public class CronTasks {
                 JobInstanceAlreadyCompleteException |
                 JobParametersInvalidException |
                 JobRestartException e) {
-            log.error(e.toString());
+            log.error(e.getMessage(), e);
         }
     }
 }

@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class CustomEntityMapper implements EntityMapper {
+public class EntityMapperImpl implements EntityMapper {
     private final ObjectMapper objectMapper;
 
     @Override

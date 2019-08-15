@@ -8,9 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.core.User;
-import com.example.core.UserRepository;
-
 import lombok.RequiredArgsConstructor;
 
 @SpringBootApplication
@@ -24,7 +21,10 @@ public class Application implements CommandLineRunner {
         IntStream.rangeClosed(1, 5)
                  .forEach(i -> {
                      String name = "user" + i;
-                     User user = User.of(name, "hello " + name, LocalDateTime.now());
+                     User user = new User();
+                     user.setName(name);
+                     user.setMessage("Hello " + name + '!');
+                     user.setCreatedAt(LocalDateTime.now());
                      userRepository.save(user);
                  });
     }

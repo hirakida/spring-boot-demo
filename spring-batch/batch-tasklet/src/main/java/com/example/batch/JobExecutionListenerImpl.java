@@ -1,4 +1,4 @@
-package com.example.listener;
+package com.example.batch;
 
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.listener.JobExecutionListenerSupport;
@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class MyJobExecutionListener extends JobExecutionListenerSupport {
+public class JobExecutionListenerImpl extends JobExecutionListenerSupport {
 
     @Override
     public void beforeJob(JobExecution jobExecution) {

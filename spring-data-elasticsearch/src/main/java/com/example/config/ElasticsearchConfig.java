@@ -15,12 +15,12 @@ public class ElasticsearchConfig {
 
     @Bean
     public ElasticsearchTemplate elasticsearchTemplate(Client client, ElasticsearchConverter converter,
-                                                       CustomEntityMapper customEntityMapper) {
-        return new ElasticsearchTemplate(client, converter, customEntityMapper);
+                                                       EntityMapperImpl entityMapper) {
+        return new ElasticsearchTemplate(client, converter, entityMapper);
     }
 
     @Bean
-    public CustomEntityMapper customEntityMapper(ObjectMapper objectMapper) {
-        return new CustomEntityMapper(objectMapper);
+    public EntityMapperImpl entityMapper(ObjectMapper objectMapper) {
+        return new EntityMapperImpl(objectMapper);
     }
 }

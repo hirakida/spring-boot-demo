@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.stereotype.Component;
 
-import com.example.entity.Member;
-import com.example.repository.MemberRepository;
+import com.example.core.Member;
+import com.example.core.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class MyItemWriter implements ItemWriter<Member> {
-
+public class ItemWriterImpl implements ItemWriter<Member> {
     private final MemberRepository memberRepository;
 
     @Override

@@ -1,6 +1,6 @@
-package com.example.entity;
+package com.example.core;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,9 +31,9 @@ public class User {
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
     @Column(nullable = false)
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 }
