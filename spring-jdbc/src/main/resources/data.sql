@@ -1,5 +1,5 @@
-INSERT INTO account(name) VALUES ('user1');
-INSERT INTO account(name) VALUES ('user2');
-INSERT INTO account(name) VALUES ('user3');
-INSERT INTO account(name) VALUES ('user4');
-INSERT INTO account(name) VALUES ('user5');
+INSERT INTO user(name, created_at, updated_at) VALUES ('user1', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+INSERT INTO user(name, created_at, updated_at) VALUES ('user2', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+INSERT INTO user(name, created_at, updated_at) VALUES ('user3', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+INSERT INTO user(name, created_at, updated_at) VALUES ('user4', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+INSERT INTO user(name, created_at, updated_at) VALUES ('user5', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());

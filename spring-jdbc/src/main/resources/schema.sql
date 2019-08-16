@@ -5,7 +5,9 @@
  - data-(platform).sql
  - data.sql
 */
-CREATE TABLE IF NOT EXISTS account (
+CREATE TABLE IF NOT EXISTS user (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
-  `name` VARCHAR(30) NOT NULL
+  `name` VARCHAR(30) NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NOT NULL
 );

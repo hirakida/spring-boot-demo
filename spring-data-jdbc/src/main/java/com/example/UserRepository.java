@@ -1,6 +1,5 @@
 package com.example;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.data.jdbc.repository.query.Query;
@@ -14,7 +13,4 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     @Query("SELECT * FROM user ORDER BY id")
     Stream<User> findAllStream();
-
-    @Query("SELECT * FROM user ORDER BY id")
-    List<User> findAllList();
 }

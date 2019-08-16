@@ -2,7 +2,9 @@ package com.example;
 
 import java.time.LocalDateTime;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
@@ -14,13 +16,8 @@ public class User {
     private String id;
     private String name;
     private int age;
+    @CreatedDate
     private LocalDateTime createdAt;
+    @LastModifiedDate
     private LocalDateTime updatedAt;
-
-    public static User of(String name, int age) {
-        final User user = new User();
-        user.setName(name);
-        user.setAge(age);
-        return user;
-    }
 }

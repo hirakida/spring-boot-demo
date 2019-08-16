@@ -9,3 +9,7 @@ spring:
   output:
     ansi:
       enabled: always
+server:
+  error:
+    whitelabel:
+      enabled: false
