@@ -15,7 +15,7 @@ public class StringRedisClient {
 
     public Mono<String> get(String key) {
         return redisTemplate.hasKey(key)
-                            .flatMap(hasKey -> redisTemplate.opsForValue().get(key));
+                            .flatMap(hasKey -> hasKey ? redisTemplate.opsForValue().get(key) : Mono.empty());
     }
 
     public Mono<Boolean> multiSet(Map<String, String> map) {

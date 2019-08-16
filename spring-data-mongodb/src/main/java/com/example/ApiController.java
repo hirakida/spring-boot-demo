@@ -1,5 +1,7 @@
 package com.example;
 
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.BeanUtils;
@@ -36,19 +38,19 @@ public class ApiController {
     @GetMapping("/{id}")
     public User findById(@PathVariable String id) {
         return userRepository.findById(id)
-                             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                             .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody @Validated RequestData request) {
+    public void create(@RequestBody @Validated UserRequest request) {
         User user = new User();
         BeanUtils.copyProperties(request, user);
         userRepository.save(user);
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable String id, @RequestBody @Validated RequestData request) {
+    public void update(@PathVariable String id, @RequestBody @Validated UserRequest request) {
         userRepository.findById(id)
                       .ifPresent(user -> {
                           user.setName(request.getName());
@@ -69,7 +71,7 @@ public class ApiController {
     }
 
     @Data
-    public static class RequestData {
+    public static class UserRequest {
         private @NotNull String id;
         private @NotNull String name;
     }

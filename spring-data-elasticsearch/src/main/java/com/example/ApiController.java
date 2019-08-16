@@ -2,8 +2,6 @@ package com.example;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import javax.validation.constraints.NotNull;
 
@@ -41,14 +39,13 @@ public class ApiController {
     }
 
     @GetMapping(params = "message")
-    public List<User> searchByMessage(@RequestParam String message) {
-        return StreamSupport.stream(userRepository.searchByMessage(message).spliterator(), false)
-                            .collect(Collectors.toList());
+    public Iterable<User> searchByMessage(@RequestParam String message) {
+        return userRepository.searchByMessage(message);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User create(@RequestBody @Validated RequestData request) {
+    public User create(@RequestBody @Validated UserRequest request) {
         User user = new User();
         user.setName(request.getName());
         user.setMessage(request.getMessage());
@@ -57,7 +54,7 @@ public class ApiController {
     }
 
     @Data
-    public static class RequestData {
+    public static class UserRequest {
         private @NotNull String name;
         private @NotNull String message;
     }

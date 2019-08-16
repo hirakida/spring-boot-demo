@@ -5,7 +5,7 @@ import java.util.Map;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.stereotype.Component;
 
-import com.example.entity.User;
+import com.example.User;
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
@@ -17,7 +17,7 @@ public class UserRedisClient {
 
     public Mono<User> get(String key) {
         return redisTemplate.hasKey(key)
-                            .flatMap(hasKey -> redisTemplate.opsForValue().get(key));
+                            .flatMap(hasKey -> hasKey ? redisTemplate.opsForValue().get(key) : Mono.empty());
     }
 
     public Mono<Boolean> multiSet(Map<String, User> map) {
