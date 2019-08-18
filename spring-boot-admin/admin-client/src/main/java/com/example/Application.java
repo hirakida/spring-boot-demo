@@ -8,9 +8,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @EnableCaching
 @SpringBootApplication
-public class AdminClientApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(AdminClientApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }

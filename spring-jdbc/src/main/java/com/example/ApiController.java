@@ -20,12 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
-@Slf4j
 public class ApiController {
     private final UserRepository userRepository;
 
@@ -60,7 +58,6 @@ public class ApiController {
 
     @ExceptionHandler({ EmptyResultDataAccessException.class, NoSuchElementException.class })
     public ResponseEntity<Object> handleNotFoundException(RuntimeException e) {
-        log.warn(e.getMessage(), e);
         return ResponseEntity.notFound().build();
     }
 
