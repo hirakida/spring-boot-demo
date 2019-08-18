@@ -1,4 +1,6 @@
-package com.example.controller;
+package com.example;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 import java.util.List;
 
@@ -12,12 +14,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.server.ResponseStatusException;
-
-import com.example.entity.User;
-import com.example.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -39,7 +37,7 @@ public class ApiController {
     @Produces(MediaType.APPLICATION_JSON)
     public User findById(@PathParam("id") int id) {
         return userRepository.findById(id)
-                             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                             .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
     }
 
     @POST
