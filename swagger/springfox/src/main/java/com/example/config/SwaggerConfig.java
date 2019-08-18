@@ -19,7 +19,7 @@ public class SwaggerConfig {
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .paths(PathSelectors.ant("/api/**"))
+                .paths(PathSelectors.ant("/users/**"))
                 .build()
                 .apiInfo(apiInfo());
     }
