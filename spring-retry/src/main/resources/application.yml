@@ -1,8 +1,11 @@
 spring:
+  devtools:
+    livereload:
+      enabled: false
   output:
     ansi:
       enabled: always
-app:
-  retry:
-    max-attempt: 4
-    delay: 1000
+
+retry:
+  max-attempt: 4
+  delay: 1000

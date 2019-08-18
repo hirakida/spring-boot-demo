@@ -1,6 +1,5 @@
 package com.example.config;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.context.annotation.Bean;
@@ -16,17 +15,14 @@ import org.springframework.web.client.ResourceAccessException;
 @EnableRetry
 @Configuration
 public class RetryConfig {
-
     private static final int MAX_ATTEMPTS = 4;
     private static final int BACK_OFF_PERIOD = 500;
 
     @Bean
     public RetryTemplate retryTemplate() {
-        Map<Class<? extends Throwable>, Boolean> exceptions = new HashMap<>();
-        exceptions.put(ResourceAccessException.class, true);
-        exceptions.put(HttpServerErrorException.class, false);
-        exceptions.put(HttpClientErrorException.class, false);
-
+        Map<Class<? extends Throwable>, Boolean> exceptions = Map.of(ResourceAccessException.class, true,
+                                                                     HttpServerErrorException.class, false,
+                                                                     HttpClientErrorException.class, false);
         SimpleRetryPolicy retryPolicy = new SimpleRetryPolicy(MAX_ATTEMPTS, exceptions);
         FixedBackOffPolicy backOffPolicy = new FixedBackOffPolicy();
         backOffPolicy.setBackOffPeriod(BACK_OFF_PERIOD);
