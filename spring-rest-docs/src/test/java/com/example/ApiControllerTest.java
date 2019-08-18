@@ -6,7 +6,6 @@ import static org.springframework.restdocs.request.RequestDocumentation.paramete
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Before;
@@ -26,6 +25,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.example.ApiController.UserRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
@@ -54,59 +54,60 @@ public class ApiControllerTest {
 
     @Test
     public void findAllTest() throws Exception {
-        mockMvc.perform(RestDocumentationRequestBuilders.get("/api/accounts"))
+        mockMvc.perform(RestDocumentationRequestBuilders.get("/users"))
                .andExpect(status().isOk());
     }
 
     @Test
     public void findByIdTest() throws Exception {
-        List<Account> accounts = getAccounts();
-        mockMvc.perform(RestDocumentationRequestBuilders.get("/api/accounts/{id}",
-                                                             accounts.get(0).getId()))
+        List<User> users = getUsers();
+        mockMvc.perform(RestDocumentationRequestBuilders.get("/users/{id}",
+                                                             users.get(0).getId()))
                .andExpect(status().isOk())
                .andDo(document("ApiController",
-                               pathParameters(parameterWithName("id").description("account id"))));
+                               pathParameters(parameterWithName("id").description("user id"))));
     }
 
     @Test
     public void updateTest() throws Exception {
-        List<Account> accounts = getAccounts();
-        Account account = accounts.get(0);
-        account.setName("updated Account");
-        account.setName("put@example.com");
-        mockMvc.perform(RestDocumentationRequestBuilders.put("/api/accounts/{id}", account.getId())
+        List<User> users = getUsers();
+        User user = users.get(0);
+        UserRequest request = new UserRequest();
+        request.setName("updated User");
+        request.setEmail("put@example.com");
+        mockMvc.perform(RestDocumentationRequestBuilders.put("/users/{id}", user.getId())
                                                         .contentType(MediaType.APPLICATION_JSON)
-                                                        .content(objectMapper.writeValueAsString(account)))
+                                                        .content(objectMapper.writeValueAsString(request)))
                .andExpect(status().isOk())
                .andDo(document("ApiController",
-                               pathParameters(parameterWithName("id").description("account id"))));
+                               pathParameters(parameterWithName("id").description("user id"))));
     }
 
     @Test
     public void createTest() throws Exception {
-        Account account = new Account();
-        account.setName("new Account");
-        account.setEmail("post@example.com");
-        mockMvc.perform(RestDocumentationRequestBuilders.post("/api/accounts", account.getId())
+        UserRequest request = new UserRequest();
+        request.setName("new User");
+        request.setEmail("post@example.com");
+        mockMvc.perform(RestDocumentationRequestBuilders.post("/users")
                                                         .contentType(MediaType.APPLICATION_JSON)
-                                                        .content(objectMapper.writeValueAsString(account)))
+                                                        .content(objectMapper.writeValueAsString(request)))
                .andExpect(status().isCreated())
                .andDo(document("ApiController"));
     }
 
     @Test
     public void deleteTest() throws Exception {
-        List<Account> accounts = getAccounts();
-        mockMvc.perform(RestDocumentationRequestBuilders.delete("/api/accounts/{id}",
-                                                                accounts.get(0).getId()))
+        List<User> users = getUsers();
+        mockMvc.perform(RestDocumentationRequestBuilders.delete("/users/{id}",
+                                                                users.get(0).getId()))
                .andExpect(status().isNoContent())
                .andDo(document("ApiController",
-                               pathParameters(parameterWithName("id").description("account id"))));
+                               pathParameters(parameterWithName("id").description("user id"))));
     }
 
-    private List<Account> getAccounts() throws Exception {
-        String url = "http://localhost:" + port + "/api/accounts";
-        Account[] accounts = testRestTemplate.getForObject(url, Account[].class);
-        return Arrays.asList(accounts);
+    private List<User> getUsers() {
+        String url = "http://localhost:" + port + "/users";
+        User[] users = testRestTemplate.getForObject(url, User[].class);
+        return List.of(users);
     }
 }

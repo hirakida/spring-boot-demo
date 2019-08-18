@@ -1,4 +1,4 @@
-package com.example.core;
+package com.example;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,11 +12,4 @@ public class User {
     private String id;
     private String name;
     private int age;
-
-    public static User of(String name, int age) {
-        final User user = new User();
-        user.setName(name);
-        user.setAge(age);
-        return user;
-    }
 }
