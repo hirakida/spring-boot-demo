@@ -7,7 +7,7 @@ import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AppHealthIndicator implements HealthIndicator {
+public class HealthIndicatorImpl implements HealthIndicator {
 
     @Override
     public Health health() {

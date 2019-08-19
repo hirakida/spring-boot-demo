@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Component
-public class AppInfoContributor implements InfoContributor {
+public class InfoContributorImpl implements InfoContributor {
 
     @Override
     public void contribute(Builder builder) {
