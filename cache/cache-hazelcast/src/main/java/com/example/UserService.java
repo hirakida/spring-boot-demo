@@ -25,7 +25,7 @@ public class UserService {
     }
 
     @CacheEvict(key = "'users'")
-    public void deleteCache() {
+    public void evictCache() {
         log.info("@CacheEvict");
     }
 }

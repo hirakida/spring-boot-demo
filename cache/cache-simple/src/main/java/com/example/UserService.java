@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@CacheConfig(cacheNames = "cache1")
+@CacheConfig(cacheNames = CacheManagerConfig.CACHE_NAME)
 @RequiredArgsConstructor
 @Slf4j
 public class UserService {
@@ -27,13 +28,19 @@ public class UserService {
         return userRepository.findById(id).orElseThrow();
     }
 
+    @CachePut(key = "'user:' + #id")
+    public User updateCache(int id) {
+        log.info("@CachePut id:{}", id);
+        return userRepository.findById(id).orElseThrow();
+    }
+
     @CacheEvict(key = "'users'")
-    public void evictCache() {
+    public void deleteCache() {
         log.info("@CacheEvict");
     }
 
     @CacheEvict(key = "'user:' + #id")
-    public void evictCache(int id) {
+    public void deleteCache(int id) {
         log.info("@CacheEvict id:{}", id);
     }
 }

@@ -10,7 +10,7 @@ import com.hazelcast.config.MapConfig;
 @EnableCaching
 @Configuration
 public class CachingConfig {
-    static final String CACHE_NAME = "default";
+    static final String CACHE_NAME = "cache1";
 
     @Bean
     public Config hazelcastConfig() {
@@ -18,7 +18,7 @@ public class CachingConfig {
                 .setName(CACHE_NAME)
                 .setTimeToLiveSeconds(20);
         return new Config()
-                .setInstanceName("instanceName")
+                .setInstanceName("instance1")
                 .addMapConfig(mapConfig);
     }
 }

@@ -1,5 +1,7 @@
 package com.example;
 
+import static com.example.CachingConfig.CACHE_NAME;
+
 import java.util.List;
 
 import org.springframework.cache.annotation.CacheConfig;
@@ -11,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@CacheConfig(cacheNames = "cache1")
+@CacheConfig(cacheNames = CACHE_NAME)
 @RequiredArgsConstructor
 @Slf4j
 public class UserService {
@@ -29,11 +31,11 @@ public class UserService {
 
     @CacheEvict(key = "'users'")
     public void evictCache() {
-        log.info("@CacheEvict");
+        log.info("CacheEvict");
     }
 
     @CacheEvict(key = "'user:' + #id")
     public void evictCache(int id) {
-        log.info("@CacheEvict id:{}", id);
+        log.info("CacheEvict id={}", id);
     }
 }
