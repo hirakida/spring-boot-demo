@@ -6,9 +6,9 @@ import org.springframework.jms.annotation.EnableJms;
 
 @EnableJms
 @SpringBootApplication
-public class JmsArtemisApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(JmsArtemisApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }

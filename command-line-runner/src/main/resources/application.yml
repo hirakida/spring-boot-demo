@@ -4,5 +4,3 @@ spring:
     web-application-type: none
   jmx:
     enabled: false
-  profiles:
-    active: dev
