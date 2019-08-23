@@ -1,4 +1,4 @@
-package com.example.aspect;
+package com.example;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -24,7 +24,7 @@ public class LoggingAspect {
     /**
      * Around
      */
-    @Around("controller1()")
+    @Around("controller()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("[Around][before] Signature={}", joinPoint.getSignature());
         try {
@@ -40,40 +40,45 @@ public class LoggingAspect {
     /**
      * Before
      */
-    @Before("controller2()")
-    public void before(JoinPoint joinPoint) {
+    @Before("bean(*Controller)")
+    public void beforeController(JoinPoint joinPoint) {
         log.info("[Before][controller] Signature={}", joinPoint.getSignature());
     }
 
+    @Before("@annotation(org.springframework.web.bind.annotation.DeleteMapping)")
+    public void beforeDeleteMapping(JoinPoint joinPoint) {
+        log.info("[Before][DeleteMapping] Signature={}", joinPoint.getSignature());
+    }
+
     // method name = findXxxx
-    @Before("execution(* com.example.service.*.find*(..))")
+    @Before("execution(* com.example.*Service.find*(..))")
     public void beforeService1(JoinPoint joinPoint) {
-        log.info("[Before][* com.example.service.*.find*(..)] Signature={}", joinPoint.getSignature());
+        log.info("[Before][* com.example.*Service.find*(..)] Signature={}", joinPoint.getSignature());
     }
 
     // method name = xxxxById
-    @Before("execution(* com.example.service.*.*ById(..))")
+    @Before("execution(* com.example.*Service.*ById(..))")
     public void beforeService2(JoinPoint joinPoint) {
-        log.info("[Before][* com.example.service.*.*ById(..)] Signature={}", joinPoint.getSignature());
+        log.info("[Before][* com.example.*Service.*ById(..)] Signature={}", joinPoint.getSignature());
     }
 
-    // return value = Account
-    @Before("execution(com.example.entity.Account com.example.service.*.*(..))")
+    // return value = User
+    @Before("execution(com.example.User com.example.*Service.*(..))")
     public void beforeService3(JoinPoint joinPoint) {
-        log.info("[Before][com.example.entity.Account com.example.service.*.*(..)] Signature={}",
+        log.info("[Before][com.example.User com.example.*Service.*(..)] Signature={}",
                  joinPoint.getSignature());
     }
 
     // argument = long
-    @Before("execution(* com.example.service.*.*(long))")
+    @Before("execution(* com.example.*Service.*(long))")
     public void beforeService4(JoinPoint joinPoint) {
-        log.info("[Before][* com.example.service.*.*(long)] Signature={}", joinPoint.getSignature());
+        log.info("[Before][* com.example.*Service.*(long)] Signature={}", joinPoint.getSignature());
     }
 
     /**
      * After
      */
-    @After("controller3()")
+    @After("controller()")
     public void afterController(JoinPoint joinPoint) {
         log.info("[After][controller] Signature={}", joinPoint.getSignature());
     }
@@ -86,7 +91,7 @@ public class LoggingAspect {
     /**
      * AfterReturning
      */
-    @AfterReturning("controller4()")
+    @AfterReturning("controller()")
     public void afterReturning(JoinPoint joinPoint) {
         log.info("[AfterReturning][controller] Signature={}", joinPoint.getSignature());
     }
@@ -94,32 +99,16 @@ public class LoggingAspect {
     /**
      * AfterThrowing
      */
-    @AfterThrowing(value = "controller3()", throwing = "e")
+    @AfterThrowing(value = "controller()", throwing = "e")
     public void afterThrowing(JoinPoint joinPoint, Exception e) throws Exception {
         log.error("[AfterThrowing] Signature={}", joinPoint.getSignature(), e);
     }
 
-    @Pointcut("execution(* com.example.controller.*.*(..))")
-    private void controller1() {
-    }
-
-    @Pointcut("within(com.example.controller..*)")
-    private void controller2() {
-    }
-
-    @Pointcut("@within(org.springframework.stereotype.Controller)")
-    private void controller3() {
-    }
-
-    @Pointcut("bean(*Controller)")
-    private void controller4() {
+    @Pointcut("@within(org.springframework.web.bind.annotation.RestController)")
+    private void controller() {
     }
 
     @Pointcut("@within(org.springframework.stereotype.Service)")
     private void service() {
-    }
-
-    @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
-    private void getMapping() {
     }
 }
