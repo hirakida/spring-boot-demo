@@ -1,7 +1,6 @@
 package com.example;
 
 import javax.faces.event.ActionEvent;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.lang.Nullable;
@@ -17,7 +16,6 @@ public class UserBean {
     @Getter
     private final User user;
 
-    @Inject
     public UserBean() {
         user = new User(1, "first1", "last1");
         log.info("{}", user);
