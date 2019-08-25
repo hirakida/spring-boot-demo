@@ -1,0 +1,9 @@
+spring:
+  devtools:
+    livereload:
+      enabled: false
+  output:
+    ansi:
+      enabled: always
+#grpc:
+#  port: 6565
