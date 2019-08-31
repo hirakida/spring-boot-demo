@@ -7,8 +7,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD:
       MYSQL_DATABASE: jpa_demo
-      MYSQL_USER: root
-      MYSQL_PASSWORD:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
   postgresql:
     image: postgres:10

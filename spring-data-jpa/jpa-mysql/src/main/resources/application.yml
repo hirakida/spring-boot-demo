@@ -3,8 +3,8 @@ spring:
     initialization-mode: always
     sql-script-encoding: UTF-8
     url: jdbc:mysql://localhost:3306/jpa_demo
-    username: root
-    password:
+    username: user
+    password: pass
   jpa:
     hibernate:
       ddl-auto: update
