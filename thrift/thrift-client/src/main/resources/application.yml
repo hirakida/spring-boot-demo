@@ -1,0 +1,12 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+
+thrift:
+  host: localhost
+  port: 9090
+  ssl:
+    enabled: true
+    trust-store: truststore.jks
+    trust-store-password: hirakida

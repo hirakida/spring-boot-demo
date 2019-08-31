@@ -1,0 +1,15 @@
+spring:
+  devtools:
+    livereload:
+      enabled: false
+  output:
+    ansi:
+      enabled: always
+
+thrift:
+  host: localhost
+  port: 9090
+  ssl:
+    enabled: true
+    key-store: keystore.jks
+    key-store-password: hirakida
