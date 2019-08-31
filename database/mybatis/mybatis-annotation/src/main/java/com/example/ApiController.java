@@ -1,6 +1,7 @@
-package com.example.controller;
+package com.example;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -9,6 +10,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,42 +19,47 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.entity.Account;
-import com.example.service.AccountService;
-
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class ApiController {
-    private final AccountService accountService;
+    private final UserService userService;
 
-    @GetMapping("/accounts")
-    public List<Account> findAll(@PageableDefault Pageable pageable) {
-        return accountService.findAll(pageable);
+    @GetMapping("/users")
+    public List<User> findAll(@PageableDefault Pageable pageable) {
+        return userService.findAll(pageable);
     }
 
-    @GetMapping("/accounts/{id}")
-    public Account findById(@PathVariable long id) {
-        return accountService.findById(id);
+    @GetMapping("/users/{id}")
+    public User findById(@PathVariable long id) {
+        return userService.findById(id);
     }
 
-    @PostMapping("/accounts")
+    @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody @Validated Request request) {
-        accountService.create(request.getName());
+        userService.create(request.getName());
     }
 
-    @PutMapping("/accounts/{id}")
+    @PutMapping("/users/{id}")
     public void update(@PathVariable long id, @RequestBody @Validated Request request) {
-        accountService.update(id, request.getName());
+        userService.update(id, request.getName());
     }
 
-    @DeleteMapping("/accounts/{id}")
+    @DeleteMapping("/users/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id) {
-        accountService.delete(id);
+        userService.delete(id);
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void notFound(NoSuchElementException e) {
+        log.warn("{}", e.getMessage(), e);
     }
 
     @Data

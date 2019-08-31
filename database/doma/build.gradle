@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.3.RELEASE'
+    id 'org.springframework.boot' version '2.1.7.RELEASE'
     id 'java'
     id 'idea'
 }
@@ -8,24 +8,33 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 11
+sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    def domaStarterVersion = '1.1.1'
-
-    annotationProcessor('org.projectlombok:lombok')
-    compileOnly('org.projectlombok:lombok')
-    annotationProcessor("org.seasar.doma.boot:doma-spring-boot-starter:${domaStarterVersion}")
-    implementation("org.seasar.doma.boot:doma-spring-boot-starter:${domaStarterVersion}")
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    runtimeOnly('org.springframework.boot:spring-boot-devtools')
-    runtimeOnly('com.h2database:h2')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+task copyDomaResources(type: Sync) {
+    from sourceSets.main.resources.srcDirs
+    into compileJava.destinationDir
+    include 'META-INF/**/*.sql'
 }
 
-processResources.destinationDir = compileJava.destinationDir
-compileJava.dependsOn processResources
+compileJava {
+    dependsOn copyDomaResources
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    def domaVersion = '2.25.1'
+
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor "org.seasar.doma:doma:${domaVersion}"
+    compileOnly 'org.projectlombok:lombok'
+    implementation "org.seasar.doma:doma:${domaVersion}"
+    implementation "org.seasar.doma.boot:doma-spring-boot-starter:1.1.1"
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.h2database:h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

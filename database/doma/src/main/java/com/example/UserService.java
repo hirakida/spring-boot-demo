@@ -1,13 +1,10 @@
-package com.example.service;
+package com.example;
 
 import java.util.List;
 
 import org.seasar.doma.boot.Pageables;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import com.example.entity.User;
-import com.example.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 

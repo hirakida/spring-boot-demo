@@ -1,4 +1,4 @@
-package com.example.repository;
+package com.example;
 
 import java.time.LocalDateTime;
 
@@ -6,8 +6,6 @@ import org.seasar.doma.jdbc.entity.EntityListener;
 import org.seasar.doma.jdbc.entity.PreInsertContext;
 import org.seasar.doma.jdbc.entity.PreUpdateContext;
 import org.springframework.stereotype.Component;
-
-import com.example.entity.User;
 
 @Component
 public class UserListener implements EntityListener<User> {

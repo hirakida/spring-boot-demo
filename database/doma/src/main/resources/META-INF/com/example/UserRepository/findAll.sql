@@ -1,4 +1,3 @@
 SELECT
   /*%expand*/*
-FROM
-  user
+FROM user

@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @SuppressWarnings("serial")
-public class Account implements Serializable {
+public class User implements Serializable {
     private long id;
     private String name;
     private LocalDateTime createdAt;

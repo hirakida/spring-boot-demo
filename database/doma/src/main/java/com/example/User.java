@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example;
 
 import java.time.LocalDateTime;
 
@@ -8,8 +8,6 @@ import org.seasar.doma.GeneratedValue;
 import org.seasar.doma.GenerationType;
 import org.seasar.doma.Id;
 import org.seasar.doma.jdbc.entity.NamingType;
-
-import com.example.repository.UserListener;
 
 import lombok.Data;
 

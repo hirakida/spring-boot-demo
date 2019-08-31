@@ -1,4 +1,4 @@
-package com.example.repository;
+package com.example;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +17,6 @@ import org.seasar.doma.SelectType;
 import org.seasar.doma.Update;
 import org.seasar.doma.boot.ConfigAutowireable;
 import org.seasar.doma.jdbc.SelectOptions;
-
-import com.example.entity.User;
 
 @ConfigAutowireable
 @Dao
