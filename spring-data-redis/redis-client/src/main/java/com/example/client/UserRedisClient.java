@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.entity.User;
+import com.example.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,8 +21,7 @@ public class UserRedisClient {
     }
 
     public Optional<User> get(String key) {
-        return Optional.ofNullable(userRedisTemplate.hasKey(key))
-                       .map(hasKey -> userRedisTemplate.opsForValue().get(key));
+        return Optional.ofNullable(userRedisTemplate.opsForValue().get(key));
     }
 
     public void set(long id, User user) {

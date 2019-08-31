@@ -1,6 +1,7 @@
-package com.example.controller;
+package com.example;
 
-import org.springframework.http.HttpStatus;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,18 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.client.StringRedisClient;
+import com.example.client.UserRedisClient;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class StringApiController {
+public class ApiController {
     private final StringRedisClient stringRedisClient;
+    private final UserRedisClient userRedisClient;
 
     @GetMapping("/strings/{key}")
     public String get(@PathVariable String key) {
         return stringRedisClient.get(key)
-                                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
     }
 
     @PutMapping("/strings/{key}")
@@ -42,5 +45,16 @@ public class StringApiController {
     @GetMapping("/strings/exists/{key}/{value}")
     public Boolean exists(@PathVariable String key, @PathVariable String value) {
         return stringRedisClient.exists(key, value);
+    }
+
+    @GetMapping("/users/{id}")
+    public User get(@PathVariable long id) {
+        return userRedisClient.get(id)
+                              .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
+    }
+
+    @DeleteMapping("/users/{id}")
+    public void delete(@PathVariable long id) {
+        userRedisClient.delete(id);
     }
 }

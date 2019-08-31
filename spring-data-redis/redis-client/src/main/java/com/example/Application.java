@@ -10,13 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.client.StringRedisClient;
 import com.example.client.UserRedisClient;
-import com.example.entity.User;
 
 import lombok.RequiredArgsConstructor;
 
 @SpringBootApplication
 @RequiredArgsConstructor
-public class RedisApplication implements CommandLineRunner {
+public class Application implements CommandLineRunner {
     private final StringRedisClient stringRedisClient;
     private final UserRedisClient userRedisClient;
 
@@ -33,6 +32,6 @@ public class RedisApplication implements CommandLineRunner {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(RedisApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
