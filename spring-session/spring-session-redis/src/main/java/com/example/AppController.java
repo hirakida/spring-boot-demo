@@ -16,14 +16,14 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class WebController {
-
+public class AppController {
     private final SessionBean sessionBean;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(HttpSession session, Model model) {
         log.info("{}", sessionBean);
         if (sessionBean.getUuid() == null) {
+            sessionBean.setId(session.getId());
             sessionBean.setUuid(UUID.randomUUID().toString());
             sessionBean.setLocalDateTime(LocalDateTime.now());
         }
@@ -32,7 +32,7 @@ public class WebController {
     }
 
     @PostMapping("/")
-    public String delete(HttpSession session) {
+    public String clear(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }

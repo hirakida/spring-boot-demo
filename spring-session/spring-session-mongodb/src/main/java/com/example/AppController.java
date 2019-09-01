@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -10,23 +10,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.bean.SessionBean;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class WebController {
-
+public class AppController {
     private final SessionBean sessionBean;
 
     @GetMapping("/")
-    public String index(HttpSession session, Model model) {
+    public String index(Model model) {
         log.info("{}", sessionBean);
         if (sessionBean.getUuid() == null) {
-            sessionBean.setId(session.getId());
             sessionBean.setUuid(UUID.randomUUID().toString());
             sessionBean.setLocalDateTime(LocalDateTime.now());
         }
@@ -35,7 +31,7 @@ public class WebController {
     }
 
     @PostMapping("/")
-    public String clear(HttpSession session) {
+    public String delete(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }

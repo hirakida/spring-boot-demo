@@ -2,11 +2,13 @@ package com.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHttpSession;
 
+@EnableJdbcHttpSession
 @SpringBootApplication
-public class SessionRedisApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(SessionRedisApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }

@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SessionMongoApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(SessionMongoApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }

@@ -17,7 +17,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Configuration
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 60)
 public class HttpSessionConfig implements BeanClassLoaderAware {
-
     private ClassLoader classLoader;
 
     @Override

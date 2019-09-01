@@ -1,18 +1,13 @@
 spring:
   datasource:
+    initialization-mode: always
     sql-script-encoding: UTF-8
-    driver-class-name: com.mysql.jdbc.Driver
+    schema: classpath:org/springframework/session/jdbc/schema-mysql.sql
     url: jdbc:mysql://127.0.0.1:3307/session_jdbc_demo?characterEncoding=utf8&useSSL=false
     username: mysql
     password: password
-    initialization-mode: always
   session:
     store-type: jdbc
-    jdbc:
-      initialize-schema: always
-  jpa:
-    hibernate:
-      ddl-auto: update
   output:
     ansi:
       enabled: always

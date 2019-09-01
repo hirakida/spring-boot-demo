@@ -16,8 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class WebController {
-
+public class AppController {
     private final SessionBean sessionBean;
 
     @GetMapping("/")
@@ -32,8 +31,7 @@ public class WebController {
     }
 
     @PostMapping("/")
-    public String clear(HttpSession session) {
-        log.info("sessionId={}", session.getId());
+    public String delete(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }

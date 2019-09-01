@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example;
 
 import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.Session;
@@ -6,30 +6,27 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/session")
 @RequiredArgsConstructor
 public class ApiController {
+    private final FindByIndexNameSessionRepository<?> sessionRepository;
 
-    private final FindByIndexNameSessionRepository<?> findByIndexNameSessionRepository;
-
-    @PostMapping
+    @PostMapping("/session")
     public Session createSession() {
-        return findByIndexNameSessionRepository.createSession();
+        return sessionRepository.createSession();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/session/{id}")
     public Session findById(@PathVariable String id) {
-        return findByIndexNameSessionRepository.findById(id);
+        return sessionRepository.findById(id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/session/{id}")
     public void deleteById(@PathVariable String id) {
-        findByIndexNameSessionRepository.deleteById(id);
+        sessionRepository.deleteById(id);
     }
 }
