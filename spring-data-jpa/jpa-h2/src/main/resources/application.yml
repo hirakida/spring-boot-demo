@@ -21,3 +21,6 @@ spring:
   output:
     ansi:
       enabled: always
+logging:
+  level:
+    org.springframework.orm.jpa.JpaTransactionManager: DEBUG

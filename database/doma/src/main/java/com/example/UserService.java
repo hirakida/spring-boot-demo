@@ -5,10 +5,12 @@ import java.util.List;
 import org.seasar.doma.boot.Pageables;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
@@ -21,17 +23,14 @@ public class UserService {
         return userRepository.findOne(id);
     }
 
-    public int create(String name, int age) {
-        User user = new User();
-        user.setName(name);
-        user.setAge(age);
+    public int create(User user) {
         return userRepository.insert(user);
     }
 
-    public int update(long id, String name, int age) {
+    public int update(long id, User request) {
         User user = userRepository.findOne(id);
-        user.setName(name);
-        user.setAge(age);
+        user.setName(request.getName());
+        user.setAge(request.getAge());
         return userRepository.update(user);
     }
 

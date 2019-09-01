@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example;
 
 import java.time.LocalDateTime;
 
@@ -17,7 +17,7 @@ import lombok.Data;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Data
-public class Account {
+public class User {
     @Id
     @GeneratedValue
     private int id;

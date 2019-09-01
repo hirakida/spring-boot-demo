@@ -8,9 +8,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-import com.example.entity.Account;
-import com.example.repository.AccountRepository;
-import com.example.service.AccountService;
+import com.example.service.UserService1;
+import com.example.service.UserService2;
+import com.example.service.UserService3;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,25 +20,30 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class Application implements CommandLineRunner {
-    private final AccountService accountService;
-    private final AccountRepository accountRepository;
+    private final UserService1 userService1;
+    private final UserService2 userService2;
+    private final UserService3 userService3;
+    private final UserRepository userRepository;
 
     @Override
     public void run(String... strings) throws IOException {
         log.info("##### start #####");
-        Account account = accountService.create("name1");
-        log.info("{}", account);
+        User user = userService1.create("name1");
+        log.info("{}", user);
 
-        account = accountService.create2("name2");
-        log.info("{}", account);
+        user = userService2.create("name2");
+        log.info("{}", user);
 
-        account = accountService.update(account.getId(), "name2_2");
-        log.info("{}", account);
+        user = userService3.create("name3");
+        log.info("{}", user);
 
-        accountService.delete(account.getId());
+        user = userService3.update(user.getId(), "name3_2");
+        log.info("{}", user);
 
-        List<Account> accounts = accountRepository.findAll();
-        log.info("{}", accounts);
+        userService3.delete(user.getId());
+
+        List<User> users = userRepository.findAll();
+        log.info("{}", users);
         log.info("##### end #####");
     }
 

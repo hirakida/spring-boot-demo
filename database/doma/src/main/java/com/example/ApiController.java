@@ -45,12 +45,18 @@ public class ApiController {
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
     public int create(@RequestBody @Validated UserRequest request) {
-        return userService.create(request.getName(), request.getAge());
+        User user = new User();
+        user.setName(request.getName());
+        user.setAge(request.getAge());
+        return userService.create(user);
     }
 
     @PutMapping("/users/{id}")
     public int update(@PathVariable long id, @RequestBody @Validated UserRequest request) {
-        return userService.update(id, request.getName(), request.getAge());
+        User user = new User();
+        user.setName(request.getName());
+        user.setAge(request.getAge());
+        return userService.update(id, user);
     }
 
     @DeleteMapping("/users/{id}")

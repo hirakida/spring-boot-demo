@@ -8,25 +8,25 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class AccountEventListener {
+public class UserEventListener {
 
     @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
-    public void beforeCommit(AccountEvent event) {
+    public void beforeCommit(UserEvent event) {
         log.info("beforeCommit: {}", event);
     }
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
-    public void afterCommit(AccountEvent event) {
+    public void afterCommit(UserEvent event) {
         log.info("afterCommit: {}", event);
     }
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_ROLLBACK)
-    public void afterRollback(AccountEvent event) {
+    public void afterRollback(UserEvent event) {
         log.info("afterRollback: {}", event);
     }
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMPLETION)
-    public void afterCompletion(AccountEvent event) {
+    public void afterCompletion(UserEvent event) {
         log.info("afterCompletion: {}", event);
     }
 }
