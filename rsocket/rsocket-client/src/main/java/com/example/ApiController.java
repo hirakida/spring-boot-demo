@@ -25,6 +25,13 @@ public class ApiController {
                                .retrieveMono(JsonNode.class);
     }
 
+    @GetMapping(path = "/time", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+    public Publisher<JsonNode> time() {
+        return rSocketRequester.route("time")
+                               .data(new DateTimeRequest(ZoneId.systemDefault()))
+                               .retrieveFlux(JsonNode.class);
+    }
+
     @GetMapping(path = "/random", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Publisher<Integer> random(@RequestParam(defaultValue = "0") long seed) {
         return rSocketRequester.route("random")
