@@ -3,7 +3,6 @@ package com.example.web;
 import java.net.URI;
 import java.util.List;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
@@ -69,7 +68,7 @@ public class UserApiController {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class UserRequest {
-        private @NotEmpty String name;
+        private @NotNull String name;
         private @NotNull Gender gender;
         private String card;
 

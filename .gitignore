@@ -2,6 +2,7 @@
 *.iml
 build
 .gradle
+out
 target
 maven-repo
 

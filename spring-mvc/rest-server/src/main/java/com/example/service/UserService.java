@@ -22,7 +22,8 @@ public class UserService {
     }
 
     public User findById(int id) {
-        return userRepository.findById(id).orElseThrow();
+        return userRepository.findById(id)
+                             .orElseThrow();
     }
 
     public User create(User user) {
@@ -30,8 +31,11 @@ public class UserService {
     }
 
     public User update(int id, User request) {
-        User user = userRepository.findById(id).orElseThrow();
-        BeanUtils.copyProperties(request, user);
+        User user = userRepository.findById(id)
+                                  .orElseThrow();
+        user.setName(request.getName());
+        user.setCard(request.getCard());
+        user.setGender(request.getGender());
         return userRepository.save(user);
     }
 
