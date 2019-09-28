@@ -5,10 +5,12 @@ import java.util.stream.IntStream;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 
+@EnableReactiveMongoRepositories
 @SpringBootApplication
 @RequiredArgsConstructor
 public class Application implements CommandLineRunner {
