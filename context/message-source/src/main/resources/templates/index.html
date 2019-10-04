@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title></title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <table class="table">
+    <thead></thead>
+    <tbody>
+    <tr>
+      <td>message1</td>
+      <td th:text="#{app.message1(#{app.args1})}"></td>
+    </tr>
+    <tr>
+      <td>message2</td>
+      <td th:text="#{app.message2(#{app.args1})}"></td>
+    </tr>
+    <tr>
+      <td>message3</td>
+      <td>
+        <span th:if="${#messages.msgOrNull('app.message3')}" th:text="#{app.message3}"></span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>message1_1</td>
+      <td th:text="${message1_1}"></td>
+    </tr>
+    <tr>
+      <td>message2_1</td>
+      <td th:text="${message2_1}"></td>
+    </tr>
+    <tr>
+      <td>message3_1</td>
+      <td th:text="${message3_1}"></td>
+    </tr>
+
+    <tr>
+      <td>message1_2</td>
+      <td th:text="${message1_2}"></td>
+    </tr>
+    <tr>
+      <td>message2_2</td>
+      <td th:text="${message2_2}"></td>
+    </tr>
+    <tr>
+      <td>message3_2</td>
+      <td th:text="${message3_2}"></td>
+    </tr>
+
+    <tr>
+      <td>message1_3</td>
+      <td th:text="${message1_3}"></td>
+    </tr>
+    <tr>
+      <td>message2_3</td>
+      <td th:text="${message2_3}"></td>
+    </tr>
+    <tr>
+      <td>message3_3</td>
+      <td th:text="${message3_3}"></td>
+    </tr>
+
+    <tr>
+      <td>message1_4</td>
+      <td th:text="${{message1_4}}"></td>
+    </tr>
+    <tr>
+      <td>message2_4</td>
+      <td th:text="${{message2_4}}"></td>
+    </tr>
+    <tr>
+      <td>message3_4</td>
+      <td th:text="${{message3_4}}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
