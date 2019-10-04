@@ -12,13 +12,13 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class WebController {
+public class AppController {
     private static final List<Locale> LOCALES = List.of(Locale.JAPAN, Locale.US, Locale.UK, Locale.FRANCE,
                                                         Locale.SIMPLIFIED_CHINESE, Locale.TRADITIONAL_CHINESE,
                                                         Locale.KOREA);
     private final MessageSource messageSource;
 
-    @GetMapping("/")
+    @GetMapping
     public String index(Model model, Locale locale) {
         String message = messageSource.getMessage("message", null, locale);
         model.addAttribute("locales", LOCALES);
