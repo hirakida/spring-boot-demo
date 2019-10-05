@@ -1,4 +1,4 @@
-package com.example.web;
+package com.example;
 
 import java.util.List;
 

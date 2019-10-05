@@ -11,9 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/error")
-public class ErrorControllerImpl extends AbstractErrorController {
+public class CustomErrorController extends AbstractErrorController {
 
-    public ErrorControllerImpl(ErrorAttributes errorAttributes) {
+    public CustomErrorController(ErrorAttributes errorAttributes) {
         super(errorAttributes);
     }
 

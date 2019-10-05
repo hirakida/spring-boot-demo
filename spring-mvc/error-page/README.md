@@ -1,4 +1,6 @@
 
+https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-error-handling
+
 ```
 resources/static/error/400.html
 resources/static/error/403.html

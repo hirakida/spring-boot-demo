@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.web.config;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

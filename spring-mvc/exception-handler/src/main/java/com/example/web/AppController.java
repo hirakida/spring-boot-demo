@@ -1,4 +1,4 @@
-package com.example.web.controller;
+package com.example.web;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.server.ResponseStatusException;
 
 @Controller
-public class WebController {
+public class AppController {
 
     @GetMapping("/{statusCode}")
     public String get(@PathVariable int statusCode, Model model) {
         HttpStatus httpStatus = HttpStatus.valueOf(statusCode);
-        if (!httpStatus.is2xxSuccessful()) {
+        if (httpStatus.isError()) {
             throw new ResponseStatusException(httpStatus);
         }
         model.addAttribute("status", httpStatus);

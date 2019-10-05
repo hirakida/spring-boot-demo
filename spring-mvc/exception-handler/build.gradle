@@ -1,7 +1,7 @@
 plugins {
     id 'idea'
     id 'java'
-    id 'org.springframework.boot' version '2.1.4.RELEASE'
+    id 'org.springframework.boot' version '2.1.9.RELEASE'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -20,4 +20,5 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 }

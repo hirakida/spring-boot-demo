@@ -18,12 +18,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Bean
     public WebContentInterceptor webContentInterceptor() {
+        Properties mappings = new Properties();
+        // seconds
+        mappings.setProperty("/datetime", "10");
+        mappings.setProperty("/js/*.js", "3600");
+        mappings.setProperty("/css/*.css", "3600");
+
         WebContentInterceptor interceptor = new WebContentInterceptor();
-        Properties properties = new Properties();
-        properties.setProperty("/locale", "60");
-        properties.setProperty("/js/**", "3600");
-        properties.setProperty("/css/**", "86400");
-        interceptor.setCacheMappings(properties);
+        interceptor.setCacheMappings(mappings);
         return interceptor;
     }
 }

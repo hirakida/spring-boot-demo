@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Slf4j
-public class OncePerRequestFilterExt extends OncePerRequestFilter {
+public class CustomRequestLoggingFilter extends OncePerRequestFilter {
 
     @Override
     protected void initFilterBean() throws ServletException {
@@ -26,8 +26,9 @@ public class OncePerRequestFilterExt extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-        log.info("doFilterInternal: {}", request.getRequestURI());
+        log.info("doFilterInternal before: {}", request.getRequestURI());
         filterChain.doFilter(request, response);
+        log.info("doFilterInternal after: {}", request.getRequestURI());
     }
 
     @Override

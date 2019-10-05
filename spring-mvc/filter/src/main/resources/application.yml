@@ -4,4 +4,4 @@ spring:
       enabled: always
 logging:
   level:
-    org.springframework.web.filter.CommonsRequestLoggingFilter: info
+    org.springframework.web.filter.CommonsRequestLoggingFilter: debug

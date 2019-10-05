@@ -12,8 +12,8 @@ public class ApiController {
     /**
      * http://localhost:8080/key1=value1;key2=value2...
      */
-    @GetMapping("/{matrix}")
-    public Map<String, String> index(@MatrixVariable Map<String, String> matrix) {
-        return matrix;
+    @GetMapping("/{entries}")
+    public Map<String, String> index(@MatrixVariable Map<String, String> entries) {
+        return entries;
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
+import org.springframework.web.filter.ServletContextRequestLoggingFilter;
 
 @Configuration
 public class FilterConfig {
@@ -25,28 +26,18 @@ public class FilterConfig {
     }
 
     @Bean
-    public FilterRegistrationBean<OncePerRequestFilterExt> requestFilterBean1() {
-        FilterRegistrationBean<OncePerRequestFilterExt> bean =
-                new FilterRegistrationBean<>(new OncePerRequestFilterExt());
-        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        bean.setDispatcherTypes(DispatcherType.REQUEST);
-        bean.setUrlPatterns(List.of("/v1/*"));
-        return bean;
+    public ServletContextRequestLoggingFilter servletContextRequestLoggingFilter() {
+        return new ServletContextRequestLoggingFilter();
     }
 
     @Bean
-    public FilterRegistrationBean<OncePerRequestFilterExt> requestFilterBean2() {
-        FilterRegistrationBean<OncePerRequestFilterExt> bean =
-                new FilterRegistrationBean<>(new OncePerRequestFilterExt());
-        bean.setOrder(Ordered.HIGHEST_PRECEDENCE + 1);
-        bean.setDispatcherTypes(DispatcherType.REQUEST);
-        bean.setUrlPatterns(List.of("/v2/*"));
-        return bean;
-    }
-
-    @Bean
-    public RequestLoggingFilter requestLoggingFilter() {
-        return new RequestLoggingFilter();
+    public FilterRegistrationBean<CustomRequestLoggingFilter> requestLoggingFilter1() {
+        FilterRegistrationBean<CustomRequestLoggingFilter> registrationBean =
+                new FilterRegistrationBean<>(new CustomRequestLoggingFilter());
+        registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+        registrationBean.setDispatcherTypes(DispatcherType.REQUEST);
+        registrationBean.setUrlPatterns(List.of("/v1/*"));
+        return registrationBean;
     }
 
     @Bean

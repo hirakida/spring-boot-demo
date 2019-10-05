@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.web.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.handler.MappedInterceptor;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
     private static final String[] INCLUDE_PATTERNS = { "/**" };
-    private static final String[] EXCLUDE_PATTERNS = { "/api/exclude", "/error", "/webjars/**" };
+    private static final String[] EXCLUDE_PATTERNS = { "/v2/**", "/error" };
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
