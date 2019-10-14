@@ -1,0 +1,13 @@
+{
+  "request" : {
+    "url" : "/forecast/webservice/json/v1?city=130010",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"location\": {\"city\":\"東京\"}}",
+    "headers" : {
+      "Content-Type" : "application/json"
+    }
+  }
+}
