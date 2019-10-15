@@ -1,5 +1,6 @@
 package com.example;
 
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,6 +15,7 @@ public class ApiClient {
         this.restTemplate = restTemplate;
     }
 
+    @Nullable
     public JsonNode getWeather(String city) {
         String uri = UriComponentsBuilder.fromHttpUrl("http://weather.livedoor.com/forecast/webservice/json/v1")
                                          .queryParam("city", "{city}")

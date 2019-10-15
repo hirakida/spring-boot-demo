@@ -1,4 +1,4 @@
-package com.example;
+package com.example.controller;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
@@ -13,12 +13,13 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.example.client.GitHubApiClient;
 import com.example.client.User;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class ApiController {
+public class GitHubApiController {
     private final GitHubApiClient gitHubApiClient;
 
     @GetMapping("/users/{username}")
@@ -27,9 +28,21 @@ public class ApiController {
                               .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
     }
 
-    @GetMapping("/users/{username}/resource")
-    public Resource getUserWithResource(@PathVariable String username) {
-        return gitHubApiClient.getUserWithResource(username)
+    @GetMapping("/emojis")
+    public JsonNode getEmojis() {
+        return gitHubApiClient.getEmojis()
+                              .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
+    }
+
+    @GetMapping("/events")
+    public JsonNode getEvents() {
+        return gitHubApiClient.getEvents()
+                              .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
+    }
+
+    @GetMapping("/feeds")
+    public Resource getFeeds() {
+        return gitHubApiClient.getFeeds()
                               .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
     }
 

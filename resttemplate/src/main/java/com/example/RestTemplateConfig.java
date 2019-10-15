@@ -18,7 +18,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.client.DefaultResponseErrorHandler;
-import org.springframework.web.client.RestOperations;
+import org.springframework.web.client.RestTemplate;
 
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
@@ -30,24 +30,23 @@ import okhttp3.logging.HttpLoggingInterceptor.Level;
 public class RestTemplateConfig {
 
     @Bean
-    public RestOperations restOperations(RestTemplateBuilder restTemplateBuilder) {
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
         factory.setConnectTimeout(5000);
         factory.setReadTimeout(5000);
         factory.setConnectionRequestTimeout(5000);
 
-        return restTemplateBuilder
-                .requestFactory(() -> factory)
-                .errorHandler(new ResponseErrorHandlerExt())
-                .interceptors(List.of(new ClientHttpRequestInterceptorImpl()))
-                .build();
+        return builder.requestFactory(() -> factory)
+                      .errorHandler(new ResponseErrorHandlerExt())
+                      .interceptors(List.of(new ClientHttpRequestInterceptorImpl()))
+                      .build();
     }
 
     @Bean
     @Primary
-    public RestOperations okHttpRestOperations(RestTemplateBuilder restTemplateBuilder) {
+    public RestTemplate okHttpRestTemplate(RestTemplateBuilder builder) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.level(Level.BODY);
+        interceptor.setLevel(Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .connectTimeout(5000, TimeUnit.MILLISECONDS)
@@ -55,11 +54,10 @@ public class RestTemplateConfig {
                 .writeTimeout(5000, TimeUnit.MILLISECONDS)
                 .build();
 
-        return restTemplateBuilder
-                .requestFactory(() -> new OkHttp3ClientHttpRequestFactory(client))
-                .errorHandler(new ResponseErrorHandlerExt())
-                .interceptors(List.of(new ClientHttpRequestInterceptorImpl()))
-                .build();
+        return builder.requestFactory(() -> new OkHttp3ClientHttpRequestFactory(client))
+                      .errorHandler(new ResponseErrorHandlerExt())
+                      .interceptors(List.of(new ClientHttpRequestInterceptorImpl()))
+                      .build();
     }
 
     private static class ResponseErrorHandlerExt extends DefaultResponseErrorHandler {
