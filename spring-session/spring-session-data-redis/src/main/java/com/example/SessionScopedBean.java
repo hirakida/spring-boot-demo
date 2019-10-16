@@ -12,8 +12,7 @@ import lombok.Data;
 @SessionScope
 @Data
 @SuppressWarnings("serial")
-public class SessionBean implements Serializable {
+public class SessionScopedBean implements Serializable {
     private String id;
-    private String uuid;
     private LocalDateTime localDateTime;
 }

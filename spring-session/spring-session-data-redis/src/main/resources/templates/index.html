@@ -9,13 +9,12 @@
 <body>
 <div>
   <div>
-    <form action="/" method="post">
-      <button>clear session</button>
+    <form th:action="@{/}" method="post">
+      <button type="submit">clear session</button>
     </form>
   </div>
   <div th:if="${appSession}">
     <div th:text="${appSession.id}"></div>
-    <div th:text="${appSession.uuid}"></div>
     <div th:text="${appSession.localDateTime}"></div>
   </div>
 </div>

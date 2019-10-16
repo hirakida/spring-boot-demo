@@ -1,7 +1,6 @@
 package com.example;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,24 +15,25 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class AppController {
-    private final SessionBean sessionBean;
+public class RootController {
+    private final SessionScopedBean sessionScopedBean;
 
     @GetMapping("/")
     public String index(HttpSession session, Model model) {
-        log.info("{}", sessionBean);
-        if (sessionBean.getUuid() == null) {
-            sessionBean.setId(session.getId());
-            sessionBean.setUuid(UUID.randomUUID().toString());
-            sessionBean.setLocalDateTime(LocalDateTime.now());
+        log.info("{}", sessionScopedBean);
+        if (sessionScopedBean.getId() == null) {
+            sessionScopedBean.setId(session.getId());
+            sessionScopedBean.setLocalDateTime(LocalDateTime.now());
         }
-        model.addAttribute("appSession", sessionBean);
+        model.addAttribute("appSession", sessionScopedBean);
         return "index";
     }
 
     @PostMapping("/")
-    public String clear(HttpSession session) {
+    public String invalidate(HttpSession session) {
+        log.info("{}", sessionScopedBean);
         session.invalidate();
+        log.info("{}", sessionScopedBean);
         return "redirect:/";
     }
 }
