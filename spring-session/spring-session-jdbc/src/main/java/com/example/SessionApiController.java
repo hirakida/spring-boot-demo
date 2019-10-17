@@ -1,7 +1,7 @@
 package com.example;
 
-import org.springframework.session.data.mongo.MongoOperationsSessionRepository;
-import org.springframework.session.data.mongo.MongoSession;
+import org.springframework.session.Session;
+import org.springframework.session.jdbc.JdbcOperationsSessionRepository;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,15 +15,15 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class SessionApiController {
-    private final MongoOperationsSessionRepository sessionRepository;
+    private final JdbcOperationsSessionRepository sessionRepository;
 
     @PostMapping("/sessions")
-    public MongoSession create() {
+    public Session create() {
         return sessionRepository.createSession();
     }
 
     @GetMapping("/sessions/{id}")
-    public MongoSession findById(@PathVariable String id) {
+    public Session findById(@PathVariable String id) {
         return sessionRepository.findById(id);
     }
 

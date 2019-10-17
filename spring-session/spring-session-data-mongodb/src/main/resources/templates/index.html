@@ -9,8 +9,8 @@
 <body>
 <div>
   <div>
-    <form action="/" method="post">
-      <button>invalidate</button>
+    <form th:action="@{/}" method="post">
+      <button type="submit">invalidate</button>
     </form>
   </div>
   <div th:if="${sessionScopedBean}">

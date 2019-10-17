@@ -17,4 +17,6 @@ server:
       cookie:
         max-age: 60s
         name: SPRING_SESSION_JDBC
+        http-only: true
+        secure: false
       timeout: 60s

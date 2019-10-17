@@ -1,4 +1,4 @@
-package com.example;
+package com.example.controller;
 
 import java.time.LocalDateTime;
 
@@ -9,13 +9,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.SessionScopedBean;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class RootController {
+public class AppController {
     private final SessionScopedBean sessionScopedBean;
 
     @GetMapping("/")
@@ -25,15 +27,15 @@ public class RootController {
             sessionScopedBean.setId(session.getId());
             sessionScopedBean.setLocalDateTime(LocalDateTime.now());
         }
-        model.addAttribute("appSession", sessionScopedBean);
+        model.addAttribute("sessionScopedBean", sessionScopedBean);
         return "index";
     }
 
     @PostMapping("/")
     public String invalidate(HttpSession session) {
-        log.info("{}", sessionScopedBean);
+        log.info("invalidate: {}", sessionScopedBean);
         session.invalidate();
-        log.info("{}", sessionScopedBean);
+        log.info("invalidate: {}", sessionScopedBean);
         return "redirect:/";
     }
 }

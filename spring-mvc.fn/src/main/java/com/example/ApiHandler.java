@@ -29,7 +29,7 @@ public class ApiHandler {
     }
 
     private ServerResponse findById(ServerRequest request) {
-        final int id = Integer.parseInt(request.pathVariable("id"));
+        int id = Integer.parseInt(request.pathVariable("id"));
         return userRepository.findById(id)
                              .map(user -> ok().body(user))
                              .orElse(notFound().build());

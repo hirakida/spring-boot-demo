@@ -1,7 +1,7 @@
-package com.example;
+package com.example.controller;
 
 import org.springframework.session.Session;
-import org.springframework.session.SessionRepository;
+import org.springframework.session.data.redis.RedisOperationsSessionRepository;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class SessionApiController {
-    private final SessionRepository<? extends Session> sessionRepository;
+    private final RedisOperationsSessionRepository sessionRepository;
 
     @PostMapping("/sessions")
     public Session createSession() {

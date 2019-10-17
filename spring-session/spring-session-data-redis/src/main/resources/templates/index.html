@@ -10,12 +10,20 @@
 <div>
   <div>
     <form th:action="@{/}" method="post">
-      <button type="submit">clear session</button>
+      <button type="submit">invalidate</button>
     </form>
   </div>
-  <div th:if="${appSession}">
-    <div th:text="${appSession.id}"></div>
-    <div th:text="${appSession.localDateTime}"></div>
+  <div th:if="${sessionScopedBean}">
+    <div th:text="${sessionScopedBean.id}"></div>
+    <div th:text="${sessionScopedBean.localDateTime}"></div>
+  </div>
+  <div th:if="${#session}">
+    <div th:text="${#session.id}"></div>
+    <div th:text="${#session.new}"></div>
+  </div>
+  <div th:if="${#httpSession}">
+    <div th:text="${#httpSession.id}"></div>
+    <div th:text="${#httpSession.new}"></div>
   </div>
 </div>
 </body>

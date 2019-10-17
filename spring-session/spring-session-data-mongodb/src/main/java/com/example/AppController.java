@@ -1,37 +1,39 @@
 package com.example;
 
 import java.time.LocalDateTime;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @Slf4j
-public class SessionApiController {
+public class AppController {
     private final SessionScopedBean sessionScopedBean;
 
     @GetMapping("/")
-    public Map<String, Object> index(HttpSession session) {
+    public String index(HttpSession session, Model model) {
         log.info("{}", sessionScopedBean);
         if (sessionScopedBean.getSessionId() == null) {
             sessionScopedBean.setSessionId(session.getId());
             sessionScopedBean.setLocalDateTime(LocalDateTime.now());
         }
-        return Map.of("sessionId", sessionScopedBean.getSessionId(),
-                      "localDateTime", sessionScopedBean.getLocalDateTime());
+        model.addAttribute("sessionScopedBean", sessionScopedBean);
+        return "index";
     }
 
-    @GetMapping("/invalidate")
-    public void invalidate(HttpSession session) {
-        log.info("{}", sessionScopedBean);
+    @PostMapping("/")
+    public String invalidate(HttpSession session) {
+        log.info("invalidate: {}", sessionScopedBean);
         session.invalidate();
-        log.info("{}", sessionScopedBean);
+        log.info("invalidate: {}", sessionScopedBean);
+        return "redirect:/";
     }
 }

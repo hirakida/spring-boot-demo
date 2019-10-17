@@ -12,3 +12,4 @@ server:
         max-age: 60s
         name: SPRING_SESSION_NONE
         http-only: true
+        secure: false
