@@ -1,0 +1,6 @@
+spring:
+  session:
+    store-type: mongodb
+  output:
+    ansi:
+      enabled: always
