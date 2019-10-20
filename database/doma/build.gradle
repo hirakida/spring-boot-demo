@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.7.RELEASE'
+    id 'org.springframework.boot' version '2.2.0.RELEASE'
     id 'java'
     id 'idea'
 }
@@ -14,6 +14,12 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
 task copyDomaResources(type: Sync) {
     from sourceSets.main.resources.srcDirs
     into compileJava.destinationDir
@@ -26,13 +32,9 @@ compileJava {
 }
 
 dependencies {
-    def domaVersion = '2.25.1'
-
     annotationProcessor 'org.projectlombok:lombok'
-    annotationProcessor "org.seasar.doma:doma:${domaVersion}"
-    compileOnly 'org.projectlombok:lombok'
-    implementation "org.seasar.doma:doma:${domaVersion}"
-    implementation "org.seasar.doma.boot:doma-spring-boot-starter:1.1.1"
+    annotationProcessor 'org.seasar.doma:doma:2.25.1'
+    implementation "org.seasar.doma.boot:doma-spring-boot-starter:1.2.1"
     implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
