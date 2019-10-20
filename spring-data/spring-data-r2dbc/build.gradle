@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'idea'
-    id 'org.springframework.boot' version '2.2.0.M6'
+    id 'org.springframework.boot' version '2.2.0.RELEASE'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -13,12 +13,11 @@ sourceCompatibility = JavaVersion.VERSION_11
 repositories {
     mavenCentral()
     maven { url "https://repo.spring.io/milestone" }
-    maven { url "https://repo.spring.io/libs-snapshot" }
 }
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.boot.experimental:spring-boot-bom-r2dbc:0.1.0.BUILD-SNAPSHOT"
+        mavenBom 'org.springframework.boot.experimental:spring-boot-bom-r2dbc:0.1.0.M2'
     }
 }
 
