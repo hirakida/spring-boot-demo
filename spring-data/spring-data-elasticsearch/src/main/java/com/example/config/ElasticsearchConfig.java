@@ -4,7 +4,7 @@ import org.elasticsearch.client.Client;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
-import org.springframework.data.elasticsearch.core.convert.ElasticsearchConverter;
+import org.springframework.data.elasticsearch.core.EntityMapper;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,9 +14,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ElasticsearchConfig {
 
     @Bean
-    public ElasticsearchTemplate elasticsearchTemplate(Client client, ElasticsearchConverter converter,
-                                                       EntityMapperImpl entityMapper) {
-        return new ElasticsearchTemplate(client, converter, entityMapper);
+    public ElasticsearchTemplate elasticsearchTemplate(Client client, EntityMapper entityMapper) {
+        return new ElasticsearchTemplate(client, entityMapper);
     }
 
     @Bean
