@@ -1,8 +1,0 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-    }
-}
-
-rootProject.name = 'rsocket-demo'
-include 'rsocket-client', 'rsocket-server', 'rsocket-model'
