@@ -1,7 +1,7 @@
 package com.example;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.web.reactive.function.BodyInserters.fromObject;
+import static org.springframework.web.reactive.function.BodyInserters.fromValue;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
@@ -49,7 +49,7 @@ public class UserApiHandler {
     private Mono<ServerResponse> findById(ServerRequest request) {
         String id = request.pathVariable("id");
         return userRepository.findById(id)
-                             .flatMap(user -> ok().body(fromObject(user)))
+                             .flatMap(user -> ok().body(fromValue(user)))
                              .switchIfEmpty(notFound().build());
     }
 
