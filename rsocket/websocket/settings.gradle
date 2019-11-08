@@ -1,8 +1,0 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-    }
-}
-
-rootProject.name = 'rsocket-websocket-demo'
-include 'frontend-server', 'backend-server', 'shared'

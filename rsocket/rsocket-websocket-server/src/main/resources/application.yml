@@ -1,0 +1,14 @@
+server:
+  port: 8081
+spring:
+  rsocket:
+    server:
+      address: localhost
+      mapping-path: /rsocket
+      transport: websocket
+  devtools:
+    livereload:
+      enabled: false
+  output:
+    ansi:
+      enabled: always
