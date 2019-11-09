@@ -1,0 +1,34 @@
+import org.springframework.cloud.contract.verifier.config.TestFramework
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+    dependencies {
+        classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.0.RC1'
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'spring-cloud-contract'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
+}
+
+contracts {
+    testFramework = TestFramework.JUNIT5
+    testMode = 'EXPLICIT'
+    baseClassForTests = 'com.example.BaseClass'
+}
+
+test {
+    useJUnitPlatform()
+}
