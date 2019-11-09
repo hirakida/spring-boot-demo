@@ -17,7 +17,7 @@ import reactor.core.publisher.Flux;
 
 @WebFluxTest
 @ActiveProfiles("test")
-public class UserApiHandlerTest {
+public class UserApiControllerTest {
     @Autowired
     private WebTestClient webTestClient;
     @MockBean
