@@ -26,7 +26,7 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
-public class ApiController {
+public class UserApiController {
     private final UserRepository userRepository;
 
     @GetMapping

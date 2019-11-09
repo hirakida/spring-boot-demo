@@ -2,19 +2,22 @@ package com.example;
 
 import java.util.stream.IntStream;
 
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.Profile;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 
+@Profile("!test")
 @Component
 @RequiredArgsConstructor
-public class CommandLineRunnerImpl implements CommandLineRunner {
+public class ApplicationEventListener {
     private final UserRepository userRepository;
 
-    @Override
-    public void run(String... strings) throws Exception {
+    @EventListener(ApplicationReadyEvent.class)
+    public void readyEvent() {
         final User[] users = IntStream.rangeClosed(1, 5)
                                       .mapToObj(i -> {
                                           User user = new User();

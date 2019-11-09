@@ -23,7 +23,7 @@ public class Application {
                                       .mapToObj(i -> {
                                           User user = new User();
                                           user.setName("name" + i);
-                                          user.setAge(20 * i);
+                                          user.setAge(20 + i);
                                           return user;
                                       })
                                       .toArray(User[]::new);
