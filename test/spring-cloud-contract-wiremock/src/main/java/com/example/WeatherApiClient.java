@@ -8,16 +8,18 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 @Component
-public class ApiClient {
+public class WeatherApiClient {
+    static final String BASE_URL = "http://weather.livedoor.com";
     private final RestTemplate restTemplate;
 
-    public ApiClient(RestTemplate restTemplate) {
+    public WeatherApiClient(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     @Nullable
     public JsonNode getWeather(String city) {
-        String uri = UriComponentsBuilder.fromHttpUrl("http://weather.livedoor.com/forecast/webservice/json/v1")
+        String uri = UriComponentsBuilder.fromHttpUrl(BASE_URL)
+                                         .path("/forecast/webservice/json/v1")
                                          .queryParam("city", "{city}")
                                          .build(false)
                                          .toUriString();

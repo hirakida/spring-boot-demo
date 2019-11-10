@@ -8,14 +8,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 @RestController
 public class ApiController {
-    private final ApiClient apiClient;
+    private final WeatherApiClient weatherApiClient;
 
-    public ApiController(ApiClient apiClient) {
-        this.apiClient = apiClient;
+    public ApiController(WeatherApiClient weatherApiClient) {
+        this.weatherApiClient = weatherApiClient;
     }
 
     @GetMapping("/{city}")
     public JsonNode getWeather(@PathVariable String city) {
-        return apiClient.getWeather(city);
+        return weatherApiClient.getWeather(city);
     }
 }
