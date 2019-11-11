@@ -1,19 +1,23 @@
 package com.example;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.example.model.Key;
 import com.example.model.User;
 
-import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Component
-@RequiredArgsConstructor
 public class GitHubApiClient {
     private final WebClient webClient;
+
+    public GitHubApiClient(WebClient.Builder builder,
+                           @Value("${github.baseUrl:https://api.github.com}") String baseUrl) {
+        webClient = builder.baseUrl(baseUrl).build();
+    }
 
     public Mono<User> getUser(String username) {
         return webClient.get()
