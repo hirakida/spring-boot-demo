@@ -1,11 +1,11 @@
 import org.springframework.cloud.contract.spec.Contract
 
 Contract.make {
-    description('random API test')
+    description('User API test')
 
     request {
         method "GET"
-        url "/random"
+        url "/users/1"
     }
     response {
         status 200
@@ -14,7 +14,8 @@ Contract.make {
         }
         body """
             {
-                "random": 1234567890
+                "id": 1,
+                "name": "name1"
             }
             """
     }

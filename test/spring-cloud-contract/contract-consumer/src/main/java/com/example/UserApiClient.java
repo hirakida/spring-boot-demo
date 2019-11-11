@@ -9,24 +9,25 @@ import lombok.NoArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @Component
-public class RandomApiClient {
+public class UserApiClient {
     private final WebClient webClient;
 
-    public RandomApiClient(WebClient.Builder builder) {
+    public UserApiClient(WebClient.Builder builder) {
         webClient = builder.baseUrl("http://localhost:8080").build();
     }
 
-    public Mono<Random> getRandom() {
+    public Mono<User> getUser(long id) {
         return webClient.get()
-                        .uri("/random")
+                        .uri("/users/{id}", id)
                         .retrieve()
-                        .bodyToMono(Random.class);
+                        .bodyToMono(User.class);
     }
 
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Random {
-        private long random;
+    public static class User {
+        private long id;
+        private String name;
     }
 }

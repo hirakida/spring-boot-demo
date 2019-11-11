@@ -16,11 +16,11 @@ public class BaseClass {
     @LocalServerPort
     private int port;
     @MockBean
-    private RandomService randomService;
+    private UserService userService;
 
     @BeforeEach
     public void setup() {
         RestAssured.baseURI = "http://localhost:" + port;
-        when(randomService.getRandom()).thenReturn(Mono.just(1234567890L));
+        when(userService.getUser(1)).thenReturn(Mono.just(new User(1, "name1")));
     }
 }
