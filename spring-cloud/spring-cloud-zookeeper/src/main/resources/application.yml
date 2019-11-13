@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: spring-cloud-zookeeper-demo
+  cloud:
+    zookeeper:
+      connect-string: localhost:2181
+  output:
+    ansi:
+      enabled: always
+  devtools:
+    livereload:
+      enabled: false
