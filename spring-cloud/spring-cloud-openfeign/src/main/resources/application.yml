@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring-cloud-openfeign-demo
+  output:
+    ansi:
+      enabled: always
+  devtools:
+    livereload:
+      enabled: false
