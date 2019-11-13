@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: spring-cloud-config-demo
+  cloud:
+    config:
+      profile: default
+      label: master
+      uri: http://localhost:8888
+  output:
+    ansi:
+      enabled: always
+  devtools:
+    livereload:
+      enabled: false
+management:
+  endpoint:
+    refresh:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: ["refresh"]
