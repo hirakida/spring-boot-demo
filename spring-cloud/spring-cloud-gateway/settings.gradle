@@ -1,0 +1,2 @@
+rootProject.name = 'spring-cloud-gateway-demo'
+include 'gateway', 'backend-server1', 'backend-server2'
