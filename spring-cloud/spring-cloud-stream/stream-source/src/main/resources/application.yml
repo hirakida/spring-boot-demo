@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: topic1
+  devtools:
+    livereload:
+      enabled: false
+  output:
+    ansi:
+      enabled: always
+server:
+  port: 8080
