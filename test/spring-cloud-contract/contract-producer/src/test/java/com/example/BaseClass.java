@@ -11,7 +11,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import io.restassured.RestAssured;
 import reactor.core.publisher.Mono;
 
-@SpringBootTest(properties = "server.port=0", webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = "server.port=0")
 public class BaseClass {
     @LocalServerPort
     private int port;
@@ -20,7 +20,8 @@ public class BaseClass {
 
     @BeforeEach
     public void setup() {
-        RestAssured.baseURI = "http://localhost:" + port;
+        RestAssured.baseURI = "http://localhost";
+        RestAssured.port = port;
         when(userService.getUser(1)).thenReturn(Mono.just(new User(1, "name1")));
     }
 }

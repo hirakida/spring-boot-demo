@@ -17,7 +17,7 @@ subprojects {
     }
 
     ext {
-        set('springCloudVersion', 'Hoxton.RC1')
+        set('springCloudVersion', 'Hoxton.RC2')
     }
 
     dependencyManagement {

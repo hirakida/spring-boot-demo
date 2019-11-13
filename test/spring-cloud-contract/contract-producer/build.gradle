@@ -6,7 +6,7 @@ buildscript {
         maven { url 'https://repo.spring.io/milestone' }
     }
     dependencies {
-        classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.0.RC1'
+        classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.0.RC2'
     }
 }
 
