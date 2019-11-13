@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: circuit-breaker-demo
+  output:
+    ansi:
+      enabled: always
+server:
+  port: 8080
