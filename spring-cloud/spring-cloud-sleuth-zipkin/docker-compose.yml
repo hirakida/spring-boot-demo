@@ -1,0 +1,41 @@
+# https://github.com/openzipkin/docker-zipkin/blob/master/docker-compose.yml
+version: '3'
+services:
+  storage:
+    image: openzipkin/zipkin-mysql
+    container_name: mysql
+    ports:
+      - 3306:3306
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    environment:
+    - STORAGE_TYPE=mysql
+    - MYSQL_HOST=mysql
+    ports:
+    - 9411:9411
+    depends_on:
+    - storage
+
+  dependencies:
+    image: openzipkin/zipkin-dependencies
+    container_name: dependencies
+    entrypoint: crond -f
+    environment:
+      - STORAGE_TYPE=mysql
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=zipkin
+      - MYSQL_PASS=zipkin
+    depends_on:
+      - storage
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_DATABASE: zipkin_demo
+      MYSQL_USER: sa
+      MYSQL_PASSWORD: pass
+      MYSQL_ROOT_PASSWORD: pass

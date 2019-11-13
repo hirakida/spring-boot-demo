@@ -1,0 +1,9 @@
+dependencies {
+    def braveVersion = '5.8.0'
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation("io.zipkin.brave:brave-instrumentation-mysql8:${braveVersion}")
+    runtimeOnly('mysql:mysql-connector-java')
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}

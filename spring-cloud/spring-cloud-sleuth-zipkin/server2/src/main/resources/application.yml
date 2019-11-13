@@ -1,0 +1,20 @@
+spring:
+  zipkin:
+    base-url: http://localhost:9411
+    service:
+      name: server2
+  sleuth:
+    sampler:
+      probability: 1.0
+  devtools:
+    livereload:
+      enabled: false
+  output:
+    ansi:
+      enabled: always
+server:
+  port: 8081
+logging:
+  level:
+    org.springframework.web.servlet.DispatcherServlet: debug
+    org.springframework.web.client.RestTemplate: debug

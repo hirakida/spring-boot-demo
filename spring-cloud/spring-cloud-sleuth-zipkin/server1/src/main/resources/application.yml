@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    sql-script-encoding: UTF-8
+    url: jdbc:mysql://127.0.0.1:3307/zipkin_demo?characterEncoding=utf8&useSSL=false&queryInterceptors=brave.mysql8.TracingQueryInterceptor&exceptionInterceptors=brave.mysql8.TracingExceptionInterceptor
+    username: sa
+    password: pass
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  zipkin:
+    base-url: http://localhost:9411
+    service:
+      name: server1
+  sleuth:
+    sampler:
+      probability: 1.0
+  devtools:
+    livereload:
+      enabled: false
+  output:
+    ansi:
+      enabled: always
+server:
+  port: 8080
+logging:
+  level:
+    org.springframework.web.servlet.DispatcherServlet: debug
+    org.springframework.web.client.RestTemplate: debug
