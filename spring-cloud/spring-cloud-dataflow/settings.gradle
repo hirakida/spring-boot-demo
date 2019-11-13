@@ -1,0 +1,3 @@
+rootProject.name = 'spring-cloud-dataflow-demo'
+include 'dataflow-shell'
+include 'dataflow-task-batch'
