@@ -17,12 +17,13 @@ public class WebSocketConfig {
     @Bean
     public WebSocketHandler webSocketHandler(GreetingService greetingService) {
         return session -> {
-            Flux<WebSocketMessage> messages = session.receive()
-                                                     .map(WebSocketMessage::getPayloadAsText)
-                                                     .map(GreetingRequest::new)
-                                                     .flatMap(greetingService::greet)
-                                                     .map(GreetingResponse::getMessage)
-                                                     .map(session::textMessage);
+            Flux<WebSocketMessage> messages =
+                    session.receive()
+                           .map(WebSocketMessage::getPayloadAsText)
+                           .map(GreetingRequest::new)
+                           .flatMap(greetingService::greet)
+                           .map(GreetingResponse::getMessage)
+                           .map(session::textMessage);
             return session.send(messages);
         };
     }

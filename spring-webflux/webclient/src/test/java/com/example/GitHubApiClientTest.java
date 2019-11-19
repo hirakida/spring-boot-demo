@@ -1,6 +1,7 @@
 package com.example;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
@@ -13,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
 import com.example.model.User;
-import com.github.tomakehurst.wiremock.client.WireMock;
 
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
@@ -27,7 +27,7 @@ public class GitHubApiClientTest {
     @Test
     public void getUserTest() {
         String body = "{\"login\":\"hirakida\",\"id\":100}";
-        stubFor(WireMock.get(urlEqualTo("/users/hirakida"))
+        stubFor(get(urlEqualTo("/users/hirakida"))
                         .willReturn(aResponse()
                                             .withBody(body)
                                             .withHeader(HttpHeaders.CONTENT_TYPE,
