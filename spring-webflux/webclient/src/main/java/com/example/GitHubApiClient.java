@@ -1,5 +1,7 @@
 package com.example;
 
+import java.time.Duration;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -23,7 +25,8 @@ public class GitHubApiClient {
         return webClient.get()
                         .uri("/users/{username}", username)
                         .retrieve()
-                        .bodyToMono(User.class);
+                        .bodyToMono(User.class)
+                        .retryBackoff(3, Duration.ofSeconds(1));
     }
 
     public Flux<Key> getKeys(String username) {

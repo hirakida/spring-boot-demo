@@ -7,14 +7,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class WeatherApiClient {
     static final String BASE_URL = "http://weather.livedoor.com";
     private final RestTemplate restTemplate;
-
-    public WeatherApiClient(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
     @Nullable
     public JsonNode getWeather(String city) {

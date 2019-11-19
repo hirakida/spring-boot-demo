@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.0.RELEASE'
+    id 'org.springframework.boot' version '2.2.1.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
 }
@@ -12,6 +12,8 @@ repositories {
     mavenCentral()
     maven { url 'https://repo.spring.io/milestone' }
 }
+
+ext['h2.version'] = '1.4.199'
 
 dependencyManagement {
     imports {
