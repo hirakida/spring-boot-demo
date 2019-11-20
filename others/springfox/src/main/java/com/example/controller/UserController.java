@@ -1,27 +1,27 @@
-package com.example;
+package com.example.controller;
 
 import java.net.URI;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import javax.validation.constraints.NotNull;
 
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.example.core.User;
+import com.example.core.UserRepository;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -31,38 +31,35 @@ import lombok.RequiredArgsConstructor;
 import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
+@RequestMapping("/users")
 @RequiredArgsConstructor
-public class ApiController {
+public class UserController {
     private final UserRepository userRepository;
 
-    @GetMapping("/csrf")
-    public CsrfToken csrf(CsrfToken token) {
-        return token;
-    }
-
-    @GetMapping("/users")
+    @GetMapping
     @ApiOperation(value = "Get user list", notes = "notes ...")
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping(params = "name")
+    @ApiIgnore
+    public List<User> findByName(@RequestParam String name) {
+        return userRepository.findByName(name);
+    }
+
+    @GetMapping("/{id}")
     @ApiOperation("Get user")
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK", response = User.class),
             @ApiResponse(code = 404, message = "Not Found User")
     })
     public User findById(@PathVariable int id) {
-        return userRepository.findById(id).orElseThrow();
+        return userRepository.findById(id)
+                             .orElseThrow();
     }
 
-    @GetMapping(value = "/users/", params = "name")
-    @ApiIgnore
-    public List<User> findByName(@RequestParam String name) {
-        return userRepository.findByName(name);
-    }
-
-    @PostMapping("/users")
+    @PostMapping
     @ApiOperation("Create user")
     public ResponseEntity<Void> create(@RequestBody @Validated UserRequest request) {
         User user = new User();
@@ -75,28 +72,26 @@ public class ApiController {
         return ResponseEntity.created(uri).build();
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     @ApiOperation("Update user")
-    public User update(@PathVariable int id, @RequestBody @Validated UserRequest request) {
-        User user = userRepository.findById(id).orElseThrow();
+    public User update(@PathVariable int id,
+                       @RequestBody @Validated UserRequest request) {
+        User user = userRepository.findById(id)
+                                  .orElseThrow();
         user.setName(request.getName());
         return userRepository.save(user);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation("Delete user")
-    public void delete(@PathVariable int id) {
+    public void deleteById(@PathVariable int id) {
         userRepository.deleteById(id);
-    }
-
-    @ExceptionHandler({ EmptyResultDataAccessException.class, NoSuchElementException.class })
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public void handleNotFoundException() {
     }
 
     @Data
     public static class UserRequest {
-        private @NotNull String name;
+        @NotNull
+        private String name;
     }
 }
