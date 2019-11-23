@@ -22,9 +22,30 @@ public class RSocketController {
         return Mono.empty();
     }
 
-    @MessageMapping("datetime")
-    public Flux<DateTimeResponse> datetime() {
-        return Flux.fromStream(Stream.generate(() -> new DateTimeResponse(LocalDateTime.now())))
+    @MessageMapping("requestResponse")
+    public Mono<HelloResponse> requestResponse(HelloRequest request) {
+        return Mono.just(new HelloResponse(String.format("Hello %s!", request.getName()),
+                                           LocalDateTime.now()));
+    }
+
+    @MessageMapping("fireAndForget")
+    public Mono<Void> fireAndForget(HelloRequest request) {
+        log.info("{}", request.getName());
+        return Mono.empty();
+    }
+
+    @MessageMapping("requestStream")
+    public Flux<HelloResponse> requestStream(HelloRequest request) {
+        return Flux.fromStream(Stream.generate(() -> new HelloResponse(String.format("Hello %s!",
+                                                                                     request.getName()),
+                                                                       LocalDateTime.now())))
                    .delayElements(Duration.ofSeconds(1));
+    }
+
+    @MessageMapping("requestChannel")
+    public Flux<HelloResponse> requestChannel(Flux<HelloRequest> requests) {
+        return requests.delayElements(Duration.ofSeconds(1))
+                       .map(request -> new HelloResponse(String.format("Hello %s!", request.getName()),
+                                                         LocalDateTime.now()));
     }
 }

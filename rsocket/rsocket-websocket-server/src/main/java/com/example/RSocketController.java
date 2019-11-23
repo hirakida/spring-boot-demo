@@ -1,5 +1,7 @@
 package com.example;
 
+import java.time.LocalDateTime;
+
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.rsocket.annotation.ConnectMapping;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ public class RSocketController {
 
     @MessageMapping("hello")
     public Mono<HelloResponse> hello(HelloRequest request) {
-        return Mono.just(new HelloResponse(String.format("Hello %s!", request.getName())));
+        return Mono.just(new HelloResponse(String.format("Hello %s!", request.getName()),
+                                           LocalDateTime.now()));
     }
 }
