@@ -43,9 +43,10 @@ public class TcpController {
 
     @GetMapping(path = "/request_channel", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
     public Publisher<HelloResponse> requestChannel(@RequestParam(defaultValue = "hirakida") String name) {
+        Flux<HelloRequest> data = Flux.fromStream(Stream.generate(() -> new HelloRequest(name)))
+                                      .delayElements(Duration.ofSeconds(1));
         return rSocketTcpRequester.route("requestChannel")
-                                  .data(Flux.fromStream(Stream.generate(() -> new HelloRequest(name)))
-                                            .delayElements(Duration.ofSeconds(1)))
+                                  .data(data)
                                   .retrieveFlux(HelloResponse.class);
     }
 }

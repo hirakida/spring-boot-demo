@@ -12,3 +12,6 @@ spring:
   output:
     ansi:
       enabled: always
+logging:
+  level:
+    io.rsocket.FrameLogger: DEBUG

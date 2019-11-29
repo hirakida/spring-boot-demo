@@ -6,6 +6,6 @@ pluginManagement {
 
 rootProject.name = 'rsocket-demo'
 include 'frontend-server',
-        'rsocket-websocket-server',
-        'rsocket-tcp-server',
+        'tcp-server',
+        'websocket-server',
         'model'
