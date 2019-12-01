@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,24 +26,25 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequestMapping("/users")
 @RequiredArgsConstructor
-public class ApiController {
+public class UserController {
     private final UserService userService;
 
     /**
      * http://localhost:8080/users?page=0&size=2
      */
-    @GetMapping("/users")
+    @GetMapping
     public List<User> findAll(@PageableDefault Pageable pageable) {
         return userService.findAll(pageable);
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public User findOne(@PathVariable long id) {
         return userService.findOne(id);
     }
 
-    @PostMapping("/users")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public int create(@RequestBody @Validated UserRequest request) {
         User user = new User();
@@ -51,7 +53,7 @@ public class ApiController {
         return userService.create(user);
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     public int update(@PathVariable long id, @RequestBody @Validated UserRequest request) {
         User user = new User();
         user.setName(request.getName());
@@ -59,7 +61,7 @@ public class ApiController {
         return userService.update(id, user);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id) {
         userService.delete(id);

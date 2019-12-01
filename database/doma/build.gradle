@@ -1,10 +1,8 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.0.RELEASE'
+    id 'org.springframework.boot' version '2.2.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
-    id 'idea'
 }
-
-apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -31,12 +29,18 @@ compileJava {
     options.encoding = 'UTF-8'
 }
 
+bootJar {
+    duplicatesStrategy DuplicatesStrategy.INCLUDE
+}
+
 dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     annotationProcessor 'org.seasar.doma:doma:2.25.1'
-    implementation "org.seasar.doma.boot:doma-spring-boot-starter:1.2.1"
+    implementation 'org.seasar.doma.boot:doma-spring-boot-starter:1.2.1'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }
