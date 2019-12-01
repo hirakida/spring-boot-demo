@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.7.RELEASE' apply false
+    id 'org.springframework.boot' version '2.2.1.RELEASE' apply false
     id 'org.jruyi.thrift' version '0.4.1' apply false
 }
 
@@ -17,6 +17,12 @@ subprojects {
         mavenCentral()
     }
 
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
     compileThrift {
         sourceDir "${rootProject.rootDir}/thrift"
     }
@@ -24,25 +30,6 @@ subprojects {
     dependencies {
         annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
         annotationProcessor 'org.projectlombok:lombok'
-        compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
-        compileOnly 'org.projectlombok:lombok'
-        implementation 'org.apache.thrift:libthrift:0.12.0'
-    }
-}
-
-project(':thrift-server') {
-    dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter'
-        implementation 'org.springframework.boot:spring-boot-starter-validation'
-        runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    }
-}
-
-project(':thrift-client') {
-    dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter'
-        implementation 'org.springframework.boot:spring-boot-starter-validation'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        implementation 'org.apache.thrift:libthrift:0.13.0'
     }
 }
