@@ -1,0 +1,9 @@
+spring:
+  activemq:
+    in-memory: true
+    broker-url: vm://localhost?broker.persistent=false&broker.schedulerSupport=true
+    user: admin
+    password: admin
+  output:
+    ansi:
+      enabled: always
