@@ -17,44 +17,43 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class GitHubApiClient {
-    public static final String API_URL = "https://api.github.com";
+    private static final String BASE_URL = "https://api.github.com";
     private final RestTemplate restTemplate;
 
     public Optional<User> getUser(String username) {
-        String url = UriComponentsBuilder.fromHttpUrl(API_URL)
-                                         .path("/users/{username}")
-                                         .build(false)
-                                         .toUriString();
-        User user = restTemplate.getForObject(url, User.class, username);
+        User user = restTemplate.getForObject(buildUrl("/users/{username}", false), User.class, username);
         return Optional.ofNullable(user);
     }
 
     public Optional<JsonNode> getEmojis() {
-        String url = UriComponentsBuilder.fromHttpUrl(API_URL)
-                                         .path("/emojis")
-                                         .toUriString();
-        JsonNode jsonNode = restTemplate.getForObject(url, JsonNode.class);
+        JsonNode jsonNode = restTemplate.getForObject(buildUrl("/emojis"), JsonNode.class);
         return Optional.ofNullable(jsonNode);
     }
 
     public Optional<JsonNode> getEvents() {
-        String url = UriComponentsBuilder.fromHttpUrl(API_URL)
-                                         .path("/events")
-                                         .toUriString();
-        JsonNode jsonNode = restTemplate.getForObject(url, JsonNode.class);
+        JsonNode jsonNode = restTemplate.getForObject(buildUrl("/events"), JsonNode.class);
         return Optional.ofNullable(jsonNode);
     }
 
     public Optional<Resource> getFeeds() {
-        String url = UriComponentsBuilder.fromHttpUrl(API_URL)
-                                         .path("/feeds")
-                                         .toUriString();
-        Resource resource = restTemplate.exchange(url, HttpMethod.GET, HttpEntity.EMPTY, Resource.class)
+        Resource resource = restTemplate.exchange(buildUrl("/feeds"),
+                                                  HttpMethod.GET, HttpEntity.EMPTY, Resource.class)
                                         .getBody();
         return Optional.ofNullable(resource);
     }
 
     public Set<HttpMethod> options() {
-        return restTemplate.optionsForAllow(API_URL);
+        return restTemplate.optionsForAllow(BASE_URL);
+    }
+
+    private static String buildUrl(String path) {
+        return buildUrl(path, true);
+    }
+
+    private static String buildUrl(String path, boolean encoded) {
+        return UriComponentsBuilder.fromHttpUrl(BASE_URL)
+                                   .path(path)
+                                   .build(encoded)
+                                   .toUriString();
     }
 }

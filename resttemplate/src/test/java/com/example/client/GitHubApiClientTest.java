@@ -1,25 +1,23 @@
 package com.example.client;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 import java.util.Optional;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
 public class GitHubApiClientTest {
     private MockRestServiceServer server;
@@ -28,10 +26,9 @@ public class GitHubApiClientTest {
     @Autowired
     private GitHubApiClient gitHubApiClient;
 
-    @Before
+    @BeforeEach
     public void setUp() {
-        server = MockRestServiceServer.bindTo(restTemplate)
-                                      .build();
+        server = MockRestServiceServer.bindTo(restTemplate).build();
     }
 
     @Test
@@ -42,10 +39,11 @@ public class GitHubApiClientTest {
               .andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 
         Optional<User> response = gitHubApiClient.getUser("hirakida");
-        assertThat(response.isPresent()).isTrue();
+
+        assertTrue(response.isPresent());
         User user = response.get();
-        assertThat(user.getId()).isEqualTo(1);
-        assertThat(user.getName()).isEqualTo("hirakida");
+        assertEquals(1, user.getId());
+        assertEquals("hirakida", user.getName());
         server.verify();
     }
 }
