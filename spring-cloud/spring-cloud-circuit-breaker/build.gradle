@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.10.RELEASE' apply false
+    id 'org.springframework.boot' version '2.2.2.RELEASE' apply false
 }
 
 subprojects {
@@ -16,7 +16,7 @@ subprojects {
     }
 
     ext {
-        set('springCloudVersion', 'Greenwich.SR3')
+        set('springCloudVersion', 'Hoxton.RELEASE')
     }
 
     dependencyManagement {
@@ -28,5 +28,12 @@ subprojects {
     dependencies {
         annotationProcessor 'org.projectlombok:lombok'
         compileOnly 'org.projectlombok:lombok'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+
+    test {
+        useJUnitPlatform()
     }
 }

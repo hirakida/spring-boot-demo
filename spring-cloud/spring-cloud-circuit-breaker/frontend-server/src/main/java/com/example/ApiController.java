@@ -10,10 +10,10 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-    private final BackEndApiClient backEndApiClient;
+    private final BackendApiClient backEndApiClient;
 
-    @GetMapping("/datetime")
-    public JsonNode getDateTIme() {
-        return backEndApiClient.getDateTime();
+    @GetMapping("/")
+    public JsonNode getCount() {
+        return backEndApiClient.getCount();
     }
 }

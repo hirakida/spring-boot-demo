@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: circuit-breaker-demo
   output:
     ansi:
       enabled: always

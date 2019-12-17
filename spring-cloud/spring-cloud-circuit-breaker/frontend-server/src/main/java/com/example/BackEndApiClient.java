@@ -1,14 +1,14 @@
 package com.example;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,21 +16,19 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class BackEndApiClient {
+public class BackendApiClient {
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
+    private final CircuitBreakerFactory<?, ?> factory;
 
-    @HystrixCommand(fallbackMethod = "fallback",
-            commandProperties = {
-                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "2"),
-                    @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000")
-            })
-    public JsonNode getDateTime() {
-        return restTemplate.getForObject("http://localhost:8081/datetime", JsonNode.class);
+    public JsonNode getCount() {
+        return factory.create("count")
+                      .run(() -> restTemplate.getForObject("http://localhost:8081/count", JsonNode.class),
+                           this::fallback);
     }
 
-    public JsonNode fallback() {
-        log.warn("fallback");
-        return objectMapper.valueToTree(Map.of("message", "fallback"));
+    private JsonNode fallback(Throwable t) {
+        log.warn("fallback: {}", t.getMessage());
+        return objectMapper.valueToTree(Map.of("fallback", LocalDateTime.now()));
     }
 }

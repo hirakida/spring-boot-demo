@@ -1,2 +1,2 @@
 rootProject.name = 'spring-cloud-circuit-breaker-demo'
-include 'frontend-server', 'backend-server'
+include 'backend-server', 'frontend-server'
