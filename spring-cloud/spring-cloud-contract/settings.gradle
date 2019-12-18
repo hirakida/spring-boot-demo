@@ -1,4 +1,4 @@
 rootProject.name = 'spring-cloud-contract-demo'
-include 'contract-consumer',
-        'contract-producer',
+include 'contract-stub-runner',
+        'contract-verifier',
         'contract-wiremock'
