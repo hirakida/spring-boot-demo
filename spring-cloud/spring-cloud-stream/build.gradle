@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.10.RELEASE' apply false
+    id 'org.springframework.boot' version '2.2.2.RELEASE' apply false
 }
 
 subprojects {
@@ -16,7 +16,7 @@ subprojects {
     }
 
     ext {
-        set('springCloudVersion', 'Greenwich.SR3')
+        set('springCloudVersion', 'Hoxton.RELEASE')
     }
 
     dependencyManagement {
@@ -30,25 +30,14 @@ subprojects {
         compileOnly 'org.projectlombok:lombok'
         implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka'
         implementation 'org.springframework.kafka:spring-kafka'
-    }
-}
-
-project('stream-source') {
-    dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter'
-        runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
         testImplementation 'org.springframework.cloud:spring-cloud-stream-test-support'
         testImplementation 'org.springframework.kafka:spring-kafka-test'
     }
-}
 
-project('stream-sink') {
-    dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter'
-        runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
-        testImplementation 'org.springframework.cloud:spring-cloud-stream-test-support'
-        testImplementation 'org.springframework.kafka:spring-kafka-test'
+    test {
+        useJUnitPlatform()
     }
 }

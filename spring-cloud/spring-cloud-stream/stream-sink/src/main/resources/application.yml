@@ -4,9 +4,6 @@ spring:
       bindings:
         input:
           destination: topic1
-  devtools:
-    livereload:
-      enabled: false
   output:
     ansi:
       enabled: always
