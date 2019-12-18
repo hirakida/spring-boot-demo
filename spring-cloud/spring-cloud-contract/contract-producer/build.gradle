@@ -1,17 +1,7 @@
 import org.springframework.cloud.contract.verifier.config.TestFramework
 
-buildscript {
-    repositories {
-        mavenCentral()
-        maven { url 'https://repo.spring.io/milestone' }
-    }
-    dependencies {
-        classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.0.RC2'
-    }
-}
-
 apply plugin: 'groovy'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'spring-cloud-contract'
 
 dependencies {
@@ -27,8 +17,4 @@ contracts {
     testFramework = TestFramework.JUNIT5
     testMode = 'EXPLICIT'
     baseClassForTests = 'com.example.BaseClass'
-}
-
-test {
-    useJUnitPlatform()
 }

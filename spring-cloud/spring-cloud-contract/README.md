@@ -1,6 +1,6 @@
 
 ```
- ./gradlew :contract-producer:clean :contract-producer:build :contract-producer:install
+ ./gradlew :contract-producer:clean :contract-producer:build :contract-producer:publishToMavenLocal
  ./gradlew :contract-consumer:clean :contract-consumer:build
 ```
 

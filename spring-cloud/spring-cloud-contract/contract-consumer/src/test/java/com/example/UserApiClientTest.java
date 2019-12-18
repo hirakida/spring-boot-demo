@@ -13,7 +13,8 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
-@AutoConfigureStubRunner(ids = "com.example:contract-producer:+:8080", stubsMode = StubsMode.LOCAL)
+@AutoConfigureStubRunner(ids = "com.example:contract-producer:0.0.1-SNAPSHOT:stubs:8080",
+        stubsMode = StubsMode.LOCAL)
 public class UserApiClientTest {
     @Autowired
     private UserApiClient client;

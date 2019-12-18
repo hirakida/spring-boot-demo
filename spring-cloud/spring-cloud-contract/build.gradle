@@ -1,5 +1,6 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.1.RELEASE' apply false
+    id 'org.springframework.boot' version '2.2.2.RELEASE' apply false
+    id 'org.springframework.cloud.contract' version '2.2.0.RELEASE' apply false
 }
 
 subprojects {
@@ -13,11 +14,10 @@ subprojects {
 
     repositories {
         mavenCentral()
-        maven { url 'https://repo.spring.io/milestone' }
     }
 
     ext {
-        set('springCloudVersion', 'Hoxton.RC2')
+        set('springCloudVersion', 'Hoxton.RELEASE')
     }
 
     dependencyManagement {
@@ -29,5 +29,11 @@ subprojects {
     dependencies {
         annotationProcessor 'org.projectlombok:lombok'
         compileOnly 'org.projectlombok:lombok'
+//        implementation 'com.sun.xml.bind:jaxb-osgi:2.3.2'
+    }
+
+    test {
+        useJUnitPlatform()
+        jvmArgs('--illegal-access=deny')
     }
 }
