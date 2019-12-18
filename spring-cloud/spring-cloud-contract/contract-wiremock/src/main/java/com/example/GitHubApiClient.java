@@ -11,17 +11,16 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class WeatherApiClient {
-    static final String BASE_URL = "http://weather.livedoor.com";
+public class GitHubApiClient {
+    static final String BASE_URL = "https://api.github.com";
     private final RestTemplate restTemplate;
 
     @Nullable
-    public JsonNode getWeather(String city) {
+    public JsonNode getUser(String username) {
         String uri = UriComponentsBuilder.fromHttpUrl(BASE_URL)
-                                         .path("/forecast/webservice/json/v1")
-                                         .queryParam("city", "{city}")
+                                         .path("/users/{username}")
                                          .build(false)
                                          .toUriString();
-        return restTemplate.getForObject(uri, JsonNode.class, city);
+        return restTemplate.getForObject(uri, JsonNode.class, username);
     }
 }

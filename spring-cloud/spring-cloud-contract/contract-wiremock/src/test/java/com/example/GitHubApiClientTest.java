@@ -1,6 +1,6 @@
 package com.example;
 
-import static com.example.WeatherApiClient.BASE_URL;
+import static com.example.GitHubApiClient.BASE_URL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -19,35 +19,35 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
-public class WeatherApiClientTest {
+public class GitHubApiClientTest {
     @Autowired
-    private WeatherApiClient weatherApiClient;
+    private GitHubApiClient gitHubApiClient;
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
     private ObjectMapper objectMapper;
 
     @Test
-    public void getWeatherTest_200() throws IOException {
+    public void getUserTest_200() throws IOException {
         MockRestServiceServer server = WireMockRestServiceServer.with(restTemplate)
                                                                 .baseUrl(BASE_URL)
-                                                                .stubs("classpath:/stubs/get_weather_200.json")
+                                                                .stubs("classpath:/stubs/get_user_200.json")
                                                                 .build();
 
-        JsonNode jsonNode = weatherApiClient.getWeather("130010");
-        String responseBody = "{\"location\": {\"city\":\"東京\"}}";
+        JsonNode jsonNode = gitHubApiClient.getUser("hirakida");
+        String responseBody = "{\"login\":\"hirakida\",\"type\":\"User\"}";
         assertEquals(jsonNode, objectMapper.readTree(responseBody));
         server.verify();
     }
 
     @Test
-    public void getWeatherTest_404() throws IOException {
+    public void getUserTest_404() throws IOException {
         MockRestServiceServer server = WireMockRestServiceServer.with(restTemplate)
                                                                 .baseUrl(BASE_URL)
-                                                                .stubs("classpath:/stubs/get_weather_404.json")
+                                                                .stubs("classpath:/stubs/get_user_404.json")
                                                                 .build();
 
-        assertThrows(HttpClientErrorException.class, () -> weatherApiClient.getWeather("0"));
+        assertThrows(HttpClientErrorException.class, () -> gitHubApiClient.getUser("hirakida_"));
         server.verify();
     }
 }

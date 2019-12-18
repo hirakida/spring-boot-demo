@@ -30,6 +30,9 @@ subprojects {
         annotationProcessor 'org.projectlombok:lombok'
         compileOnly 'org.projectlombok:lombok'
 //        implementation 'com.sun.xml.bind:jaxb-osgi:2.3.2'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
     }
 
     test {

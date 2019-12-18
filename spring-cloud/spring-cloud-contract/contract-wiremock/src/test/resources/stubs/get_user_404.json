@@ -1,6 +1,6 @@
 {
   "request" : {
-    "url" : "/forecast/webservice/json/v1?city=0",
+    "url" : "/users/hirakida_",
     "method" : "GET"
   },
   "response" : {

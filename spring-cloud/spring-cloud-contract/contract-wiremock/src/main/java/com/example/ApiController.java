@@ -11,10 +11,10 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-    private final WeatherApiClient weatherApiClient;
+    private final GitHubApiClient gitHubApiClient;
 
-    @GetMapping("/weather/{city}")
-    public JsonNode getWeather(@PathVariable String city) {
-        return weatherApiClient.getWeather(city);
+    @GetMapping("/users/{username}")
+    public JsonNode getUser(@PathVariable String username) {
+        return gitHubApiClient.getUser(username);
     }
 }

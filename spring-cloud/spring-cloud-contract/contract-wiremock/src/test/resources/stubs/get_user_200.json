@@ -1,11 +1,11 @@
 {
   "request" : {
-    "url" : "/forecast/webservice/json/v1?city=130010",
+    "url" : "/users/hirakida",
     "method" : "GET"
   },
   "response" : {
     "status" : 200,
-    "body" : "{\"location\": {\"city\":\"東京\"}}",
+    "body" : "{\"login\":\"hirakida\",\"type\":\"User\"}",
     "headers" : {
       "Content-Type" : "application/json"
     }
