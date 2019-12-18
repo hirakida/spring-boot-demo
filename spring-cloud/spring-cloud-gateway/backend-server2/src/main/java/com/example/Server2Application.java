@@ -19,18 +19,12 @@ public class Server2Application {
 
     @Bean
     public RouterFunction<ServerResponse> routes() {
-        return route(GET("/md5"), Server2Application::md5)
-                .andRoute(GET("/sha1"), Server2Application::sha1);
+        return route(GET("/md5/{text}"), Server2Application::md5);
     }
 
     private static Mono<ServerResponse> md5(ServerRequest request) {
-        return Mono.justOrEmpty(request.queryParam("text"))
-                   .flatMap(text -> ok().syncBody(DigestUtils.md5Hex(text)));
-    }
-
-    private static Mono<ServerResponse> sha1(ServerRequest request) {
-        return Mono.justOrEmpty(request.queryParam("text"))
-                   .flatMap(text -> ok().syncBody(DigestUtils.sha1Hex(text)));
+        String text = request.pathVariable("text");
+        return ok().bodyValue(DigestUtils.md5Hex(text));
     }
 
     public static void main(String[] args) {

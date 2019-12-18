@@ -1,6 +1,5 @@
 package com.example;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -15,6 +14,8 @@ import reactor.core.publisher.Mono;
 
 @Configuration
 public class GatewayConfig {
+    private static final String SERVER1 = "http://localhost:8081";
+    private static final String SERVER2 = "http://localhost:8082";
 
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
@@ -22,26 +23,21 @@ public class GatewayConfig {
                 .routes()
                 .route(r -> r.path("/").and().query("limiter")
                              .filters(f -> f.setPath("/datetime")
-                                            .requestRateLimiter(c -> c.setRateLimiter(redisRateLimiter())))
-                             .uri("http://localhost:8081"))
+                                            .requestRateLimiter(c -> c.setRateLimiter(redisRateLimiter())
+                                                                      .setKeyResolver(keyResolver())))
+                             .uri(SERVER1))
                 .route(r -> r.path("/datetime")
                              .filters(f -> f.addResponseHeader("X-DateTime",
                                                                LocalDateTime.now().toString()))
-                             .uri("http://localhost:8081"))
-                .route(r -> r.path("/date")
-                             .filters(f -> f.addResponseHeader("X-Date",
-                                                               LocalDate.now().toString()))
-                             .uri("http://localhost:8081"))
-                .route(r -> r.path("/md5").and().query("text")
-                             .uri("http://localhost:8082"))
-                .route(r -> r.path("/sha1").and().query("text")
-                             .uri("http://localhost:8082"))
+                             .uri(SERVER1))
+                .route(r -> r.path("/md5/{text}")
+                             .uri(SERVER2))
                 .build();
     }
 
     @Bean
     public RedisRateLimiter redisRateLimiter() {
-        return new RedisRateLimiter(5, 10);
+        return new RedisRateLimiter(3, 5);
     }
 
     @Bean
