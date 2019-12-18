@@ -16,9 +16,6 @@ spring:
   sleuth:
     sampler:
       probability: 1.0
-  devtools:
-    livereload:
-      enabled: false
   output:
     ansi:
       enabled: always
