@@ -1,5 +1,6 @@
 package com.example;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -12,8 +13,9 @@ import reactor.core.publisher.Mono;
 public class UserApiClient {
     private final WebClient webClient;
 
-    public UserApiClient(WebClient.Builder builder) {
-        webClient = builder.baseUrl("http://localhost:8080").build();
+    public UserApiClient(WebClient.Builder builder,
+                         @Value("${producer.port:8080}") int port) {
+        webClient = builder.baseUrl("http://localhost:" + port).build();
     }
 
     public Mono<User> getUser(long id) {

@@ -12,9 +12,10 @@ import com.example.UserApiClient.User;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-@SpringBootTest(webEnvironment = WebEnvironment.NONE)
-@AutoConfigureStubRunner(ids = "com.example:contract-producer:0.0.1-SNAPSHOT:stubs:8080",
-        stubsMode = StubsMode.LOCAL)
+@SpringBootTest(webEnvironment = WebEnvironment.NONE,
+        properties = "producer.port=${stubrunner.runningstubs.contract-producer.port}"
+)
+@AutoConfigureStubRunner(ids = "com.example:contract-producer:+:stubs", stubsMode = StubsMode.LOCAL)
 public class UserApiClientTest {
     @Autowired
     private UserApiClient client;
