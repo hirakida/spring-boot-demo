@@ -9,9 +9,6 @@ spring:
   output:
     ansi:
       enabled: always
-  devtools:
-    livereload:
-      enabled: false
 management:
   endpoint:
     refresh:
