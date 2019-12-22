@@ -1,8 +1,2 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-    }
-}
-
-rootProject.name = 'spring-boot-grpc-demo'
-include 'grpc-server', 'grpc-client'
+rootProject.name = 'lognet-grpc-demo'
+include 'grpc-client', 'grpc-server', 'protobuf'
