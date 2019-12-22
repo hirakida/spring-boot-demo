@@ -1,2 +1,4 @@
 rootProject.name = 'spring-boot-thrift-demo'
-include 'thrift-server', 'thrift-client'
+include 'thrift',
+        'thrift-client',
+        'thrift-server'
