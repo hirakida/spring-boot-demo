@@ -6,30 +6,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.time.LocalDateTime;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Import(DataSourceTestConfig.class)
-public class ApiControllerTest {
+public class UserControllerTest {
     @Autowired
     private WebApplicationContext context;
     @Autowired
     private ObjectMapper objectMapper;
     private MockMvc mockMvc;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
     }

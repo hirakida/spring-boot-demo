@@ -1,0 +1,9 @@
+apply plugin: 'com.avast.gradle.docker-compose'
+
+dependencies {
+    runtimeOnly 'org.postgresql:postgresql'
+}
+
+dockerCompose {
+    isRequiredBy(bootRun)
+}

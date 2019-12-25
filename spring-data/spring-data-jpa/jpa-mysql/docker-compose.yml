@@ -10,10 +10,3 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: pass
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-  postgresql:
-    image: postgres:10
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: sa
-      POSTGRES_PASSWORD:

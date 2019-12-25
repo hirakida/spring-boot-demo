@@ -1,0 +1,10 @@
+apply plugin: 'com.avast.gradle.docker-compose'
+
+dependencies {
+    runtimeOnly 'mysql:mysql-connector-java'
+    testImplementation 'com.wix:wix-embedded-mysql:4.2.0'
+}
+
+dockerCompose {
+    isRequiredBy(bootRun)
+}

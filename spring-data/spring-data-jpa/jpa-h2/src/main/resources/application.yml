@@ -4,8 +4,7 @@ spring:
     sql-script-encoding: UTF-8
     #    schema: classpath:db/schema-${spring.datasource.platform}.sql
     #    data: classpath:db/data-${spring.datasource.platform}.sql
-    driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:h2:mem:h2-db
+    url: jdbc:h2:mem:h2-db
     username: sa
     password:
   h2:
@@ -15,9 +14,6 @@ spring:
     hibernate:
       ddl-auto: update
     open-in-view: false
-  devtools:
-    livereload:
-      enabled: false
   output:
     ansi:
       enabled: always

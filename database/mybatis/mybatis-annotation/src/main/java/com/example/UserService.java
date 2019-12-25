@@ -46,7 +46,7 @@ public class UserService {
     }
 
     public void update(long id, String name) {
-        User account = userMapper.findById(id).orElseThrow();
+        User account = findById(id);
         account.setName(name);
         userMapper.update(account);
     }

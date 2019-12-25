@@ -20,10 +20,21 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) {
         List<User> users = userRepository.findAll();
-        log.info("{}", users);
+
+        User user = new User();
+        user.setName("user4");
+        userRepository.save(user);
 
         userRepository.findById(users.get(0).getId())
-                      .ifPresent(user -> log.info("{}", user));
+                      .ifPresent(u -> {
+                          u.setName("user1-2");
+                          userRepository.save(u);
+                      });
+
+        userRepository.deleteById(users.get(1).getId());
+
+        users = userRepository.findAll();
+        log.info("{}", users);
     }
 
     public static void main(String[] args) {

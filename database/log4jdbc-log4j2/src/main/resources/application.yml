@@ -1,14 +1,13 @@
 spring:
   datasource:
-    initialization-mode: always
     sql-script-encoding: UTF-8
-    url: jdbc:hsqldb:mem:hsqldb-db
+    driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:h2:mem:h2-db
     username: sa
     password:
   jpa:
     hibernate:
       ddl-auto: update
-    open-in-view: false
   output:
     ansi:
       enabled: always

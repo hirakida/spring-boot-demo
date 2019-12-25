@@ -14,9 +14,6 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-  devtools:
-    livereload:
-      enabled: false
   output:
     ansi:
       enabled: always

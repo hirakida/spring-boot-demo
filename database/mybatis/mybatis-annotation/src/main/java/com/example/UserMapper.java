@@ -17,17 +17,17 @@ import org.apache.ibatis.session.RowBounds;
 public interface UserMapper {
     String FIND_ALL = "SELECT id, name, created_at, updated_at FROM user";
 
-    @Select(FIND_ALL + " WHERE id=#{id}")
-    Optional<User> findById(@Param("id") long id);
-
-    @Select(FIND_ALL + " WHERE name=#{name}")
-    User findByName(@Param("name") String name);
-
     @Select(FIND_ALL)
     List<User> findAll(RowBounds rowBounds);
 
     @Select(FIND_ALL)
     Cursor<User> findAllWithCursor();
+
+    @Select(FIND_ALL + " WHERE id=#{id}")
+    Optional<User> findById(@Param("id") long id);
+
+    @Select(FIND_ALL + " WHERE name=#{name}")
+    User findByName(@Param("name") String name);
 
     @Insert("INSERT INTO user(name, created_at, updated_at) VALUES(#{name}, NOW(), NOW())")
     @Options(useGeneratedKeys = true)

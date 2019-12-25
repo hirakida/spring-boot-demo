@@ -22,15 +22,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(nullable = false)
+    @Column
     private String name;
-
     @CreatedDate
-    @Column(nullable = false, updatable = false)
+    @Column
     private LocalDateTime createdAt;
-
     @LastModifiedDate
-    @Column(nullable = false)
+    @Column
     private LocalDateTime updatedAt;
 }

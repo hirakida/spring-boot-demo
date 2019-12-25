@@ -26,9 +26,6 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    @Column
-    private boolean enabled;
-
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;

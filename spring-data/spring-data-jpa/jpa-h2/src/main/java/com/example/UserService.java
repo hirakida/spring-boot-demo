@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public User update(User request) {
-        User user = userRepository.findById(request.getId()).orElseThrow();
+        User user = findById(request.getId());
         user.setName(request.getName());
         return userRepository.save(user);
     }
@@ -36,7 +36,7 @@ public class UserService {
     }
 
     public void delete(int id) {
-        User user = userRepository.findById(id).orElseThrow();
+        User user = findById(id);
         userRepository.deleteById(user.getId());
     }
 }
