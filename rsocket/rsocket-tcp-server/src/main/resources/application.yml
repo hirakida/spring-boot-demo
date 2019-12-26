@@ -1,14 +1,11 @@
 server:
-  port: 8081
+  port: 8082
 spring:
   rsocket:
     server:
       address: localhost
-      mapping-path: /rsocket
-      transport: websocket
-  devtools:
-    livereload:
-      enabled: false
+      port: 7000
+      transport: tcp
   output:
     ansi:
       enabled: always
