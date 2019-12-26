@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
-public class ApiController {
+public class UserController {
     private final UserRepository userRepository;
 
     @GetMapping
