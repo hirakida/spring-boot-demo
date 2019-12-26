@@ -8,9 +8,6 @@ spring:
     password:
     pool:
       initial-size: 10
-  devtools:
-    livereload:
-      enabled: false
   output:
     ansi:
       enabled: always
