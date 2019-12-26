@@ -1,14 +1,11 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.7.RELEASE' apply false
-    id 'com.avast.gradle.docker-compose' version '0.9.4' apply false
+    id 'org.springframework.boot' version '2.2.2.RELEASE' apply false
 }
 
 subprojects {
-    apply plugin: 'idea'
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
-    apply plugin: 'com.avast.gradle.docker-compose'
 
     group 'com.example'
     version '0.0.1-SNAPSHOT'
@@ -21,25 +18,15 @@ subprojects {
     dependencies {
         annotationProcessor 'org.projectlombok:lombok'
         compileOnly 'org.projectlombok:lombok'
-        implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-        implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.apache.commons:commons-pool2'
-        implementation 'com.google.code.findbugs:jsr305:3.0.2'
-        runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-
+        compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
-            exclude module: 'junit'
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
         testImplementation 'it.ozimov:embedded-redis:0.7.2'
-        testImplementation 'org.junit.jupiter:junit-jupiter-api'
-        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     }
 
     test {
         useJUnitPlatform()
-    }
-
-    dockerCompose {
-        isRequiredBy(bootRun)
     }
 }
