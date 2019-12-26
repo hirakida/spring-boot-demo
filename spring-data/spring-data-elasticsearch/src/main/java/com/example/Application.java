@@ -1,22 +1,22 @@
 package com.example;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.stream.IntStream;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 
 import lombok.RequiredArgsConstructor;
 
 @SpringBootApplication
 @RequiredArgsConstructor
-public class Application implements CommandLineRunner {
+public class Application {
     private final UserRepository userRepository;
 
-    @Override
-    public void run(String... strings) throws IOException {
+    @EventListener(ApplicationReadyEvent.class)
+    public void readyEvent() {
         userRepository.deleteAll();
         IntStream.rangeClosed(1, 5)
                  .forEach(i -> {
