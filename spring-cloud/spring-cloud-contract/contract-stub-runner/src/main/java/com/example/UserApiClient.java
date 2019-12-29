@@ -14,8 +14,9 @@ public class UserApiClient {
     private final WebClient webClient;
 
     public UserApiClient(WebClient.Builder builder,
+                         @Value("${producer.host:localhost}") String host,
                          @Value("${producer.port:8080}") int port) {
-        webClient = builder.baseUrl("http://localhost:" + port).build();
+        webClient = builder.baseUrl(String.format("http://%s:%d", host, port)).build();
     }
 
     public Mono<User> getUser(long id) {
