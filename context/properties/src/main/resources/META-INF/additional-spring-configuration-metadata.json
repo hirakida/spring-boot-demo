@@ -1,0 +1,16 @@
+{
+  "properties": [
+    {
+      "name": "app.number.value1",
+      "type": "java.lang.Integer",
+      "description": "Min(1).",
+      "defaultValue": 0
+    },
+    {
+      "name": "app.number.value2",
+      "type": "java.lang.Integer",
+      "description": "Min(0).",
+      "defaultValue": 0
+    }
+  ]
+}
