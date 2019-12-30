@@ -15,16 +15,29 @@ import lombok.Data;
 public class AppProperties {
     private @NotNull AppNumber number;
     private @NotNull AppString string;
+    private @NotNull String ddlAuto;
 
     @Data
     public static class AppNumber {
-        private @Min(1) int value1;
+        /**
+         * Min(1).
+         */
+        private @Min(1) int value1 = 1;
+        /**
+         * Min(0).
+         */
         private @Min(0) int value2;
     }
 
     @Data
     public static class AppString {
+        /**
+         * NotEmpty.
+         */
         private @NotEmpty String value1;
-        private String value2;
+        /**
+         * NotNull.
+         */
+        private @NotNull String value2;
     }
 }

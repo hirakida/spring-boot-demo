@@ -7,3 +7,4 @@ app:
     value1: 1
   string:
     value1: abcde
+  ddl-auto: none
