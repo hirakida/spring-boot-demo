@@ -19,7 +19,7 @@ public class RSocketController {
         return Mono.empty();
     }
 
-    @MessageMapping("hello")
+    @MessageMapping("requestResponse")
     public Mono<HelloResponse> hello(HelloRequest request) {
         return Mono.just(new HelloResponse(String.format("Hello %s!", request.getName()),
                                            LocalDateTime.now()));

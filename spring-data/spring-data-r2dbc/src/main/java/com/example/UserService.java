@@ -35,7 +35,7 @@ public class UserService {
                              .doOnNext(user -> log.info("{}", user));
     }
 
-    public Mono<User> create(String name) {
+    public Mono<User> insert(String name) {
         return Mono.just(new User(null, name, LocalDateTime.now()))
                    .flatMap(userRepository::save)
                    .doOnNext(user -> log.info("{}", user));

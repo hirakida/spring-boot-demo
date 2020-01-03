@@ -34,8 +34,8 @@ public class UserController {
     }
 
     @PostMapping
-    public Mono<User> create(@RequestBody @Validated UserRequest request) {
-        return userService.create(request.getName());
+    public Mono<User> insert(@RequestBody @Validated UserRequest request) {
+        return userService.insert(request.getName());
     }
 
     @PutMapping("/{id}")
