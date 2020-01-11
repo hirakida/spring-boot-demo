@@ -38,15 +38,17 @@ public class TcpController {
     public Flux<HelloResponse> requestStream(@RequestParam(defaultValue = "hirakida") String name) {
         return rSocketTcpRequester.route("requestStream")
                                   .data(new HelloRequest(name))
-                                  .retrieveFlux(HelloResponse.class);
+                                  .retrieveFlux(HelloResponse.class)
+                                  .delayElements(Duration.ofSeconds(1));
     }
 
     @GetMapping(path = "/request_channel", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
     public Flux<HelloResponse> requestChannel(@RequestParam(defaultValue = "hirakida") String name) {
         Flux<HelloRequest> data = Flux.fromStream(Stream.generate(() -> new HelloRequest(name)))
-                                      .delayElements(Duration.ofSeconds(1));
+                                      .delayElements(Duration.ofMillis(100));
         return rSocketTcpRequester.route("requestChannel")
                                   .data(data)
-                                  .retrieveFlux(HelloResponse.class);
+                                  .retrieveFlux(HelloResponse.class)
+                                  .delayElements(Duration.ofSeconds(1));
     }
 }
