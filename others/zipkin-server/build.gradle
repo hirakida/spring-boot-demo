@@ -1,0 +1,19 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.9.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    def zipkinVersion = '2.11.13'
+    implementation "io.zipkin.java:zipkin-server:${zipkinVersion}"
+    runtimeOnly "io.zipkin.java:zipkin-autoconfigure-ui:${zipkinVersion}"
+}
