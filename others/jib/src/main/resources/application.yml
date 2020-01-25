@@ -2,3 +2,12 @@ spring:
   output:
     ansi:
       enabled: always
+server:
+  tomcat:
+    mbeanregistry:
+      enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
