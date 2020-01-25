@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    discovery:
+      client:
+        simple:
+          instances:
+            hello:
+              - uri: http://localhost:8081
+              - uri: http://localhost:8082
+  output:
+    ansi:
+      enabled: always
