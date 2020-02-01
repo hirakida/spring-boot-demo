@@ -8,7 +8,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CommandLineRunnerImpl implements ApplicationRunner {
+public class ApplicationRunnerImpl implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
