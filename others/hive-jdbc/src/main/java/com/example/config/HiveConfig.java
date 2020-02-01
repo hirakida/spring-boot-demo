@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class HiveConfig {
-
     @Bean
     public Connection connection(HiveProperties properties) throws SQLException {
         return DriverManager.getConnection(properties.getUrl());

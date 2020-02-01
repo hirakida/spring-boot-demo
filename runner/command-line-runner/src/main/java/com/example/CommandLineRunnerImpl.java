@@ -1,6 +1,5 @@
 package com.example;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import org.springframework.boot.CommandLineRunner;
@@ -21,7 +20,6 @@ public class CommandLineRunnerImpl implements CommandLineRunner, ExitCodeGenerat
         }
 
         System.out.println("args: " + Arrays.toString(args));
-        System.out.println(LocalDateTime.now());
     }
 
     @Override
