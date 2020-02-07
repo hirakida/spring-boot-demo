@@ -1,15 +1,12 @@
-package com.example.batch;
+package com.example;
 
 import java.util.Map;
 
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecutionException;
 import org.springframework.batch.core.JobParameter;
 import org.springframework.batch.core.JobParameters;
-import org.springframework.batch.core.JobParametersInvalidException;
 import org.springframework.batch.core.launch.JobLauncher;
-import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
-import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
-import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -27,30 +24,28 @@ public class CronTasks {
 
     @Scheduled(cron = "0 * * * * *")
     public void job1() {
-        runJob(job1);
+        run(job1);
     }
 
     @Scheduled(cron = "20 * * * * *")
     public void job2() {
-        runJob(job2);
+        run(job2);
     }
 
     @Scheduled(cron = "40 * * * * *")
     public void job3() {
-        runJob(job3);
+        run(job3);
     }
 
-    private void runJob(Job job) {
+    private void run(Job job) {
         Map<String, JobParameter> params = Map.of("time", new JobParameter(System.currentTimeMillis()));
         JobParameters jobParameters = new JobParameters(params);
+
         try {
             log.info("##### {} start #####", job.getName());
             jobLauncher.run(job, jobParameters);
             log.info("##### {} end   #####", job.getName());
-        } catch (JobExecutionAlreadyRunningException |
-                JobInstanceAlreadyCompleteException |
-                JobParametersInvalidException |
-                JobRestartException e) {
+        } catch (JobExecutionException e) {
             log.error(e.getMessage(), e);
         }
     }

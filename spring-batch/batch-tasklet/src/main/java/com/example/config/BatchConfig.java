@@ -15,8 +15,8 @@ import org.springframework.context.annotation.Configuration;
 import com.example.batch.JobExecutionListenerImpl;
 import com.example.batch.ScopeBean;
 import com.example.batch.StepExecutionListenerImpl;
-import com.example.batch.Tasklet1;
-import com.example.batch.Tasklet2;
+import com.example.batch.TaskletImpl1;
+import com.example.batch.TaskletImpl2;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,8 +27,8 @@ public class BatchConfig {
     private final StepBuilderFactory stepBuilderFactory;
     private final JobExecutionListenerImpl jobExecutionListenerImpl;
     private final StepExecutionListenerImpl stepExecutionListenerImpl;
-    private final Tasklet1 tasklet1;
-    private final Tasklet2 tasklet2;
+    private final TaskletImpl1 taskletImpl1;
+    private final TaskletImpl2 taskletImpl2;
 
     @Bean
     public Job job1() {
@@ -61,7 +61,7 @@ public class BatchConfig {
     @Bean
     public Step step1() {
         return stepBuilderFactory.get("step1")
-                                 .tasklet(tasklet1)
+                                 .tasklet(taskletImpl1)
                                  .listener(stepExecutionListenerImpl)
                                  .build();
     }
@@ -69,7 +69,7 @@ public class BatchConfig {
     @Bean
     public Step step2() {
         return stepBuilderFactory.get("step2")
-                                 .tasklet(tasklet2)
+                                 .tasklet(taskletImpl2)
                                  .listener(stepExecutionListenerImpl)
                                  .build();
     }
