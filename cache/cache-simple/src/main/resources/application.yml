@@ -1,27 +1,7 @@
 spring:
   cache:
     type: simple
-  datasource:
-    initialization-mode: always
-    url: jdbc:h2:mem:h2-db2
-    username: sa
-    password:
-  jpa:
-    hibernate:
-      ddl-auto: update
-    open-in-view: false
-    show-sql: true
-  devtools:
-    livereload:
-      enabled: false
+#    cache-names: cache1
   output:
     ansi:
       enabled: always
-logging:
-  level:
-    org.springframework.cache: trace
-management:
-  endpoints:
-    web:
-      exposure:
-        include: ["health", "info", "caches"]

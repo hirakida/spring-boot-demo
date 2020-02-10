@@ -1,28 +1,9 @@
-plugins {
-    id 'java'
-    id 'idea'
-    id 'org.springframework.boot' version '2.1.7.RELEASE'
-}
-
-apply plugin: 'io.spring.dependency-management'
-
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = JavaVersion.VERSION_1_8
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    annotationProcessor('org.projectlombok:lombok')
-    compileOnly('org.projectlombok:lombok')
-    implementation('org.springframework.boot:spring-boot-starter-cache')
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-    implementation('org.springframework.boot:spring-boot-starter-actuator')
-    implementation('com.hazelcast:hazelcast-spring')
-    runtimeOnly('org.springframework.boot:spring-boot-devtools')
-    runtimeOnly('com.h2database:h2')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    implementation project(':cache-common')
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'com.hazelcast:hazelcast-spring'
+}
+
+bootRun {
+    jvmArgs = ['--illegal-access=warn']
 }
