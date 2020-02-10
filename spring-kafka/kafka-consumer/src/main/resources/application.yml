@@ -10,12 +10,9 @@ spring:
     consumer:
 #      bootstrap-servers: localhost:9092
 #      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: com.example.UserJsonDeserializer
+      value-deserializer: com.example.support.UserJsonDeserializer
       group-id: group1
       auto-offset-reset: earliest
-  devtools:
-    livereload:
-      enabled: false
   output:
     ansi:
       enabled: always

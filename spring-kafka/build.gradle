@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.7.RELEASE' apply false
+    id 'org.springframework.boot' version '2.2.4.RELEASE' apply false
 }
 
 subprojects {
@@ -20,30 +20,12 @@ subprojects {
         annotationProcessor 'org.projectlombok:lombok'
         compileOnly 'org.projectlombok:lombok'
         implementation 'org.springframework.kafka:spring-kafka'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
     }
-}
 
-project(':kafka-common') {
-    bootJar.enabled = false
-    jar.enabled = true
-}
-
-project(':kafka-producer') {
-    dependencies {
-        implementation project(':kafka-common')
-        implementation 'org.springframework.boot:spring-boot-starter-web'
-        runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
-        testImplementation 'org.springframework.kafka:spring-kafka-test'
-    }
-}
-
-project(':kafka-consumer') {
-    dependencies {
-        implementation project(':kafka-common')
-        implementation 'org.springframework.boot:spring-boot-starter-web'
-        runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
-        testImplementation 'org.springframework.kafka:spring-kafka-test'
+    test {
+        useJUnitPlatform()
     }
 }
