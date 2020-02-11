@@ -1,8 +1,6 @@
 package com.example.callable;
 
-import java.time.LocalDateTime;
 import java.util.concurrent.Callable;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import org.springframework.http.HttpStatus;
@@ -14,38 +12,25 @@ import org.springframework.web.context.request.async.WebAsyncTask;
 
 import com.example.Result;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@RequiredArgsConstructor
 @Slf4j
-public class CallableApiController {
+public class CallableController {
     private static final long TIMEOUT = 5000;
+    private final CallableService callableService;
 
     @GetMapping("/callable/1")
     public Callable<Result> callable() {
-        log.info("Callable start");
-        Callable<Result> callable = createCallable();
-        log.info("Callable end");
-        return callable;
+        return callableService.callable();
     }
 
     @GetMapping("/callable/2")
     public WebAsyncTask<Result> webAsyncTask() {
-        log.info("Callable start");
-        Callable<Result> callable = createCallable();
-        WebAsyncTask<Result> task = new WebAsyncTask<>(TIMEOUT, callable);
-        log.info("Callable end");
-        return task;
-    }
-
-    private static Callable<Result> createCallable() {
-        return () -> {
-            LocalDateTime start = LocalDateTime.now();
-            TimeUnit.SECONDS.sleep(3);
-            Result result = new Result(start, LocalDateTime.now());
-            log.info("{}", result);
-            return result;
-        };
+        Callable<Result> callable = callableService.callable();
+        return new WebAsyncTask<>(TIMEOUT, callable);
     }
 
     @ExceptionHandler(TimeoutException.class)

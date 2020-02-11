@@ -16,16 +16,14 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class DeferredResultApiController {
+public class DeferredResultController {
     private static final long TIMEOUT = 5000;
     private final DeferredResultService deferredResultService;
 
     @GetMapping("/deferred_result")
     public DeferredResult<Result> deferredResult() {
-        log.info("DeferredResult start");
         DeferredResult<Result> deferredResult = new DeferredResult<>(TIMEOUT);
         deferredResultService.deferredResult(deferredResult);
-        log.info("DeferredResult end");
         return deferredResult;
     }
 

@@ -2,7 +2,6 @@ package com.example.future;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.scheduling.annotation.Async;
@@ -19,18 +18,23 @@ import lombok.extern.slf4j.Slf4j;
 public class FutureService {
 
     @Async
-    public Future<Result> future() {
-        return new AsyncResult<>(createResult());
-    }
-
-    @Async
     public ListenableFuture<Result> listenableFuture() {
-        return new AsyncResult<>(createResult());
+        ListenableFuture<Result> future = AsyncResult.forValue(createResult());
+        future.addCallback(result -> log.info("success: {}", result),
+                           e -> log.error("{}", e.getMessage(), e));
+        return future;
     }
 
     @Async
     public CompletableFuture<Result> completableFuture() {
-        return CompletableFuture.completedFuture(createResult());
+        return CompletableFuture.completedFuture(createResult())
+                                .whenComplete((result, e) -> {
+                                    if (e != null) {
+                                        log.error("{}", e.getMessage(), e);
+                                    } else {
+                                        log.info("success: {}", result);
+                                    }
+                                });
     }
 
     private static Result createResult() {
@@ -41,7 +45,7 @@ public class FutureService {
             log.error("{}", e.getMessage(), e);
         }
         Result result = new Result(start, LocalDateTime.now());
-        log.info("{}", result);
+        log.info("result={}", result);
         return result;
     }
 }
