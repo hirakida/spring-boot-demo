@@ -1,14 +1,15 @@
 package com.example;
 
-import java.util.Map;
-
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class EmailSender {
     private static final String FROM = "from@example.com";
     private static final String SUBJECT = "subject";
@@ -16,31 +17,25 @@ public class EmailSender {
     private final MailSender mailSender;
     private final SpringTemplateEngine templateEngine;
 
-    public EmailSender(MailSender mailSender, SpringTemplateEngine templateEngine) {
-        this.mailSender = mailSender;
-        this.templateEngine = templateEngine;
-    }
-
-    public void send(String to, Map<String, Object> params) {
+    public void send(EmailData data) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(FROM);
-        message.setTo(to);
-        message.setSubject(getSubject(params));
-        message.setText(getBody(params));
+        message.setTo(data.getTo());
+        message.setSubject(getSubject(data));
+        message.setText(getBody(data));
         mailSender.send(message);
     }
 
-    private String getSubject(Map<String, Object> params) {
-        return getText(params, SUBJECT);
-    }
-
-    private String getBody(Map<String, Object> params) {
-        return getText(params, BODY);
-    }
-
-    private String getText(Map<String, Object> params, String template) {
+    private String getSubject(EmailData data) {
         Context context = new Context();
-        context.setVariables(params);
-        return templateEngine.process(template, context);
+        context.setVariable("name", data.getName());
+        return templateEngine.process(SUBJECT, context);
+    }
+
+    private String getBody(EmailData data) {
+        Context context = new Context();
+        context.setVariable("name", data.getName());
+        context.setVariable("message", data.getMessage());
+        return templateEngine.process(BODY, context);
     }
 }
