@@ -25,9 +25,17 @@ public class EmailSender {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(FROM);
         message.setTo(to);
-        message.setSubject(getText(params, SUBJECT));
-        message.setText(getText(params, BODY));
+        message.setSubject(getSubject(params));
+        message.setText(getBody(params));
         mailSender.send(message);
+    }
+
+    private String getSubject(Map<String, Object> params) {
+        return getText(params, SUBJECT);
+    }
+
+    private String getBody(Map<String, Object> params) {
+        return getText(params, BODY);
     }
 
     private String getText(Map<String, Object> params, String template) {
