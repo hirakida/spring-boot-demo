@@ -1,4 +1,4 @@
-package com.example;
+package com.example.config;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Configuration;
