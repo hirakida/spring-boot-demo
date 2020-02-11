@@ -1,3 +1,2 @@
 
-https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-caching.html  
-https://docs.spring.io/spring/docs/current/spring-framework-reference/integration.html#cache  
+https://docs.spring.io/spring-boot/docs/2.2.4.RELEASE/reference/html/spring-boot-features.html#boot-features-caching

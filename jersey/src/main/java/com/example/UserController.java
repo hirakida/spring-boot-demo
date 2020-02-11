@@ -16,13 +16,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-@Controller
+@Component
 @Path("/users")
 @RequiredArgsConstructor
 public class UserController {

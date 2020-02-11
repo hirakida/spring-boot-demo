@@ -5,16 +5,15 @@
   <springProperty name="PROFILE" source="spring.profiles.active" defaultValue="local" />
 
   <springProfile name="dev">
-    <property name="LOG_FILE" value="./log/${PROFILE}.log}" />
     <include resource="logback/file-appender.xml" />
     <root level="INFO">
       <appender-ref ref="CONSOLE" />
-      <appender-ref ref="FILE" />
+      <appender-ref ref="APPLICATION_LOG_FILE" />
     </root>
   </springProfile>
 
-  <springProfile name="local">
-    <root level="DEBUG">
+  <springProfile name="local, test">
+    <root level="INFO">
       <appender-ref ref="CONSOLE" />
     </root>
   </springProfile>

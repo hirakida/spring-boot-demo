@@ -7,5 +7,6 @@ spring:
     ansi:
       enabled: always
 logging:
-  path: ./log/
-#  file: logging-demo.log
+  file:
+    path: ./logs/
+    name: ${spring.application.name}.log

@@ -13,9 +13,9 @@ public class EnvironmentController {
 
     @GetMapping("/environment")
     public Response environment() {
-        return new Response(environment.getProperty("app.string.value1"),
-                            environment.getProperty("app.string.value2", String.class, "Environment default"),
-                            environment.getProperty("app.number.value1", Long.class, 0L),
-                            environment.getProperty("app.number.value2", Long.class, 0L));
+        return new Response(environment.getProperty("app.number.value1", Long.class, 0L),
+                            environment.getProperty("app.number.value2", Long.class, 0L),
+                            environment.getProperty("app.string.value1"),
+                            environment.getProperty("app.string.value2", String.class, "Environment default"));
     }
 }

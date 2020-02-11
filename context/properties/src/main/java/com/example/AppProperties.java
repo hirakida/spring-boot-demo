@@ -13,31 +13,37 @@ import lombok.Data;
 @Validated
 @Data
 public class AppProperties {
-    private @NotNull AppNumber number;
-    private @NotNull AppString string;
-    private @NotNull String ddlAuto;
+    @NotNull
+    private NumberData number;
+    @NotNull
+    private StringData string;
+    @NotNull
+    private String ddlAuto;
 
     @Data
-    public static class AppNumber {
+    public static class NumberData {
         /**
          * Min(1).
          */
-        private @Min(1) int value1 = 1;
+        @Min(1)
+        private long value1 = 1;
         /**
          * Min(0).
          */
-        private @Min(0) int value2;
+        @Min(0)
+        private long value2;
     }
 
     @Data
-    public static class AppString {
+    public static class StringData {
         /**
          * NotEmpty.
          */
-        private @NotEmpty String value1;
+        @NotEmpty
+        private String value1;
         /**
-         * NotNull.
+         * Nullable.
          */
-        private @NotNull String value2;
+        private String value2;
     }
 }

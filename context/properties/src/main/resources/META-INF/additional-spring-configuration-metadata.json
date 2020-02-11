@@ -2,7 +2,7 @@
   "properties": [
     {
       "name": "app.number.value2",
-      "type": "java.lang.Integer",
+      "type": "java.lang.Long",
       "description": "Min(0).",
       "defaultValue": 0
     }
