@@ -6,9 +6,14 @@
 
   <springProfile name="dev">
     <include resource="logback/file-appender.xml" />
+    <include resource="logback/hello-appender.xml" />
+    <include resource="logback/hello-async-appender.xml" />
+
     <root level="INFO">
       <appender-ref ref="CONSOLE" />
       <appender-ref ref="APPLICATION_LOG_FILE" />
+      <appender-ref ref="HELLO" />
+      <appender-ref ref="HELLO_ASYNC" />
     </root>
   </springProfile>
 
