@@ -1,4 +1,4 @@
-package com.example;
+package com.example.config;
 
 import java.util.concurrent.Executors;
 
@@ -8,6 +8,8 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
+
+import com.example.MessageListenerImpl;
 
 @Configuration
 public class RedisConfig {

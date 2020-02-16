@@ -13,17 +13,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
+import com.example.RedisInitializer;
 import com.example.RedisTestConfig;
 
+@Testcontainers
 @ExtendWith(SpringExtension.class)
 @Import(RedisTestConfig.class)
-@ContextConfiguration(classes = StringRedisClient.class)
+@ContextConfiguration(classes = StringRedisClient.class, initializers = RedisInitializer.class)
 public class StringRedisClientTest {
     static final String KEY1 = "__KEY1__";
     static final String KEY2 = "__KEY2__";
     static final String VALUE1 = "__VALUE1__";
 
+    @Container
+    private static final GenericContainer<?> CONTAINER = RedisInitializer.getContainer();
     @Autowired
     private StringRedisClient target;
 
@@ -36,7 +43,7 @@ public class StringRedisClientTest {
     public void getTest() {
         Optional<String> result = target.get(KEY1);
         assertTrue(result.isPresent());
-        assertEquals(result, Optional.of(VALUE1));
+        assertEquals(Optional.of(VALUE1), result);
 
         result = target.get(KEY2);
         assertFalse(result.isPresent());
@@ -52,6 +59,6 @@ public class StringRedisClientTest {
         target.set(key, value);
         result = target.get(key);
         assertTrue(result.isPresent());
-        assertEquals(result, Optional.of(value));
+        assertEquals(Optional.of(value), result);
     }
 }

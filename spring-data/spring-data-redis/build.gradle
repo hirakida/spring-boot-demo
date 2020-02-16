@@ -20,10 +20,13 @@ subprojects {
         compileOnly 'org.projectlombok:lombok'
         implementation 'org.apache.commons:commons-pool2'
         compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
-        testImplementation 'it.ozimov:embedded-redis:0.7.2'
+        testImplementation platform('org.testcontainers:testcontainers-bom:1.12.5')
+        testImplementation 'org.testcontainers:testcontainers'
+        testImplementation 'org.testcontainers:junit-jupiter'
     }
 
     test {
