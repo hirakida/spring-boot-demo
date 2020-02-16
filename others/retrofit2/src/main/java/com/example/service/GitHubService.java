@@ -1,4 +1,4 @@
-package com.example;
+package com.example.service;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;

@@ -3,7 +3,7 @@ package com.example.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.example.GitHubApiService;
+import com.example.service.GitHubApiService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import retrofit2.Retrofit;
