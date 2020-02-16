@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ApiController {
+public class WeatherController {
     private final WeatherApiClient weatherApiClient;
 
-    public ApiController(WeatherApiClient weatherApiClient) {
+    public WeatherController(WeatherApiClient weatherApiClient) {
         this.weatherApiClient = weatherApiClient;
     }
 

@@ -20,7 +20,7 @@ public class WeatherApiClient {
         restTemplate = builder.build();
     }
 
-    @Cacheable(key = "'weather:' + #cityCode")
+    @Cacheable(key = "'weather:' + #city")
     public Map<?, ?> getWeather(String city) {
         String uri = UriComponentsBuilder.fromHttpUrl(URL)
                                          .queryParam("city", "{city}")

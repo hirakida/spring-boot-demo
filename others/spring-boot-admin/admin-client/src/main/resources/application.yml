@@ -5,12 +5,12 @@ spring:
     admin:
       client:
         url: http://localhost:8080
-  devtools:
-    livereload:
-      enabled: false
   output:
     ansi:
       enabled: always
+logging:
+  level:
+    org.springframework.cache: trace
 management:
   server:
     port: 8081
