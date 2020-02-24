@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class ApiController {
+public class SessionController {
     private final ReactiveMongoSessionRepository sessionRepository;
 
     @GetMapping("/")

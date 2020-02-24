@@ -1,1 +1,4 @@
 rootProject.name = 'spring-session-data-mongodb-demo'
+
+include 'data-mongodb',
+        'data-mongodb-reactive'
