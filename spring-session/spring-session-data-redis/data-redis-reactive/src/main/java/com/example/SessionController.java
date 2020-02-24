@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @Slf4j
-public class ApiController {
+public class SessionController {
 
     @GetMapping("/")
     public Mono<WebSession> index(WebSession session) {

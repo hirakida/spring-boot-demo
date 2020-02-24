@@ -9,7 +9,6 @@ import org.springframework.security.jackson2.SecurityJackson2Modules;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
@@ -25,7 +24,6 @@ public class RedisHttpSessionConfig implements BeanClassLoaderAware {
     @Bean
     public RedisSerializer<Object> springSessionDefaultRedisSerializer(ObjectMapper objectMapper) {
         final ObjectMapper mapper = objectMapper.copy();
-        mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
         mapper.registerModules(SecurityJackson2Modules.getModules(classLoader));
         return new GenericJackson2JsonRedisSerializer(mapper);
     }
