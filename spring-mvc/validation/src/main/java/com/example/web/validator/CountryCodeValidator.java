@@ -8,8 +8,6 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.util.StringUtils;
 
-import com.example.web.annotation.CountryCode;
-
 public class CountryCodeValidator implements ConstraintValidator<CountryCode, String> {
     private boolean notEmpty;
 
