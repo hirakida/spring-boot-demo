@@ -1,0 +1,11 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: xxxxxxxx
+            client-secret: xxxxxxxx
+  output:
+    ansi:
+      enabled: always
