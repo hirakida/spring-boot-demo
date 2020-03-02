@@ -1,0 +1,3 @@
+rootProject.name = 'rest-client-demo'
+
+include ':rest-template', ':web-client'
