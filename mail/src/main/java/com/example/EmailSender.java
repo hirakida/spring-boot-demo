@@ -14,8 +14,9 @@ public class EmailSender {
     private static final String FROM = "from@example.com";
     private static final String SUBJECT = "subject";
     private static final String BODY = "body";
+
     private final MailSender mailSender;
-    private final SpringTemplateEngine templateEngine;
+    private final SpringTemplateEngine emailTemplateEngine;
 
     public void send(EmailData data) {
         SimpleMailMessage message = new SimpleMailMessage();
@@ -29,13 +30,13 @@ public class EmailSender {
     private String getSubject(EmailData data) {
         Context context = new Context();
         context.setVariable("name", data.getName());
-        return templateEngine.process(SUBJECT, context);
+        return emailTemplateEngine.process(SUBJECT, context);
     }
 
     private String getBody(EmailData data) {
         Context context = new Context();
         context.setVariable("name", data.getName());
         context.setVariable("message", data.getMessage());
-        return templateEngine.process(BODY, context);
+        return emailTemplateEngine.process(BODY, context);
     }
 }
