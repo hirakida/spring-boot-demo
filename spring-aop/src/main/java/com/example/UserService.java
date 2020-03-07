@@ -1,8 +1,8 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Service;
 
@@ -11,13 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class UserService {
-    private final List<User> users;
-
-    public UserService() {
-        users = IntStream.rangeClosed(0, 10)
-                         .mapToObj(i -> new User(i, "name" + i))
-                         .collect(Collectors.toList());
-    }
+    private static final AtomicInteger counter = new AtomicInteger();
+    private final List<User> users = new ArrayList<>();
 
     public List<User> findAll() {
         log.info("findAll");
@@ -32,9 +27,10 @@ public class UserService {
                     .orElseThrow();
     }
 
-    public User create(String name) {
-        log.info("create name={}", name);
-        return new User(1L, name);
+    public void insert(String name) {
+        log.info("insert name={}", name);
+        User user = new User(counter.incrementAndGet(), name);
+        users.add(user);
     }
 
     public User update(User user) {
@@ -42,7 +38,8 @@ public class UserService {
         return user;
     }
 
-    public void deleteById(long id) {
-        log.info("deleteById id={}", id);
+    public void deleteAll() {
+        log.info("deleteAll");
+        users.clear();
     }
 }

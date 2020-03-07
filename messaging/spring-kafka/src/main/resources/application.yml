@@ -1,0 +1,19 @@
+spring:
+  kafka:
+    #    bootstrap-servers: localhost:9092
+    template:
+      default-topic: topic1
+    producer:
+      #      bootstrap-servers: localhost:9092
+      value-serializer: com.example.serializer.UserJsonSerializer
+    listener:
+      concurrency: 5
+    consumer:
+      #      bootstrap-servers: localhost:9092
+      #      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: com.example.serializer.UserJsonDeserializer
+      group-id: group1
+      auto-offset-reset: earliest
+  output:
+    ansi:
+      enabled: always

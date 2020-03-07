@@ -4,8 +4,8 @@ plugins {
     id 'java'
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+group 'com.example'
+version '0.0.1-SNAPSHOT'
 sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -15,11 +15,14 @@ repositories {
 dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.kafka:spring-kafka'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
 }
 
 test {
