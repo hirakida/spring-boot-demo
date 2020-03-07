@@ -1,4 +1,0 @@
-rootProject.name = 'spring-session-data-redis-demo'
-
-include 'data-redis',
-        'data-redis-reactive'

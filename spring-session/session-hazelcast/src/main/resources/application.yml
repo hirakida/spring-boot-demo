@@ -1,0 +1,15 @@
+spring:
+  session:
+    store-type: hazelcast
+  output:
+    ansi:
+      enabled: always
+server:
+  servlet:
+    session:
+      cookie:
+        max-age: 60s
+        name: SPRING_SESSION_HAZELCAST
+        http-only: true
+        secure: false
+      timeout: 60s

@@ -1,0 +1,10 @@
+apply plugin: 'com.avast.gradle.docker-compose'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.session:spring-session-hazelcast'
+}
+
+dockerCompose {
+    isRequiredBy(bootRun)
+}
