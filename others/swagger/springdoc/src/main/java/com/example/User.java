@@ -1,4 +1,4 @@
-package com.example.core;
+package com.example;
 
 import java.time.LocalDateTime;
 
@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.Proxy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -17,6 +18,7 @@ import lombok.Data;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Proxy(lazy = false)
 @Data
 public class User {
     @Id

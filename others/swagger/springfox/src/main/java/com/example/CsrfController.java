@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example;
 
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,4 +12,3 @@ public class CsrfController {
         return token;
     }
 }
-
