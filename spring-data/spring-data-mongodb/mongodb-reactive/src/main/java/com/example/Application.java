@@ -1,39 +1,12 @@
 package com.example;
 
-import static java.util.stream.Collectors.toList;
-
-import java.util.List;
-import java.util.stream.IntStream;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
+import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import reactor.core.publisher.Flux;
-
+@EnableReactiveMongoRepositories
 @SpringBootApplication
-@RequiredArgsConstructor
-@Slf4j
 public class Application {
-    private final UserRepository userRepository;
-
-    @EventListener(value = ApplicationReadyEvent.class,
-            condition = "!@environment.acceptsProfiles('test')")
-    public void readyEvent() {
-        final List<User> users = IntStream.rangeClosed(1, 5)
-                                          .mapToObj(i -> {
-                                              User user = new User();
-                                              user.setName("name" + i);
-                                              user.setAge(i * 10);
-                                              return user;
-                                          }).collect(toList());
-        Flux.fromIterable(users)
-            .flatMap(userRepository::save)
-            .subscribe(user -> log.info("{}", user));
-    }
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

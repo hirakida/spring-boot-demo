@@ -4,7 +4,6 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -44,9 +43,7 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@RequestBody @Validated UserRequest request) {
-        User user = new User();
-        BeanUtils.copyProperties(request, user);
-        return userRepository.save(user);
+        return userRepository.save(request.toUser());
     }
 
     @PutMapping("/{id}")
@@ -74,5 +71,11 @@ public class UserController {
     @Data
     public static class UserRequest {
         private @NotNull String name;
+
+        public User toUser() {
+            User user = new User();
+            user.setName(name);
+            return user;
+        }
     }
 }

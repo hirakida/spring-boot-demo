@@ -1,7 +1,5 @@
 package com.example;
 
-import java.time.LocalDateTime;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
@@ -15,7 +13,9 @@ public class UserRepositoryTest {
 
     @Test
     public void createTest() {
-        User user = new User(null, "name1", 30, LocalDateTime.now(), LocalDateTime.now());
+        User user = new User();
+        user.setName("name1");
+        user.setAge(30);
 
         StepVerifier.create(userRepository.save(user))
                     .expectNextMatches(result -> result.getId() != null

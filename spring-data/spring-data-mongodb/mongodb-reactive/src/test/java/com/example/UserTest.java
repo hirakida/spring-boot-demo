@@ -9,7 +9,7 @@ public class UserTest {
 
     @Test
     public void createTest() {
-        User user = new User("1", "name1", 30, LocalDateTime.now(), LocalDateTime.now());
+        User user = new User("1", "name1", 30, LocalDateTime.now(), LocalDateTime.now(), 1L);
         Assertions.assertNotNull(user.getId());
         Assertions.assertEquals("1", user.getId());
     }
