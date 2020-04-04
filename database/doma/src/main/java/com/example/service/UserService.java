@@ -1,4 +1,4 @@
-package com.example;
+package com.example.service;
 
 import java.util.List;
 
@@ -6,6 +6,9 @@ import org.seasar.doma.boot.Pageables;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.example.entity.User;
+import com.example.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
