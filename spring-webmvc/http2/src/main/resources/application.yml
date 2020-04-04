@@ -1,0 +1,14 @@
+server:
+  http2:
+    enabled: true
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: keystore.p12
+    key-store-password: hirakida
+    key-alias: tomcat
+    key-store-type: PKCS12
+spring:
+  output:
+    ansi:
+      enabled: always

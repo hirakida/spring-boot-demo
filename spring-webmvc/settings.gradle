@@ -1,0 +1,18 @@
+rootProject.name = 'webmvc-demo'
+
+include 'argument-resolver',
+        'cache-control',
+        'error-controller',
+        'error-page',
+        'exception-handler',
+        'filter',
+        'formatter',
+        'http2',
+        'https',
+        'matrix-variable',
+        'rest-server',
+        'session-attribute',
+        'template-engine:freemarker',
+        'template-engine:thymeleaf',
+        'validation',
+        'webmvc.fn'
