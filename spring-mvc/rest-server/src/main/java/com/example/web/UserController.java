@@ -32,7 +32,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @Validated
 @RequiredArgsConstructor
-public class UserApiController {
+public class UserController {
     private final UserService userService;
 
     @GetMapping("/users")
@@ -49,7 +49,9 @@ public class UserApiController {
     public ResponseEntity<Void> create(@RequestBody @Validated UserRequest request) {
         User user = userService.create(request.toUser());
         URI uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                                             .path("/users/" + user.getId()).build().toUri();
+                                             .path("/users/" + user.getId())
+                                             .build()
+                                             .toUri();
         return ResponseEntity.created(uri).build();
     }
 
@@ -68,8 +70,10 @@ public class UserApiController {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class UserRequest {
-        private @NotNull String name;
-        private @NotNull Gender gender;
+        @NotNull
+        private String name;
+        @NotNull
+        private Gender gender;
         private String card;
 
         public User toUser() {

@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestControllerAdvice(annotations = RestController.class)
 @Slf4j
-public class ApiControllerAdvice {
+public class RestExceptionHandler {
 
     @ExceptionHandler
     public ResponseEntity<Void> handleResponseStatusException(ResponseStatusException e) {
@@ -26,9 +26,9 @@ public class ApiControllerAdvice {
         return ResponseEntity.status(e.getStatus()).build();
     }
 
-    @ExceptionHandler(ConstraintViolationException.class)
+    @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public void handleBadRequestException(RuntimeException e) {
+    public void handleConstraintViolationException(ConstraintViolationException e) {
         log.warn("{}", e.getMessage(), e);
     }
 

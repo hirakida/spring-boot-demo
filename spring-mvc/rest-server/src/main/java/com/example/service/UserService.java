@@ -2,7 +2,6 @@ package com.example.service;
 
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,8 +30,7 @@ public class UserService {
     }
 
     public User update(int id, User request) {
-        User user = userRepository.findById(id)
-                                  .orElseThrow();
+        User user = findById(id);
         user.setName(request.getName());
         user.setCard(request.getCard());
         user.setGender(request.getGender());
