@@ -3,8 +3,8 @@ package com.example.formatter;
 import java.text.ParseException;
 import java.util.Locale;
 
+import org.jetbrains.annotations.Nullable;
 import org.springframework.format.Formatter;
-import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 import com.example.enums.Gender;

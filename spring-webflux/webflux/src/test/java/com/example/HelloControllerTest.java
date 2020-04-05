@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 @WebFluxTest
-public class ApiControllerTest {
+public class HelloControllerTest {
     @Autowired
     private WebTestClient webTestClient;
 

@@ -6,8 +6,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
+import org.jetbrains.annotations.Nullable;
 import org.springframework.format.Formatter;
-import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;

@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
-import org.springframework.lang.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

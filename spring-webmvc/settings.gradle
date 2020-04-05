@@ -15,4 +15,4 @@ include 'argument-resolver',
         'template-engine:freemarker',
         'template-engine:thymeleaf',
         'validation',
-        'webmvc.fn'
+        'webmvc-fn'

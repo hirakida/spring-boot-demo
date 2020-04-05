@@ -9,12 +9,13 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-public class ApiController {
+public class HelloController {
 
     @GetMapping("/")
     public Mono<Map<String, String>> hello() {
@@ -33,8 +34,9 @@ public class ApiController {
                    .delayElements(Duration.ofSeconds(1));
     }
 
-    @Value
+    @Data
+    @AllArgsConstructor
     public static class Response {
-        private final LocalTime time;
+        private LocalTime time;
     }
 }
