@@ -9,11 +9,11 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class ApiController {
+public class HelloController {
     private final BackendApiClient backEndApiClient;
 
-    @GetMapping("/")
-    public JsonNode getCount() {
-        return backEndApiClient.getCount();
+    @GetMapping("/hello")
+    public JsonNode hello() {
+        return backEndApiClient.hello();
     }
 }

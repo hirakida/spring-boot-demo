@@ -3,7 +3,7 @@ package com.example;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,13 +18,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BackendApiClient {
     private final RestTemplate restTemplate;
+    private final CircuitBreaker circuitBreaker;
     private final ObjectMapper objectMapper;
-    private final CircuitBreakerFactory<?, ?> factory;
 
-    public JsonNode getCount() {
-        return factory.create("count")
-                      .run(() -> restTemplate.getForObject("http://localhost:8081/count", JsonNode.class),
-                           this::fallback);
+    public JsonNode hello() {
+        return circuitBreaker.run(() -> restTemplate.getForObject("http://localhost:8081/hello",
+                                                                  JsonNode.class),
+                                  this::fallback);
     }
 
     private JsonNode fallback(Throwable t) {
