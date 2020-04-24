@@ -1,4 +1,4 @@
-package com.example.future;
+package com.example;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
@@ -8,26 +8,34 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
-
-import com.example.Result;
+import org.springframework.web.context.request.async.DeferredResult;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class FutureService {
+public class AsyncService {
 
     @Async
-    public ListenableFuture<Result> listenableFuture() {
-        ListenableFuture<Result> future = AsyncResult.forValue(createResult());
+    public void deferredResult(DeferredResult<AsyncResponse> deferredResult) {
+        AsyncResponse response = createResponse();
+        deferredResult.setResult(response);
+        log.info("result={}", response);
+    }
+
+    @Async
+    public ListenableFuture<AsyncResponse> listenableFuture() {
+        AsyncResponse response = createResponse();
+        ListenableFuture<AsyncResponse> future = AsyncResult.forValue(response);
         future.addCallback(result -> log.info("success: {}", result),
                            e -> log.error("{}", e.getMessage(), e));
         return future;
     }
 
     @Async
-    public CompletableFuture<Result> completableFuture() {
-        return CompletableFuture.completedFuture(createResult())
+    public CompletableFuture<AsyncResponse> completableFuture() {
+        AsyncResponse response = createResponse();
+        return CompletableFuture.completedFuture(response)
                                 .whenComplete((result, e) -> {
                                     if (e != null) {
                                         log.error("{}", e.getMessage(), e);
@@ -37,15 +45,15 @@ public class FutureService {
                                 });
     }
 
-    private static Result createResult() {
+    private static AsyncResponse createResponse() {
         LocalDateTime start = LocalDateTime.now();
         try {
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             log.error("{}", e.getMessage(), e);
         }
-        Result result = new Result(start, LocalDateTime.now());
-        log.info("result={}", result);
-        return result;
+        AsyncResponse response = new AsyncResponse(start, LocalDateTime.now());
+        log.info("result={}", response);
+        return response;
     }
 }

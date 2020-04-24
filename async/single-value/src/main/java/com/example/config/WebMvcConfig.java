@@ -19,7 +19,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
-        configurer.setTaskExecutor(asyncTaskExecutor);  // For Callable and StreamingResponseBody
+        configurer.setTaskExecutor(asyncTaskExecutor);  // For Callable
         configurer.registerCallableInterceptors(new CallableProcessingInterceptorImpl());
         configurer.registerDeferredResultInterceptors(new DeferredResultProcessingInterceptorImpl());
     }

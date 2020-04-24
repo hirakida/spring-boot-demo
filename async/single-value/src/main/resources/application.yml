@@ -1,0 +1,7 @@
+spring:
+  mvc:
+    async:
+      request-timeout: 5s
+  output:
+    ansi:
+      enabled: always

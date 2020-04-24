@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div id="list"></div>
+  </div>
+</div>
+<script>
+  {
+    const list = document.getElementById('list');
+    const eventSource = new EventSource('/sse');
+
+    eventSource.onopen = () => {
+      console.log('onopen');
+    };
+
+    eventSource.onmessage = (e) => {
+      console.log('onmessage: ' + e.data);
+      const li = document.createElement("li");
+      li.textContent = e.data;
+      list.appendChild(li);
+    };
+
+    eventSource.onerror = (e) => {
+      if (e.eventPhase === EventSource.CLOSED) {
+        eventSource.close();
+        console.log('closed')
+      } else {
+        console.error(e);
+      }
+    };
+  }
+</script>
+</body>
+</html>
