@@ -1,0 +1,5 @@
+rootProject.name = 'bean-demo'
+
+include 'injection',
+        'lifecycle-callbacks',
+        'scopes'

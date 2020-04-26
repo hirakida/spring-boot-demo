@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+</head>
+<body>
+<div class="container">
+  <ul>
+    <li th:each="locale : ${locales}">
+      <a th:href="@{'/?locale=' + ${locale}}" th:text="${locale}"></a>
+    </li>
+  </ul>
+  <table>
+    <tr>
+      <th>locale</th>
+      <td th:text="${#locale}"></td>
+    </tr>
+    <tr>
+      <th>message</th>
+      <td th:text="${message}"></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

@@ -1,3 +1,0 @@
-rootProject.name = 'hello-spring-boot'
-include ':hello-spring-boot-autoconfigure',
-        ':hello-spring-boot-starter'

@@ -10,6 +10,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,7 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class LoggingAspect {
-
     /**
      * Around
      */
@@ -43,6 +43,11 @@ public class LoggingAspect {
     @Before("bean(*Controller)")
     public void beforeController(JoinPoint joinPoint) {
         log.info("[Before][controller] Signature={}", joinPoint.getSignature());
+    }
+
+    @Before("@annotation(getMapping)")
+    public void beforeGetMapping(JoinPoint joinPoint, GetMapping getMapping) {
+        log.info("[Before][GetMapping] Signature={} {}", joinPoint.getSignature(), getMapping);
     }
 
     @Before("@annotation(org.springframework.web.bind.annotation.DeleteMapping)")

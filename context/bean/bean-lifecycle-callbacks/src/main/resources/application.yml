@@ -1,7 +1,0 @@
-spring:
-  output:
-    ansi:
-      enabled: always
-  devtools:
-    livereload:
-      enabled: false
