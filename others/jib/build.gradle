@@ -1,7 +1,7 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.2.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-    id 'com.google.cloud.tools.jib' version '1.8.0'
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'com.google.cloud.tools.jib' version '2.2.0'
     id 'java'
 }
 
@@ -23,16 +23,20 @@ dependencies {
 }
 
 jib {
-    container {
-        jvmFlags = ['-Xms512m']
-        mainClass = 'com.example.Application'
-        ports = ['8080/tcp']
+    from {
+        image = 'openjdk:11-jdk-slim'
     }
     to {
         image = 'hirakida/jib-demo'
+        tags = ['latest']
         auth {
             username = 'hirakida'
-            password = PASSWORD
+            password = System.getenv('DOCKER_HUB_PASSWORD')
         }
+    }
+    container {
+        jvmFlags = ['-Xms128m', '-Xmx128m']
+        mainClass = 'com.example.Application'
+        ports = ['8080-8081/tcp']
     }
 }
