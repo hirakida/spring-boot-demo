@@ -1,4 +1,4 @@
-package com.example;
+package com.example.mapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +12,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.session.RowBounds;
+
+import com.example.entity.User;
 
 @Mapper
 public interface UserMapper {

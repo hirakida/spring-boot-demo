@@ -13,6 +13,9 @@ import org.springframework.data.util.StreamUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.entity.User;
+import com.example.mapper.UserMapper;
+
 import lombok.RequiredArgsConstructor;
 
 @Service

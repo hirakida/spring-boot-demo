@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
-@Slf4j
 @Intercepts({
         @Signature(type = Executor.class,
                 method = "query",
@@ -25,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
                 method = "update",
                 args = { MappedStatement.class, Object.class })
 })
+@Slf4j
 public class InterceptorImpl implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {

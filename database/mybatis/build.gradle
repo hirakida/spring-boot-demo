@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.2.RELEASE' apply false
+    id 'org.springframework.boot' version '2.2.6.RELEASE' apply false
 }
 
 subprojects {
@@ -20,9 +20,8 @@ subprojects {
         compileOnly 'org.projectlombok:lombok'
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.data:spring-data-commons'
-        implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
+        implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.2'
         runtimeOnly 'com.h2database:h2'
-        runtimeOnly 'org.springframework.boot:spring-boot-devtools'
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
