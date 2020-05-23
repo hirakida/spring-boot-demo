@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.7.RELEASE'
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'com.google.cloud.tools.jib' version '2.2.0'
     id 'java'
@@ -24,18 +24,21 @@ test {
     useJUnitPlatform()
 }
 
+bootBuildImage {
+    imageName = "hirakida/spring-boot-docker-demo"
+}
+
 task buildImage(type: Exec) {
     commandLine './build.sh'
 }
-
-build.finalizedBy(buildImage)
+//build.finalizedBy(buildImage)
 
 jib {
     from {
         image = 'openjdk:11-jdk-slim'
     }
     to {
-        image = 'hirakida/spring-boot-jib-demo'
+        image = 'hirakida/spring-boot-docker-demo'
         tags = ['latest']
         auth {
             username = 'hirakida'
