@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `name` VARCHAR(30) NOT NULL,
+  `age` TINYINT NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NOT NULL
+);
