@@ -1,6 +1,5 @@
-package com.example.userdetails;
+package com.example.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -12,8 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@SuppressWarnings("serial")
-public class Account implements Serializable {
+public class Account {
     private long id;
     private String name;
     private String password;

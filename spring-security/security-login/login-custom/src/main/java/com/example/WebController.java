@@ -9,9 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.userdetails.Account;
+import com.example.model.Account;
 import com.example.userdetails.AuthenticationPrincipalAccount;
-import com.example.userdetails.UserDetailsImpl;
+import com.example.model.UserDetailsImpl;
 
 @Controller
 public class WebController {

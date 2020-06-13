@@ -1,12 +1,7 @@
-package com.example.userdetails;
+package com.example.model;
 
 import org.springframework.security.core.userdetails.User;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
-@Data
-@EqualsAndHashCode(callSuper = false)
 @SuppressWarnings("serial")
 public class UserDetailsImpl extends User {
     private final Account account;
@@ -14,5 +9,9 @@ public class UserDetailsImpl extends User {
     public UserDetailsImpl(Account account) {
         super(account.getName(), account.getPassword(), account.getRoles());
         this.account = account;
+    }
+
+    public Account getAccount() {
+        return account;
     }
 }

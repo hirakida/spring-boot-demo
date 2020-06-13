@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class WebController {
+public class RootController {
 
     @GetMapping("/")
     public String index(@AuthenticationPrincipal UserDetails userDetails, Model model) {

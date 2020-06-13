@@ -1,38 +1,39 @@
 package com.example.userdetails;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-@Service
-public class AccountService {
-    private final List<Account> accounts;
+import com.example.model.Account;
 
-    public AccountService(PasswordEncoder passwordEncoder) {
-        accounts = List.of(
-                new Account(1, "user1", passwordEncoder.encode("pass1"), "user1@example.com",
-                            AuthorityUtils.createAuthorityList(Role.USER.getRole())),
-                new Account(2, "user2", passwordEncoder.encode("pass2"), "user2@example.com",
-                            AuthorityUtils.createAuthorityList(Role.USER.getRole())),
-                new Account(3, "user3", passwordEncoder.encode("pass3"), "user3@example.com",
-                            AuthorityUtils.createAuthorityList(Role.USER.getRole(), Role.ADMIN.getRole())),
-                new Account(4, "user4", passwordEncoder.encode("pass4"), "user4@example.com",
-                            AuthorityUtils.NO_AUTHORITIES));
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+@Slf4j
+public class AccountService {
+    private final List<Account> accounts = new ArrayList<>();
+
+    public void addAll(List<Account> accounts) {
+        this.accounts.addAll(accounts);
     }
 
-    public Optional<Account> findByUsername(String username) {
+    public Account findByUsername(String username) {
         return accounts.stream()
                        .filter(account -> account.getName().equals(username))
-                       .findFirst();
+                       .findFirst()
+                       .orElseThrow(() -> new UsernameNotFoundException(username));
     }
 
     public Account findOne(UserDetails userDetails) {
-        return findByUsername(userDetails.getUsername())
-                .orElseThrow(() -> new UsernameNotFoundException(userDetails.getUsername()));
+        log.info("userDetails={}", userDetails);
+        return findByUsername(userDetails.getUsername());
+    }
+
+    public Account findOne(String username) {
+        log.info("username={}", username);
+        return findByUsername(username);
     }
 }
