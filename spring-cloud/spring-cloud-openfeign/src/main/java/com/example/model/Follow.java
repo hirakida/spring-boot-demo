@@ -1,7 +1,5 @@
 package com.example.model;
 
-import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -11,8 +9,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonNaming(SnakeCaseStrategy.class)
 @Data
-@SuppressWarnings("serial")
-public class Follow implements Serializable {
+public class Follow {
     private String login;
     private Long id;
     private String gravatarId;
