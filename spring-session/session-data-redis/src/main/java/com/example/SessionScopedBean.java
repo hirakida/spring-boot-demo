@@ -1,6 +1,5 @@
 package com.example;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Component;
@@ -14,8 +13,7 @@ import lombok.Data;
 @SessionScope
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 @Data
-@SuppressWarnings("serial")
-public class SessionScopedBean implements Serializable {
+public class SessionScopedBean {
     private String id;
     private LocalDateTime dateTime;
 }
