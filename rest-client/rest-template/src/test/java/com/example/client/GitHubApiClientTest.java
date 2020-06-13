@@ -1,12 +1,9 @@
-package com.example;
+package com.example.client;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
-
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +21,7 @@ public class GitHubApiClientTest {
     @Autowired
     private MockRestServiceServer server;
     @Autowired
-    private GitHubApiClient gitHubApiClient;
+    private GitHubApiClient client;
 
     @Test
     public void getUserTest() {
@@ -33,10 +30,8 @@ public class GitHubApiClientTest {
               .andExpect(method(HttpMethod.GET))
               .andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
 
-        Optional<User> response = gitHubApiClient.getUser("hirakida");
+        User user = client.getUser("hirakida");
 
-        assertTrue(response.isPresent());
-        User user = response.get();
         assertEquals(1, user.getId());
         assertEquals("hirakida", user.getName());
         server.verify();

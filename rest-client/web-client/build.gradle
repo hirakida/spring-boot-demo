@@ -1,5 +1,5 @@
 ext {
-    set('springCloudVersion', 'Hoxton.SR1')
+    set('springCloudVersion', 'Hoxton.SR5')
 }
 
 dependencyManagement {
@@ -9,6 +9,7 @@ dependencyManagement {
 }
 
 dependencies {
+    implementation project(':model')
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {

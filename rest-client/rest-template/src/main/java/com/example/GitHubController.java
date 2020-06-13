@@ -1,7 +1,6 @@
 package com.example;
 
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.core.io.Resource;
@@ -9,8 +8,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
+import com.example.client.GitHubApiClient;
+import com.example.model.Key;
 import com.example.model.User;
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -19,28 +19,30 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class GitHubController {
-    private final GitHubApiClient gitHubApiClient;
+    private final GitHubApiClient client;
 
     @GetMapping("/users/{username}")
     public User getUser(@PathVariable String username) {
-        return gitHubApiClient.getUser(username)
-                              .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
+        return client.getUser(username);
+    }
+
+    @GetMapping("/users/{username}/keys")
+    public List<Key> getKeys(@PathVariable String username) {
+        return client.getKeys(username);
     }
 
     @GetMapping("/events")
     public JsonNode getEvents() {
-        return gitHubApiClient.getEvents()
-                              .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
+        return client.getEvents();
     }
 
     @GetMapping("/feeds")
     public Resource getFeeds() {
-        return gitHubApiClient.getFeeds()
-                              .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
+        return client.getFeeds();
     }
 
     @GetMapping("/options")
     public Set<HttpMethod> options() {
-        return gitHubApiClient.options();
+        return client.options();
     }
 }

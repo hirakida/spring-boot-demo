@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,10 +58,17 @@ public class RestClientExceptionHandler extends ResponseEntityExceptionHandler {
                                        HttpHeaders.EMPTY, HttpStatus.REQUEST_TIMEOUT, request);
     }
 
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<Object> handleNoSuchElementException(NoSuchElementException e,
+                                                               WebRequest request) {
+        return handleExceptionInternal(e, new ErrorResponse(HttpStatus.NOT_FOUND),
+                                       HttpHeaders.EMPTY, HttpStatus.NOT_FOUND, request);
+    }
+
     @Value
     public static class ErrorResponse {
-        private int statusCode;
-        private String message;
+        int statusCode;
+        String message;
 
         public ErrorResponse(HttpStatus httpStatus) {
             statusCode = httpStatus.value();

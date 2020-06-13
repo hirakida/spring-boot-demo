@@ -1,6 +1,5 @@
 package com.example.model;
 
-import java.io.Serializable;
 import java.time.ZonedDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -12,8 +11,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonNaming(SnakeCaseStrategy.class)
 @Data
-@SuppressWarnings("serial")
-public class User implements Serializable {
+public class User {
     private long id;
     private String gravatarId;
     private String login;

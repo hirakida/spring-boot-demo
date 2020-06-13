@@ -1,4 +1,4 @@
-package com.example;
+package com.example.client;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;

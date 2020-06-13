@@ -1,3 +1,5 @@
 rootProject.name = 'rest-client-demo'
 
-include ':rest-template', ':web-client'
+include 'model',
+        'rest-template',
+        'web-client'

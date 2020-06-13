@@ -1,4 +1,4 @@
-package com.example;
+package com.example.client;
 
 import java.time.Duration;
 
@@ -11,6 +11,7 @@ import com.example.model.User;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.util.retry.Retry;
 
 @Component
 @RequiredArgsConstructor
@@ -22,7 +23,7 @@ public class GitHubApiClient {
                         .uri("/users/{username}", username)
                         .retrieve()
                         .bodyToMono(User.class)
-                        .retryBackoff(3, Duration.ofSeconds(1));
+                        .retryWhen(Retry.backoff(3, Duration.ofSeconds(1)));
     }
 
     public Flux<Key> getKeys(String username) {
