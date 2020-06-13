@@ -11,7 +11,7 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scripting.support.ResourceScriptSource;
 
-import com.example.User;
+import com.example.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration

@@ -5,7 +5,7 @@ import java.util.Map;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.stereotype.Component;
 
-import com.example.User;
+import com.example.model.User;
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;

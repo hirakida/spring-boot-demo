@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.User;
+import com.example.model.User;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,6 +1,5 @@
-package com.example;
+package com.example.model;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -10,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@SuppressWarnings("serial")
-public class User implements Serializable {
+public class User {
     private int id;
     private String name;
     private LocalDateTime createdAt;
