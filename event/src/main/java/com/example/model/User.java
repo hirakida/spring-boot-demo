@@ -1,14 +1,11 @@
-package com.example;
-
-import java.io.Serializable;
+package com.example.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-@SuppressWarnings("serial")
-public class User implements Serializable {
+public class User {
     private long id;
     private String name;
 }
