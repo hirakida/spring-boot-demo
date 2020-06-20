@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <title></title>
 </head>
 <body>
 <table class="table" id="table">
+  <tbody>
   <tr>
     <th>timestamp</th>
     <td th:text="${timestamp}"></td>
@@ -35,6 +36,7 @@
     <th>trace</th>
     <td th:text="${trace}"></td>
   </tr>
+  </tbody>
 </table>
 </body>
 </html>
