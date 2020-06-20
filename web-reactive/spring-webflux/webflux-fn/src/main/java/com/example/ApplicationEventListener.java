@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 
-@Profile("test")
+@Profile("!test")
 @Component
 @RequiredArgsConstructor
 public class ApplicationEventListener {

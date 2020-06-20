@@ -16,5 +16,4 @@ include 'argument-resolver',
         'session-attribute',
         'template-engine:freemarker',
         'template-engine:thymeleaf',
-        'validation',
-        'webmvc-fn'
+        'validation'
