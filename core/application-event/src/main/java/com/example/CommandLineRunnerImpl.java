@@ -6,6 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
+import com.example.event.User;
+import com.example.event.UserCreatedEvent;
+
 import lombok.RequiredArgsConstructor;
 
 @Component
