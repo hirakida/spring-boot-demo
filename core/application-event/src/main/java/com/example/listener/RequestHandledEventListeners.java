@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class RequestHandledEventListener {
+public class RequestHandledEventListeners {
     @EventListener
     public void handleEvent(RequestHandledEvent event) {
         log.info("RequestHandledEvent={}", event.getSource());

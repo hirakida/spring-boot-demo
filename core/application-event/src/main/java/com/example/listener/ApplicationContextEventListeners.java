@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class ApplicationContextEventListener {
+public class ApplicationContextEventListeners {
     @EventListener
     public void handleEvent(ContextRefreshedEvent event) {
         log.info("ContextRefreshedEvent={}", event.getSource());
