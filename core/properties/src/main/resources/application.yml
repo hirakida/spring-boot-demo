@@ -1,0 +1,11 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+app:
+  enabled: true
+  number:
+    value1: 1_000
+  string:
+    value1: abcde
+  ddl-auto: none
