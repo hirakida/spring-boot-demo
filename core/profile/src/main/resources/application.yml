@@ -1,0 +1,24 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+
+app.message: default message
+
+---
+spring:
+  profiles: dev
+
+app.message: dev message
+
+---
+spring:
+  profiles: production
+
+app.message: production message
+
+---
+spring:
+  profiles: test
+
+app.message: test message
