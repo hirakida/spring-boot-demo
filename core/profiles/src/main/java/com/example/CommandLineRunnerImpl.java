@@ -2,21 +2,20 @@ package com.example;
 
 import java.util.Arrays;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.Profiles;
 import org.springframework.stereotype.Component;
 
-@Component
-public class CommandLineRunnerImpl implements CommandLineRunner {
-    private static final Logger log = LoggerFactory.getLogger(CommandLineRunnerImpl.class);
-    private final Environment environment;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-    public CommandLineRunnerImpl(Environment environment) {
-        this.environment = environment;
-    }
+@Component
+@RequiredArgsConstructor
+@Slf4j
+public class CommandLineRunnerImpl implements CommandLineRunner {
+    private final Environment environment;
+    private final AppProperties properties;
 
     @Override
     public void run(String... args) {
@@ -29,6 +28,6 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         log.info("acceptsProfiles(dev): {}", environment.acceptsProfiles(dev));
         log.info("acceptsProfiles(production): {}", environment.acceptsProfiles(production));
 
-        log.info("message: {}", environment.getProperty("app.message"));
+        log.info("message: {}", properties.getMessage());
     }
 }
