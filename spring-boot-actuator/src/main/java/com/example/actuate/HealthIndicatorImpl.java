@@ -1,6 +1,6 @@
 package com.example.actuate;
 
-import java.util.Random;
+import java.time.LocalDateTime;
 
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
@@ -11,11 +11,8 @@ public class HealthIndicatorImpl implements HealthIndicator {
 
     @Override
     public Health health() {
-        boolean next = new Random().nextBoolean();
-        if (next) {
-            return Health.up().withDetail("detail", next).build();
-        } else {
-            return Health.down().withDetail("detail", next).build();
-        }
+        return Health.up()
+                     .withDetail("time", LocalDateTime.now())
+                     .build();
     }
 }

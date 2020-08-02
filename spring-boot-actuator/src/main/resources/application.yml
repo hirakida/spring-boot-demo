@@ -1,4 +1,14 @@
 spring:
+  datasource:
+    initialization-mode: always
+    sql-script-encoding: UTF-8
+    url: jdbc:h2:mem:h2-db
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
   jmx:
     enabled: true
   output:
@@ -18,9 +28,12 @@ management:
   endpoint:
     health:
       show-details: always
+#      probes:
+#        enabled: true
   health:
     probes:
       enabled: true
+
 info:
   app:
     encoding: UTF-8

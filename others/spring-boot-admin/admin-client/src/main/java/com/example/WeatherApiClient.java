@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.example.model.Weather;
+
 @Component
 @CacheConfig(cacheNames = "cache1")
 public class WeatherApiClient {
@@ -21,11 +23,11 @@ public class WeatherApiClient {
     }
 
     @Cacheable(key = "'weather:' + #city")
-    public Map<?, ?> getWeather(String city) {
+    public Weather getWeather(String city) {
         String uri = UriComponentsBuilder.fromHttpUrl(URL)
                                          .queryParam("city", "{city}")
                                          .build(false)
                                          .toUriString();
-        return restTemplate.getForObject(uri, Map.class, city);
+        return restTemplate.getForObject(uri, Weather.class, city);
     }
 }

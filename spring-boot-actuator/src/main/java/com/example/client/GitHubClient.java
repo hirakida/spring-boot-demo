@@ -5,21 +5,19 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.example.client.model.Weather;
-
 @Component
-public class WeatherClient {
+public class GitHubClient {
     private final RestTemplate restTemplate;
 
-    public WeatherClient(RestTemplateBuilder builder) {
+    public GitHubClient(RestTemplateBuilder builder) {
         restTemplate = builder.build();
     }
 
-    public Weather getWeather(String city) {
-        String uri = UriComponentsBuilder.fromHttpUrl("http://weather.livedoor.com/forecast/webservice/json/v1")
-                                         .queryParam("city", "{city}")
+    public User getUser(String username) {
+        String url = UriComponentsBuilder.fromHttpUrl("https://api.github.com")
+                                         .path("/users/{username}")
                                          .build(false)
                                          .toUriString();
-        return restTemplate.getForObject(uri, Weather.class, city);
+        return restTemplate.getForObject(url, User.class, username);
     }
 }

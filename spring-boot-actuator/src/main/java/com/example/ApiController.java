@@ -5,12 +5,12 @@ import java.time.LocalDateTime;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.client.WeatherClient;
-import com.example.client.model.Weather;
+import com.example.client.GitHubClient;
+import com.example.client.User;
 
 import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class ApiController {
-    private final WeatherClient weatherClient;
+    private final GitHubClient gitHubClient;
 
     @GetMapping("/now")
     @Timed("now")
@@ -26,10 +26,10 @@ public class ApiController {
         return LocalDateTime.now();
     }
 
-    @GetMapping("/weather")
-    @Timed("weather")
-    public Weather weather(@RequestParam(defaultValue = "130010") String city) {
-        return weatherClient.getWeather(city);
+    @GetMapping("/github/{username}")
+    @Timed("github")
+    public User getUser(@PathVariable String username) {
+        return gitHubClient.getUser(username);
     }
 
     @ExceptionHandler
