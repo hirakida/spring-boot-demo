@@ -6,3 +6,10 @@ spring:
   output:
     ansi:
       enabled: always
+logging:
+  level:
+    org:
+      springframework:
+        context:
+          support:
+            DefaultLifecycleProcessor: trace
