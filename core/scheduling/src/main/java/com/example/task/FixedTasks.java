@@ -1,4 +1,4 @@
-package com.example;
+package com.example.task;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +15,7 @@ public class FixedTasks {
      */
     @Scheduled(fixedDelay = 5000)
     public void fixedDelay() {
-        log.info("[{}] fixedDelay", LocalDateTime.now());
+        log.info("[{}][fixedDelay]", LocalDateTime.now());
 
         try {
             Thread.sleep(1000);
@@ -29,7 +29,7 @@ public class FixedTasks {
      */
     @Scheduled(fixedRate = 5000)
     public void fixedRate() {
-        log.info("[{}] fixedRate", LocalDateTime.now());
+        log.info("[{}][fixedRate=5000]", LocalDateTime.now());
 
         try {
             Thread.sleep(1000);
@@ -43,6 +43,6 @@ public class FixedTasks {
      */
     @Scheduled(initialDelay = 10000, fixedRate = 5000)
     public void initialDelay() {
-        log.info("[{}] initialDelay", LocalDateTime.now());
+        log.info("[{}][initialDelay=10000]", LocalDateTime.now());
     }
 }

@@ -1,4 +1,4 @@
-package com.example;
+package com.example.task;
 
 import java.time.LocalDateTime;
 
@@ -38,7 +38,7 @@ public class CronTasks {
      */
     @Scheduled(cron = "${cron.four_times_per_minute}", zone = ZONE)
     public void fourTimesAMinute() {
-        log.info("[{}][0,15,30,45 * * * * *]", LocalDateTime.now());
+        log.info("[{}][{}]", LocalDateTime.now(), environment.getProperty("cron.four_times_per_minute"));
     }
 
     /**
@@ -46,7 +46,7 @@ public class CronTasks {
      */
     @Scheduled(cron = "${cron.ten_times_per_minute}", zone = ZONE)
     public void fifteenTimesAMinute() {
-        log.info("[{}][1-10 * * * * *]", LocalDateTime.now());
+        log.info("[{}][{}]", LocalDateTime.now(), environment.getProperty("cron.ten_times_per_minute"));
     }
 
     /**
@@ -54,7 +54,7 @@ public class CronTasks {
      */
     @Scheduled(cron = "${cron.every_10_seconds}", zone = ZONE)
     public void every10Seconds() {
-        log.info("[{}][*/10 * * * * *]", LocalDateTime.now());
+        log.info("[{}][{}]", LocalDateTime.now(), environment.getProperty("cron.every_10_seconds"));
     }
 
     /**
@@ -62,7 +62,7 @@ public class CronTasks {
      */
     @Scheduled(cron = "${cron.every_3_minutes}", zone = ZONE)
     public void every3Minutes() {
-        log.info("[{}][0 */3 * * * *]", LocalDateTime.now());
+        log.info("[{}][{}]", LocalDateTime.now(), environment.getProperty("cron.every_3_minutes"));
     }
 
     /**
