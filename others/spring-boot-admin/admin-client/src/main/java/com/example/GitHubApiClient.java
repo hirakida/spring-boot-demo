@@ -1,7 +1,5 @@
 package com.example;
 
-import java.util.Map;
-
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -9,25 +7,24 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.example.model.Weather;
+import com.fasterxml.jackson.databind.JsonNode;
 
 @Component
 @CacheConfig(cacheNames = "cache1")
-public class WeatherApiClient {
-    private static final String URL = "http://weather.livedoor.com/forecast/webservice/json/v1";
-    public static final String DEFAULT_CITY_CODE = "130010";
+public class GitHubApiClient {
+    private static final String BASE_URL = "https://api.github.com";
     private final RestTemplate restTemplate;
 
-    public WeatherApiClient(RestTemplateBuilder builder) {
+    public GitHubApiClient(RestTemplateBuilder builder) {
         restTemplate = builder.build();
     }
 
-    @Cacheable(key = "'weather:' + #city")
-    public Weather getWeather(String city) {
-        String uri = UriComponentsBuilder.fromHttpUrl(URL)
-                                         .queryParam("city", "{city}")
+    @Cacheable(key = "'user:' + #username")
+    public JsonNode getUser(String username) {
+        String uri = UriComponentsBuilder.fromHttpUrl(BASE_URL)
+                                         .path("/users/{username}")
                                          .build(false)
                                          .toUriString();
-        return restTemplate.getForObject(uri, Weather.class, city);
+        return restTemplate.getForObject(uri, JsonNode.class, username);
     }
 }
