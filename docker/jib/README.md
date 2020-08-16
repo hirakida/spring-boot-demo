@@ -1,10 +1,10 @@
 
-push to Docker Hub
+Push to Docker Hub
 ```
  ./gradlew jib
 ```
 
-build my image to a Docker deamon
+Build my image to a Docker deamon
 ```
  ./gradlew jibDockerBuild 
 ```
