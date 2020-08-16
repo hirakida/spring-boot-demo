@@ -1,52 +1,29 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.0.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id 'com.google.cloud.tools.jib' version '2.2.0'
-    id 'java'
+    id 'org.springframework.boot' version '2.3.3.RELEASE' apply false
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE' apply false
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = JavaVersion.VERSION_11
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
 
-repositories {
-    mavenCentral()
-}
+    group = 'com.example'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = JavaVersion.VERSION_11
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    repositories {
+        mavenCentral()
     }
-}
 
-test {
-    useJUnitPlatform()
-}
-
-bootBuildImage {
-    imageName = "hirakida/spring-boot-docker-demo"
-}
-
-task buildImage(type: Exec) {
-    commandLine './build.sh'
-}
-//build.finalizedBy(buildImage)
-
-jib {
-    from {
-        image = 'openjdk:11-jdk-slim'
-    }
-    to {
-        image = 'hirakida/spring-boot-docker-demo'
-        tags = ['latest']
-        auth {
-            username = 'hirakida'
-            password = System.getenv('DOCKER_HUB_PASSWORD')
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
     }
-    container {
-        mainClass = 'com.example.Application'
-        ports = ['8080/tcp']
+
+    test {
+        useJUnitPlatform()
     }
 }

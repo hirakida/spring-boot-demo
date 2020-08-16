@@ -1,0 +1,3 @@
+bootBuildImage {
+    imageName = "hirakida/spring-boot-docker-demo:${version}"
+}

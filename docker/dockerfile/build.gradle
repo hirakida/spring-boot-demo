@@ -1,0 +1,5 @@
+task buildImage(type: Exec) {
+    commandLine './build.sh'
+}
+
+//build.finalizedBy(buildImage)
