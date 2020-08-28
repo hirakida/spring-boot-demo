@@ -2,7 +2,6 @@ rootProject.name = 'webmvc-demo'
 
 include 'argument-resolver',
         'cache-control',
-        'cors',
         'error-page',
         'exception-handler',
         'filter',

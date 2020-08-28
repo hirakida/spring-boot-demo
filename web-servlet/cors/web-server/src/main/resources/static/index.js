@@ -1,6 +1,6 @@
 window.onload = () => {
   const request = new XMLHttpRequest();
-  request.open('GET', 'http://localhost:8080/hello');
+  request.open('GET', 'http://localhost:10000/hello');
   request.responseType = 'json';
   request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   request.send();
