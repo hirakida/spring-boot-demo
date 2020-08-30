@@ -1,9 +1,6 @@
 spring:
   application:
     name: spring-cloud-sleuth-demo
-  devtools:
-    livereload:
-      enabled: false
   output:
     ansi:
       enabled: always

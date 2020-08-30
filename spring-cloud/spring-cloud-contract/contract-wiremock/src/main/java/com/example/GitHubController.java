@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class ApiController {
+public class GitHubController {
     private final GitHubApiClient gitHubApiClient;
 
     @GetMapping("/users/{username}")

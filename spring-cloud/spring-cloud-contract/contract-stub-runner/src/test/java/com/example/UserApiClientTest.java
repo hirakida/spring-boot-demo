@@ -7,13 +7,11 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties.StubsMode;
 
-import com.example.UserApiClient.User;
-
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE,
-        properties = "producer.port=${stubrunner.runningstubs.contract-verifier.port}")
+        properties = "user-api.port=${stubrunner.runningstubs.contract-verifier.port}")
 @AutoConfigureStubRunner(ids = "com.example:contract-verifier:+:stubs", stubsMode = StubsMode.LOCAL)
 public class UserApiClientTest {
     @Autowired
