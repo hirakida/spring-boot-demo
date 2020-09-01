@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: dev
+  output:
+    ansi:
+      enabled: always
+management:
+  server:
+    port: 8081
+info:
+  app:
+    java:
+      source: 11
+      target: 11
+    profile: ${spring.profiles.active}

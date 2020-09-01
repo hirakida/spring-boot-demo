@@ -6,11 +6,15 @@ services:
       - "9090:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-  grafana:
-    image: grafana/grafana:latest
+  pushgateway:
+    image: prom/pushgateway:latest
     ports:
-      - "3000:3000"
-    volumes:
-      - ./grafana:/var/lib/grafana
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - "9091:9091"
+#  grafana:
+#    image: grafana/grafana:latest
+#    ports:
+#      - "3000:3000"
+#    volumes:
+#      - ./grafana:/var/lib/grafana
+#    environment:
+#      - GF_SECURITY_ADMIN_PASSWORD=admin
