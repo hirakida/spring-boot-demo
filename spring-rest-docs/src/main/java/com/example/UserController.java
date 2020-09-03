@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,22 +23,23 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequestMapping("/users")
 @RequiredArgsConstructor
-public class ApiController {
+public class UserController {
     private final UserRepository userRepository;
 
-    @GetMapping("/users")
+    @GetMapping
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public User findById(@PathVariable int id) {
         return userRepository.findById(id)
                              .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
     }
 
-    @PostMapping("/users")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@RequestBody @Validated UserRequest request) {
         User user = new User();
@@ -46,7 +48,7 @@ public class ApiController {
         return userRepository.save(user);
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     public User update(@PathVariable int id, @RequestBody @Validated UserRequest request) {
         User user = userRepository.findById(id)
                                   .orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
@@ -55,15 +57,17 @@ public class ApiController {
         return userRepository.save(user);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable int id) {
+    public void deleteById(@PathVariable int id) {
         userRepository.deleteById(id);
     }
 
     @Data
     public static class UserRequest {
-        private @NotEmpty String name;
-        private @NotEmpty String email;
+        @NotEmpty
+        private String name;
+        @NotEmpty
+        private String email;
     }
 }

@@ -1,0 +1,57 @@
+= Spring REST Docs Demo
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+
+[[userController]]
+= UserController
+
+[[api]]
+== findAll
+
+=== Http Request
+include::{snippets}/find-all/1/http-request.adoc[]
+
+=== Http Response
+include::{snippets}/find-all/1/http-response.adoc[]
+
+
+== fineById
+
+=== Http Request
+include::{snippets}/find-by-id/1/http-request.adoc[]
+
+=== Http Response
+include::{snippets}/find-by-id/1/http-response.adoc[]
+
+
+== update
+
+=== Http Request
+include::{snippets}/update/1/http-request.adoc[]
+
+=== Http Response
+include::{snippets}/update/1/http-response.adoc[]
+
+
+== create
+
+=== Http Request
+include::{snippets}/create/1/http-request.adoc[]
+
+=== Http Response
+include::{snippets}/create/1/http-response.adoc[]
+
+
+== deleteById
+
+=== Http Request
+include::{snippets}/delete-by-id/1/http-request.adoc[]
+
+=== Http Response
+include::{snippets}/delete-by-id/1/http-response.adoc[]

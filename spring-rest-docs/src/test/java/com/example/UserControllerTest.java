@@ -8,32 +8,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
-import org.springframework.restdocs.JUnitRestDocumentation;
+import org.springframework.restdocs.RestDocumentationContextProvider;
+import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import com.example.ApiController.UserRequest;
+import com.example.UserController.UserRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@RunWith(SpringRunner.class)
+@ExtendWith({ RestDocumentationExtension.class, SpringExtension.class })
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureRestDocs
-public class ApiControllerTest {
-    @Rule
-    public final JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation();
+public class UserControllerTest {
     @Autowired
     private WebApplicationContext context;
     @Autowired
@@ -44,8 +43,8 @@ public class ApiControllerTest {
     private int port;
     private MockMvc mockMvc;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    public void setUp(RestDocumentationContextProvider restDocumentation) {
         mockMvc = MockMvcBuilders.webAppContextSetup(context)
                                  .apply(documentationConfiguration(restDocumentation))
                                  .alwaysDo(document("{method-name}/{step}/"))
@@ -53,23 +52,23 @@ public class ApiControllerTest {
     }
 
     @Test
-    public void findAllTest() throws Exception {
+    public void findAll() throws Exception {
         mockMvc.perform(RestDocumentationRequestBuilders.get("/users"))
                .andExpect(status().isOk());
     }
 
     @Test
-    public void findByIdTest() throws Exception {
+    public void findById() throws Exception {
         List<User> users = getUsers();
         mockMvc.perform(RestDocumentationRequestBuilders.get("/users/{id}",
                                                              users.get(0).getId()))
                .andExpect(status().isOk())
-               .andDo(document("ApiController",
+               .andDo(document("UserController",
                                pathParameters(parameterWithName("id").description("user id"))));
     }
 
     @Test
-    public void updateTest() throws Exception {
+    public void update() throws Exception {
         List<User> users = getUsers();
         User user = users.get(0);
         UserRequest request = new UserRequest();
@@ -79,12 +78,12 @@ public class ApiControllerTest {
                                                         .contentType(MediaType.APPLICATION_JSON)
                                                         .content(objectMapper.writeValueAsString(request)))
                .andExpect(status().isOk())
-               .andDo(document("ApiController",
+               .andDo(document("UserController",
                                pathParameters(parameterWithName("id").description("user id"))));
     }
 
     @Test
-    public void createTest() throws Exception {
+    public void create() throws Exception {
         UserRequest request = new UserRequest();
         request.setName("new User");
         request.setEmail("post@example.com");
@@ -92,21 +91,26 @@ public class ApiControllerTest {
                                                         .contentType(MediaType.APPLICATION_JSON)
                                                         .content(objectMapper.writeValueAsString(request)))
                .andExpect(status().isCreated())
-               .andDo(document("ApiController"));
+               .andDo(document("UserController"));
     }
 
     @Test
-    public void deleteTest() throws Exception {
+    public void deleteById() throws Exception {
         List<User> users = getUsers();
         mockMvc.perform(RestDocumentationRequestBuilders.delete("/users/{id}",
                                                                 users.get(0).getId()))
                .andExpect(status().isNoContent())
-               .andDo(document("ApiController",
+               .andDo(document("UserController",
                                pathParameters(parameterWithName("id").description("user id"))));
     }
 
     private List<User> getUsers() {
-        String url = "http://localhost:" + port + "/users";
+        String url = UriComponentsBuilder.newInstance()
+                                         .scheme("http")
+                                         .host("localhost")
+                                         .port(port)
+                                         .path("/users")
+                                         .toUriString();
         User[] users = testRestTemplate.getForObject(url, User[].class);
         return List.of(users);
     }
