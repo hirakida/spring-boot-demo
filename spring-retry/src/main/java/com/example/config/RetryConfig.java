@@ -19,9 +19,9 @@ public class RetryConfig {
     private static final int BACK_OFF_PERIOD = 500;
 
     @Bean
-    public RetryTemplate retryTemplate() {
+    public RetryTemplate retryTemplate(RetryListenerImpl retryListener) {
         Map<Class<? extends Throwable>, Boolean> exceptions = Map.of(ResourceAccessException.class, true,
-                                                                     HttpServerErrorException.class, false,
+                                                                     HttpServerErrorException.class, true,
                                                                      HttpClientErrorException.class, false);
         SimpleRetryPolicy retryPolicy = new SimpleRetryPolicy(MAX_ATTEMPTS, exceptions);
         FixedBackOffPolicy backOffPolicy = new FixedBackOffPolicy();
@@ -30,17 +30,7 @@ public class RetryConfig {
         RetryTemplate template = new RetryTemplate();
         template.setRetryPolicy(retryPolicy);
         template.setBackOffPolicy(backOffPolicy);
-        template.registerListener(retryListener());
+        template.registerListener(retryListener);
         return template;
-    }
-
-    @Bean
-    public RetryListenerImpl retryListener() {
-        return new RetryListenerImpl();
-    }
-
-    @Bean
-    public ExceptionChecker exceptionChecker() {
-        return new ExceptionChecker();
     }
 }
