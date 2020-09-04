@@ -3,6 +3,8 @@ package com.example;
 import static org.springframework.web.servlet.function.ServerResponse.notFound;
 import static org.springframework.web.servlet.function.ServerResponse.ok;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.function.ServerRequest;
 import org.springframework.web.servlet.function.ServerResponse;
@@ -22,6 +24,7 @@ public class UserHandler {
     }
 
     public ServerResponse findAll(ServerRequest request) {
-        return ok().body(userRepository.findAll());
+        List<User> users = userRepository.findAll();
+        return ok().body(users);
     }
 }
