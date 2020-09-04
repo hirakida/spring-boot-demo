@@ -1,8 +1,6 @@
 
-http://docs.spring.io/spring-restdocs/docs/current/reference/html5/  
-
 ```
- $ mvn package
+% ./gradlew clean build asciidoctor
 ```
 
-target/generated-docs/index.html
+build/asciidoc/html5/index.html
