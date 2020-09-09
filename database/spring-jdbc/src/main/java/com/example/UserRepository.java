@@ -47,12 +47,12 @@ public class UserRepository {
     }
 
     public User insert(User user) {
-        // set auto increment id
-        Number key = jdbcInsert.executeAndReturnKey(new BeanPropertySqlParameterSource(user));
         LocalDateTime now = LocalDateTime.now();
-        user.setId(key.intValue());
         user.setCreatedAt(now);
         user.setUpdatedAt(now);
+
+        Number key = jdbcInsert.executeAndReturnKey(new BeanPropertySqlParameterSource(user));
+        user.setId(key.intValue());
         return user;
     }
 

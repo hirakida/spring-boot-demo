@@ -4,9 +4,21 @@ spring:
     url: jdbc:h2:mem:jdbc-db;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password:
-  devtools:
-    livereload:
-      enabled: false
+    hikari:
+      pool-name: jdbc-pool
+      register-mbeans: true
   output:
     ansi:
       enabled: always
+  jmx:
+    enabled: true
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: ["jolokia"]
+logging:
+  level:
+    com.zaxxer.hikari: debug

@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
-public class ApiController {
+public class UserController {
     private final UserRepository userRepository;
 
     @GetMapping
@@ -38,14 +38,14 @@ public class ApiController {
     }
 
     @PostMapping
-    public User create(@RequestBody @Validated RequestData request) {
+    public User create(@RequestBody @Validated UserRequest request) {
         User user = new User();
         user.setName(request.getName());
         return userRepository.insert(user);
     }
 
     @PutMapping("/{id}")
-    public User update(@PathVariable int id, @RequestBody @Validated RequestData request) {
+    public User update(@PathVariable int id, @RequestBody @Validated UserRequest request) {
         User user = userRepository.findById(id).orElseThrow();
         user.setName(request.getName());
         return userRepository.update(user);
@@ -62,7 +62,8 @@ public class ApiController {
     }
 
     @Data
-    public static class RequestData {
-        private @NotNull String name;
+    public static class UserRequest {
+        @NotNull
+        private String name;
     }
 }
