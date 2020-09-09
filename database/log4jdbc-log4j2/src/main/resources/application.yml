@@ -5,6 +5,8 @@ spring:
     url: jdbc:log4jdbc:h2:mem:h2-db
     username: sa
     password:
+    hikari:
+      maximum-pool-size: 1
   jpa:
     hibernate:
       ddl-auto: update
