@@ -7,9 +7,10 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MySQLContainer;
@@ -18,14 +19,15 @@ import org.testcontainers.jdbc.JdbcDatabaseDelegate;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = Replace.NONE)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Testcontainers
-public class UserRepositoryTest {
+public class UserIntegrationTest {
     @Container
     private static final MySQLContainer<?> container = new MySQLContainer<>("mysql:8.0");
+    @LocalServerPort
+    private int port;
     @Autowired
-    private UserRepository userRepository;
+    private TestRestTemplate restTemplate;
 
     @DynamicPropertySource
     static void dataSourceProperties(DynamicPropertyRegistry registry) {
@@ -35,21 +37,15 @@ public class UserRepositoryTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    public void init() {
         ScriptUtils.runInitScript(new JdbcDatabaseDelegate(container, ""), "schema.sql");
         ScriptUtils.runInitScript(new JdbcDatabaseDelegate(container, ""), "data.sql");
     }
 
     @Test
     public void findAll() {
-        List<User> result = userRepository.findAll();
-        assertEquals(5, result.size());
-    }
-
-    @Test
-    public void findByName() {
-        List<User> result = userRepository.findByName("user1");
-        assertEquals(result.size(), 1);
-        assertEquals("user1", result.get(0).getName());
+        User[] response = restTemplate.getForObject("http://localhost:" + port + "/users", User[].class);
+        List<User> users = List.of(response);
+        assertEquals(users.size(), 5);
     }
 }

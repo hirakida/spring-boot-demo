@@ -12,7 +12,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.ext.ScriptUtils;
 import org.testcontainers.jdbc.JdbcDatabaseDelegate;
 import org.testcontainers.junit.jupiter.Container;
@@ -21,11 +21,11 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Testcontainers
-public class UserRepositoryTest {
+public class PersonRepositoryTest {
     @Container
-    private static final MySQLContainer<?> container = new MySQLContainer<>("mysql:8.0");
+    private static final PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:10");
     @Autowired
-    private UserRepository userRepository;
+    private PersonRepository personRepository;
 
     @DynamicPropertySource
     static void dataSourceProperties(DynamicPropertyRegistry registry) {
@@ -42,14 +42,7 @@ public class UserRepositoryTest {
 
     @Test
     public void findAll() {
-        List<User> result = userRepository.findAll();
+        List<Person> result = personRepository.findAll();
         assertEquals(5, result.size());
-    }
-
-    @Test
-    public void findByName() {
-        List<User> result = userRepository.findByName("user1");
-        assertEquals(result.size(), 1);
-        assertEquals("user1", result.get(0).getName());
     }
 }
