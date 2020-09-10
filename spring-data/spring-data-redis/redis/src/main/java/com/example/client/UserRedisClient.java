@@ -4,24 +4,24 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import com.example.model.User;
 
 import lombok.RequiredArgsConstructor;
 
-@Repository
+@Component
 @RequiredArgsConstructor
 public class UserRedisClient {
     public static final String KEY_NAME_BASE = "user";
-    private final RedisTemplate<String, User> userRedisTemplate;
+    private final RedisTemplate<String, User> redisTemplate;
 
     public Optional<User> get(long id) {
         return get(KEY_NAME_BASE + id);
     }
 
     public Optional<User> get(String key) {
-        return Optional.ofNullable(userRedisTemplate.opsForValue().get(key));
+        return Optional.ofNullable(redisTemplate.opsForValue().get(key));
     }
 
     public void set(long id, User user) {
@@ -29,8 +29,8 @@ public class UserRedisClient {
     }
 
     public void set(String key, User user) {
-        userRedisTemplate.opsForValue()
-                         .set(key, user);
+        redisTemplate.opsForValue()
+                     .set(key, user);
     }
 
     public void set(long id, User user, long seconds) {
@@ -38,8 +38,8 @@ public class UserRedisClient {
     }
 
     public void set(String key, User user, long seconds) {
-        userRedisTemplate.opsForValue()
-                         .set(key, user, seconds, TimeUnit.SECONDS);
+        redisTemplate.opsForValue()
+                     .set(key, user, seconds, TimeUnit.SECONDS);
     }
 
     public void delete(long id) {
@@ -47,6 +47,6 @@ public class UserRedisClient {
     }
 
     public void delete(String key) {
-        userRedisTemplate.delete(key);
+        redisTemplate.delete(key);
     }
 }

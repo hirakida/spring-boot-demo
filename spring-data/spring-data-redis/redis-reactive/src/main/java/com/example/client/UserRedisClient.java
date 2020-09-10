@@ -16,8 +16,7 @@ public class UserRedisClient {
     private final ReactiveRedisTemplate<String, User> redisTemplate;
 
     public Mono<User> get(String key) {
-        return redisTemplate.hasKey(key)
-                            .flatMap(hasKey -> hasKey ? redisTemplate.opsForValue().get(key) : Mono.empty());
+        return redisTemplate.opsForValue().get(key);
     }
 
     public Mono<Boolean> multiSet(Map<String, User> map) {

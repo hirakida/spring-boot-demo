@@ -16,9 +16,11 @@ import com.example.client.UserRedisClient;
 import com.example.model.User;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class ApplicationEventListener {
     private final StringRedisClient stringRedisClient;
     private final UserRedisClient userRedisClient;
@@ -30,10 +32,18 @@ public class ApplicationEventListener {
                                                .collect(toMap(i -> "key" + i, i -> "value" + i));
         stringRedisClient.multiSet(strings).block();
 
+        String result = stringRedisClient.get("key1").block();
+        log.info("{}", result);
+        Boolean hasElement = stringRedisClient.get("key11").hasElement().block();
+        log.info("{}", hasElement);
+
         Map<String, User> users =
                 IntStream.rangeClosed(1, 5)
                          .mapToObj(i -> new User(i, "user" + i, LocalDateTime.now(), LocalDateTime.now()))
                          .collect(toMap(User::getName, Function.identity()));
         userRedisClient.multiSet(users).block();
+
+        User user = userRedisClient.get("user1").block();
+        log.info("{}", user);
     }
 }

@@ -23,21 +23,21 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @Testcontainers
 public class PersonRepositoryTest {
     @Container
-    private static final PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:10");
+    private static final PostgreSQLContainer<?> CONTAINER = new PostgreSQLContainer<>("postgres:10");
     @Autowired
     private PersonRepository personRepository;
 
     @DynamicPropertySource
     static void dataSourceProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", container::getJdbcUrl);
-        registry.add("spring.datasource.username", container::getUsername);
-        registry.add("spring.datasource.password", container::getPassword);
+        registry.add("spring.datasource.url", CONTAINER::getJdbcUrl);
+        registry.add("spring.datasource.username", CONTAINER::getUsername);
+        registry.add("spring.datasource.password", CONTAINER::getPassword);
     }
 
     @BeforeEach
     public void setUp() {
-        ScriptUtils.runInitScript(new JdbcDatabaseDelegate(container, ""), "schema.sql");
-        ScriptUtils.runInitScript(new JdbcDatabaseDelegate(container, ""), "data.sql");
+        ScriptUtils.runInitScript(new JdbcDatabaseDelegate(CONTAINER, ""), "schema.sql");
+        ScriptUtils.runInitScript(new JdbcDatabaseDelegate(CONTAINER, ""), "data.sql");
     }
 
     @Test

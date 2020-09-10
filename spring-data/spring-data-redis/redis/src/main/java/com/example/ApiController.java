@@ -38,16 +38,6 @@ public class ApiController {
         stringRedisClient.delete(key);
     }
 
-    @PutMapping("/strings/{key}/{oldValue}/{newValue}")
-    public Boolean set(@PathVariable String key, @PathVariable String oldValue, @PathVariable String newValue) {
-        return stringRedisClient.checkAndSet(key, oldValue, newValue);
-    }
-
-    @GetMapping("/strings/exists/{key}/{value}")
-    public Boolean exists(@PathVariable String key, @PathVariable String value) {
-        return stringRedisClient.exists(key, value);
-    }
-
     @GetMapping("/users/{id}")
     public User get(@PathVariable long id) {
         return userRedisClient.get(id)

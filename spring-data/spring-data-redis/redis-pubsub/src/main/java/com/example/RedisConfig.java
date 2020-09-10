@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example;
 
 import java.util.concurrent.Executors;
 
@@ -9,11 +9,8 @@ import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 
-import com.example.MessageListenerImpl;
-
 @Configuration
 public class RedisConfig {
-
     @Bean
     public ChannelTopic channelTopic() {
         return new ChannelTopic("topic");

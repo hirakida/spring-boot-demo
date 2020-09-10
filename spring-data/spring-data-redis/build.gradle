@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.1.RELEASE' apply false
+    id 'org.springframework.boot' version '2.3.3.RELEASE' apply false
 }
 
 subprojects {
@@ -24,9 +24,7 @@ subprojects {
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
-        testImplementation platform('org.testcontainers:testcontainers-bom:1.12.5')
-        testImplementation 'org.testcontainers:testcontainers'
-        testImplementation 'org.testcontainers:junit-jupiter'
+        testImplementation platform('org.testcontainers:testcontainers-bom:1.14.3')
     }
 
     test {
