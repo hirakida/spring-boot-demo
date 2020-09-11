@@ -1,4 +1,4 @@
-package com.example;
+package com.example.controller;
 
 import java.util.List;
 
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.service.UserService;
 import com.example.entity.User;
 
 import lombok.Data;

@@ -1,3 +1,4 @@
-rootProject.name = 'spring-boot-mybatis-demo'
+rootProject.name = 'mybatis-demo'
 
-include 'annotation', 'mapper-xml'
+include 'mybatis-annotation',
+        'mybatis-xml'

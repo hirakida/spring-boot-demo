@@ -73,6 +73,7 @@ public class UserController {
 
     @Data
     public static class UserRequest {
-        private @NotNull String name;
+        @NotNull
+        private String name;
     }
 }
