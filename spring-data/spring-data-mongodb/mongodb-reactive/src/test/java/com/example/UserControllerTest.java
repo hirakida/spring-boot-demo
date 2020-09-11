@@ -10,21 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import reactor.core.publisher.Flux;
 
 @WebFluxTest
-@ActiveProfiles("test")
 public class UserControllerTest {
     @Autowired
-    private WebTestClient webTestClient;
+    private WebTestClient client;
     @MockBean
     private UserRepository userRepository;
 
     @Test
-    public void findAllTest() {
+    public void findAll() {
         LocalDateTime datetime = LocalDateTime.parse("2019-11-09T10:00:00");
         List<User> users = List.of(new User("1", "name1", 21, datetime, datetime, 1L),
                                    new User("2", "name2", 22, datetime, datetime, 1L),
@@ -37,11 +35,11 @@ public class UserControllerTest {
                 + ']';
         when(userRepository.findAll()).thenReturn(Flux.fromIterable(users));
 
-        webTestClient.get()
-                     .uri("http://localhost:8080/users")
-                     .exchange()
-                     .expectHeader().contentType(MediaType.APPLICATION_JSON)
-                     .expectStatus().isOk()
-                     .expectBody().json(expectedJson);
+        client.get()
+              .uri("http://localhost:8080/users")
+              .exchange()
+              .expectHeader().contentType(MediaType.APPLICATION_JSON)
+              .expectStatus().isOk()
+              .expectBody().json(expectedJson);
     }
 }

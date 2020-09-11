@@ -48,7 +48,8 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<User> create(@RequestBody @Validated UserRequest request) {
-        return userRepository.save(request.toUser());
+        User user = new User(request.getName(), request.getAge());
+        return userRepository.save(user);
     }
 
     @PutMapping("/{id}")
@@ -74,12 +75,5 @@ public class UserController {
         private String name;
         @NotNull
         private Integer age;
-
-        public User toUser() {
-            User user = new User();
-            user.setName(name);
-            user.setAge(age);
-            return user;
-        }
     }
 }

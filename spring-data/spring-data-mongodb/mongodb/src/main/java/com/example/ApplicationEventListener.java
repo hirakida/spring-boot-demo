@@ -19,11 +19,7 @@ public class ApplicationEventListener {
     @EventListener(ApplicationReadyEvent.class)
     public void readyEvent() {
         List<User> users = IntStream.rangeClosed(1, 6)
-                                    .mapToObj(i -> {
-                                        User user = new User();
-                                        user.setName("user" + i);
-                                        return user;
-                                    })
+                                    .mapToObj(i -> new User("user" + i))
                                     .collect(toList());
         userRepository.saveAll(users);
     }

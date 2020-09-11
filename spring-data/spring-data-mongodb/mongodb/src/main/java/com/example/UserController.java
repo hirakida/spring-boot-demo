@@ -43,7 +43,8 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@RequestBody @Validated UserRequest request) {
-        return userRepository.save(request.toUser());
+        User user = new User(request.getName());
+        return userRepository.save(user);
     }
 
     @PutMapping("/{id}")
@@ -70,12 +71,7 @@ public class UserController {
 
     @Data
     public static class UserRequest {
-        private @NotNull String name;
-
-        public User toUser() {
-            User user = new User();
-            user.setName(name);
-            return user;
-        }
+        @NotNull
+        private String name;
     }
 }

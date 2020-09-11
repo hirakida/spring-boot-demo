@@ -27,4 +27,9 @@ public class User {
     private LocalDateTime updatedAt;
     @Version
     private Long version;
+
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
 }

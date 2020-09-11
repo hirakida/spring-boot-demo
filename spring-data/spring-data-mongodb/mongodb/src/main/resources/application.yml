@@ -2,7 +2,10 @@ spring:
   data:
     mongodb:
       host: localhost
-      port: 27018
+      port: 27017
+      username: root
+      password: pass
+      authentication-database: admin
   output:
     ansi:
       enabled: always

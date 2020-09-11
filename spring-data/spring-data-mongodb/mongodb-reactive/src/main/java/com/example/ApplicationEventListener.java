@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import reactor.core.publisher.Flux;
 
 @Component
 @RequiredArgsConstructor
@@ -23,14 +22,9 @@ public class ApplicationEventListener {
             condition = "!@environment.acceptsProfiles('test')")
     public void readyEvent() {
         final List<User> users = IntStream.rangeClosed(1, 5)
-                                          .mapToObj(i -> {
-                                              User user = new User();
-                                              user.setName("name" + i);
-                                              user.setAge(i * 10);
-                                              return user;
-                                          }).collect(toList());
-        Flux.fromIterable(users)
-            .flatMap(userRepository::save)
-            .subscribe(user -> log.info("{}", user));
+                                          .mapToObj(i -> new User("name" + i, i * 10))
+                                          .collect(toList());
+        userRepository.saveAll(users)
+                      .subscribe(user -> log.info("{}", user));
     }
 }
