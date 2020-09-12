@@ -1,0 +1,4 @@
+rootProject.name = 'async-requests-demo'
+
+include 'http-streaming',
+        'single-value'

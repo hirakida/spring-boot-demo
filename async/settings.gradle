@@ -1,4 +1,0 @@
-rootProject.name = 'async-demo'
-
-include 'single-value',
-        'streaming'
