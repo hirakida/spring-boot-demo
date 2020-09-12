@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class AsyncResponse {
+public class Response {
     private LocalDateTime start;
     private LocalDateTime end;
 }

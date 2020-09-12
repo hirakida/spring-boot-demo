@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
@@ -9,27 +9,25 @@ import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 
-import com.example.AsyncResponse;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
 public class FutureService {
     @Async
-    public ListenableFuture<AsyncResponse> listenableFuture() {
-        AsyncResponse response = execute();
+    public ListenableFuture<Response> listenableFuture() {
+        Response response = execute();
         log.info("result={}", response);
 
-        ListenableFuture<AsyncResponse> future = AsyncResult.forValue(response);
+        ListenableFuture<Response> future = AsyncResult.forValue(response);
         future.addCallback(result -> log.info("success: {}", result),
                            e -> log.error("{}", e.getMessage(), e));
         return future;
     }
 
     @Async
-    public CompletableFuture<AsyncResponse> completableFuture() {
-        AsyncResponse response = execute();
+    public CompletableFuture<Response> completableFuture() {
+        Response response = execute();
         log.info("result={}", response);
 
         return CompletableFuture.completedFuture(response)
@@ -42,7 +40,7 @@ public class FutureService {
                                 });
     }
 
-    private static AsyncResponse execute() {
+    private static Response execute() {
         LocalDateTime start = LocalDateTime.now();
         try {
             TimeUnit.SECONDS.sleep(3);
@@ -50,6 +48,6 @@ public class FutureService {
             log.error("{}", e.getMessage(), e);
         }
         LocalDateTime end = LocalDateTime.now();
-        return new AsyncResponse(start, end);
+        return new Response(start, end);
     }
 }
