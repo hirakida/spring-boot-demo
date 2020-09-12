@@ -18,13 +18,11 @@ public class StringRedisClient {
     }
 
     public void set(String key, String value) {
-        redisTemplate.opsForValue()
-                     .set(key, value);
+        redisTemplate.opsForValue().set(key, value);
     }
 
     public void set(String key, String value, long seconds) {
-        redisTemplate.opsForValue()
-                     .set(key, value, seconds, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(key, value, seconds, TimeUnit.SECONDS);
     }
 
     public Boolean expire(String key, long seconds) {

@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,6 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializationContext.RedisSerializationContextBuilder;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import com.example.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration

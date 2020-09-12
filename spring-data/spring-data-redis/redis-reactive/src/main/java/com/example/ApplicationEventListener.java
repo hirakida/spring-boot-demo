@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import com.example.client.StringRedisClient;
 import com.example.client.UserRedisClient;
-import com.example.model.User;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,20 +29,19 @@ public class ApplicationEventListener {
         Map<String, String> strings = IntStream.rangeClosed(1, 10)
                                                .boxed()
                                                .collect(toMap(i -> "key" + i, i -> "value" + i));
-        stringRedisClient.multiSet(strings).block();
-
-        String result = stringRedisClient.get("key1").block();
-        log.info("{}", result);
-        Boolean hasElement = stringRedisClient.get("key11").hasElement().block();
-        log.info("{}", hasElement);
+        stringRedisClient.multiSet(strings)
+                         .flatMap(result -> stringRedisClient.get("key1"))
+                         .doOnNext(result -> log.info("key1: {}", result))
+                         .flatMap(result -> stringRedisClient.get("key10"))
+                         .doOnNext(result -> log.info("key10: {}", result))
+                         .subscribe();
 
         Map<String, User> users =
                 IntStream.rangeClosed(1, 5)
                          .mapToObj(i -> new User(i, "user" + i, LocalDateTime.now(), LocalDateTime.now()))
                          .collect(toMap(User::getName, Function.identity()));
-        userRedisClient.multiSet(users).block();
-
-        User user = userRedisClient.get("user1").block();
-        log.info("{}", user);
+        userRedisClient.multiSet(users)
+                       .flatMap(result -> userRedisClient.get("user1"))
+                       .subscribe(result -> log.info("{}", result));
     }
 }

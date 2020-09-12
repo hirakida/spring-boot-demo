@@ -41,7 +41,7 @@ public class StringRedisClientTest {
     }
 
     @Test
-    public void getTest() {
+    public void get() {
         Optional<String> result = client.get(KEY1);
         assertTrue(result.isPresent());
         assertNotNull(result.get());
@@ -52,7 +52,7 @@ public class StringRedisClientTest {
     }
 
     @Test
-    public void setTest() {
+    public void set() {
         String key = "__KEY__";
         String value = "__VALUE__";
         Optional<String> result = client.get(key);
