@@ -3,20 +3,20 @@ package com.example;
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
-
-import com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import lombok.Data;
 
 @Document(indexName = "user")
-@JsonNaming(SnakeCaseStrategy.class)
 @Data
 public class User {
     @Id
     private String id;
     private String name;
     private String message;
+    @Field(type = FieldType.Date, format = DateFormat.basic_date_time)
     private LocalDateTime createdAt;
 }
