@@ -1,0 +1,3 @@
+rootProject.name = 'tests-demo'
+
+include 'karate', 'spock'
