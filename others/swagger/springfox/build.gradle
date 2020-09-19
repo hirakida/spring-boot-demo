@@ -1,9 +1,8 @@
 dependencies {
-    def springfoxVersion = '2.9.2'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
-    implementation "io.springfox:springfox-swagger-ui:${springfoxVersion}"
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
     runtimeOnly 'com.h2database:h2'
 }

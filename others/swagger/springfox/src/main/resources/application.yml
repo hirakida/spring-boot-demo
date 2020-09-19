@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   datasource:
     sql-script-encoding: UTF-8
     url: jdbc:h2:mem:swagger-db
@@ -8,6 +10,17 @@ spring:
     hibernate:
       ddl-auto: update
     open-in-view: false
+
+---
+spring:
+  profiles: dev
   output:
     ansi:
       enabled: always
+
+---
+spring:
+  profiles: production
+springfox:
+  documentation:
+    enabled: false
