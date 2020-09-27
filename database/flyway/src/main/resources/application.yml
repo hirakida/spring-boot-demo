@@ -13,3 +13,6 @@ spring:
       enabled: always
   flyway:
     baseline-on-migrate: true
+logging:
+  level:
+    org.flywaydb.core: debug
