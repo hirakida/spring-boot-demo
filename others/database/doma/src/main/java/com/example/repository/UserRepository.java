@@ -20,8 +20,8 @@ import org.seasar.doma.jdbc.SelectOptions;
 
 import com.example.entity.User;
 
-@ConfigAutowireable
 @Dao
+@ConfigAutowireable
 public interface UserRepository {
 
     @Select
