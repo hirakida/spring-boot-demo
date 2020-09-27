@@ -1,58 +1,44 @@
-package com.example.service;
+package com.example;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import com.example.User;
-import com.example.UserRepository;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Programmatic Transaction Management
- * TransactionTemplate
- */
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class UserService3 {
+public class UserService {
     private final UserRepository userRepository;
     private final TransactionTemplate transactionTemplate;
 
-    public User create(String name) {
-        log.info("##### TransactionTemplate start #####");
-
-        User created = transactionTemplate.execute(status -> {
-            User user = new User();
-            user.setName(name);
-            return userRepository.save(user);
-        });
-
-        log.info("##### TransactionTemplate end #####");
+    public User create(User user) {
+        log.info("##### start #####");
+        User created = transactionTemplate.execute(status -> userRepository.save(user));
+        log.info("#####  end #####");
         return created;
     }
 
-    public User update(int id, String name) {
-        log.info("##### TransactionTemplate start #####");
+    public void update(User user) {
+        log.info("##### start #####");
 
-        User user = transactionTemplate.execute(status -> {
-            return userRepository.findById(id)
+        transactionTemplate.execute(status -> {
+            return userRepository.findById(user.getId())
                                  .map(entity -> {
-                                     entity.setName(name);
+                                     entity.setName(user.getName());
                                      return userRepository.save(entity);
                                  })
                                  .orElseThrow();
         });
-        log.info("##### TransactionTemplate end #####");
 
-        return user;
+        log.info("##### end #####");
     }
 
     public void delete(int id) {
-        log.info("##### TransactionTemplate start #####");
+        log.info("##### start #####");
 
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
@@ -61,6 +47,6 @@ public class UserService3 {
             }
         });
 
-        log.info("##### TransactionTemplate end #####");
+        log.info("##### end #####");
     }
 }

@@ -1,4 +1,4 @@
-package com.example.event;
+package com.example;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class UserEventListener {
-
     @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
     public void beforeCommit(UserEvent event) {
         log.info("beforeCommit: {}", event);

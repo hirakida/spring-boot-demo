@@ -1,8 +1,6 @@
-package com.example.event;
+package com.example;
 
 import org.springframework.context.ApplicationEvent;
-
-import com.example.User;
 
 @SuppressWarnings("serial")
 public class UserEvent extends ApplicationEvent {
