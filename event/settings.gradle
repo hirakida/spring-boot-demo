@@ -1,0 +1,5 @@
+rootProject.name = 'event-demo'
+
+include 'application-event',
+        'custom-event',
+        'web-event'
