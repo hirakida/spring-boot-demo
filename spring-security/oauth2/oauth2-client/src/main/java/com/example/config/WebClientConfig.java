@@ -9,7 +9,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 public class WebClientConfig {
-
     @Bean
     public WebClient webClient(ClientRegistrationRepository clientRegistrationRepository,
                                OAuth2AuthorizedClientRepository authorizedClientRepository) {
@@ -18,6 +17,7 @@ public class WebClientConfig {
                                                                         authorizedClientRepository);
         return WebClient.builder()
                         .filter(filter)
+                        .baseUrl("https://api.github.com")
                         .build();
     }
 }

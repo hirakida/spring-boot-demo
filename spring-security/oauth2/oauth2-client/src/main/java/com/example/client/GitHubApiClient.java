@@ -1,11 +1,9 @@
-package com.example;
+package com.example.client;
 
 import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
 
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
-import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.example.model.Repo;
@@ -15,24 +13,22 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@RestController
+@Component
 @RequiredArgsConstructor
-public class GithubController {
+public class GitHubApiClient {
     private final WebClient webClient;
 
-    @GetMapping("/github/user")
-    public Mono<User> getUser(@RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient client) {
+    public Mono<User> getUser(OAuth2AuthorizedClient client) {
         return webClient.get()
-                        .uri("https://api.github.com/user")
+                        .uri("/user")
                         .attributes(oauth2AuthorizedClient(client))
                         .retrieve()
                         .bodyToMono(User.class);
     }
 
-    @GetMapping("/github/repos")
-    public Flux<Repo> getRepos(@RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient client) {
+    public Flux<Repo> getUserRepos(OAuth2AuthorizedClient client) {
         return webClient.get()
-                        .uri("https://api.github.com/user/repos")
+                        .uri("/user/repos")
                         .attributes(oauth2AuthorizedClient(client))
                         .retrieve()
                         .bodyToFlux(Repo.class);

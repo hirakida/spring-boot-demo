@@ -6,6 +6,8 @@ spring:
           github:
             client-id: xxxxxxxx
             client-secret: xxxxxxxx
+  thymeleaf:
+    cache: false
   output:
     ansi:
       enabled: always
