@@ -10,9 +10,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableBatchProcessing
 @EnableScheduling
 @EnableJpaAuditing
-public class ChunkApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(ChunkApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }

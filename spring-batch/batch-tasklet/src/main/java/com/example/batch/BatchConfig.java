@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.batch;
 
 import java.time.LocalDateTime;
 
@@ -12,11 +12,8 @@ import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.example.batch.JobExecutionListenerImpl;
-import com.example.batch.ScopeBean;
-import com.example.batch.StepExecutionListenerImpl;
-import com.example.batch.TaskletImpl1;
-import com.example.batch.TaskletImpl2;
+import com.example.batch.listener.JobExecutionListenerImpl;
+import com.example.batch.listener.StepExecutionListenerImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,8 +24,8 @@ public class BatchConfig {
     private final StepBuilderFactory stepBuilderFactory;
     private final JobExecutionListenerImpl jobExecutionListenerImpl;
     private final StepExecutionListenerImpl stepExecutionListenerImpl;
-    private final TaskletImpl1 taskletImpl1;
-    private final TaskletImpl2 taskletImpl2;
+    private final Tasklet1 tasklet1;
+    private final Tasklet2 tasklet2;
 
     @Bean
     public Job job1() {
@@ -61,7 +58,7 @@ public class BatchConfig {
     @Bean
     public Step step1() {
         return stepBuilderFactory.get("step1")
-                                 .tasklet(taskletImpl1)
+                                 .tasklet(tasklet1)
                                  .listener(stepExecutionListenerImpl)
                                  .build();
     }
@@ -69,7 +66,7 @@ public class BatchConfig {
     @Bean
     public Step step2() {
         return stepBuilderFactory.get("step2")
-                                 .tasklet(taskletImpl2)
+                                 .tasklet(tasklet2)
                                  .listener(stepExecutionListenerImpl)
                                  .build();
     }

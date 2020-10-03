@@ -10,9 +10,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableBatchProcessing
 @EnableScheduling
 @EnableJpaAuditing
-public class TaskletApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(TaskletApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
