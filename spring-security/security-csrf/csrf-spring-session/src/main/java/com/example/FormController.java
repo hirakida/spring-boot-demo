@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import lombok.Data;
 
 @Controller
-public class WebController {
-
+public class FormController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("form", new Form());
@@ -31,7 +30,9 @@ public class WebController {
 
     @Data
     private static class Form {
-        private @NotEmpty String lastName;
-        private @NotEmpty String firstName;
+        @NotEmpty
+        private String lastName;
+        @NotEmpty
+        private String firstName;
     }
 }

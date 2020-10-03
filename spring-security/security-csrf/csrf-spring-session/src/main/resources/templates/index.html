@@ -5,23 +5,22 @@
 <head>
   <title>index</title>
   <meta charset="UTF-8" />
-  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
-<div class="container">
+<div>
   <div>
     <form th:action="@{/}" th:object="${form}" method="post">
-      <div class="form-group">
+      <div>
         <label>last name</label>
-        <input type="text" class="form-control" th:field="*{lastName}" />
-        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="alert-danger"></span>
+        <input type="text" th:field="*{lastName}" />
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
       </div>
-      <div class="form-group">
+      <div>
         <label>first name</label>
-        <input type="text" class="form-control" th:field="*{firstName}" />
-        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="alert-danger"></span>
+        <input type="text" th:field="*{firstName}" />
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
       </div>
-      <button type="submit" class="btn btn-primary">submit</button>
+      <button type="submit">submit</button>
     </form>
   </div>
 </div>

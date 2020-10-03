@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
-public class WebController {
-
+@Slf4j
+public class FormController {
     @GetMapping("/")
-    public String get(Model model) {
+    public String index(Model model) {
         model.addAttribute("form", new Form());
         return "index";
     }
@@ -26,12 +27,15 @@ public class WebController {
             model.addAttribute("form", form);
             return "index";
         }
+        log.info("{}", form);
         return "redirect:/";
     }
 
     @Data
     private static class Form {
-        private @NotEmpty String lastName;
-        private @NotEmpty String firstName;
+        @NotEmpty
+        private String lastName;
+        @NotEmpty
+        private String firstName;
     }
 }

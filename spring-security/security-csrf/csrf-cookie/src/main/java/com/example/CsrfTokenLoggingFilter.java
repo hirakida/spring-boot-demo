@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class CsrfTokenLoggingFilter extends OncePerRequestFilter {
+    private static final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
@@ -28,7 +29,7 @@ public class CsrfTokenLoggingFilter extends OncePerRequestFilter {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             Stream.of(cookies)
-                  .filter(cookie -> "XSRF-TOKEN".equals(cookie.getName()))
+                  .filter(cookie -> CSRF_COOKIE_NAME.equals(cookie.getName()))
                   .forEach(cookie -> log.info("name:{} value:{} secure:{} domain:{} path:{} maxAge:{}",
                                               cookie.getName(), cookie.getValue(), cookie.getSecure(),
                                               cookie.getDomain(), cookie.getPath(), cookie.getMaxAge()));

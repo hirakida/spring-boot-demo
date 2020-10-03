@@ -9,3 +9,4 @@ server:
       cookie:
         name: CSRF_SESSION
         max-age: 60s
+        http-only: true
