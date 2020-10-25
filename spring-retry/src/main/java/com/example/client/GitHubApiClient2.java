@@ -1,7 +1,5 @@
 package com.example.client;
 
-import java.util.Arrays;
-
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.retry.support.RetryTemplate;
 import org.springframework.stereotype.Component;
@@ -34,16 +32,8 @@ public class GitHubApiClient2 {
                                          .build(false)
                                          .toUriString();
         return retryTemplate1.execute(
-                context -> {
-                    log.info("retryCallback start [getFollowers] {}", context);
-                    Follow[] follows = restTemplate.getForObject(url, Follow[].class, username);
-                    log.info("retryCallback end [getFollowers] {}", Arrays.toString(follows));
-                    return follows;
-                },
-                context -> {
-                    log.info("recoveryCallback [getFollowers] {}", context);
-                    return EMPTY_FOLLOWS;
-                });
+                context -> restTemplate.getForObject(url, Follow[].class, username),
+                context -> EMPTY_FOLLOWS);
     }
 
     public Follow[] getFollowing(String username) {
