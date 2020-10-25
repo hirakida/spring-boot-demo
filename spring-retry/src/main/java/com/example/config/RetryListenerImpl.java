@@ -29,8 +29,7 @@ public class RetryListenerImpl implements RetryListener {
                                                  RetryCallback<T, E> callback,
                                                  Throwable throwable) {
         if (throwable != null) {
-            log.error("onError context={} throwable={}",
-                      context, throwable.getClass().getCanonicalName());
+            log.warn("onError context={} throwable={}", context, throwable.getClass().getCanonicalName());
         }
     }
 }
