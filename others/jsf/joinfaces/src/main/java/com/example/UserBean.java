@@ -1,24 +1,32 @@
 package com.example;
 
-import javax.faces.event.ActionEvent;
-import javax.inject.Named;
+import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
+import javax.faces.event.ActionEvent;
+import javax.faces.view.ViewScoped;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
-import org.springframework.web.context.annotation.SessionScope;
+import org.springframework.stereotype.Component;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-@Named
-@SessionScope
+@Component
+@ViewScoped
 @Slf4j
-public class UserBean {
+@SuppressWarnings("serial")
+public class UserBean implements Serializable {
+    @Autowired
+    private UserRepository userRepository;
     @Getter
-    private final User user;
+    private User user;
 
-    public UserBean() {
-        user = new User(1, "first1", "last1");
-        log.info("{}", user);
+    @PostConstruct
+    public void init() {
+        user = userRepository.findById(1)
+                             .orElse(new User());
     }
 
     @Nullable
@@ -28,6 +36,7 @@ public class UserBean {
     }
 
     public void doActionListener(ActionEvent actionEvent) {
-        log.info("{}", actionEvent.getPhaseId().getName());
+        log.info("doActionListener: {} {}", user, actionEvent.getPhaseId().getName());
+        userRepository.save(user);
     }
 }

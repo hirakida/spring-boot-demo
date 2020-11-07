@@ -1,9 +1,8 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.7.RELEASE'
+    id 'org.springframework.boot' version '2.3.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
 }
-
-apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -16,13 +15,16 @@ repositories {
 dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
-
-    implementation platform('org.joinfaces:joinfaces-dependencies:4.0.7')
+    implementation platform('org.joinfaces:joinfaces-dependencies:4.3.4')
     implementation 'org.joinfaces:primefaces-spring-boot-starter'
-    implementation 'javax.enterprise:cdi-api'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.h2database:h2'
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }
 
-bootRun {
-    jvmArgs = ['--illegal-access=warn']
+test {
+    useJUnitPlatform()
 }
