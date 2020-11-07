@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.mapping.event.LoggingEventListener;
 @EnableMongoAuditing
 @Configuration
 public class MongoConfig {
-
     @Bean
     public LoggingEventListener loggingEventListener() {
         return new LoggingEventListener();
