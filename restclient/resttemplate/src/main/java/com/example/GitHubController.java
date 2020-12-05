@@ -1,13 +1,16 @@
-package com.example.controller;
+package com.example;
 
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException;
 
 import com.example.client.GitHubApiClient;
 import com.example.model.Key;
@@ -44,5 +47,10 @@ public class GitHubController {
     @GetMapping("/options")
     public Set<HttpMethod> options() {
         return client.options();
+    }
+
+    @ExceptionHandler(HttpClientErrorException.class)
+    public ResponseEntity<Void> handleException(HttpClientErrorException e) {
+        return ResponseEntity.status(e.getStatusCode()).build();
     }
 }

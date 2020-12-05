@@ -11,6 +11,8 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.example.repository.UserRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,7 +44,7 @@ public class ScheduledTasks {
         try {
             log.info("##### {} start #####", job.getName());
             jobLauncher.run(job, parameters);
-            log.info("##### {} end   #####", job.getName());
+            log.info("##### {} end #####", job.getName());
         } catch (JobExecutionException e) {
             log.error(e.getMessage(), e);
         }

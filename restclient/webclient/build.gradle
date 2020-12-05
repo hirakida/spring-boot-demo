@@ -1,5 +1,5 @@
 ext {
-    set('springCloudVersion', 'Hoxton.SR8')
+    set('springCloudVersion', 'Hoxton.SR9')
 }
 
 dependencyManagement {

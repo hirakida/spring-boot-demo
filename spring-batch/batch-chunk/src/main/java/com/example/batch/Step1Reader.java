@@ -1,6 +1,5 @@
 package com.example.batch;
 
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,8 +15,8 @@ import org.springframework.batch.item.ItemStreamReader;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-import com.example.User;
-import com.example.UserRepository;
+import com.example.entity.User;
+import com.example.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

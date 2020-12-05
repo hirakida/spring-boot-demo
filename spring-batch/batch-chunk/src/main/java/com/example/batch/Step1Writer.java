@@ -7,8 +7,8 @@ import org.springframework.batch.core.annotation.BeforeWrite;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.stereotype.Component;
 
-import com.example.User;
-import com.example.UserRepository;
+import com.example.entity.User;
+import com.example.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

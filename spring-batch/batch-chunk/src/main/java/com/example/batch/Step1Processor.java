@@ -5,7 +5,7 @@ import org.springframework.batch.core.annotation.BeforeProcess;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
-import com.example.User;
+import com.example.entity.User;
 
 import lombok.extern.slf4j.Slf4j;
 

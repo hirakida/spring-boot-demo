@@ -11,15 +11,12 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
-import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.logging.HttpLoggingInterceptor.Level;
 
 @Configuration
-@Slf4j
 public class ClientConfig {
-
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
@@ -28,7 +25,6 @@ public class ClientConfig {
         factory.setConnectionRequestTimeout(5000);
 
         return builder.requestFactory(() -> factory)
-                      .errorHandler(new CustomResponseErrorHandler())
                       .interceptors(List.of(new ClientHttpRequestInterceptorImpl()))
                       .build();
     }
@@ -38,7 +34,6 @@ public class ClientConfig {
     public RestTemplate okHttpRestTemplate(RestTemplateBuilder builder) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(Level.BODY);
-
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .connectTimeout(5000, TimeUnit.MILLISECONDS)
@@ -47,7 +42,6 @@ public class ClientConfig {
                 .build();
 
         return builder.requestFactory(() -> new OkHttp3ClientHttpRequestFactory(client))
-                      .errorHandler(new CustomResponseErrorHandler())
                       .interceptors(List.of(new ClientHttpRequestInterceptorImpl()))
                       .build();
     }

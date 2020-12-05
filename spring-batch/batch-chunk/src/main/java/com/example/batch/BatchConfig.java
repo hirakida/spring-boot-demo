@@ -8,7 +8,7 @@ import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.example.User;
+import com.example.entity.User;
 import com.example.batch.listener.JobExecutionListenerImpl;
 import com.example.batch.listener.StepExecutionListenerImpl;
 

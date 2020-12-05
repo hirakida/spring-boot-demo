@@ -5,18 +5,22 @@ import java.time.Duration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.example.GitHubProperties;
 import com.example.model.Key;
 import com.example.model.User;
 
-import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.util.retry.Retry;
 
 @Component
-@RequiredArgsConstructor
 public class GitHubApiClient {
     private final WebClient webClient;
+
+    public GitHubApiClient(WebClient.Builder builder,
+                           GitHubProperties properties) {
+        webClient = builder.baseUrl(properties.getBaseUrl()).build();
+    }
 
     public Mono<User> getUser(String username) {
         return webClient.get()

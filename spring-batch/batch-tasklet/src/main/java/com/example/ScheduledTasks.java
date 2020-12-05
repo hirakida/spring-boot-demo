@@ -47,7 +47,7 @@ public class ScheduledTasks {
         try {
             log.info("##### {} start #####", job.getName());
             jobLauncher.run(job, parameters);
-            log.info("##### {} end   #####", job.getName());
+            log.info("##### {} end #####", job.getName());
         } catch (JobExecutionException e) {
             log.error(e.getMessage(), e);
         }
