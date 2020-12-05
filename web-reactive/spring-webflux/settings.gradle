@@ -1,4 +1,5 @@
 rootProject.name = 'spring-webflux-demo'
 
 include 'webflux',
-        'webflux-fn'
+        'webflux-fn',
+        'websocket'

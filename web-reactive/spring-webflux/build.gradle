@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.1.RELEASE' apply false
+    id 'org.springframework.boot' version '2.4.0' apply false
 }
 
 subprojects {
@@ -19,9 +19,7 @@ subprojects {
         annotationProcessor 'org.projectlombok:lombok'
         compileOnly 'org.projectlombok:lombok'
         implementation 'org.springframework.boot:spring-boot-starter-webflux'
-        testImplementation('org.springframework.boot:spring-boot-starter-test') {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        }
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testImplementation 'io.projectreactor:reactor-test'
     }
 

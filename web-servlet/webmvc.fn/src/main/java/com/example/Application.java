@@ -15,7 +15,6 @@ import org.springframework.web.servlet.function.ServerResponse;
 
 @SpringBootApplication
 public class Application {
-
     @Bean
     public RouterFunction<ServerResponse> routes(UserHandler userHandler) {
         return RouterFunctions.route()

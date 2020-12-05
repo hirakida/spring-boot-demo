@@ -12,9 +12,9 @@ public class HelloControllerTest {
     private WebTestClient webTestClient;
 
     @Test
-    public void hello() {
+    public void mono() {
         webTestClient.get()
-                     .uri("http://localhost:8080/")
+                     .uri("http://localhost:8080/mono")
                      .exchange()
                      .expectHeader().contentType(MediaType.APPLICATION_JSON)
                      .expectStatus().isOk()
