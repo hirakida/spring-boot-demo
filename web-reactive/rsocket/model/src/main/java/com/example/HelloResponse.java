@@ -1,6 +1,6 @@
 package com.example;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class HelloResponse {
     private String message;
-    private LocalDateTime dateTime;
+    private LocalTime time;
 }

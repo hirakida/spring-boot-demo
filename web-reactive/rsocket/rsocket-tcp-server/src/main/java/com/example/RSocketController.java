@@ -1,7 +1,6 @@
 package com.example;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.stream.Stream;
 
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -15,37 +14,37 @@ import reactor.core.publisher.Mono;
 @Controller
 @Slf4j
 public class RSocketController {
-
     @ConnectMapping
     public Mono<Void> connect() {
         log.info("connect");
         return Mono.empty();
     }
 
-    @MessageMapping("requestResponse")
+    @MessageMapping("request_response")
     public Mono<HelloResponse> requestResponse(HelloRequest request) {
         return Mono.just(createResponse(request.getName()));
     }
 
-    @MessageMapping("fireAndForget")
+    @MessageMapping("fire_and_forget")
     public Mono<Void> fireAndForget(HelloRequest request) {
         log.info("{}", request.getName());
         return Mono.empty();
     }
 
-    @MessageMapping("requestStream")
+    @MessageMapping("request_stream")
     public Flux<HelloResponse> requestStream(HelloRequest request) {
-        return Flux.fromStream(Stream.generate(() -> createResponse(request.getName())));
+        return Flux.fromStream(Stream.generate(request::getName))
+                   .map(RSocketController::createResponse)
+                   .take(10);
     }
 
-    @MessageMapping("requestChannel")
+    @MessageMapping("request_channel")
     public Flux<HelloResponse> requestChannel(Flux<HelloRequest> requests) {
         return Flux.from(requests)
-                   .delayElements(Duration.ofSeconds(1))
                    .map(request -> createResponse(request.getName()));
     }
 
     private static HelloResponse createResponse(String name) {
-        return new HelloResponse(String.format("Hello %s!", name), LocalDateTime.now());
+        return new HelloResponse(String.format("Hello %s!", name), LocalTime.now());
     }
 }
