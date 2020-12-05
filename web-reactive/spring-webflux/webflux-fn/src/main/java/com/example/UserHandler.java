@@ -2,8 +2,6 @@ package com.example;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.web.reactive.function.BodyInserters.fromValue;
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
-import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RequestPredicates.contentType;
 import static org.springframework.web.reactive.function.server.ServerResponse.badRequest;
@@ -31,12 +29,12 @@ public class UserHandler {
 
     @Bean
     public RouterFunction<ServerResponse> routes() {
-        return RouterFunctions.route(GET("/users").and(accept(APPLICATION_JSON)),
-                                     this::findAll)
-                              .andRoute(GET("/users/{id}").and(accept(APPLICATION_JSON)),
-                                        this::findById)
-                              .andRoute(POST("/users").and(contentType(APPLICATION_JSON)),
-                                        this::create);
+        return RouterFunctions.route()
+                              .path("/users", builder -> builder
+                                      .GET("", accept(APPLICATION_JSON), this::findAll)
+                                      .GET("/{id}", accept(APPLICATION_JSON), this::findById)
+                                      .POST("", contentType(APPLICATION_JSON), this::create))
+                              .build();
     }
 
     private Mono<ServerResponse> findAll(ServerRequest request) {

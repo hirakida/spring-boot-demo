@@ -1,8 +1,10 @@
 spring:
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
+  datasource:
+    sql-script-encoding: UTF-8
+  r2dbc:
+    url: r2dbc:h2:mem:///r2dbc-db?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
   output:
     ansi:
       enabled: always
