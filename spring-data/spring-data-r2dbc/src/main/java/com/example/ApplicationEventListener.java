@@ -27,7 +27,7 @@ public class ApplicationEventListener {
     @EventListener(ApplicationReadyEvent.class)
     public void readyEvent() {
         Mono.zip(userService.insert("user6"),
-                 personService.insert(new Person(null, "person6", LocalDateTime.now())))
+                 userService.insert("user7"))
             .block();
 
         accountService.insert(new Account(null, "account6", LocalDateTime.now()))
@@ -38,5 +38,9 @@ public class ApplicationEventListener {
                       })
                       .thenMany(accountService.findAll())
                       .subscribe(account -> log.info("{}", account));
+
+        personService.insert(new Person(null, "person6", LocalDateTime.now()))
+                     .thenMany(personService.findAll())
+                     .subscribe(person -> log.info("{}", person));
     }
 }

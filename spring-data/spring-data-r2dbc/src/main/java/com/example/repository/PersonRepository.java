@@ -1,12 +1,13 @@
 package com.example.repository;
 
-import static org.springframework.data.relational.core.query.Criteria.where;
+import java.time.LocalDateTime;
 
-import org.springframework.data.r2dbc.core.DatabaseClient;
+import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Component;
 
 import com.example.model.Person;
 
+import io.r2dbc.spi.Row;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -14,55 +15,48 @@ import reactor.core.publisher.Mono;
 @Component
 @RequiredArgsConstructor
 public class PersonRepository {
-    private static final String COLUMN_ID = "id";
     private final DatabaseClient client;
 
     public Flux<Person> findAll() {
-        return client.select()
-                     .from(Person.class)
-                     .fetch()
-                     .all();
-    }
-
-    public Flux<Person> findAll2() {
-        return client.execute("SELECT `id`, `name`, `created_at` FROM `person`")
-                     .as(Person.class)
-                     .fetch()
+        return client.sql("SELECT id, name, created_at FROM person")
+                     .map(PersonRepository::toPerson)
                      .all();
     }
 
     public Mono<Person> findById(Integer id) {
-        return client.select()
-                     .from(Person.class)
-                     .matching(where(COLUMN_ID).is(id))
-                     .fetch()
+        return client.sql("SELECT id, name, created_at FROM person WHERE id=:id")
+                     .bind("id", id)
+                     .map(PersonRepository::toPerson)
                      .one();
     }
 
-    public Mono<Void> insert(Person person) {
-        return client.insert()
-                     .into(Person.class)
-                     .using(person)
-                     .then();
+    public Mono<Integer> insert(Person person) {
+        return client.sql("INSERT INTO person(name, created_at) VALUES (:name, :created_at)")
+                     .filter((statement, next) -> next.execute(statement.returnGeneratedValues("id")))
+                     .bind("name", person.getName())
+                     .bind("created_at", person.getCreatedAt())
+                     .fetch()
+                     .rowsUpdated();
     }
 
-    public Mono<Void> update(Person person) {
-        return client.update()
-                     .table(Person.class)
-                     .using(person)
-                     .then();
+    public Mono<Integer> update(Person person) {
+        return client.sql("UPDATE person SET name=:name WHERE id=:id")
+                     .bind("id", person.getId())
+                     .bind("name", person.getName())
+                     .fetch()
+                     .rowsUpdated();
     }
 
-    public Mono<Void> deleteAll() {
-        return client.delete()
-                     .from(Person.class)
-                     .then();
+    public Mono<Integer> deleteById(Integer id) {
+        return client.sql("DELETE FROM person WHERE id=:id")
+                     .bind("id", id)
+                     .fetch()
+                     .rowsUpdated();
     }
 
-    public Mono<Void> deleteById(Integer id) {
-        return client.delete()
-                     .from(Person.class)
-                     .matching(where(COLUMN_ID).is(id))
-                     .then();
+    private static Person toPerson(Row row) {
+        return new Person(row.get("id", Integer.class),
+                          row.get("name", String.class),
+                          row.get("created_at", LocalDateTime.class));
     }
 }

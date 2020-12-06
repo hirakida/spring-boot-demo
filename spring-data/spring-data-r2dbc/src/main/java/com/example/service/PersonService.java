@@ -28,14 +28,14 @@ public class PersonService {
         return personRepository.findById(id);
     }
 
-    public Mono<Void> insert(Person person) {
+    public Mono<Integer> insert(Person person) {
         return transactionalOperator.transactional(personRepository.insert(person));
     }
 
-    public Flux<Void> insert(String... names) {
+    public Flux<Integer> insert(String... names) {
         return transactionalOperator.transactional(Flux.fromArray(names)
                                                        .map(name -> new Person(null, name, LocalDateTime.now()))
                                                        .flatMap(personRepository::insert)
-                                                       .doOnNext(user -> log.info("{}", user)));
+                                                       .doOnNext(low -> log.info("{}", low)));
     }
 }
