@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example;
 
 import java.io.IOException;
 import java.util.Map;
@@ -13,7 +13,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TextWebSocketHandlerExt extends TextWebSocketHandler {
+public class MyWebSocketHandler extends TextWebSocketHandler {
     private final Map<String, WebSocketSession> sessionMap = new ConcurrentHashMap<>();
 
     @Override
@@ -30,10 +30,10 @@ public class TextWebSocketHandlerExt extends TextWebSocketHandler {
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        log.info("textMessage: session={} message={} sessionMap={}", session, message, sessionMap);
-        sessionMap.forEach((key, value) -> {
+        log.info("handleTextMessage: session={} message={}", session, message);
+        sessionMap.forEach((id, webSocketSession) -> {
             try {
-                value.sendMessage(message);
+                webSocketSession.sendMessage(message);
             } catch (IOException e) {
                 log.error(e.toString());
             }

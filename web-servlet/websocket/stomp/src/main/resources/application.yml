@@ -1,9 +1,10 @@
 spring:
-  resources:
-    chain:
-      strategy:
-        content:
-          enabled: true
+  web:
+    resources:
+      chain:
+        strategy:
+          content:
+            enabled: true
   output:
     ansi:
       enabled: always
