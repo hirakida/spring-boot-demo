@@ -1,19 +1,21 @@
 package com.example;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.ActiveProfiles;
 
-@ActiveProfiles("production")
-@SpringBootTest(classes = TestConfig.class)
-public class ProductionPropertiesTest {
+@ActiveProfiles("dev")
+@SpringBootTest(webEnvironment = WebEnvironment.NONE)
+public class DevProfileTest {
     @Autowired
     private AppProperties properties;
 
     @Test
     public void test() {
-        Assertions.assertEquals("production message", properties.getMessage());
+        assertEquals("dev message", properties.getMessage());
     }
 }

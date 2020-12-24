@@ -1,14 +1,17 @@
 package com.example;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.test.context.ActiveProfiles;
 
 @ActiveProfiles("test")
-@SpringBootTest
+@SpringBootTest(webEnvironment = WebEnvironment.NONE)
 public class ApplicationTest {
     @Autowired
     private Environment environment;
@@ -17,7 +20,7 @@ public class ApplicationTest {
 
     @Test
     public void test() {
-        Assertions.assertArrayEquals(new String[] { "test" }, environment.getActiveProfiles());
-        Assertions.assertEquals("test message", properties.getMessage());
+        assertArrayEquals(new String[] { "test" }, environment.getActiveProfiles());
+        assertEquals("test message", properties.getMessage());
     }
 }
