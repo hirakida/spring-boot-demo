@@ -1,0 +1,3 @@
+rootProject.name = 'websocket-demo'
+
+include 'stomp', 'websocket', 'websocket-reactive'
