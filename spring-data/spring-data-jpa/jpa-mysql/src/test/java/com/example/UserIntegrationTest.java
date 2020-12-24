@@ -2,30 +2,27 @@ package com.example;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.ext.ScriptUtils;
-import org.testcontainers.jdbc.JdbcDatabaseDelegate;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@Sql(scripts = "classpath:/testdata.sql")
 @Testcontainers
 public class UserIntegrationTest {
     @Container
-    private static final MySQLContainer<?> CONTAINER = new MySQLContainer<>("mysql:8.0");
-    @LocalServerPort
-    private int port;
+    private static final MySQLContainer<?> CONTAINER =
+            new MySQLContainer<>("mysql:8.0").withEnv("TZ", "Asia/Tokyo");
     @Autowired
     private TestRestTemplate restTemplate;
 
@@ -36,16 +33,21 @@ public class UserIntegrationTest {
         registry.add("spring.datasource.password", CONTAINER::getPassword);
     }
 
-    @BeforeEach
-    public void init() {
-        ScriptUtils.runInitScript(new JdbcDatabaseDelegate(CONTAINER, ""), "schema.sql");
-        ScriptUtils.runInitScript(new JdbcDatabaseDelegate(CONTAINER, ""), "data.sql");
+    @Test
+    public void findAll() {
+        User[] response = restTemplate.getForObject("/users", User[].class);
+        assertEquals(10, response.length);
     }
 
     @Test
-    public void findAll() {
-        User[] response = restTemplate.getForObject("http://localhost:" + port + "/users", User[].class);
-        List<User> users = List.of(response);
-        assertEquals(users.size(), 5);
+    public void findById() {
+        User expected = new User();
+        expected.setId(6);
+        expected.setName("user6");
+        expected.setCreatedAt(LocalDateTime.parse("2020-12-01T00:00:00"));
+        expected.setUpdatedAt(LocalDateTime.parse("2020-12-01T00:00:00"));
+
+        User response = restTemplate.getForObject("/users/{id}", User.class, 6);
+        assertEquals(expected, response);
     }
 }

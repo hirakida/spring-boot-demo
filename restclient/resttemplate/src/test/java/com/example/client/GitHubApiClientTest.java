@@ -28,7 +28,9 @@ public class GitHubApiClientTest {
         final String responseBody = "{\"id\":1,\"name\":\"hirakida\"}";
         server.expect(requestTo("https://api.github.com/users/hirakida"))
               .andExpect(method(HttpMethod.GET))
-              .andRespond(withSuccess(responseBody, MediaType.APPLICATION_JSON));
+              .andRespond(withSuccess()
+                                  .contentType(MediaType.APPLICATION_JSON)
+                                  .body(responseBody));
 
         User user = client.getUser("hirakida");
 

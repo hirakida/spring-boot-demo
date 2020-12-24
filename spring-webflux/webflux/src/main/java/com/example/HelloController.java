@@ -16,13 +16,13 @@ import reactor.core.publisher.Mono;
 @RestController
 public class HelloController {
 
-    @GetMapping("/mono")
-    public Mono<HelloResponse> mono() {
+    @GetMapping("/hello1")
+    public Mono<HelloResponse> hello1() {
         return Mono.just(new HelloResponse("Hello, WebFlux!"));
     }
 
-    @GetMapping("/flux")
-    public Flux<HelloResponse> flux() {
+    @GetMapping("/hello2")
+    public Flux<HelloResponse> hello2() {
         return Flux.just(new HelloResponse("Hello,"),
                          new HelloResponse("WebFlux!"));
     }

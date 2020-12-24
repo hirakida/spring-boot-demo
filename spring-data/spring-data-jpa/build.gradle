@@ -1,6 +1,6 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.3.RELEASE' apply false
-    id 'com.avast.gradle.docker-compose' version '0.12.1' apply false
+    id 'org.springframework.boot' version '2.4.1' apply false
+    id 'com.avast.gradle.docker-compose' version '0.14.0' apply false
 }
 
 subprojects {
@@ -21,10 +21,8 @@ subprojects {
         compileOnly 'org.projectlombok:lombok'
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-        testImplementation platform('org.testcontainers:testcontainers-bom:1.14.3')
-        testImplementation('org.springframework.boot:spring-boot-starter-test') {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        }
+        testImplementation platform('org.testcontainers:testcontainers-bom:1.15.1')
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 
     test {
