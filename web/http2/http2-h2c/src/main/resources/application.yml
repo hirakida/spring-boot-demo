@@ -1,0 +1,7 @@
+server:
+  http2:
+    enabled: false
+spring:
+  output:
+    ansi:
+      enabled: always
