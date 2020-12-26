@@ -1,0 +1,3 @@
+rootProject.name = 'template-engines-demo'
+
+include 'freemarker', 'thymeleaf'

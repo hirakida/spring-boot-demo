@@ -12,7 +12,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.example.service.UserService;
+import com.example.core.service.UserService;
+import com.example.controller.controller.UserController;
 
 @WebMvcTest(controllers = UserController.class)
 public class UserControllerTest {

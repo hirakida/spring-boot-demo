@@ -6,7 +6,7 @@ import java.util.Locale;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 public class CountryCodeValidator implements ConstraintValidator<CountryCode, String> {
     private boolean notEmpty;
@@ -18,8 +18,8 @@ public class CountryCodeValidator implements ConstraintValidator<CountryCode, St
 
     @Override
     public boolean isValid(String code, ConstraintValidatorContext context) {
-        if (notEmpty && StringUtils.isEmpty(code)) {
-            return true;
+        if (notEmpty && ObjectUtils.isEmpty(code)) {
+            return false;
         }
         return List.of(Locale.getISOCountries()).contains(code);
     }

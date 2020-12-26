@@ -5,12 +5,10 @@ spring:
         strategy:
           content:
             enabled: true
-#      cache:
-#        cachecontrol:
-#          max-age: 1h
   output:
     ansi:
       enabled: always
-logging:
-  level:
-    org.springframework.web.servlet.mvc.WebContentInterceptor: trace
+server:
+  error:
+    include-exception: true
+    include-message: always

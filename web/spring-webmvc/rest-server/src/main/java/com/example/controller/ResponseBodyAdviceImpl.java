@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice
 @Slf4j
 public class ResponseBodyAdviceImpl implements ResponseBodyAdvice<Object> {
-
     @Override
     public boolean supports(MethodParameter returnType,
                             Class<? extends HttpMessageConverter<?>> converterType) {

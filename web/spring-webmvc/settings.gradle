@@ -1,9 +1,7 @@
-rootProject.name = 'webmvc-demo'
+rootProject.name = 'spring-webmvc-demo'
 
 include 'argument-resolver',
         'cache-control',
-        'error-page',
-        'exception-handler',
         'filter',
         'formatter',
         'locale',
@@ -11,7 +9,5 @@ include 'argument-resolver',
         'message-source',
         'rest-server',
         'session-attribute',
-        'template-engine:freemarker',
-        'template-engine:thymeleaf',
         'validation',
         'view-controller'

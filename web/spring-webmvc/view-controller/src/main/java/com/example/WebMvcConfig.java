@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index.html");
+        registry.addViewController("/hello").setViewName("hello.html");
         registry.addRedirectViewController("/redirect", "/");
         registry.addStatusController("/favicon.ico", HttpStatus.NO_CONTENT);
     }

@@ -8,18 +8,17 @@ import java.util.Locale;
 
 import org.jetbrains.annotations.Nullable;
 import org.springframework.format.Formatter;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class LocalDateTimeFormatter implements Formatter<LocalDateTime> {
-
     @Nullable
     @Override
     public LocalDateTime parse(String text, Locale locale) throws ParseException {
         log.info("parse: {}", text);
-        if (StringUtils.isEmpty(text)) {
+        if (ObjectUtils.isEmpty(text)) {
             return null;
         }
         try {

@@ -16,10 +16,9 @@ subprojects {
     }
 
     dependencies {
-        annotationProcessor 'org.projectlombok:lombok'
-        compileOnly 'org.projectlombok:lombok'
         implementation 'org.springframework.boot:spring-boot-starter-web'
-        implementation 'org.jetbrains:annotations:19.0.0'
+        implementation 'org.webjars:webjars-locator-core'
+        implementation 'org.webjars:bootstrap:4.5.3'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 
