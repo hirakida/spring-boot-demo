@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example;
 
 import java.util.Properties;
 
@@ -19,7 +19,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public WebContentInterceptor webContentInterceptor() {
         Properties mappings = new Properties();
         // seconds
-        mappings.setProperty("/datetime", "10");
+        mappings.setProperty("/hello", "10");
         mappings.setProperty("/js/*.js", "3600");
         mappings.setProperty("/css/*.css", "3600");
 

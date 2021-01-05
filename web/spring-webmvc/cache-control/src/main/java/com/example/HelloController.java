@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class DateTimeController {
+public class HelloController {
 
-    @GetMapping("/datetime")
-    public Map<String, LocalDateTime> datetime() {
-        return Map.of("datetime", LocalDateTime.now());
+    @GetMapping("/hello")
+    public Map<String, String> hello() {
+        return Map.of("message", "Hello! " + LocalDateTime.now());
     }
 }
