@@ -1,11 +1,13 @@
 spring:
-  application:
-    name: spring-cloud-config-demo
+  profiles:
+    active: beta
   cloud:
     config:
-      profile: default
+      profile: ${spring.profiles.active}
       label: master
-      uri: http://localhost:8888
+  config:
+    import:
+      configserver:http://localhost:8888
   output:
     ansi:
       enabled: always

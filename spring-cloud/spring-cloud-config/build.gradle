@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.2.RELEASE' apply false
+    id 'org.springframework.boot' version '2.4.1' apply false
 }
 
 subprojects {
@@ -15,14 +15,8 @@ subprojects {
         mavenCentral()
     }
 
-    configurations {
-        compileOnly {
-            extendsFrom annotationProcessor
-        }
-    }
-
     ext {
-        set('springCloudVersion', 'Hoxton.RELEASE')
+        set('springCloudVersion', '2020.0.0')
     }
 
     dependencyManagement {
@@ -32,11 +26,7 @@ subprojects {
     }
 
     dependencies {
-        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-        annotationProcessor 'org.projectlombok:lombok'
-        testImplementation('org.springframework.boot:spring-boot-starter-test') {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        }
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 
     test {
