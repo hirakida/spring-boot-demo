@@ -10,10 +10,10 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class HelloController {
-    private final BackendApiClient backEndApiClient;
+    private final BackendApiClient client;
 
     @GetMapping("/hello")
     public JsonNode hello() {
-        return backEndApiClient.hello();
+        return client.hello();
     }
 }

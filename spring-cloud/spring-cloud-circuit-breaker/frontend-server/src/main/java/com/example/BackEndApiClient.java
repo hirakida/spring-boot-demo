@@ -3,6 +3,7 @@ package com.example;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -10,20 +11,26 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
-@RequiredArgsConstructor
 @Slf4j
 public class BackendApiClient {
+    private static final String URL = "http://localhost:18080/hello";
     private final RestTemplate restTemplate;
     private final CircuitBreaker circuitBreaker;
     private final ObjectMapper objectMapper;
 
+    public BackendApiClient(RestTemplateBuilder builder,
+                            CircuitBreaker circuitBreaker,
+                            ObjectMapper objectMapper) {
+        restTemplate = builder.build();
+        this.circuitBreaker = circuitBreaker;
+        this.objectMapper = objectMapper;
+    }
+
     public JsonNode hello() {
-        return circuitBreaker.run(() -> restTemplate.getForObject("http://localhost:8081/hello",
-                                                                  JsonNode.class),
+        return circuitBreaker.run(() -> restTemplate.getForObject(URL, JsonNode.class),
                                   this::fallback);
     }
 
