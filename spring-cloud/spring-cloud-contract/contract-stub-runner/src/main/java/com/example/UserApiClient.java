@@ -9,8 +9,7 @@ import reactor.core.publisher.Mono;
 public class UserApiClient {
     private final WebClient webClient;
 
-    public UserApiClient(WebClient.Builder builder,
-                         UserApiProperties properties) {
+    public UserApiClient(WebClient.Builder builder, UserApiProperties properties) {
         webClient = builder.baseUrl(properties.getBaseUrl()).build();
     }
 

@@ -21,22 +21,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
 public class GitHubApiClientTest {
     @Autowired
-    private GitHubApiClient gitHubApiClient;
+    private GitHubApiClient client;
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
     private ObjectMapper objectMapper;
 
     @Test
-    public void getUserTest_200() throws IOException {
+    public void getUserTest_200() throws Exception {
         MockRestServiceServer server = WireMockRestServiceServer.with(restTemplate)
                                                                 .baseUrl(BASE_URL)
                                                                 .stubs("classpath:/stubs/get_user_200.json")
                                                                 .build();
+        JsonNode expected = objectMapper.readTree("{\"login\":\"hirakida\",\"type\":\"User\"}");
+        JsonNode actual = client.getUser("hirakida");
 
-        JsonNode jsonNode = gitHubApiClient.getUser("hirakida");
-        String responseBody = "{\"login\":\"hirakida\",\"type\":\"User\"}";
-        assertEquals(jsonNode, objectMapper.readTree(responseBody));
+        assertEquals(expected, actual);
         server.verify();
     }
 
@@ -47,7 +47,7 @@ public class GitHubApiClientTest {
                                                                 .stubs("classpath:/stubs/get_user_404.json")
                                                                 .build();
 
-        assertThrows(HttpClientErrorException.class, () -> gitHubApiClient.getUser("hirakida_"));
+        assertThrows(HttpClientErrorException.class, () -> client.getUser("hirakida_"));
         server.verify();
     }
 }

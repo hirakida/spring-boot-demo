@@ -11,10 +11,10 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class GitHubController {
-    private final GitHubApiClient gitHubApiClient;
+    private final GitHubApiClient client;
 
     @GetMapping("/users/{username}")
     public JsonNode getUser(@PathVariable String username) {
-        return gitHubApiClient.getUser(username);
+        return client.getUser(username);
     }
 }
