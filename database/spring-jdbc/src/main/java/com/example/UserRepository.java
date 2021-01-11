@@ -2,12 +2,12 @@ package com.example;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
@@ -20,11 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserRepository {
     private static final String TABLE_NAME = "user";
     private static final String ID = "id";
-    private static final String FIND_ALL = "SELECT id, name, created_at, updated_at FROM user";
-    private static final String FIND_BY_ID = "SELECT id, name, created_at, updated_at FROM user WHERE id=:id";
-    private static final String UPDATE = "UPDATE user SET name=:name, updated_at=:updatedAt  WHERE id=:id";
-    private static final String DELETE = "DELETE FROM user WHERE id=:id";
-
     private final NamedParameterJdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert jdbcInsert;
 
@@ -36,13 +31,15 @@ public class UserRepository {
     }
 
     public List<User> findAll() {
-        return jdbcTemplate.query(FIND_ALL, new BeanPropertyRowMapper<>(User.class));
+        return jdbcTemplate.query("SELECT id, name, created_at, updated_at FROM user",
+                                  new BeanPropertyRowMapper<>(User.class));
     }
 
     public Optional<User> findById(int id) {
-        User user = jdbcTemplate.queryForObject(FIND_BY_ID,
-                                                new MapSqlParameterSource(ID, id),
-                                                new BeanPropertyRowMapper<>(User.class));
+        User user = jdbcTemplate.queryForObject(
+                "SELECT id, name, created_at, updated_at FROM user WHERE id = :id",
+                Map.of("id", id),
+                new BeanPropertyRowMapper<>(User.class));
         return Optional.ofNullable(user);
     }
 
@@ -58,7 +55,9 @@ public class UserRepository {
 
     public User update(User user) {
         user.setUpdatedAt(LocalDateTime.now());
-        jdbcTemplate.update(UPDATE, new BeanPropertySqlParameterSource(user));
+
+        jdbcTemplate.update("UPDATE user SET name = :name, updated_at = :updatedAt WHERE id = :id",
+                            new BeanPropertySqlParameterSource(user));
         return user;
     }
 
@@ -68,10 +67,13 @@ public class UserRepository {
                             .peek(user -> user.setUpdatedAt(now))
                             .toArray(User[]::new);
         SqlParameterSource[] params = SqlParameterSourceUtils.createBatch((Object[]) array);
-        return jdbcTemplate.batchUpdate(UPDATE, params);
+
+        return jdbcTemplate.batchUpdate("UPDATE user SET name = :name, updated_at = :updatedAt WHERE id = :id",
+                                        params);
     }
 
     public void deleteById(int id) {
-        jdbcTemplate.update(DELETE, new MapSqlParameterSource(ID, id));
+        jdbcTemplate.update("DELETE FROM user WHERE id = :id",
+                            Map.of(ID, id));
     }
 }
