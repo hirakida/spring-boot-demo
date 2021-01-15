@@ -18,7 +18,8 @@ public class HelloControllerTest {
               .exchange()
               .expectHeader().contentType(MediaType.APPLICATION_JSON)
               .expectStatus().isOk()
-              .expectBody().json("{\"message\":\"Hello, WebFlux!\"}");
+              .expectBody()
+              .json("{\"message\":\"Hello, WebFlux!\"}");
     }
 
     @Test
@@ -28,6 +29,8 @@ public class HelloControllerTest {
               .exchange()
               .expectHeader().contentType(MediaType.APPLICATION_JSON)
               .expectStatus().isOk()
-              .expectBody().json("[{\"message\":\"Hello,\"},{\"message\":\"WebFlux!\"}]");
+              .expectBody()
+              .jsonPath("$[0].message").isEqualTo("Hello,")
+              .jsonPath("$[1].message").isEqualTo("WebFlux!");
     }
 }
