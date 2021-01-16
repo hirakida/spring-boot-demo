@@ -1,4 +1,4 @@
-package com.example;
+package com.example.config;
 
 import java.time.Duration;
 import java.util.Map;
@@ -19,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @RequiredArgsConstructor
 public class CachingConfig extends CachingConfigurerSupport {
+    public static final String CACHE_NAME = "cache1";
     private final RedisConnectionFactory connectionFactory;
 
     @Bean
@@ -28,7 +29,8 @@ public class CachingConfig extends CachingConfigurerSupport {
                                                                        .entryTtl(Duration.ofSeconds(60))
                                                                        .disableCachingNullValues();
         return RedisCacheManager.builder(connectionFactory)
-                                .withInitialCacheConfigurations(Map.of(Constants.CACHE_NAME, configuration))
+                                .withInitialCacheConfigurations(Map.of(CACHE_NAME, configuration))
+                                .enableStatistics()
                                 .build();
     }
 

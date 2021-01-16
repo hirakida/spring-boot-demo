@@ -1,5 +1,7 @@
 package com.example;
 
+import static com.example.config.CachingConfig.CACHE_NAME;
+
 import java.util.List;
 
 import org.springframework.cache.annotation.CacheConfig;
@@ -12,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@CacheConfig(cacheNames = Constants.CACHE_NAME)
+@CacheConfig(cacheNames = CACHE_NAME)
 @RequiredArgsConstructor
 @Slf4j
 public class UserService {

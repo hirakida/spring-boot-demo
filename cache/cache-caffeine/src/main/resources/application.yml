@@ -1,9 +1,17 @@
 spring:
   cache:
     type: caffeine
-#    cache-names: cache1
+    cache-names: cache1
     caffeine:
-      spec: maximumSize=10000,expireAfterAccess=60s
+      spec: maximumSize=10000,expireAfterAccess=60s,recordStats
   output:
     ansi:
       enabled: always
+logging:
+  level:
+    org.springframework.cache: trace
+management:
+  endpoints:
+    web:
+      exposure:
+        include: caches, prometheus, metrics

@@ -1,6 +1,9 @@
 dependencies {
-    implementation project(':cache-common')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    implementation 'org.apache.commons:commons-pool2'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    runtimeOnly 'com.h2database:h2'
 }

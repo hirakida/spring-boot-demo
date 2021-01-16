@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.4.RELEASE' apply false
+    id 'org.springframework.boot' version '2.4.1' apply false
 }
 
 subprojects {
@@ -18,9 +18,8 @@ subprojects {
     dependencies {
         annotationProcessor 'org.projectlombok:lombok'
         compileOnly 'org.projectlombok:lombok'
-        testImplementation('org.springframework.boot:spring-boot-starter-test') {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        }
+        implementation 'org.springframework.boot:spring-boot-starter-cache'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 
     test {

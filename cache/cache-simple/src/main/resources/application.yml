@@ -1,7 +1,9 @@
 spring:
   cache:
     type: simple
-#    cache-names: cache1
   output:
     ansi:
       enabled: always
+logging:
+  level:
+    org.springframework.cache: trace

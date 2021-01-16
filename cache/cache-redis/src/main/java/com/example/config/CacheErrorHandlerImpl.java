@@ -1,4 +1,4 @@
-package com.example;
+package com.example.config;
 
 import org.springframework.cache.Cache;
 import org.springframework.cache.interceptor.CacheErrorHandler;
@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class CacheErrorHandlerImpl implements CacheErrorHandler {
-
     @Override
     public void handleCacheGetError(RuntimeException exception, Cache cache, Object key) {
         log.error("{} {} {}", exception, cache, key);
