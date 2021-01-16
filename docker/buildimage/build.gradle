@@ -1,3 +1,12 @@
 bootBuildImage {
     imageName = "hirakida/spring-boot-docker-demo:${version}"
+
+    publish = true
+    docker {
+        publishRegistry {
+            username = 'hirakida'
+            password = System.getenv('DOCKER_HUB_PASSWORD')
+            url = 'https://hub.docker.com/'
+        }
+    }
 }
