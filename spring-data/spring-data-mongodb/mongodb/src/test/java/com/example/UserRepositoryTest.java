@@ -10,34 +10,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.utility.DockerImageName;
 
 @DataMongoTest
 @Testcontainers
+@ContextConfiguration(initializers = MongoContextInitializer.class)
 public class UserRepositoryTest {
     @Container
-    private static final GenericContainer<?> CONTAINER =
-            new GenericContainer<>(DockerImageName.parse("mongo:4.4"))
-                    .withEnv("MONGO_INITDB_ROOT_USERNAME", "root")
-                    .withEnv("MONGO_INITDB_ROOT_PASSWORD", "pass")
-                    .withEnv("MONGO_INITDB_DATABASE", "admin")
-                    .withExposedPorts(27017);
+    private static final GenericContainer<?> CONTAINER = MongoContextInitializer.CONTAINER;
     @Autowired
     private UserRepository userRepository;
 
-    @DynamicPropertySource
-    static void mongodbProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.data.mongodb.host", CONTAINER::getHost);
-        registry.add("spring.data.mongodb.port", () -> CONTAINER.getMappedPort(27017));
-    }
-
     @BeforeEach
-    public void init() {
+    public void setUp() {
         userRepository.deleteAll();
         List<User> users = IntStream.rangeClosed(1, 5)
                                     .mapToObj(i -> new User("name" + i))
@@ -46,14 +34,14 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void findAll() {
+    public void queryMethods() {
         List<User> result = userRepository.findAll();
         assertEquals(5, result.size());
-    }
 
-    @Test
-    public void findByName() {
-        List<User> result = userRepository.findByName("name1");
+        result = userRepository.findByName("name1");
+        assertEquals(1, result.size());
+
+        result = userRepository.findByUsername("name1");
         assertEquals(1, result.size());
     }
 }

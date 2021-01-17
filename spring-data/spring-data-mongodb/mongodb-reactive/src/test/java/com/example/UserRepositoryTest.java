@@ -9,24 +9,36 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
 import reactor.test.StepVerifier;
 
 @DataMongoTest
 @Testcontainers
-@ContextConfiguration(initializers = MongoInitializer.class)
 public class UserRepositoryTest {
     @Container
-    private static final GenericContainer<?> CONTAINER = MongoInitializer.CONTAINER;
+    private static final GenericContainer<?> CONTAINER =
+            new GenericContainer<>(DockerImageName.parse("mongo:4.4"))
+                    .withEnv("MONGO_INITDB_ROOT_USERNAME", "root")
+                    .withEnv("MONGO_INITDB_ROOT_PASSWORD", "pass")
+                    .withEnv("MONGO_INITDB_DATABASE", "admin")
+                    .withExposedPorts(27017);
     @Autowired
     private UserRepository userRepository;
 
+    @DynamicPropertySource
+    static void mongodbProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.data.mongodb.host", CONTAINER::getHost);
+        registry.add("spring.data.mongodb.port", () -> CONTAINER.getMappedPort(27017));
+    }
+
     @BeforeEach
-    public void init() {
+    public void setUp() {
         List<User> users = IntStream.rangeClosed(1, 5)
                                     .mapToObj(i -> new User("name" + i, 20 + i))
                                     .collect(toList());

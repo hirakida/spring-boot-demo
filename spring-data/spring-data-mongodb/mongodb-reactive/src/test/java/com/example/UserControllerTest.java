@@ -23,16 +23,10 @@ public class UserControllerTest {
 
     @Test
     public void findAll() {
-        LocalDateTime datetime = LocalDateTime.parse("2019-11-09T10:00:00");
-        List<User> users = List.of(new User("1", "name1", 21, datetime, datetime, 1L),
-                                   new User("2", "name2", 22, datetime, datetime, 1L),
-                                   new User("3", "name3", 23, datetime, datetime, 1L));
-        String expectedJson =
-                '['
-                + "{\"id\":\"1\",\"name\":\"name1\",\"age\":21,\"createdAt\":\"2019-11-09T10:00:00\",\"updatedAt\":\"2019-11-09T10:00:00\",\"version\":1},"
-                + "{\"id\":\"2\",\"name\":\"name2\",\"age\":22,\"createdAt\":\"2019-11-09T10:00:00\",\"updatedAt\":\"2019-11-09T10:00:00\",\"version\":1},"
-                + "{\"id\":\"3\",\"name\":\"name3\",\"age\":23,\"createdAt\":\"2019-11-09T10:00:00\",\"updatedAt\":\"2019-11-09T10:00:00\",\"version\":1}"
-                + ']';
+        LocalDateTime now = LocalDateTime.parse("2019-11-09T10:00:00");
+        List<User> users = List.of(new User("1", "name1", 21, now, now, 1L),
+                                   new User("2", "name2", 22, now, now, 1L),
+                                   new User("3", "name3", 23, now, now, 1L));
         when(userRepository.findAll()).thenReturn(Flux.fromIterable(users));
 
         client.get()
@@ -40,6 +34,15 @@ public class UserControllerTest {
               .exchange()
               .expectHeader().contentType(MediaType.APPLICATION_JSON)
               .expectStatus().isOk()
-              .expectBody().json(expectedJson);
+              .expectBody()
+              .jsonPath("$[0].id").isEqualTo(1)
+              .jsonPath("$[0].name").isEqualTo("name1")
+              .jsonPath("$[0].age").isEqualTo(21)
+              .jsonPath("$[1].id").isEqualTo(2)
+              .jsonPath("$[1].name").isEqualTo("name2")
+              .jsonPath("$[1].age").isEqualTo(22)
+              .jsonPath("$[2].id").isEqualTo(3)
+              .jsonPath("$[2].name").isEqualTo("name3")
+              .jsonPath("$[2].age").isEqualTo(23);
     }
 }

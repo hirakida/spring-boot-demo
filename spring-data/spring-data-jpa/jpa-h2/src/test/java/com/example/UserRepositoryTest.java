@@ -5,17 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.TestConstructor;
+import org.springframework.test.context.TestConstructor.AutowireMode;
 import org.springframework.test.jdbc.JdbcTestUtils;
 
+import lombok.RequiredArgsConstructor;
+
 @DataJpaTest
+@TestConstructor(autowireMode = AutowireMode.ALL)
+@RequiredArgsConstructor
 public class UserRepositoryTest {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final UserRepository userRepository;
+    private final JdbcTemplate jdbcTemplate;
 
     @Test
     public void findAll() {

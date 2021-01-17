@@ -34,8 +34,11 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User findById(@PathVariable int id) {
-        return userService.findById(id);
+//    public User findById(@PathVariable int id) {
+//        return userService.findById(id);
+//    }
+    public User findById(@PathVariable("id") User user) {
+        return user;
     }
 
     @PostMapping("/users")

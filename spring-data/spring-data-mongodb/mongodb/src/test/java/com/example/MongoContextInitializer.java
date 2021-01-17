@@ -6,7 +6,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.utility.DockerImageName;
 
-public class MongoInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+public class MongoContextInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
     static final GenericContainer<?> CONTAINER = new GenericContainer<>(DockerImageName.parse("mongo:4.4"))
             .withEnv("MONGO_INITDB_ROOT_USERNAME", "root")
             .withEnv("MONGO_INITDB_ROOT_PASSWORD", "pass")
