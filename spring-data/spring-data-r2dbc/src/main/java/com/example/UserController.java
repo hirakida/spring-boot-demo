@@ -1,7 +1,6 @@
 package com.example;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.model.User;
-import com.example.service.UserService;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -37,12 +33,14 @@ public class UserController {
     }
 
     @PostMapping
-    public Mono<User> insert(@RequestBody @Validated UserRequest request) {
-        return userService.insert(request.getName());
+    public Mono<User> create(@RequestBody UserRequest request) {
+        User user = new User();
+        user.setName(request.getName());
+        return userService.create(user);
     }
 
     @PutMapping("/{id}")
-    public Mono<User> update(@PathVariable int id, @RequestBody @Validated UserRequest request) {
+    public Mono<User> update(@PathVariable int id, @RequestBody UserRequest request) {
         User user = new User();
         user.setId(id);
         user.setName(request.getName());

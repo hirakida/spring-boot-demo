@@ -3,11 +3,9 @@ spring:
     url: r2dbc:h2:mem:///r2dbc-db?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password:
-    pool:
-      initial-size: 10
   output:
     ansi:
       enabled: always
 logging:
   level:
-    org.springframework.data.r2dbc: DEBUG
+    org.springframework.r2dbc: DEBUG

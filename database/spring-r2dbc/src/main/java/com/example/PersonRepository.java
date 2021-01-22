@@ -1,11 +1,10 @@
-package com.example.repository;
+package com.example;
 
 import java.time.LocalDateTime;
 
 import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Component;
-
-import com.example.model.Person;
+import org.springframework.transaction.annotation.Transactional;
 
 import io.r2dbc.spi.Row;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +12,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Component
+@Transactional
 @RequiredArgsConstructor
 public class PersonRepository {
     private final DatabaseClient client;

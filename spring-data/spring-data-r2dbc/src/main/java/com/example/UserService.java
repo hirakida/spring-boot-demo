@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,18 +6,13 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.model.User;
-import com.example.repository.UserRepository;
-
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-@Slf4j
 public class UserService {
     private final UserRepository userRepository;
 
@@ -34,22 +29,21 @@ public class UserService {
     }
 
     public Flux<User> saveAll(List<User> users) {
-        return userRepository.saveAll(users)
-                             .doOnNext(user -> log.info("{}", user));
+        return userRepository.saveAll(users);
     }
 
-    public Mono<User> insert(String name) {
-        return Mono.just(new User(null, name, LocalDateTime.now()))
-                   .flatMap(userRepository::save)
-                   .doOnNext(user -> log.info("{}", user));
+    public Mono<User> create(User user) {
+        return Mono.fromSupplier(() -> {
+            user.setCreatedAt(LocalDateTime.now());
+            return user;
+        }).flatMap(userRepository::save);
     }
 
     public Mono<User> update(User user) {
         return userRepository.findById(user.getId())
-                             .map(entity -> {
+                             .flatMap(entity -> {
                                  entity.setName(user.getName());
-                                 return entity;
-                             })
-                             .flatMap(userRepository::save);
+                                 return userRepository.save(entity);
+                             });
     }
 }

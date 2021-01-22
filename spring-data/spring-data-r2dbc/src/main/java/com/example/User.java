@@ -1,21 +1,19 @@
-package com.example.model;
+package com.example;
 
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Account {
+public class User {
     @Id
-    private Long id;
+    private Integer id;
     private String name;
     private LocalDateTime createdAt;
 }
