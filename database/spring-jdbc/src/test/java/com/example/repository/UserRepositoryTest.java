@@ -1,25 +1,21 @@
-package com.example;
+package com.example.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.context.annotation.Import;
+
+import com.example.model.User;
 
 @JdbcTest
+@Import(UserRepository.class)
 public class UserRepositoryTest {
     @Autowired
-    private NamedParameterJdbcTemplate jdbcTemplate;
     private UserRepository repository;
-
-    @BeforeEach
-    public void init() {
-        repository = new UserRepository(jdbcTemplate);
-    }
 
     @Test
     public void findAll() {
