@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example;
 
 import static java.util.stream.Collectors.toList;
 
