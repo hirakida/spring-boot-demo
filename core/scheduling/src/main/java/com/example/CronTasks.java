@@ -1,6 +1,6 @@
-package com.example.task;
+package com.example;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -30,54 +30,54 @@ public class CronTasks {
      */
     @Scheduled(cron = "${cron.once_a_minute}", zone = ZONE)
     public void onceAMinute() {
-        log.info("[{}][{}]", LocalDateTime.now(), environment.getProperty("cron.once_a_minute"));
+        log.info("[{}][{}]", LocalTime.now(), environment.getProperty("cron.once_a_minute"));
     }
 
     /**
-     * 4 times per minute
+     * 4 times a minute
      */
-    @Scheduled(cron = "${cron.four_times_per_minute}", zone = ZONE)
+    @Scheduled(cron = "0,15,30,45 * * * * *", zone = ZONE)
     public void fourTimesAMinute() {
-        log.info("[{}][{}]", LocalDateTime.now(), environment.getProperty("cron.four_times_per_minute"));
+        log.info("[{}][{}]", LocalTime.now(), "0,15,30,45 * * * * *");
     }
 
     /**
-     * 10 times per minute
+     * 10 times a minute (1 - 10)
      */
-    @Scheduled(cron = "${cron.ten_times_per_minute}", zone = ZONE)
+    @Scheduled(cron = "1-10 * * * * *", zone = ZONE)
     public void fifteenTimesAMinute() {
-        log.info("[{}][{}]", LocalDateTime.now(), environment.getProperty("cron.ten_times_per_minute"));
+        log.info("[{}][{}]", LocalTime.now(), "1-10 * * * * *");
     }
 
     /**
      * Every 10 seconds (0, 10, 20, 30, 40, 50)
      */
-    @Scheduled(cron = "${cron.every_10_seconds}", zone = ZONE)
+    @Scheduled(cron = "*/10 * * * * *", zone = ZONE)
     public void every10Seconds() {
-        log.info("[{}][{}]", LocalDateTime.now(), environment.getProperty("cron.every_10_seconds"));
+        log.info("[{}][{}]", LocalTime.now(), "*/10 * * * * *");
     }
 
     /**
      * Every 3 minutes
      */
-    @Scheduled(cron = "${cron.every_3_minutes}", zone = ZONE)
+    @Scheduled(cron = "0 */3 * * * *", zone = ZONE)
     public void every3Minutes() {
-        log.info("[{}][{}]", LocalDateTime.now(), environment.getProperty("cron.every_3_minutes"));
+        log.info("[{}][{}]", LocalTime.now(), "0 */3 * * * *");
     }
 
     /**
      * Once an hour (xx:00.00)
      */
-    @Scheduled(cron = "${cron.once_an_hour}", zone = ZONE)
+    @Scheduled(cron = "0 0 * * * *", zone = ZONE)
     public void onceAnHour() {
-        log.info("[{}][{}]", LocalDateTime.now(), environment.getProperty("cron.once_an_hour"));
+        log.info("[{}][{}]", LocalTime.now(), "0 0 * * * *");
     }
 
     /**
      * Once a day (00:00.00)
      */
-    @Scheduled(cron = "${cron.once_a_day}", zone = ZONE)
+    @Scheduled(cron = "0 0 0 * * *", zone = ZONE)
     public void onceADay() {
-        log.info("[{}][{}]", LocalDateTime.now(), environment.getProperty("cron.once_a_day"));
+        log.info("[{}][{}]", LocalTime.now(), "0 0 0 * * *");
     }
 }
