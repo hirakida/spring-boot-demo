@@ -2,10 +2,10 @@ package com.example.resolver;
 
 import org.springframework.stereotype.Component;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.example.entity.User;
 import com.example.repository.UserRepository;
 
+import graphql.kickstart.tools.GraphQLMutationResolver;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 

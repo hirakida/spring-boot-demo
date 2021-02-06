@@ -4,11 +4,11 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
 import com.example.entity.Role;
 import com.example.entity.User;
 import com.example.repository.RoleRepository;
 
+import graphql.kickstart.tools.GraphQLResolver;
 import lombok.RequiredArgsConstructor;
 
 @Component
