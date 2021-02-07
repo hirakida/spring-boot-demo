@@ -3,9 +3,6 @@ server:
 spring:
   lifecycle:
     timeout-per-shutdown-phase: 10s
-  output:
-    ansi:
-      enabled: always
 logging:
   level:
     org:
@@ -13,3 +10,8 @@ logging:
         context:
           support:
             DefaultLifecycleProcessor: trace
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
