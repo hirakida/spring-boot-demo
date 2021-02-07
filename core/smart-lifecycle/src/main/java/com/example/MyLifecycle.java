@@ -18,15 +18,18 @@ public class MyLifecycle implements SmartLifecycle {
 
     @Override
     public void stop() {
+        log.info("stop");
+        running = false;
     }
 
     @Override
     public void stop(Runnable callback) {
-        log.info("stop");
-        running = false;
+        log.info("stop callback");
+        stop();
+
         new Thread(() -> {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }

@@ -14,9 +14,4 @@ public class LifecycleController {
     public boolean isRunning() {
         return myLifecycle.isRunning();
     }
-
-    @GetMapping("/phase")
-    public int getPhase() {
-        return myLifecycle.getPhase();
-    }
 }
