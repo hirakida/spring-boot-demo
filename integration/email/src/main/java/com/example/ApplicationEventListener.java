@@ -13,7 +13,7 @@ public class ApplicationEventListener {
 
     @EventListener(ApplicationReadyEvent.class)
     public void readyEvent() {
-        emailSender.send(new EmailData("user1@example.com", "user1", "This is a demo1."));
-        emailSender.send(new EmailData("user2@example.com", "user2", "This is a demo2."));
+        emailSender.send(new EmailData("user1@example.com", "user1", "demo1"));
+        emailSender.send(new EmailData("user2@example.com", "user2", "demo2"));
     }
 }
