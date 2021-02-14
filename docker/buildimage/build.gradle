@@ -1,12 +1,28 @@
 bootBuildImage {
-    imageName = "hirakida/spring-boot-docker-demo:${version}"
-
     publish = true
+
+    environment = [
+//            'BP_JVM_VERSION': '11.*',
+            'BPE_OVERRIDE_BPL_JVM_THREAD_COUNT': '10',
+            'BPE_APPEND_JAVA_TOOL_OPTIONS': '-XX:ReservedCodeCacheSize=10M',
+            'BPE_DELIM_JAVA_TOOL_OPTIONS': ' '
+    ]
+
+    imageName = "ghcr.io/hirakida/hello-docker:${version}"
     docker {
         publishRegistry {
             username = 'hirakida'
-            password = System.getenv('DOCKER_HUB_PASSWORD')
-            url = 'https://hub.docker.com/'
+            password = System.getenv('GHCR_TOKEN')
+            url = 'https://ghcr.io'
         }
     }
+
+//    imageName = "hirakida/hello-docker:${version}"
+//    docker {
+//        publishRegistry {
+//            username = 'hirakida'
+//            password = System.getenv('DOCKER_HUB_PASSWORD')
+//            url = 'https://hub.docker.com'
+//        }
+//    }
 }
