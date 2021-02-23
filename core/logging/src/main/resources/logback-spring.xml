@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration debug="true">
+<!--
+https://github.com/spring-projects/spring-boot/blob/v2.4.3/spring-boot-project/spring-boot/src/main/resources/org/springframework/boot/logging/logback/base.xml
+-->
+<configuration>
   <include resource="org/springframework/boot/logging/logback/defaults.xml" />
   <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
-  <springProperty name="PROFILE" source="spring.profiles.active" defaultValue="local" />
+  <property name="LOG_FILE" value="${LOG_PATH}/${LOG_FILE}" />
+
+  <root level="INFO">
+    <appender-ref ref="CONSOLE" />
+  </root>
 
   <springProfile name="dev">
-    <include resource="logback/file-appender.xml" />
-    <include resource="logback/hello-appender.xml" />
-    <include resource="logback/hello-async-appender.xml" />
-
+    <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
     <root level="INFO">
-      <appender-ref ref="CONSOLE" />
-      <appender-ref ref="APPLICATION_LOG_FILE" />
-      <appender-ref ref="HELLO" />
-      <appender-ref ref="HELLO_ASYNC" />
-    </root>
-  </springProfile>
-
-  <springProfile name="local, test">
-    <root level="INFO">
-      <appender-ref ref="CONSOLE" />
+      <appender-ref ref="FILE" />
     </root>
   </springProfile>
 </configuration>
