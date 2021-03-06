@@ -25,6 +25,11 @@ public class CronTasks {
     private static final String ZONE = "Asia/Tokyo";
     private final Environment environment;
 
+    @Scheduled(cron = "-", zone = ZONE)
+    public void disabledCron() {
+        log.info("[{}][{}]", LocalTime.now(), "-");
+    }
+
     /**
      * Once a minute
      */

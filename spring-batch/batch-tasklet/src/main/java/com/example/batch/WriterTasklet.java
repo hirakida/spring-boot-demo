@@ -1,11 +1,16 @@
 package com.example.batch;
 
+import java.util.Random;
+import java.util.stream.IntStream;
+
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.stereotype.Component;
 
+import com.example.config.BatchConfig.ScopeTime;
+import com.example.entity.User;
 import com.example.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -14,23 +19,24 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class Tasklet2 implements Tasklet {
+public class WriterTasklet implements Tasklet {
     private final UserRepository userRepository;
-    private final ScopeBean jobScopeBean;
-    private final ScopeBean stepScopeBean;
+    private final ScopeTime jobScopeTime;
+    private final ScopeTime stepScopeTime;
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-        log.info("{} {}", jobScopeBean, stepScopeBean);
+        log.info("jobScope={} stepScope={}", jobScopeTime.getTime(), stepScopeTime.getTime());
 
-        userRepository.findAll()
-                      .forEach(user -> {
-                          user.setEnabled(true);
-                          userRepository.saveAndFlush(user);
-                      });
+        IntStream.rangeClosed(1, 5)
+                 .forEach(i -> {
+                     User user = new User();
+                     user.setName("user" + new Random().nextInt());
+                     userRepository.saveAndFlush(user);
 
-        userRepository.findAll()
-                      .forEach(user -> log.info("{}", user));
+                     contribution.incrementWriteCount(1);
+                 });
+
         return RepeatStatus.FINISHED;
     }
 }

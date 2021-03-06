@@ -1,4 +1,4 @@
-package com.example.batch;
+package com.example.config;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -9,8 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.example.entity.User;
-import com.example.batch.listener.JobExecutionListenerImpl;
-import com.example.batch.listener.StepExecutionListenerImpl;
+import com.example.listener.JobExecutionListenerImpl;
+import com.example.listener.StepExecutionListenerImpl;
+import com.example.batch.Step1Processor;
+import com.example.batch.Step1Reader;
+import com.example.batch.Step1Writer;
 
 import lombok.RequiredArgsConstructor;
 

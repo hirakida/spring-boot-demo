@@ -1,6 +1,6 @@
-package com.example.batch;
+package com.example.config;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -12,9 +12,13 @@ import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.example.batch.listener.JobExecutionListenerImpl;
-import com.example.batch.listener.StepExecutionListenerImpl;
+import com.example.listener.JobExecutionListenerImpl;
+import com.example.listener.StepExecutionListenerImpl;
+import com.example.batch.ReaderTasklet;
+import com.example.batch.WriterTasklet;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -24,8 +28,8 @@ public class BatchConfig {
     private final StepBuilderFactory stepBuilderFactory;
     private final JobExecutionListenerImpl jobExecutionListenerImpl;
     private final StepExecutionListenerImpl stepExecutionListenerImpl;
-    private final Tasklet1 tasklet1;
-    private final Tasklet2 tasklet2;
+    private final WriterTasklet writerTasklet;
+    private final ReaderTasklet readerTasklet;
 
     @Bean
     public Job job1() {
@@ -58,7 +62,7 @@ public class BatchConfig {
     @Bean
     public Step step1() {
         return stepBuilderFactory.get("step1")
-                                 .tasklet(tasklet1)
+                                 .tasklet(writerTasklet)
                                  .listener(stepExecutionListenerImpl)
                                  .build();
     }
@@ -66,20 +70,26 @@ public class BatchConfig {
     @Bean
     public Step step2() {
         return stepBuilderFactory.get("step2")
-                                 .tasklet(tasklet2)
+                                 .tasklet(readerTasklet)
                                  .listener(stepExecutionListenerImpl)
                                  .build();
     }
 
     @JobScope
     @Bean
-    public ScopeBean jobScopeBean() {
-        return new ScopeBean(LocalDateTime.now());
+    public ScopeTime jobScopeTime() {
+        return new ScopeTime(LocalTime.now());
     }
 
     @StepScope
     @Bean
-    public ScopeBean stepScopeBean() {
-        return new ScopeBean(LocalDateTime.now());
+    public ScopeTime stepScopeTime() {
+        return new ScopeTime(LocalTime.now());
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class ScopeTime {
+        private LocalTime time;
     }
 }
