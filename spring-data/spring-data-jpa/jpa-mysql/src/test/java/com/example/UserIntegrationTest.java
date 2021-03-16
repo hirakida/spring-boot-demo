@@ -9,29 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.jdbc.Sql;
-import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Sql(scripts = "classpath:/testdata.sql")
-@Testcontainers
-public class UserIntegrationTest {
-    @Container
-    private static final MySQLContainer<?> CONTAINER =
-            new MySQLContainer<>("mysql:8.0").withEnv("TZ", "Asia/Tokyo");
+public class UserIntegrationTest extends AbstractContainerInitializer {
     @Autowired
     private TestRestTemplate restTemplate;
-
-    @DynamicPropertySource
-    static void dataSourceProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", CONTAINER::getJdbcUrl);
-        registry.add("spring.datasource.username", CONTAINER::getUsername);
-        registry.add("spring.datasource.password", CONTAINER::getPassword);
-    }
 
     @Test
     public void findAll() {

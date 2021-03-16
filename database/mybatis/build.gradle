@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.4.2' apply false
+    id 'org.springframework.boot' version '2.4.3' apply false
 }
 
 subprojects {
@@ -17,6 +17,10 @@ subprojects {
 
     dependencyManagement {
         dependencies {
+            imports {
+                mavenBom 'org.testcontainers:testcontainers-bom:1.15.2'
+            }
+
             dependencySet(group: 'org.mybatis.spring.boot', version: '2.1.4') {
                 entry 'mybatis-spring-boot-starter'
                 entry 'mybatis-spring-boot-starter-test'
@@ -29,7 +33,6 @@ subprojects {
         compileOnly 'org.projectlombok:lombok'
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter'
-        runtimeOnly 'com.h2database:h2'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test'
     }

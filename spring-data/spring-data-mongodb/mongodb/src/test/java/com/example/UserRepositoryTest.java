@@ -10,17 +10,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 @DataMongoTest
-@Testcontainers
-@ContextConfiguration(initializers = MongoContextInitializer.class)
-public class UserRepositoryTest {
-    @Container
-    private static final GenericContainer<?> CONTAINER = MongoContextInitializer.CONTAINER;
+public class UserRepositoryTest extends AbstractMongoInitializer {
     @Autowired
     private UserRepository userRepository;
 

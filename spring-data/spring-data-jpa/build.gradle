@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.4.1' apply false
+    id 'org.springframework.boot' version '2.4.3' apply false
     id 'com.avast.gradle.docker-compose' version '0.14.0' apply false
 }
 
@@ -23,7 +23,7 @@ subprojects {
 
         testAnnotationProcessor 'org.projectlombok:lombok'
         testCompileOnly 'org.projectlombok:lombok'
-        testImplementation platform('org.testcontainers:testcontainers-bom:1.15.1')
+        testImplementation platform('org.testcontainers:testcontainers-bom:1.15.2')
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 

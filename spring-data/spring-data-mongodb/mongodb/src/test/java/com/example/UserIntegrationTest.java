@@ -16,17 +16,9 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.test.context.ContextConfiguration;
-import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-@Testcontainers
-@ContextConfiguration(initializers = MongoContextInitializer.class)
-public class UserIntegrationTest {
-    @Container
-    private static final GenericContainer<?> CONTAINER = MongoContextInitializer.CONTAINER;
+public class UserIntegrationTest extends AbstractMongoInitializer {
     @Autowired
     private MongoTemplate mongoTemplate;
     @Autowired

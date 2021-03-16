@@ -32,7 +32,7 @@ public class UserClientTest {
     }
 
     @BeforeEach
-    public void init() {
+    public void setUp() {
         User user = new User();
         user.setName("test1");
         client.index(user);

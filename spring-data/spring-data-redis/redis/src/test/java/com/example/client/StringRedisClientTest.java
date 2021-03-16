@@ -21,9 +21,9 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
 @Testcontainers
 public class StringRedisClientTest {
-    static final String KEY1 = "__KEY1__";
-    static final String KEY2 = "__KEY2__";
-    static final String VALUE1 = "__VALUE1__";
+    private static final String KEY1 = "__KEY1__";
+    private static final String KEY2 = "__KEY2__";
+    private static final String VALUE1 = "__VALUE1__";
     @Container
     private static final GenericContainer<?> CONTAINER = new GenericContainer<>("redis:5.0")
             .withExposedPorts(6379);

@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.3.RELEASE' apply false
+    id 'org.springframework.boot' version '2.4.3' apply false
 }
 
 subprojects {
@@ -21,10 +21,8 @@ subprojects {
         implementation 'org.apache.commons:commons-pool2'
         compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
 
-        testImplementation('org.springframework.boot:spring-boot-starter-test') {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        }
-        testImplementation platform('org.testcontainers:testcontainers-bom:1.14.3')
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation platform('org.testcontainers:testcontainers-bom:1.15.2')
     }
 
     test {

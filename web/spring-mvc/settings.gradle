@@ -1,0 +1,16 @@
+rootProject.name = 'spring-mvc-demo'
+
+include 'argument-resolver',
+        'caching',
+        'filter',
+        'formatter',
+        'https',
+        'locale',
+        'messages',
+        'rest-service',
+        'session',
+        'template-engine-freemarker',
+        'template-engine-thymeleaf',
+        'validation',
+        'view-controller',
+        'webmvc-fn'

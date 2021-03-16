@@ -6,7 +6,6 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 
 @Configuration
 public class RepositoryRestConfig implements RepositoryRestConfigurer {
-
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
         // expose user.id
