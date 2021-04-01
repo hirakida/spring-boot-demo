@@ -4,8 +4,10 @@ spring:
       enabled: always
 app:
   enabled: true
-  number:
-    value1: 1_000
-  string:
-    value1: abcde
-  ddl-auto: none
+  test1:
+    value1: 100
+    text1: hello!
+  test2:
+    text: hello!!
+  mode1: mode1
+  mode2: none

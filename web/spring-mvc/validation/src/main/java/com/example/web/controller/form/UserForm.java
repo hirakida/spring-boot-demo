@@ -2,6 +2,7 @@ package com.example.web.controller.form;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class UserForm {
-    @NotNull
+    @NotEmpty
     @Length(max = 10)
     private String lastName;
     @NotNull

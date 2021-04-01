@@ -1,7 +1,7 @@
 {
   "properties": [
     {
-      "name": "app.number.value2",
+      "name": "app.test2.value2",
       "type": "java.lang.Long",
       "description": "Min(0).",
       "defaultValue": 0
@@ -9,27 +9,15 @@
   ],
   "hints": [
     {
-      "name": "app.ddl-auto",
+      "name": "app.mode2",
       "values": [
         {
           "value": "none",
-          "description": "Disable DDL handling."
+          "description": "Disable."
         },
         {
-          "value": "validate",
-          "description": "Validate the schema, make no changes to the database."
-        },
-        {
-          "value": "update",
-          "description": "Update the schema if necessary."
-        },
-        {
-          "value": "create",
-          "description": "Create the schema and destroy previous data."
-        },
-        {
-          "value": "create-drop",
-          "description": "Create and then destroy the schema at the end of the session."
+          "value": "always",
+          "description": "Always."
         }
       ]
     }

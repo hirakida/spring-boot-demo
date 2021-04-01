@@ -5,6 +5,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+import com.example.properties.AppProperties;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -12,44 +14,31 @@ import lombok.extern.slf4j.Slf4j;
 public class CommandLineRunnerImpl implements CommandLineRunner {
     private final Environment environment;
     private final AppProperties properties;
-    private final long number1;
-    private final long number2;
-    private final String str1;
-    private final String str2;
 
     public CommandLineRunnerImpl(Environment environment,
                                  AppProperties properties,
-                                 @Value("${app.number.value1}") long number1,
-                                 @Value("${app.number.value2:0}") long number2,
-                                 @Value("${app.string.value1}") String str1,
-                                 @Value("${app.string.value2:@Value default}") String str2) {
+                                 @Value("${app.test1.value1}") long number1,
+                                 @Value("${app.test1.value2:0}") long number2,
+                                 @Value("${app.test1.text1}") String text1,
+                                 @Value("${app.test1.text2:@Value}") String text2) {
         this.environment = environment;
         this.properties = properties;
-        this.number1 = number1;
-        this.number2 = number2;
-        this.str1 = str1;
-        this.str2 = str2;
+
+        log.info("test1.value1: {}", number1);
+        log.info("test1.value2: {}", number2);
+        log.info("test1.text1: {}", text1);
+        log.info("test1.text2: {}", text2);
     }
 
     @Override
     public void run(String... args) {
-        log.info("--- @Value ---");
-        log.info("number.value1: {}", number1);
-        log.info("number.value2: {}", number2);
-        log.info("string.value1: {}", str1);
-        log.info("string.value2: {}", str2);
-
-        log.info("--- Environment ---");
-        log.info("number.value1: {}", environment.getProperty("app.number.value1", Long.class, 0L));
-        log.info("number.value2: {}", environment.getProperty("app.number.value2", Long.class, 0L));
-        log.info("string.value1: {}", environment.getProperty("app.string.value1"));
-        log.info("string.value2: {}",
-                 environment.getProperty("app.string.value2", String.class, "Environment default"));
+        log.info("test1.value1: {}", environment.getProperty("app.test1.value1", Long.class));
+        log.info("test1.value2: {}", environment.getProperty("app.test1.value2", Long.class, 0L));
+        log.info("test1.text1: {}", environment.getProperty("app.test1.text1"));
+        log.info("test1.text2: {}", environment.getProperty("app.test1.text2", String.class, "Environment"));
 
         log.info("--- @ConfigurationProperties ---");
-        log.info("number.value1: {}", properties.getNumber().getValue1());
-        log.info("number.value2: {}", properties.getNumber().getValue2());
-        log.info("string.value1: {}", properties.getString().getValue1());
-        log.info("string.value2: {}", properties.getString().getValue2());
+        log.info("test1: {}", properties.getTest1());
+        log.info("test2: {}", properties.getTest2());
     }
 }
