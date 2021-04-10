@@ -3,6 +3,8 @@ package com.example;
 import org.springframework.graphql.boot.RuntimeWiringCustomizer;
 import org.springframework.stereotype.Component;
 
+import com.example.scalars.ExtendedScalars;
+
 import graphql.schema.DataFetchingEnvironment;
 import graphql.schema.idl.RuntimeWiring;
 import lombok.RequiredArgsConstructor;
@@ -14,10 +16,11 @@ public class UserDataWriting implements RuntimeWiringCustomizer {
 
     @Override
     public void customize(RuntimeWiring.Builder builder) {
-        builder.scalar(LocalDateTimeScalar.SCALAR_TYPE)
+        builder.scalar(ExtendedScalars.LOCAL_DATE_TIME)
                .type("Query", typeWiring -> typeWiring
                        .dataFetcher("users", env -> userRepository.findAll())
-                       .dataFetcher("user", env -> userRepository.findById(getId(env))))
+                       .dataFetcher("user", env -> userRepository.findById(getId(env)))
+                       .dataFetcher("searchUser", env -> userRepository.findByName(env.getArgument("name"))))
                .type("Mutation", typeWiring -> typeWiring
                        .dataFetcher("createUser", this::createUser)
                        .dataFetcher("deleteUser", this::deleteUser));

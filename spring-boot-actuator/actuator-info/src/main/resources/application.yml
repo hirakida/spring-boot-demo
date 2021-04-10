@@ -1,0 +1,9 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+info:
+  app:
+    java:
+      source: 11
+      target: 11
