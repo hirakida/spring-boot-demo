@@ -2,7 +2,7 @@ scalar LocalDateTime
 
 type Query {
    user(id: ID!): User
-   users: [User]
+   users: [User!]!
 }
 
 type Mutation {

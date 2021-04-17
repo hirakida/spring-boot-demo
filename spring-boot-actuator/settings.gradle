@@ -5,4 +5,5 @@ include 'actuator-custom-endpoints',
         'actuator-info',
         'actuator-jolokia',
         'actuator-prometheus',
-        'actuator-prometheus-pushgateway'
+        'actuator-prometheus-pushgateway',
+        'actuator-startup'
