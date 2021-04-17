@@ -12,7 +12,8 @@ import reactor.test.StepVerifier;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE,
         properties = "user-api.port=${stubrunner.runningstubs.contract-verifier.port}")
-@AutoConfigureStubRunner(ids = "com.example:contract-verifier:+:stubs", stubsMode = StubsMode.LOCAL)
+@AutoConfigureStubRunner(ids = "com.example:contract-verifier:+:stubs",
+        stubsMode = StubsMode.LOCAL)
 public class UserApiClientTest {
     @Autowired
     private UserApiClient client;

@@ -6,7 +6,6 @@ apply plugin: 'spring-cloud-contract'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    compileOnly 'com.sun.xml.bind:jaxb-osgi:2.3.2'
     testImplementation 'io.projectreactor:reactor-test'
     testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
 }
@@ -15,4 +14,13 @@ contracts {
     testFramework = TestFramework.JUNIT5
     testMode = 'EXPLICIT'
     baseClassForTests = 'com.example.BaseClass'
+}
+
+// https://docs.spring.io/spring-cloud-contract/docs/current/3.0.x/html/project-features.html#features-stub-runner-publishing-stubs-as-jars
+publishing {
+    publications {
+        stubs(MavenPublication) {
+            artifact verifierStubsJar
+        }
+    }
 }
