@@ -1,4 +1,4 @@
-package com.example;
+package com.example.config;
 
 import java.io.IOException;
 import java.util.stream.Stream;
@@ -15,7 +15,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class CsrfTokenLoggingFilter extends OncePerRequestFilter {
+public class MyRequestFilter extends OncePerRequestFilter {
     private static final String CSRF_COOKIE_NAME = "XSRF-TOKEN";
 
     @Override
@@ -34,6 +34,7 @@ public class CsrfTokenLoggingFilter extends OncePerRequestFilter {
                                               cookie.getName(), cookie.getValue(), cookie.getSecure(),
                                               cookie.getDomain(), cookie.getPath(), cookie.getMaxAge()));
         }
+
         filterChain.doFilter(request, response);
     }
 }

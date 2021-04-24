@@ -5,19 +5,22 @@
 <head>
   <title>index</title>
   <meta charset="UTF-8" />
+  <meta name="_csrf" th:content="${_csrf.token}" />
+  <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+  <script src="index.js"></script>
 </head>
 <body>
 <div class="container">
-  <form th:action="@{/}" th:object="${form}" method="post">
+  <form id="form">
     <div>
       <label>last name</label>
-      <input type="text" th:field="*{lastName}" />
-      <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+      <input type="text" id="lastName" />
+      <span id="lastNameError" style="color:red"></span>
     </div>
     <div>
       <label>first name</label>
-      <input type="text" th:field="*{firstName}" />
-      <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+      <input type="text" id="firstName" />
+      <span id="firstNameError" style="color:red"></span>
     </div>
     <button type="submit">submit</button>
   </form>

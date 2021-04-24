@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.3.RELEASE' apply false
+    id 'org.springframework.boot' version '2.4.5' apply false
 }
 
 subprojects {
@@ -25,16 +25,14 @@ subprojects {
                 entry 'spock-core'
                 entry 'spock-spring'
             }
-            dependency 'org.codehaus.groovy:groovy-all:2.5.13'
+            dependency 'org.codehaus.groovy:groovy-all:2.5.14'
         }
     }
 
     dependencies {
         annotationProcessor 'org.projectlombok:lombok'
         compileOnly 'org.projectlombok:lombok'
-        testImplementation('org.springframework.boot:spring-boot-starter-test') {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        }
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 
     test {

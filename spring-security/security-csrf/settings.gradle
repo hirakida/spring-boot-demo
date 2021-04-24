@@ -1,8 +1,3 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-    }
-}
-
 rootProject.name = 'spring-security-csrf-demo'
+
 include 'csrf-session', 'csrf-cookie', 'csrf-spring-session'
