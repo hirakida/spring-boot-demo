@@ -9,10 +9,9 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@EnableRedisHttpSession
 @Configuration
+@EnableRedisHttpSession
 public class HttpSessionConfig {
-
     @Bean
     public RedisSerializer<Object> springSessionDefaultRedisSerializer(ObjectMapper objectMapper) {
         ObjectMapper mapper = objectMapper.copy();

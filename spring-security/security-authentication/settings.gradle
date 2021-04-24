@@ -1,2 +1,4 @@
-rootProject.name = 'spring-security-authentication-demo'
-include 'inmemory-authentication', 'jdbc-authentication'
+rootProject.name = 'security-authentication-demo'
+
+include 'inmemory-authentication',
+        'jdbc-authentication'

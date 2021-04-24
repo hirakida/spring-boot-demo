@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
 
 @Component
 @RequiredArgsConstructor
-public class GitHubApiClient {
+public class GitHubClient {
     private final WebClient webClient;
 
     public Mono<User> getUser(OAuth2AuthorizedClient client) {

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.client.GitHubApiClient;
+import com.example.client.GitHubClient;
 import com.example.model.Repo;
 
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class OAuth2Controller {
-    private final GitHubApiClient apiClient;
+    private final GitHubClient client;
 
     @GetMapping("/success")
     public String index(@RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient authorizedClient,
@@ -30,9 +30,9 @@ public class OAuth2Controller {
         log.info("{}", oauth2User.getName());
         log.info("{}", oauth2User.getAuthorities());
 
-        List<Repo> repos = apiClient.getUserRepos(authorizedClient)
-                                    .collectList()
-                                    .block();
+        List<Repo> repos = client.getUserRepos(authorizedClient)
+                                 .collectList()
+                                 .block();
         log.info("{}", repos);
 
         model.addAttribute("userAttributes", oauth2User.getAttributes());

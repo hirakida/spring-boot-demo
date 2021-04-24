@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.5.RELEASE' apply false
+    id 'org.springframework.boot' version '2.4.5' apply false
 }
 
 subprojects {
@@ -23,21 +23,8 @@ subprojects {
         implementation('org.springframework.boot:spring-boot-starter-security')
         implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
         implementation('org.webjars:webjars-locator-core')
-        implementation('org.webjars:bootstrap:4.3.1')
-        runtimeOnly('org.springframework.boot:spring-boot-devtools')
+        implementation('org.webjars:bootstrap:4.6.0-1')
+//        runtimeOnly('org.springframework.boot:spring-boot-devtools')
         testImplementation('org.springframework.boot:spring-boot-starter-test')
-    }
-}
-
-project(':inmemory-authentication') {
-    dependencies {
-        implementation('org.thymeleaf.extras:thymeleaf-extras-springsecurity5')
-    }
-}
-
-project(':jdbc-authentication') {
-    dependencies {
-        implementation('org.springframework.boot:spring-boot-starter-jdbc')
-        runtimeOnly('com.h2database:h2')
     }
 }
