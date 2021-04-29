@@ -1,13 +1,18 @@
 package com.example;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import javax.servlet.http.PushBuilder;
 
-@RestController
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
 public class HelloController {
 
     @GetMapping("/")
-    public String hello() {
-        return "Hello, HTTP/2!";
+    public String index(PushBuilder pushBuilder) {
+        if (pushBuilder != null) {
+            pushBuilder.path("main.css").push();
+        }
+        return "index";
     }
 }

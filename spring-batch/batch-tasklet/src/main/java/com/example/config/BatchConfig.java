@@ -2,20 +2,23 @@ package com.example.config;
 
 import java.time.LocalTime;
 
+import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.core.job.builder.FlowBuilder;
+import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.example.listener.JobExecutionListenerImpl;
 import com.example.listener.StepExecutionListenerImpl;
-import com.example.batch.ReaderTasklet;
-import com.example.batch.WriterTasklet;
+import com.example.tasklet.ReaderTasklet;
+import com.example.tasklet.WriterTasklet;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,15 +40,21 @@ public class BatchConfig {
                                 .incrementer(new RunIdIncrementer())
                                 .listener(jobExecutionListenerImpl)
                                 .start(step1())
+                                .next(step2())
                                 .build();
     }
 
     @Bean
     public Job job2() {
+        Flow flow = new FlowBuilder<Flow>("flow")
+                .from(step1())
+                .next(step2())
+                .build();
         return jobBuilderFactory.get("job2")
                                 .incrementer(new RunIdIncrementer())
                                 .listener(jobExecutionListenerImpl)
-                                .start(step2())
+                                .start(flow)
+                                .end()
                                 .build();
     }
 
@@ -54,8 +63,8 @@ public class BatchConfig {
         return jobBuilderFactory.get("job3")
                                 .incrementer(new RunIdIncrementer())
                                 .listener(jobExecutionListenerImpl)
-                                .start(step1())
-                                .next(step2())
+                                .start(step1()).on(ExitStatus.COMPLETED.getExitCode()).to(step2())
+                                .end()
                                 .build();
     }
 
