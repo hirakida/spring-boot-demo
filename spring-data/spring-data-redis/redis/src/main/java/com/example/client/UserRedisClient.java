@@ -1,5 +1,6 @@
 package com.example.client;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -48,5 +49,9 @@ public class UserRedisClient {
 
     public void delete(String key) {
         redisTemplate.delete(key);
+    }
+
+    public void delete(Collection<String> keys) {
+        redisTemplate.delete(keys);
     }
 }

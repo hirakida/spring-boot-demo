@@ -1,0 +1,5 @@
+rootProject.name = 'armeria-grpc-demo'
+
+include ':grpc-client',
+        ':grpc-server',
+        ':protobuf'
