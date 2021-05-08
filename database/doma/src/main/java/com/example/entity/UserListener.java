@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserListener implements EntityListener<User> {
-
     @Override
     public void preInsert(User entity, PreInsertContext<User> context) {
         entity.setCreatedAt(LocalDateTime.now());

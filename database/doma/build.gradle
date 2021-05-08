@@ -1,6 +1,6 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.4.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'org.springframework.boot' version '2.4.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'org.seasar.doma.compile' version '1.1.0'
     id 'java'
 }
@@ -15,23 +15,26 @@ repositories {
 
 dependencyManagement {
     dependencies {
-        dependency 'org.seasar.doma:doma-processor:2.35.0'
-        dependency 'org.seasar.doma.boot:doma-spring-boot-starter:1.4.0'
+        dependencySet(group: 'org.seasar.doma', version: '2.46.1') {
+            entry 'doma-core'
+            entry 'doma-processor'
+        }
     }
 }
 
 dependencies {
+    annotationProcessor 'org.seasar.doma:doma-processor'
+    implementation 'org.seasar.doma:doma-core'
+    implementation('org.seasar.doma.boot:doma-spring-boot-starter:1.5.0') {
+        exclude group: 'org.seasar.doma', module: 'doma-core'
+    }
+
     annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.seasar.doma:doma-processor'
-    implementation 'org.seasar.doma.boot:doma-spring-boot-starter'
-
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     runtimeOnly 'com.h2database:h2'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {

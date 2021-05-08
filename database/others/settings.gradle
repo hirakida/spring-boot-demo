@@ -1,5 +1,4 @@
 rootProject.name = 'database-demo'
 
-include 'flyway',
-        'log4jdbc-log4j2',
+include 'log4jdbc-log4j2',
         'sqlcommenter'

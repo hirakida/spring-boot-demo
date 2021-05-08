@@ -2,9 +2,6 @@ package com.example.controller;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -19,10 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.service.UserService;
 import com.example.entity.User;
+import com.example.service.UserService;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -46,12 +42,12 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public int create(@RequestBody @Validated Request request) {
+    public int create(@RequestBody @Validated UserRequest request) {
         return userService.create(request.toUser());
     }
 
     @PutMapping("/{id}")
-    public int update(@PathVariable long id, @RequestBody @Validated Request request) {
+    public int update(@PathVariable long id, @RequestBody @Validated UserRequest request) {
         return userService.update(id, request.toUser());
     }
 
@@ -59,21 +55,5 @@ public class UserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id) {
         userService.delete(id);
-    }
-
-    @Data
-    public static class Request {
-        @NotNull
-        @Size(max = 30)
-        private String name;
-        @NotNull
-        private Integer age;
-
-        public User toUser() {
-            User user = new User();
-            user.setName(name);
-            user.setAge(age);
-            return user;
-        }
     }
 }

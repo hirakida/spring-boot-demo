@@ -23,7 +23,6 @@ import com.example.entity.User;
 @Dao
 @ConfigAutowireable
 public interface UserRepository {
-
     @Select
     Optional<User> findById(Long id);
 

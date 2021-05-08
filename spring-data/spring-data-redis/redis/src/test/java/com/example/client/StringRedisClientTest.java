@@ -25,7 +25,7 @@ public class StringRedisClientTest {
     private static final String KEY2 = "__KEY2__";
     private static final String VALUE1 = "__VALUE1__";
     @Container
-    private static final GenericContainer<?> CONTAINER = new GenericContainer<>("redis:5.0")
+    private static final GenericContainer<?> CONTAINER = new GenericContainer<>("redis:6.2")
             .withExposedPorts(6379);
     @Autowired
     private StringRedisClient client;

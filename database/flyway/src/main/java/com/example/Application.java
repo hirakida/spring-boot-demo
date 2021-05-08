@@ -1,8 +1,9 @@
 package com.example;
 
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import com.example.repository.AccountRepository;
 import com.example.repository.UserRepository;
@@ -10,18 +11,23 @@ import com.example.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Component
+@SpringBootApplication
+@EnableJpaAuditing
 @RequiredArgsConstructor
 @Slf4j
-public class ApplicationEventListener {
+public class Application implements CommandLineRunner {
     private final AccountRepository accountRepository;
     private final UserRepository userRepository;
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void readyEvent() {
+    @Override
+    public void run(String... args) {
         accountRepository.findAll()
                          .forEach(account -> log.info("{}", account));
         userRepository.findAll()
                       .forEach(user -> log.info("{}", user));
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
     }
 }
