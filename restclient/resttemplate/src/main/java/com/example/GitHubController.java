@@ -1,10 +1,7 @@
 package com.example;
 
 import java.util.List;
-import java.util.Set;
 
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,13 +37,8 @@ public class GitHubController {
     }
 
     @GetMapping("/feeds")
-    public Resource getFeeds() {
+    public JsonNode getFeeds() {
         return client.getFeeds();
-    }
-
-    @GetMapping("/options")
-    public Set<HttpMethod> options() {
-        return client.options();
     }
 
     @ExceptionHandler(HttpClientErrorException.class)

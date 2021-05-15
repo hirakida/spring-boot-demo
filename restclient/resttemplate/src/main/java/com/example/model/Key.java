@@ -1,9 +1,9 @@
 package com.example.model;
 
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class Key {
-    private long id;
-    private String key;
+    long id;
+    String key;
 }

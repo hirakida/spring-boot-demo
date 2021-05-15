@@ -1,10 +1,8 @@
 package com.example.client;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +31,8 @@ public class GitHubApiClient {
 
     public List<Key> getKeys(String username) {
         String url = buildUrl("/users/{username}/keys", false);
-        ResponseEntity<List<Key>> response = restTemplate.exchange(url, HttpMethod.GET, HttpEntity.EMPTY,
-                                                                   KEYS_TYPE, username);
+        ResponseEntity<List<Key>> response =
+                restTemplate.exchange(url, HttpMethod.GET, HttpEntity.EMPTY, KEYS_TYPE, username);
         return response.getBody();
     }
 
@@ -43,14 +41,9 @@ public class GitHubApiClient {
         return restTemplate.getForObject(url, JsonNode.class);
     }
 
-    public Resource getFeeds() {
+    public JsonNode getFeeds() {
         String url = buildUrl("/feeds", true);
-        return restTemplate.exchange(url, HttpMethod.GET, HttpEntity.EMPTY, Resource.class)
-                           .getBody();
-    }
-
-    public Set<HttpMethod> options() {
-        return restTemplate.optionsForAllow(BASE_URL);
+        return restTemplate.getForObject(url, JsonNode.class);
     }
 
     private static String buildUrl(String path, boolean encoded) {
