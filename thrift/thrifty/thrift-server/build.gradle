@@ -1,0 +1,15 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+}
+
+task compileThrift(type: Exec) {
+    commandLine 'thrift', '-r', '--gen', 'java', '../thrift/src/main/thrift/hello.thrift'
+}
+
+build.dependsOn 'compileThrift'
+
+sourceSets {
+    main.java.srcDirs += 'gen-java'
+}
