@@ -1,4 +1,0 @@
-
-```zsh
-$ brew install thrift
-```
