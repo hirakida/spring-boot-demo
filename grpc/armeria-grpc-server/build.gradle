@@ -1,0 +1,9 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation project(':protobuf')
+    implementation 'com.linecorp.armeria:armeria-grpc'
+    implementation 'com.linecorp.armeria:armeria-spring-boot2-webflux-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+}

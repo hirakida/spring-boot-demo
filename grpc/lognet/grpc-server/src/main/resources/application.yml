@@ -1,6 +1,0 @@
-spring:
-  output:
-    ansi:
-      enabled: always
-#grpc:
-#  port: 6565

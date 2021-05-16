@@ -1,0 +1,8 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+server:
+  port: 18080
+  http2:
+    enabled: true

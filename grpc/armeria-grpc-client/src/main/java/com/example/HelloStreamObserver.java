@@ -1,0 +1,27 @@
+package com.example;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.example.Hello.HelloResponse;
+
+import io.grpc.stub.StreamObserver;
+
+public class HelloStreamObserver implements StreamObserver<HelloResponse> {
+    private static final Logger log = LoggerFactory.getLogger(HelloStreamObserver.class);
+
+    @Override
+    public void onNext(HelloResponse response) {
+        log.info("onNext: {}", response.getMessage());
+    }
+
+    @Override
+    public void onError(Throwable t) {
+        log.error("onError: {}", t.getMessage(), t);
+    }
+
+    @Override
+    public void onCompleted() {
+        log.info("onCompleted");
+    }
+}
