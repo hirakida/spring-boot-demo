@@ -1,4 +1,0 @@
-rootProject.name = 'thrifty-demo'
-
-include 'thrift-client',
-        'thrift-server'

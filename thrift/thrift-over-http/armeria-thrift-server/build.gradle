@@ -2,6 +2,7 @@ apply plugin: 'org.springframework.boot'
 
 dependencies {
     implementation project(':thrift')
-    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'com.linecorp.armeria:armeria-thrift0.13'
+    implementation 'com.linecorp.armeria:armeria-spring-boot2-webflux-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

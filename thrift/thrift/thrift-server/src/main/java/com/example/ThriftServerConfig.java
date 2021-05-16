@@ -28,7 +28,7 @@ public class ThriftServerConfig {
 
     private static TServerSocket createServerSocket() {
         try {
-            return new TServerSocket(8080);
+            return new TServerSocket(9090);
         } catch (TTransportException e) {
             throw new RuntimeException(e);
         }
