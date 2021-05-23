@@ -1,0 +1,9 @@
+rootProject.name = 'spring-security-demo'
+
+include 'authentication-inmemory',
+        'authentication-jdbc',
+        'csrf-session',
+        'csrf-cookie',
+        'csrf-spring-session',
+        'login-default',
+        'login-custom'

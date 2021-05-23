@@ -8,19 +8,11 @@
 </head>
 <body>
 <div class="container">
-  <div sec:authorize="!isAuthenticated()">
-    <div>
-      <a href="/oauth2/authorization/github">Authorize</a>
-    </div>
-  </div>
   <div sec:authorize="isAuthenticated()">
     <div>
       <form action="#" th:action="@{/logout}" method="post">
         <input type="submit" value="Logout" />
       </form>
-    </div>
-    <div>
-      <span>Name: </span><span sec:authentication="name"></span>
     </div>
     <div>
       <span>Attributes:</span>

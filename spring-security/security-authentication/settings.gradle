@@ -1,4 +1,0 @@
-rootProject.name = 'security-authentication-demo'
-
-include 'inmemory-authentication',
-        'jdbc-authentication'

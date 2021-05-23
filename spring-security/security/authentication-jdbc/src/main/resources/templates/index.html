@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+</head>
+<body>
+<div class="container">
+  <div>
+    <a th:href="@{/logout}">logout</a>
+  </div>
+  <div>
+    <span th:text="${userDetails}"></span>
+  </div>
+</div>
+</body>
+</html>
