@@ -1,6 +1,7 @@
 
 https://docs.spring.io/spring-boot/docs/2.3.x/reference/html/howto.html#howto-set-active-spring-profiles  
 https://docs.spring.io/spring-boot/docs/2.3.x/reference/html/spring-boot-features.html#boot-features-profiles  
+https://docs.spring.io/spring-framework/docs/5.3.x/reference/html/core.html#beans-definition-profiles  
 
 application property
 ```

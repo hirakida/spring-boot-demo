@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.example.bean.Bar;
 import com.example.bean.Foo;
 import com.example.bean.SecondaryBean;
+import com.example.config.BeanConfig;
 
 import lombok.extern.slf4j.Slf4j;
 

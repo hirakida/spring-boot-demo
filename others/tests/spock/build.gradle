@@ -8,7 +8,6 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     testImplementation 'org.spockframework:spock-core'
     testImplementation 'org.spockframework:spock-spring'
-    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine'
 }
 
 test {

@@ -21,7 +21,7 @@ subprojects {
                 entry 'karate-junit5'
                 entry 'karate-apache'
             }
-            dependencySet(group: 'org.spockframework', version: '1.3-groovy-2.5') {
+            dependencySet(group: 'org.spockframework', version: '2.0-groovy-2.5') {
                 entry 'spock-core'
                 entry 'spock-spring'
             }
