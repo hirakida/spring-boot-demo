@@ -1,6 +1,6 @@
 server:
   http2:
-    enabled: false
+    enabled: true
 spring:
   output:
     ansi:
