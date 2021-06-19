@@ -1,5 +1,7 @@
 package com.example.web;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,6 +11,8 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.firewall.HttpStatusRequestRejectedHandler;
+import org.springframework.security.web.firewall.RequestRejectedHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -45,6 +49,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .withUser("user2").password(encodePassword("user2")).roles(Role.USER.name())
             .and()
             .withUser("admin1").password(encodePassword("admin1")).roles(Role.USER.name(), Role.ADMIN.name());
+    }
+
+    @Bean
+    public RequestRejectedHandler requestRejectedHandler() {
+        return new HttpStatusRequestRejectedHandler(HttpServletResponse.SC_FORBIDDEN);
     }
 
     @Bean

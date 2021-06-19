@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.2.RELEASE' apply false
+    id 'org.springframework.boot' version '2.5.1' apply false
 }
 
 subprojects {
@@ -16,7 +16,7 @@ subprojects {
     }
 
     dependencies {
-        implementation platform('de.codecentric:spring-boot-admin-dependencies:2.2.4')
+        implementation platform('de.codecentric:spring-boot-admin-dependencies:2.4.1')
     }
 
     test {
