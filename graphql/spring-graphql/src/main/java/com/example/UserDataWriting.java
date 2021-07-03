@@ -1,6 +1,6 @@
 package com.example;
 
-import org.springframework.graphql.boot.RuntimeWiringCustomizer;
+import org.springframework.graphql.boot.RuntimeWiringBuilderCustomizer;
 import org.springframework.stereotype.Component;
 
 import com.example.scalars.ExtendedScalars;
@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class UserDataWriting implements RuntimeWiringCustomizer {
+public class UserDataWriting implements RuntimeWiringBuilderCustomizer {
     private final UserRepository userRepository;
 
     @Override

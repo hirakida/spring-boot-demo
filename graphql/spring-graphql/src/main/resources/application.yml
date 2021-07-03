@@ -8,7 +8,9 @@ spring:
       ddl-auto: update
     open-in-view: false
   graphql:
-    schema-location: classpath:/schema/schema.graphqls
+    schema:
+      printer:
+        enabled: true
   output:
     ansi:
       enabled: always
