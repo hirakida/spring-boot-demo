@@ -7,18 +7,16 @@ app.message: default message
 
 ---
 spring:
-  profiles: dev
+  config:
+    activate:
+      on-profile: dev
 
 app.message: dev message
 
 ---
 spring:
-  profiles: production
+  config:
+    activate:
+      on-profile: production
 
 app.message: production message
-
----
-spring:
-  profiles: test
-
-app.message: test message
