@@ -1,0 +1,9 @@
+dependencies {
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+    implementation platform('org.joinfaces:joinfaces-dependencies:4.5.1')
+    implementation 'org.joinfaces:primefaces-spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.h2database:h2'
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+}

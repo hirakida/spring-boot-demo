@@ -1,0 +1,27 @@
+apply plugin: 'groovy'
+
+dependencyManagement {
+    dependencies {
+        dependencySet(group: 'org.spockframework', version: '2.0-groovy-3.0') {
+            entry 'spock-core'
+            entry 'spock-spring'
+        }
+        dependency 'org.codehaus.groovy:groovy-all:3.0.8'
+    }
+}
+
+dependencies {
+    implementation 'org.codehaus.groovy:groovy-all'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.h2database:h2'
+    testImplementation 'org.spockframework:spock-core'
+    testImplementation 'org.spockframework:spock-spring'
+}
+
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+}
