@@ -12,3 +12,13 @@ spring:
   output:
     ansi:
       enabled: always
+
+management:
+  metrics:
+    export:
+      prometheus:
+        pushgateway:
+          enabled: true
+          base-url: http://localhost:9091
+          job: batch-chunk-demo
+          shutdown-operation: push

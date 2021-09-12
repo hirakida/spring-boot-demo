@@ -18,6 +18,6 @@ public class StepExecutionListenerImpl extends StepExecutionListenerSupport {
     @Override
     public ExitStatus afterStep(StepExecution stepExecution) {
         log.info("afterStep {}", stepExecution);
-        return ExitStatus.COMPLETED;
+        return stepExecution.getExitStatus();
     }
 }

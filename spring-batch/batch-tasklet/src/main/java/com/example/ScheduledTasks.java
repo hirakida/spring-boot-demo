@@ -23,20 +23,26 @@ public class ScheduledTasks {
     private final Job job1;
     private final Job job2;
     private final Job job3;
+    private final Job job4;
 
     @Scheduled(cron = "0 * * * * *")
     public void job1() {
         run(job1);
     }
 
-    @Scheduled(cron = "20 * * * * *")
+    @Scheduled(cron = "10 * * * * *")
     public void job2() {
         run(job2);
     }
 
-    @Scheduled(cron = "40 * * * * *")
+    @Scheduled(cron = "20 * * * * *")
     public void job3() {
         run(job3);
+    }
+
+    @Scheduled(cron = "40 * * * * *")
+    public void job4() {
+        run(job4);
     }
 
     private void run(Job job) {

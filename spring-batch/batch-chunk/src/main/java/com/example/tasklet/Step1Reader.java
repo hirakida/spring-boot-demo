@@ -3,6 +3,7 @@ package com.example.tasklet;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.JobParameter;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.StepExecution;
@@ -36,8 +37,9 @@ public class Step1Reader implements ItemStreamReader<User> {
     }
 
     @AfterStep
-    public void afterStep(StepExecution stepExecution) {
+    public ExitStatus afterStep(StepExecution stepExecution) {
         log.info("AfterStep {}", stepExecution);
+        return stepExecution.getExitStatus();
     }
 
     @BeforeRead
@@ -72,7 +74,7 @@ public class Step1Reader implements ItemStreamReader<User> {
 
     @Override
     public void update(ExecutionContext executionContext) {
-        log.info("update");
+        log.info("update: {}", executionContext);
     }
 
     @Override
