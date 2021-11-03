@@ -1,4 +1,4 @@
-package com.example.scalars;
+package com.example.config;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

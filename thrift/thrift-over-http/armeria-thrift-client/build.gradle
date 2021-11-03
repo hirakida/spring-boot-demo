@@ -1,8 +1,0 @@
-apply plugin: 'org.springframework.boot'
-
-dependencies {
-    implementation project(':thrift')
-    implementation 'com.linecorp.armeria:armeria-thrift0.13'
-    implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}

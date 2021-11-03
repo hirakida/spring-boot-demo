@@ -1,6 +1,0 @@
-rootProject.name = 'thrift-over-http-demo'
-
-include 'armeria-thrift-client',
-        'armeria-thrift-server',
-        'thrift',
-        'thrift-client'

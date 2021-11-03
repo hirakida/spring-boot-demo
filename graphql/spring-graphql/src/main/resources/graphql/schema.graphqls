@@ -7,7 +7,7 @@ schema {
 
 type Query {
     user(id: ID!): User
-    searchUser(name: String!): [User!]!
+    userByName(name: String!): [User!]!
     users: [User!]!
 }
 

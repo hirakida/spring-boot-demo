@@ -1,10 +1,7 @@
 dependencyManagement {
     dependencies {
-        dependencySet(group: 'com.graphql-java-kickstart', version: '11.0.0') {
+        dependencySet(group: 'com.graphql-java-kickstart', version: '12.0.0') {
             entry 'graphql-spring-boot-starter'
-            entry 'altair-spring-boot-starter'
-            entry 'graphiql-spring-boot-starter'
-            entry 'voyager-spring-boot-starter'
             entry 'graphql-spring-boot-starter-test'
         }
     }
@@ -14,9 +11,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter'
-    runtimeOnly 'com.graphql-java-kickstart:altair-spring-boot-starter'
-    runtimeOnly 'com.graphql-java-kickstart:graphiql-spring-boot-starter'
-    runtimeOnly 'com.graphql-java-kickstart:voyager-spring-boot-starter'
     runtimeOnly 'com.h2database:h2'
     testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test'
 }

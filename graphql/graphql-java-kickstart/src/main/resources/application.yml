@@ -10,3 +10,8 @@ spring:
   output:
     ansi:
       enabled: always
+graphql:
+  graphiql:
+    enabled: true
+  voyager:
+    enabled: true

@@ -1,5 +1,0 @@
-apply plugin: 'org.jruyi.thrift'
-
-dependencies {
-    implementation 'org.apache.thrift:libthrift'
-}

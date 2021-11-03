@@ -22,7 +22,7 @@ public class UserMutationResolver implements GraphQLMutationResolver {
     }
 
     public User updateUser(Integer id, UserInput input) {
-        User user = userRepository.getOne(id);
+        User user = userRepository.getById(id);
         user.setName(input.getName());
         user.setRoleId(input.getRoleId());
         return userRepository.save(user);

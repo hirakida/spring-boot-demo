@@ -16,7 +16,7 @@ public class UserQueryResolver implements GraphQLQueryResolver {
     private final UserRepository userRepository;
 
     public User user(int id) {
-        return userRepository.getOne(id);
+        return userRepository.getById(id);
     }
 
     public List<User> users() {
