@@ -1,7 +1,5 @@
 rootProject.name = 'grpc-demo'
 
-include ':armeria-grpc-client',
-        ':armeria-grpc-server',
-        ':lognet-grpc-client',
+include ':lognet-grpc-client',
         ':lognet-grpc-server',
         ':protobuf'
