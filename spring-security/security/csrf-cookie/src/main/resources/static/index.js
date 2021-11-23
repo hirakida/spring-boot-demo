@@ -11,11 +11,12 @@ window.onload = () => {
     }
     const request = {'lastName': lastName.value, 'firstName': firstName.value}
 
-    fetch('/', {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify(request)
-    })
+    fetch('/users',
+      {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(request)
+      })
       .then(response => {
         lastNameError.innerText = ''
         firstNameError.innerText = ''
@@ -37,6 +38,8 @@ window.onload = () => {
                 firstNameError.innerText = data['message']
               }
             })
+          } else {
+            console.error(response)
           }
         }
       })

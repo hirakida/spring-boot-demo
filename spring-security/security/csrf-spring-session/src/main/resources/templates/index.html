@@ -9,7 +9,7 @@
 <body>
 <div>
   <div>
-    <form th:action="@{/}" th:object="${form}" method="post">
+    <form th:action="@{/}" th:object="${userForm}" method="post">
       <div>
         <label>last name</label>
         <input type="text" th:field="*{lastName}" />

@@ -3,6 +3,7 @@ spring:
     user:
       name: user
       password: user
+      roles: USER
   output:
     ansi:
       enabled: always

@@ -11,9 +11,9 @@
 <body>
 <div class="container">
   <div class="row mt-3">
-    <a sec:authorize="hasRole(T(com.example.web.Role).ADMIN.name())" th:href="@{/admin1}" class="btn btn-primary">admin1</a>
-    <a sec:authorize="hasRole(T(com.example.web.Role).ADMIN.name())" th:href="@{/admin2}" class="btn btn-primary">admin2</a>
-    <a th:href="@{/logout}" class="btn btn-secondary">logout</a>
+    <a sec:authorize="hasRole(T(com.example.Role).ADMIN.name())" th:href="@{/admin1}" class="btn btn-link">admin1</a>
+    <a sec:authorize="hasRole(T(com.example.Role).ADMIN.name())" th:href="@{/admin2}" class="btn btn-link">admin2</a>
+    <a th:href="@{/logout}" class="btn btn-info">logout</a>
   </div>
   <table class="table" sec:authorize="isAuthenticated()">
     <tr>

@@ -11,8 +11,8 @@
 <body>
 <div class="container">
   <div class="row mt-3">
-    <a th:href="@{/}" class="btn btn-primary">home</a>
-    <a th:href="@{/logout}" class="btn btn-secondary">logout</a>
+    <a th:href="@{/}" class="btn btn-link">home</a>
+    <a th:href="@{/logout}" class="btn btn-info">logout</a>
   </div>
   <table class="table" sec:authorize="isAuthenticated()">
     <tr>
