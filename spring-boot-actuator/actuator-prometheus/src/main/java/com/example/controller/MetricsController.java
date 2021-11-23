@@ -34,9 +34,11 @@ public class MetricsController {
 
     @GetMapping("/count")
     @Timed("count_requests")
-    public double count(@RequestParam(defaultValue = "1") long timeout) {
+    public Double count(@RequestParam(defaultValue = "1") long timeout) {
         return timer.record(() -> {
-            sleep(timeout);
+            try {
+                TimeUnit.SECONDS.sleep(timeout);
+            } catch (Exception ignored) {}
             counter.increment();
             return counter.count();
         });
@@ -52,11 +54,5 @@ public class MetricsController {
     @Timed("datetime_requests")
     public LocalDateTime dateTime() {
         return LocalDateTime.now();
-    }
-
-    private static void sleep(long timeout) {
-        try {
-            TimeUnit.SECONDS.sleep(timeout);
-        } catch (InterruptedException ignored) { }
     }
 }
