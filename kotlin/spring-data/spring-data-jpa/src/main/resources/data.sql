@@ -1,0 +1,11 @@
+DELETE FROM `user`;
+INSERT INTO `user`(id, name, age, created_at, updated_at) VALUES ( 1,  'user1', 21, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+INSERT INTO `user`(id, name, age, created_at, updated_at) VALUES ( 2,  'user2', 22, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+INSERT INTO `user`(id, name, age, created_at, updated_at) VALUES ( 3,  'user3', 23, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+INSERT INTO `user`(id, name, age, created_at, updated_at) VALUES ( 4,  'user4', 24, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+INSERT INTO `user`(id, name, age, created_at, updated_at) VALUES ( 5,  'user5', 25, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+INSERT INTO `user`(id, name, age, created_at, updated_at) VALUES ( 6,  'user6', 26, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+INSERT INTO `user`(id, name, age, created_at, updated_at) VALUES ( 7,  'user7', 27, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+INSERT INTO `user`(id, name, age, created_at, updated_at) VALUES ( 8,  'user8', 28, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+INSERT INTO `user`(id, name, age, created_at, updated_at) VALUES ( 9,  'user9', 29, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+INSERT INTO `user`(id, name, age, created_at, updated_at) VALUES (10, 'user10', 30, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
