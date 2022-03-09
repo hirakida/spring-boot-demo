@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:kotlin-jdbc-db
+    username: sa
+    password:
+  output:
+    ansi:
+      enabled: always

@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:exposed-db
+    username: sa
+    data-password:
+  output:
+    ansi:
+      enabled: always
+  exposed:
+    generate-ddl: true
+logging:
+  level:
+    org.jetbrains.exposed.spring.SpringTransactionManager: DEBUG
