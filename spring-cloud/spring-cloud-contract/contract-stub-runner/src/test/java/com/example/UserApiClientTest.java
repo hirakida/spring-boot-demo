@@ -14,13 +14,13 @@ import reactor.test.StepVerifier;
         properties = "user-api.port=${stubrunner.runningstubs.contract-verifier.port}")
 @AutoConfigureStubRunner(ids = "com.example:contract-verifier:+:stubs",
         stubsMode = StubsMode.LOCAL)
-public class UserApiClientTest {
+class UserApiClientTest {
     @Autowired
     private UserApiClient client;
 
     @Test
-    public void getUserTest() {
-        Mono<User> response = client.getUser(1);
+    void getUser() {
+        final Mono<User> response = client.getUser(1);
         StepVerifier.create(response)
                     .expectNextMatches(result -> result != null
                                                  && result.getId() == 1

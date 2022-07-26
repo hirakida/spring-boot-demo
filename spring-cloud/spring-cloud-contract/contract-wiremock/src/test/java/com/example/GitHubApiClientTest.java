@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
-public class GitHubApiClientTest {
+class GitHubApiClientTest {
     @Autowired
     private GitHubApiClient client;
     @Autowired
@@ -28,25 +28,23 @@ public class GitHubApiClientTest {
     private ObjectMapper objectMapper;
 
     @Test
-    public void getUserTest_200() throws Exception {
-        MockRestServiceServer server = WireMockRestServiceServer.with(restTemplate)
-                                                                .baseUrl(BASE_URL)
-                                                                .stubs("classpath:/stubs/get_user_200.json")
-                                                                .build();
-        JsonNode expected = objectMapper.readTree("{\"login\":\"hirakida\",\"type\":\"User\"}");
-        JsonNode actual = client.getUser("hirakida");
-
+    void getUserTest_200() throws Exception {
+        final MockRestServiceServer server = WireMockRestServiceServer.with(restTemplate)
+                                                                      .baseUrl(BASE_URL)
+                                                                      .stubs("classpath:/stubs/get_user_200.json")
+                                                                      .build();
+        final JsonNode expected = objectMapper.readTree("{\"login\":\"hirakida\",\"type\":\"User\"}");
+        final JsonNode actual = client.getUser("hirakida");
         assertEquals(expected, actual);
         server.verify();
     }
 
     @Test
-    public void getUserTest_404() throws IOException {
-        MockRestServiceServer server = WireMockRestServiceServer.with(restTemplate)
-                                                                .baseUrl(BASE_URL)
-                                                                .stubs("classpath:/stubs/get_user_404.json")
-                                                                .build();
-
+    void getUserTest_404() throws IOException {
+        final MockRestServiceServer server = WireMockRestServiceServer.with(restTemplate)
+                                                                      .baseUrl(BASE_URL)
+                                                                      .stubs("classpath:/stubs/get_user_404.json")
+                                                                      .build();
         assertThrows(HttpClientErrorException.class, () -> client.getUser("hirakida_"));
         server.verify();
     }

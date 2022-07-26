@@ -15,10 +15,10 @@ public class GitHubApiClient {
     private final RestTemplate restTemplate;
 
     public JsonNode getUser(String username) {
-        String url = UriComponentsBuilder.fromHttpUrl(BASE_URL)
-                                         .path("/users/{username}")
-                                         .build(false)
-                                         .toUriString();
+        final String url = UriComponentsBuilder.fromHttpUrl(BASE_URL)
+                                               .path("/users/{username}")
+                                               .build(false)
+                                               .toUriString();
         return restTemplate.getForObject(url, JsonNode.class, username);
     }
 }
