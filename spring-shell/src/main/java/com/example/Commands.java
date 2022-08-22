@@ -7,7 +7,6 @@ import org.springframework.shell.standard.ShellMethod;
 
 @ShellComponent
 public class Commands {
-
     @ShellMethod("hello")
     public void hello(String message) {
         System.out.println(message);

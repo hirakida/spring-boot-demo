@@ -1,4 +1,4 @@
-package com.example.client;
+package com.example;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.retry.annotation.Backoff;
