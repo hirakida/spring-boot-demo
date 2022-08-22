@@ -14,7 +14,6 @@ import reactor.core.publisher.Flux;
 
 @RestController
 public class StreamController {
-
     @GetMapping(path = "/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Response> sse() {
         return Flux.fromStream(Stream.generate(() -> new Response(LocalTime.now())))

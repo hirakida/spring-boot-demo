@@ -7,12 +7,12 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 @WebFluxTest
-public class HelloControllerTest {
+class HelloControllerTest {
     @Autowired
     private WebTestClient client;
 
     @Test
-    public void hello1() {
+    void hello1() {
         client.get()
               .uri("/hello1")
               .exchange()
@@ -23,7 +23,7 @@ public class HelloControllerTest {
     }
 
     @Test
-    public void hello2() {
+    void hello2() {
         client.get()
               .uri("/hello2")
               .exchange()

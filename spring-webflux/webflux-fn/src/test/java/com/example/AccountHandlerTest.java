@@ -15,26 +15,26 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 
 @WebFluxTest
-@Import(UserHandler.class)
-public class UserHandlerTest {
+@Import(AccountHandler.class)
+class AccountHandlerTest {
     @Autowired
     private WebTestClient client;
     @MockBean
-    private UserRepository userRepository;
+    private AccountRepository accountRepository;
 
     @Test
-    public void findAll() {
-        when(userRepository.findAll())
-                .thenReturn(Flux.just(new User(1, "name1", LocalDateTime.of(2020, 12, 1, 0, 0)),
-                                      new User(2, "name2", LocalDateTime.of(2020, 12, 1, 0, 0)),
-                                      new User(3, "name3", LocalDateTime.of(2020, 12, 1, 0, 0))));
+    void findAll() {
+        when(accountRepository.findAll())
+                .thenReturn(Flux.just(new Account(1, "name1", LocalDateTime.of(2020, 12, 1, 0, 0)),
+                                      new Account(2, "name2", LocalDateTime.of(2020, 12, 1, 0, 0)),
+                                      new Account(3, "name3", LocalDateTime.of(2020, 12, 1, 0, 0))));
         String expectedJson = '[' +
                               "{\"id\":1,\"name\":\"name1\",\"createdAt\":\"2020-12-01T00:00:00\"}," +
                               "{\"id\":2,\"name\":\"name2\",\"createdAt\":\"2020-12-01T00:00:00\"}," +
                               "{\"id\":3,\"name\":\"name3\",\"createdAt\":\"2020-12-01T00:00:00\"}" +
                               ']';
         client.get()
-              .uri("http://localhost:8080/users")
+              .uri("http://localhost:8080/accounts")
               .exchange()
               .expectHeader().contentType(MediaType.APPLICATION_JSON)
               .expectStatus().isOk()

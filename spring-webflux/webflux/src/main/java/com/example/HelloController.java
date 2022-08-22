@@ -10,7 +10,6 @@ import reactor.core.publisher.Mono;
 
 @RestController
 public class HelloController {
-
     @GetMapping("/hello1")
     public Mono<Response> hello1() {
         return Mono.just(new Response("Hello!"));

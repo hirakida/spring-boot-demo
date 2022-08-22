@@ -25,13 +25,13 @@ import reactor.core.publisher.Mono;
 
 @Component
 @RequiredArgsConstructor
-public class UserHandler {
-    private final UserRepository userRepository;
+public class AccountHandler {
+    private final AccountRepository accountRepository;
 
     @Bean
     public RouterFunction<ServerResponse> routes() {
         return RouterFunctions.route()
-                              .path("/users", builder1 -> builder1
+                              .path("/accounts", builder1 -> builder1
                                       .nest(accept(APPLICATION_JSON), builder2 -> builder2
                                               .GET("/{id}", this::findById)
                                               .GET(queryParam("name", param -> true), this::findByName)
@@ -41,34 +41,34 @@ public class UserHandler {
     }
 
     private Mono<ServerResponse> findAll(ServerRequest request) {
-        return ok().body(userRepository.findAll(), User.class);
+        return ok().body(accountRepository.findAll(), Account.class);
     }
 
     private Mono<ServerResponse> findByName(ServerRequest request) {
-        Flux<User> users = request.queryParam("name")
-                                  .map(userRepository::findByName)
-                                  .orElseGet(Flux::empty);
-        return ok().body(users, User.class);
+        Flux<Account> users = request.queryParam("name")
+                                     .map(accountRepository::findByName)
+                                     .orElseGet(Flux::empty);
+        return ok().body(users, Account.class);
     }
 
     private Mono<ServerResponse> findById(ServerRequest request) {
         int id = Integer.parseInt(request.pathVariable("id"));
-        return userRepository.findById(id)
-                             .flatMap(user -> ok().bodyValue(user))
-                             .switchIfEmpty(notFound().build());
+        return accountRepository.findById(id)
+                                .flatMap(account -> ok().bodyValue(account))
+                                .switchIfEmpty(notFound().build());
     }
 
     private Mono<ServerResponse> create(ServerRequest request) {
-        Mono<User> user = request.bodyToMono(UserRequest.class)
-                                 .map(req -> new User(req.getName()));
-        return userRepository.saveAll(user)
-                             .single()
-                             .flatMap(created -> created(URI.create("/users/" + created.getId())).build())
-                             .switchIfEmpty(badRequest().build());
+        Mono<Account> user = request.bodyToMono(Request.class)
+                                    .map(req -> new Account(req.getName()));
+        return accountRepository.saveAll(user)
+                                .single()
+                                .flatMap(created -> created(URI.create("/accounts/" + created.getId())).build())
+                                .switchIfEmpty(badRequest().build());
     }
 
     @Data
-    private static class UserRequest {
+    private static class Request {
         private String name;
     }
 }
