@@ -10,10 +10,15 @@
 <body>
 <div class="container">
   <div class="row mt-3">
-    <button class="btn btn-primary" id="connect">Connect</button>
-    <button class="btn btn-secondary" id="disconnect" disabled="disabled">Disconnect</button>
+    <div class="col">
+      <button class="btn btn-primary" id="connect">Connect</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-secondary" id="disconnect" disabled="disabled">Disconnect</button>
+    </div>
   </div>
-  <div class="row">
+
+  <div>
     <div class="form-group">
       <label>name</label>
       <input type="text" class="form-control" id="username" placeholder="your name" />
@@ -23,11 +28,14 @@
       <input type="text" class="form-control" id="message" placeholder="message" />
     </form>
   </div>
-  <div class="panel">
-    <div id="errorMessage"></div>
-  </div>
-  <div class="panel">
-    <div id="response"></div>
+
+  <div>
+    <div class="panel">
+      <div id="errorMessage"></div>
+    </div>
+    <div class="panel">
+      <div id="response"></div>
+    </div>
   </div>
 </div>
 <div id="room" th:data-room-id="${roomId}"></div>

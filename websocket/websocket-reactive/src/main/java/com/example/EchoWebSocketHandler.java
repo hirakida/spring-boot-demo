@@ -12,7 +12,6 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class EchoWebSocketHandler implements WebSocketHandler {
-
     @Override
     public Mono<Void> handle(WebSocketSession session) {
         Flux<WebSocketMessage> messages =

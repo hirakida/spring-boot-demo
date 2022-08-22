@@ -3,29 +3,6 @@
 const URL = 'ws://localhost:8080/ws';
 let ws = null;
 
-const onOpen = () => {
-  openBtn.disabled = true;
-  closeBtn.disabled = false;
-  console.log('onopen');
-};
-
-const onClose = () => {
-  openBtn.disabled = false;
-  closeBtn.disabled = true;
-  console.log('onclose');
-};
-
-const onMessage = message => {
-  const p = document.createElement('p');
-  p.textContent = message.data;
-  response.insertBefore(p, response.firstElementChild);
-  console.log('onmessage message=' + message.data);
-};
-
-const onError = event => {
-  console.log('onerror', event)
-};
-
 openBtn.onclick = () => {
   if (ws === null) {
     ws = new WebSocket(URL);
@@ -52,3 +29,26 @@ form.onsubmit = event => {
     }
   }
 };
+
+function onOpen() {
+  openBtn.disabled = true;
+  closeBtn.disabled = false;
+  console.log('onopen');
+}
+
+function onMessage(message) {
+  const p = document.createElement('p');
+  p.textContent = message.data;
+  response.insertBefore(p, response.firstElementChild);
+  console.log('onmessage message=' + message.data);
+}
+
+function onClose() {
+  openBtn.disabled = false;
+  closeBtn.disabled = true;
+  console.log('onclose');
+}
+
+function onError(event) {
+  console.log('onerror', event);
+}

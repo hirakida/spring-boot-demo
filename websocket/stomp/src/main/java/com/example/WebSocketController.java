@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example;
 
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -34,11 +33,5 @@ public class WebSocketController {
     @SendToUser("/queue/errors")
     public String handleException(Throwable e) {
         return e.getMessage();
-    }
-
-    @Data
-    public static class Payload {
-        private String username;
-        private String message;
     }
 }
