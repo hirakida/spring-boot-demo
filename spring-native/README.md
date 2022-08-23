@@ -1,11 +1,18 @@
 
 https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/  
 
+Buildpacks
 ```
-$ sdk install java 21.1.0.r11-grl
-$ sdk use java 21.1.0.r11-grl
-$ gu install native-image
+% ./gradlew bootBuildImage
+% docker run --rm -p 8080:8080 spring-native-demo:0.0.1-SNAPSHOT
+```
 
-$ ./gradlew nativeBuild
-$ build/native/spring-native-demo
+Native Build
+```
+% sdk install java 22.2.r11-grl
+% sdk use java 22.2.r11-grl
+% gu install native-image
+
+% ./gradlew nativeCompile
+% build/native/nativeCompile/spring-native-demo
 ```

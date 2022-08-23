@@ -24,13 +24,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ExtendWith(RestDocumentationExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class UserControllerTest {
+class UserControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setUp(WebApplicationContext context, RestDocumentationContextProvider contextProvider) {
+    void setUp(WebApplicationContext context, RestDocumentationContextProvider contextProvider) {
         mockMvc = MockMvcBuilders.webAppContextSetup(context)
                                  .apply(documentationConfiguration(contextProvider))
                                  .alwaysDo(document("{method-name}/{step}/"))
@@ -38,13 +38,13 @@ public class UserControllerTest {
     }
 
     @Test
-    public void findAll() throws Exception {
+    void findAll() throws Exception {
         mockMvc.perform(RestDocumentationRequestBuilders.get("/users"))
                .andExpect(status().isOk());
     }
 
     @Test
-    public void findById() throws Exception {
+    void findById() throws Exception {
         mockMvc.perform(RestDocumentationRequestBuilders.get("/users/{id}", 1))
                .andExpect(status().isOk())
                .andDo(document("UserController",
@@ -52,7 +52,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void update() throws Exception {
+    void update() throws Exception {
         UserRequest request = new UserRequest();
         request.setName("updated User");
         request.setEmail("put@example.com");
@@ -65,7 +65,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void create() throws Exception {
+    void create() throws Exception {
         UserRequest request = new UserRequest();
         request.setName("new User");
         request.setEmail("post@example.com");
@@ -77,7 +77,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void deleteById() throws Exception {
+    void deleteById() throws Exception {
         mockMvc.perform(RestDocumentationRequestBuilders.delete("/users/{id}", 1))
                .andExpect(status().isNoContent())
                .andDo(document("UserController",

@@ -1,9 +1,8 @@
 plugins {
-    id 'org.springframework.boot' version '2.5.2'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'org.springframework.experimental.aot' version '0.12.1'
     id 'java'
-    id 'org.springframework.experimental.aot' version '0.10.1'
-    id 'org.graalvm.buildtools.native' version '0.9.1'
 }
 
 group = 'com.example'
@@ -11,8 +10,8 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
-    maven { url 'https://repo.spring.io/release' }
     mavenCentral()
+    maven { url 'https://repo.spring.io/release' }
 }
 
 dependencies {
