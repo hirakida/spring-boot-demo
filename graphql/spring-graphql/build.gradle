@@ -1,13 +1,7 @@
-repositories {
-    maven { url 'https://repo.spring.io/milestone' }
-//    maven { url 'https://repo.spring.io/snapshot' }
-}
-
 dependencies {
-    def version = '1.0.0-M4'
-    implementation "org.springframework.experimental:graphql-spring-boot-starter:${version}"
+    implementation 'org.springframework.boot:spring-boot-starter-graphql'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'com.h2database:h2'
-    testImplementation "org.springframework.graphql:spring-graphql-test:${version}"
+    testImplementation 'org.springframework.graphql:spring-graphql-test'
 }

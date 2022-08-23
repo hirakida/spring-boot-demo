@@ -1,6 +1,6 @@
 dependencyManagement {
     dependencies {
-        dependencySet(group: 'com.graphql-java-kickstart', version: '12.0.0') {
+        dependencySet(group: 'com.graphql-java-kickstart', version: '14.0.0') {
             entry 'graphql-spring-boot-starter'
             entry 'graphql-spring-boot-starter-test'
         }
