@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SessionController {
-
     @GetMapping("/")
     public String index(HttpSession session) {
         return session.getId();

@@ -11,7 +11,6 @@ import reactor.core.publisher.Mono;
 
 @RestController
 public class SessionController {
-
     @GetMapping("/")
     public Mono<WebSession> index(WebSession session) {
         if (session.getAttributes().get("datetime") == null) {

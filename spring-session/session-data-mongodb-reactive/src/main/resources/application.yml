@@ -1,6 +1,13 @@
 spring:
   session:
     store-type: mongodb
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      username: root
+      password: pass
+      authentication-database: admin
   output:
     ansi:
       enabled: always

@@ -2,12 +2,12 @@ spring:
   session:
     store-type: jdbc
   datasource:
-    initialization-mode: always
-    sql-script-encoding: UTF-8
-    schema: classpath:org/springframework/session/jdbc/schema-h2.sql
     url: jdbc:h2:mem:spring-session-jdbc;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password:
+  h2:
+    console:
+      enabled: true
   output:
     ansi:
       enabled: always

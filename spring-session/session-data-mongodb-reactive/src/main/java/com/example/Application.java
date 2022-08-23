@@ -2,9 +2,7 @@ package com.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.session.data.mongo.config.annotation.web.reactive.EnableMongoWebSession;
 
-@EnableMongoWebSession(maxInactiveIntervalInSeconds = 60)
 @SpringBootApplication
 public class Application {
 

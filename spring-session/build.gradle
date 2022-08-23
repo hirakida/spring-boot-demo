@@ -1,6 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.5.RELEASE' apply false
-    id 'com.avast.gradle.docker-compose' version '0.10.9' apply false
+    id 'org.springframework.boot' version '2.7.3' apply false
 }
 
 subprojects {
@@ -19,10 +18,7 @@ subprojects {
     dependencies {
         annotationProcessor 'org.projectlombok:lombok'
         compileOnly 'org.projectlombok:lombok'
-
-        testImplementation('org.springframework.boot:spring-boot-starter-test') {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        }
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 
     test {
