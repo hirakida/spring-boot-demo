@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Configuration;
 import com.example.entity.User;
 import com.example.listener.JobExecutionListenerImpl;
 import com.example.listener.StepExecutionListenerImpl;
-import com.example.tasklet.Step1Processor;
-import com.example.tasklet.Step1Reader;
-import com.example.tasklet.Step1Writer;
+import com.example.step.Step1Processor;
+import com.example.step.Step1Reader;
+import com.example.step.Step1Writer;
 
 import lombok.RequiredArgsConstructor;
 
