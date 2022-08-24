@@ -1,7 +1,9 @@
 package com.example;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -17,6 +19,7 @@ public class User {
     private String id;
     private String name;
     private String message;
+    @CreatedDate
     @Field(type = FieldType.Date, format = DateFormat.basic_date_time)
-    private LocalDateTime createdAt;
+    private Instant createdAt;
 }

@@ -1,12 +1,8 @@
-apply plugin: 'com.avast.gradle.docker-compose'
+apply plugin: 'org.springframework.boot'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.testcontainers:mysql'
     testImplementation 'org.testcontainers:junit-jupiter'
-}
-
-dockerCompose {
-    isRequiredBy(bootRun)
 }

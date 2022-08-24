@@ -1,2 +1,0 @@
-rootProject.name = 'spring-data-mongodb-demo'
-include 'mongodb', 'mongodb-reactive'

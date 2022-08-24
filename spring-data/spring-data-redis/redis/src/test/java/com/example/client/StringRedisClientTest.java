@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
-public class StringRedisClientTest extends AbstractRedisInitializer {
+class StringRedisClientTest extends AbstractRedisInitializer {
     private static final String KEY1 = "__KEY1__";
     private static final String KEY2 = "__KEY2__";
     private static final String VALUE1 = "__VALUE1__";
@@ -28,7 +28,7 @@ public class StringRedisClientTest extends AbstractRedisInitializer {
     }
 
     @Test
-    public void get() {
+    void get() {
         Optional<String> result = client.get(KEY1);
         assertTrue(result.isPresent());
         assertEquals(VALUE1, result.get());
@@ -38,7 +38,7 @@ public class StringRedisClientTest extends AbstractRedisInitializer {
     }
 
     @Test
-    public void set() {
+    void set() {
         String key = "__KEY__";
         String value = "__VALUE__";
         Optional<String> result = client.get(key);
@@ -51,13 +51,13 @@ public class StringRedisClientTest extends AbstractRedisInitializer {
     }
 
     @Test
-    public void exists() {
+    void exists() {
         assertTrue(client.exists(KEY1, VALUE1));
         assertFalse(client.exists(KEY2, VALUE1));
     }
 
     @Test
-    public void checkAndSet() {
+    void checkAndSet() {
         assertTrue(client.checkAndSet(KEY1, VALUE1, VALUE2));
         Optional<String> result = client.get(KEY1);
         assertTrue(result.isPresent());

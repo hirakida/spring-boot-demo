@@ -20,7 +20,7 @@ import reactor.test.StepVerifier;
 
 @DataMongoTest
 @Testcontainers
-public class UserRepositoryTest {
+class UserRepositoryTest {
     @Container
     private static final GenericContainer<?> CONTAINER =
             new GenericContainer<>(DockerImageName.parse("mongo:4.4"))
@@ -38,7 +38,7 @@ public class UserRepositoryTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         List<User> users = IntStream.rangeClosed(1, 5)
                                     .mapToObj(i -> new User("name" + i, 20 + i))
                                     .collect(toList());
@@ -48,7 +48,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void findByName() {
+    void findByName() {
         StepVerifier.create(userRepository.findByName("name1"))
                     .expectNextMatches(result -> "name1".equals(result.getName())
                                                  && result.getAge() == 21)
@@ -56,7 +56,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void save() {
+    void save() {
         User user = new User();
         user.setName("name6");
         user.setAge(30);

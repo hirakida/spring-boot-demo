@@ -12,18 +12,18 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
-public class UserRepositoryTest extends AbstractContainerInitializer {
+class UserRepositoryTest extends AbstractContainerInitializer {
     @Autowired
     private UserRepository userRepository;
 
     @Test
-    public void findAll() {
+    void findAll() {
         List<User> result = userRepository.findAll();
         assertEquals(5, result.size());
     }
 
     @Test
-    public void findByName() {
+    void findByName() {
         List<User> result = userRepository.findByName("user1");
         assertEquals(1, result.size());
         assertEquals("user1", result.get(0).getName());

@@ -1,11 +1,7 @@
-apply plugin: 'com.avast.gradle.docker-compose'
+apply plugin: 'org.springframework.boot'
 
 dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.testcontainers:postgresql'
     testImplementation 'org.testcontainers:junit-jupiter'
-}
-
-dockerCompose {
-    isRequiredBy(bootRun)
 }

@@ -18,7 +18,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Testcontainers
-public class PersonRepositoryTest {
+class PersonRepositoryTest {
     @Container
     private static final PostgreSQLContainer<?> CONTAINER = new PostgreSQLContainer<>("postgres:10");
     @Autowired
@@ -32,7 +32,7 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    public void findAll() {
+    void findAll() {
         List<Person> result = personRepository.findAll();
         assertEquals(5, result.size());
     }

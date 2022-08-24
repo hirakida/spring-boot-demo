@@ -1,13 +1,14 @@
 spring:
   datasource:
-    initialization-mode: always
-    sql-script-encoding: UTF-8
     url: jdbc:postgresql://localhost:5432/postgres
     username: sa
-    password:
+    password: pass
+  sql:
+    init:
+      mode: always
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     open-in-view: false
     properties:
       hibernate:

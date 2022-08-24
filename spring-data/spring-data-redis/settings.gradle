@@ -1,5 +1,0 @@
-rootProject.name = 'spring-data-redis-demo'
-
-include 'redis',
-        'redis-pubsub',
-        'redis-reactive'

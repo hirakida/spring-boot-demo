@@ -15,37 +15,37 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 public class UserService {
-    private final UserRepository userRepository;
+    private final UserRepository repository;
 
     public Page<User> findAll(Pageable pageable) {
-        return userRepository.findAll(pageable);
+        return repository.findAll(pageable);
     }
 
     public List<User> findAll() {
-        return userRepository.findAll(Sort.by(Direction.ASC, "id"));
+        return repository.findAll(Sort.by(Direction.ASC, "id"));
     }
 
     public User findById(int id) {
-        return userRepository.findById(id)
-                             .orElseThrow();
+        return repository.findById(id)
+                                 .orElseThrow();
     }
 
     public User create(User user) {
-        return userRepository.save(user);
+        return repository.save(user);
     }
 
     public User update(User request) {
         User user = findById(request.getId());
         user.setName(request.getName());
-        return userRepository.save(user);
+        return repository.save(user);
     }
 
     public void deleteAll() {
-        userRepository.deleteAll();
+        repository.deleteAll();
     }
 
     public void delete(int id) {
         User user = findById(id);
-        userRepository.deleteById(user.getId());
+        repository.deleteById(user.getId());
     }
 }

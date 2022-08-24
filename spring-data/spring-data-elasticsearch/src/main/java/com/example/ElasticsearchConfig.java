@@ -9,8 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.client.ClientConfiguration;
 import org.springframework.data.elasticsearch.client.RestClients;
 import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
+import org.springframework.data.elasticsearch.config.EnableElasticsearchAuditing;
 
 @Configuration
+@EnableElasticsearchAuditing
 public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
     @Value("${elasticsearch.host:localhost}")
     private String host;

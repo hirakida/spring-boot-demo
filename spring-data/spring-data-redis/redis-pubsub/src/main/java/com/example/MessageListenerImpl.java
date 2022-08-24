@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MessageListenerImpl implements MessageListener {
-
     @Override
     public void onMessage(Message message, @Nullable byte[] pattern) {
         final String channel = new String(message.getChannel(), StandardCharsets.UTF_8);

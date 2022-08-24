@@ -13,18 +13,18 @@ import org.springframework.test.context.jdbc.Sql;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Sql(scripts = "classpath:/testdata.sql")
-public class UserIntegrationTest extends AbstractContainerInitializer {
+ class UserIntegrationTest extends AbstractContainerInitializer {
     @Autowired
     private TestRestTemplate restTemplate;
 
     @Test
-    public void findAll() {
+     void findAll() {
         User[] response = restTemplate.getForObject("/users", User[].class);
         assertEquals(10, response.length);
     }
 
     @Test
-    public void findById() {
+     void findById() {
         User expected = new User();
         expected.setId(6);
         expected.setName("user6");

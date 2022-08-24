@@ -17,11 +17,11 @@ import lombok.RequiredArgsConstructor;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @TestConstructor(autowireMode = AutowireMode.ALL)
 @RequiredArgsConstructor
-public class UserIntegrationTest {
+class UserIntegrationTest {
     private final TestRestTemplate restTemplate;
 
     @Test
-    public void findById() {
+    void findById() {
         User user = new User();
         user.setId(1);
         user.setName("user1");

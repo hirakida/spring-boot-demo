@@ -5,7 +5,7 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 
-public abstract class AbstractRedisInitializer {
+abstract class AbstractRedisInitializer {
     @Container
     private static final GenericContainer<?> CONTAINER =
             new GenericContainer<>("redis:6.2")

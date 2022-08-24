@@ -28,7 +28,6 @@ public class ApplicationEventListener {
                      User user = new User();
                      user.setName(name);
                      user.setMessage("Hello " + name + '!');
-                     user.setCreatedAt(LocalDateTime.now());
                      userRepository.save(user);
                  });
 

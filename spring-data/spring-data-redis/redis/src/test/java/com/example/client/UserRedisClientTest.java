@@ -18,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import com.example.User;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
-public class UserRedisClientTest extends AbstractRedisInitializer {
+class UserRedisClientTest extends AbstractRedisInitializer {
     private static final Clock CLOCK = Clock.fixed(Instant.parse("2021-01-01T00:00:00Z"),
                                                    ZoneId.systemDefault());
     @Autowired
@@ -31,7 +31,7 @@ public class UserRedisClientTest extends AbstractRedisInitializer {
     }
 
     @Test
-    public void get() {
+    void get() {
         User expected = new User(1, "name1", LocalDateTime.now(CLOCK), LocalDateTime.now(CLOCK));
         Optional<User> actual = client.get(1);
         assertTrue(actual.isPresent());

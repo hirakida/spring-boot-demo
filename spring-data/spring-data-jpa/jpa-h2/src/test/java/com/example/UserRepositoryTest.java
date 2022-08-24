@@ -16,64 +16,64 @@ import lombok.RequiredArgsConstructor;
 @DataJpaTest
 @TestConstructor(autowireMode = AutowireMode.ALL)
 @RequiredArgsConstructor
-public class UserRepositoryTest {
-    private final UserRepository userRepository;
+class UserRepositoryTest {
+    private final UserRepository repository;
     private final JdbcTemplate jdbcTemplate;
 
     @Test
-    public void findAll() {
-        List<User> result = userRepository.findAll();
+    void findAll() {
+        List<User> result = repository.findAll();
         assertEquals(6, result.size());
     }
 
     @Test
-    public void save() {
+    void save() {
         User user = new User();
         user.setName("user7");
-        userRepository.save(user);
+        repository.save(user);
 
-        List<User> result = userRepository.findAll();
+        List<User> result = repository.findAll();
         int count = JdbcTestUtils.countRowsInTable(jdbcTemplate, "user");
         assertEquals(7, result.size());
         assertEquals(7, count);
     }
 
     @Test
-    public void findByUsername() {
-        List<User> result = userRepository.findByUsername("user1");
+    void findByUsername() {
+        List<User> result = repository.findByUsername("user1");
         assertEquals(1, result.size());
         assertEquals("user1", result.get(0).getName());
     }
 
     @Test
-    public void queryMethods() {
-        List<User> result = userRepository.findByName("user1");
+    void queryMethods() {
+        List<User> result = repository.findByName("user1");
         assertEquals(1, result.size());
         assertEquals("user1", result.get(0).getName());
 
-        result = userRepository.findByNameLike("user%");
+        result = repository.findByNameLike("user%");
         assertEquals(6, result.size());
 
-        result = userRepository.findByNameStartingWith("user");
+        result = repository.findByNameStartingWith("user");
         assertEquals(6, result.size());
 
-        result = userRepository.findByNameEndingWith("2");
+        result = repository.findByNameEndingWith("2");
         assertEquals(1, result.size());
         assertEquals("user2", result.get(0).getName());
 
-        result = userRepository.findByNameContaining("user");
+        result = repository.findByNameContaining("user");
         assertEquals(6, result.size());
 
-        result = userRepository.findByIdLessThan(4);
+        result = repository.findByIdLessThan(4);
         assertEquals(3, result.size());
 
-        result = userRepository.findByIdGreaterThan(4);
+        result = repository.findByIdGreaterThan(4);
         assertEquals(2, result.size());
 
-        result = userRepository.findByEnabledTrue();
+        result = repository.findByEnabledTrue();
         assertEquals(6, result.size());
 
-        result = userRepository.findByEnabledFalse();
+        result = repository.findByEnabledFalse();
         assertEquals(0, result.size());
     }
 }

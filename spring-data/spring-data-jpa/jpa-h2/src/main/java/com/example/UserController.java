@@ -34,23 +34,20 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-//    public User findById(@PathVariable int id) {
-//        return userService.findById(id);
-//    }
     public User findById(@PathVariable("id") User user) {
         return user;
     }
 
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public User create(@RequestBody @Validated UserRequest request) {
+    public User create(@RequestBody @Validated Request request) {
         User user = new User();
         user.setName(request.getName());
         return userService.create(user);
     }
 
     @PutMapping("/users/{id}")
-    public User update(@PathVariable int id, @RequestBody @Validated UserRequest request) {
+    public User update(@PathVariable int id, @RequestBody @Validated Request request) {
         User user = new User();
         user.setId(id);
         user.setName(request.getName());
@@ -75,7 +72,7 @@ public class UserController {
     }
 
     @Data
-    public static class UserRequest {
+    public static class Request {
         @NotNull
         private String name;
     }

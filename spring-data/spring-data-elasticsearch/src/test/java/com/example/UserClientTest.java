@@ -18,7 +18,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
 @Testcontainers
-public class UserClientTest {
+class UserClientTest {
     @Container
     private static final ElasticsearchContainer CONTAINER =
             new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch-oss:7.6.2")
@@ -32,7 +32,7 @@ public class UserClientTest {
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         User user = new User();
         user.setName("test1");
         client.index(user);
@@ -40,7 +40,7 @@ public class UserClientTest {
     }
 
     @Test
-    public void search() {
+    void search() {
         List<SearchHit<User>> response = client.search("test1");
         assertEquals(1, response.size());
     }

@@ -1,6 +1,0 @@
-rootProject.name = 'spring-data-jpa-demo'
-
-include 'jpa-h2',
-        'jpa-hsqldb',
-        'jpa-mysql',
-        'jpa-postgres'

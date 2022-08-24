@@ -15,14 +15,14 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 
 @WebFluxTest
-public class UserControllerTest {
+class UserControllerTest {
     @Autowired
     private WebTestClient client;
     @MockBean
     private UserRepository userRepository;
 
     @Test
-    public void findAll() {
+    void findAll() {
         LocalDateTime now = LocalDateTime.parse("2019-11-09T10:00:00");
         List<User> users = List.of(new User("1", "name1", 21, now, now, 1L),
                                    new User("2", "name2", 22, now, now, 1L),
