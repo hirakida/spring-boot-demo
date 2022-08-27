@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 
-import com.example.client.GitHubApiClient;
 import com.example.model.Key;
 import com.example.model.User;
 import com.fasterxml.jackson.databind.JsonNode;

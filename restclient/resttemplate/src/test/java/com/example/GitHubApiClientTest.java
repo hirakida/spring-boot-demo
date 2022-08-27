@@ -1,4 +1,4 @@
-package com.example.client;
+package com.example;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
@@ -17,14 +17,14 @@ import com.example.model.User;
 
 @RestClientTest(GitHubApiClient.class)
 @AutoConfigureWebClient(registerRestTemplate = true)
-public class GitHubApiClientTest {
+class GitHubApiClientTest {
     @Autowired
     private MockRestServiceServer server;
     @Autowired
     private GitHubApiClient client;
 
     @Test
-    public void getUser() {
+    void getUser() {
         final String responseBody = "{\"id\":1,\"name\":\"hirakida\"}";
         server.expect(requestTo("https://api.github.com/users/hirakida"))
               .andExpect(method(HttpMethod.GET))

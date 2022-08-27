@@ -1,4 +1,4 @@
-package com.example.client;
+package com.example;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
@@ -22,12 +22,12 @@ import reactor.test.StepVerifier;
 @SpringBootTest(webEnvironment = WebEnvironment.NONE,
         properties = "github.base-url=http://localhost:8081")
 @AutoConfigureWireMock(port = 8081)
-public class GitHubApiClientTest {
+class GitHubApiClientTest {
     @Autowired
     private GitHubApiClient client;
 
     @Test
-    public void getUser() {
+    void getUser() {
         String body = "{\"login\":\"hirakida\",\"id\":100}";
         stubFor(get(urlEqualTo("/users/hirakida"))
                         .willReturn(aResponse()
