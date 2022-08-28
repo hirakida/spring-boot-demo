@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,6 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Configuration
 public class EmailConfig {
-
     @Bean
     public SpringTemplateEngine emailTemplateEngine() {
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
