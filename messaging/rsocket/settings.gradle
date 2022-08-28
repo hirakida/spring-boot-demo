@@ -1,6 +1,0 @@
-rootProject.name = 'rsocket-demo'
-
-include 'model',
-        'rsocket-client',
-        'rsocket-tcp-server',
-        'rsocket-websocket-server'
