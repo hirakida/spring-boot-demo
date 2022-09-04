@@ -1,3 +1,0 @@
-rootProject.name = 'http2-demo'
-
-include 'h2', 'h2c'

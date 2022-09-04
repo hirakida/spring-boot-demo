@@ -1,10 +1,8 @@
 rootProject.name = 'spring-mvc-demo'
 
 include 'argument-resolver',
-        'caching',
         'filter',
         'formatter',
-        'https',
         'locale',
         'messages',
         'rest-service',
