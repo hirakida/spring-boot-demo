@@ -1,6 +1,8 @@
 rootProject.name = 'http-demo'
 
-include 'http2-h2',
-        'http2-h2c',
-        'http-caching',
-        'https'
+include ':cors:api',
+        ':cors:client',
+        ':http2-h2',
+        ':http2-h2c',
+        ':http-caching',
+        ':https'

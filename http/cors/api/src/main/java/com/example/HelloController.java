@@ -12,4 +12,6 @@ public class HelloController {
     public Response hello() {
         return new Response("Hello!");
     }
+
+    public record Response(String content) {}
 }
