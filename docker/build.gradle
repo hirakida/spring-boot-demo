@@ -1,12 +1,12 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.3'
+    id 'org.springframework.boot' version '2.7.6'
     id 'io.spring.dependency-management' version '1.0.13.RELEASE'
     id 'java'
 }
 
 group = 'com.example'
 version = '0.0.1'
-sourceCompatibility = JavaVersion.VERSION_11
+sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
@@ -29,7 +29,7 @@ bootBuildImage {
     publish = true
 
     environment = [
-            'BP_JVM_VERSION'                   : '11.*',
+            'BP_JVM_VERSION'                   : '17.*',
             'BPE_OVERRIDE_BPL_JVM_THREAD_COUNT': '10',
             'BPE_APPEND_JAVA_TOOL_OPTIONS'     : '-XX:ReservedCodeCacheSize=10M',
             'BPE_DELIM_JAVA_TOOL_OPTIONS'      : ' '

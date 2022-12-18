@@ -1,6 +1,0 @@
-rootProject.name = 'cache-demo'
-
-include 'cache-caffeine',
-        'cache-hazelcast',
-        'cache-redis',
-        'cache-simple'

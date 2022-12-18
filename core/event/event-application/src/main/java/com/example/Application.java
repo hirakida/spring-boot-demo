@@ -11,7 +11,6 @@ import com.example.listeners.ApplicationStartingEventListener;
 
 @SpringBootApplication
 public class Application {
-
     public static void main(String[] args) {
         SpringApplication application = new SpringApplication(Application.class);
         application.addListeners(new ApplicationStartingEventListener(),

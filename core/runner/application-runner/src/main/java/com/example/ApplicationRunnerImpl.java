@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ApplicationRunnerImpl implements ApplicationRunner {
-
     @Override
     public void run(ApplicationArguments args) {
         Set<String> optionNames = args.getOptionNames();
