@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>index</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+  <div>
+    <a th:href="@{/logout}" class="btn btn-link">logout</a>
+  </div>
+  <div>
+    <table class="table">
+      <thead></thead>
+      <tbody>
+      <tr>
+        <td>userDetails</td>
+        <td th:text="${userDetails}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+dependencies {
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    implementation 'org.webjars:webjars-locator-core'
+    implementation 'org.webjars:bootstrap'
+}
