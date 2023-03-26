@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CORS</title>
+  <script>
+    window.onload = () => {
+      fetch('http://localhost:18080/hello', {
+        headers: {
+          'X-Requested-With': 'fetch'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          const div = document.getElementById('content');
+          div.textContent = data.content;
+        }).catch(e => console.log(e.message))
+    };
+  </script>
+</head>
+<body>
+<div class="container">
+  <div id="content"></div>
+</div>
+</body>
+</html>

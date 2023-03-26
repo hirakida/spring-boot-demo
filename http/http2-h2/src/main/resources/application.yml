@@ -3,11 +3,8 @@ server:
     enabled: true
   port: 8443
   ssl:
-    enabled: true
-    key-store: keystore.p12
-    key-store-password: hirakida
-    key-alias: tomcat
-    key-store-type: PKCS12
+    certificate: classpath:localhost.pem
+    certificate-private-key: classpath:localhost-key.pem
 spring:
   output:
     ansi:

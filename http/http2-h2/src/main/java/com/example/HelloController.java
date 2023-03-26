@@ -1,9 +1,9 @@
 package com.example;
 
-import javax.servlet.http.PushBuilder;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import jakarta.servlet.http.PushBuilder;
 
 @Controller
 public class HelloController {
