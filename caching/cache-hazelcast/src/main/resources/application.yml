@@ -1,6 +1,4 @@
 spring:
-  cache:
-    type: hazelcast
   output:
     ansi:
       enabled: always

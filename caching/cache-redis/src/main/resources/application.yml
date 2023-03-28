@@ -1,6 +1,4 @@
 spring:
-  cache:
-    type: redis
   datasource:
     url: jdbc:h2:mem:h2-db;NON_KEYWORDS=USER
     username: sa

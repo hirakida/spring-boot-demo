@@ -1,6 +1,4 @@
 spring:
-  cache:
-    type: simple
   output:
     ansi:
       enabled: always

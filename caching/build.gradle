@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.6' apply false
+    id 'org.springframework.boot' version '3.0.5' apply false
 }
 
 subprojects {
@@ -16,8 +16,6 @@ subprojects {
     }
 
     dependencies {
-        annotationProcessor 'org.projectlombok:lombok'
-        compileOnly 'org.projectlombok:lombok'
         implementation 'org.springframework.boot:spring-boot-starter-cache'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }

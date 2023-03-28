@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.Map;
 
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CachingConfigurer;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.CacheErrorHandler;
@@ -18,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @EnableCaching
 @Configuration
 @RequiredArgsConstructor
-public class CachingConfig extends CachingConfigurerSupport {
+public class CachingConfig implements CachingConfigurer {
     public static final String CACHE_NAME = "cache1";
     private final RedisConnectionFactory connectionFactory;
 
