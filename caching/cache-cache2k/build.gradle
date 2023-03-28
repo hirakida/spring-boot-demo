@@ -1,6 +1,7 @@
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'com.github.ben-manes.caffeine:caffeine'
+    implementation 'org.cache2k:cache2k-spring'
+    implementation 'org.cache2k:cache2k-micrometer'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 }
