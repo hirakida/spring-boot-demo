@@ -1,3 +1,5 @@
 rootProject.name = 'restclient-demo'
 
-include 'resttemplate', 'webclient'
+include 'http-interface',
+        'rest-template',
+        'web-client'

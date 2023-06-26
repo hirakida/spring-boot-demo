@@ -1,0 +1,6 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+github:
+  base-url: https://api.github.com
