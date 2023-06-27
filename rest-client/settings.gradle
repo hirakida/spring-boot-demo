@@ -1,4 +1,4 @@
-rootProject.name = 'restclient-demo'
+rootProject.name = 'rest-client-demo'
 
 include 'http-interface',
         'rest-template',
