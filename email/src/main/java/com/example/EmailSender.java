@@ -4,39 +4,42 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.context.Context;
-import org.thymeleaf.spring5.SpringTemplateEngine;
-
-import lombok.RequiredArgsConstructor;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
 @Component
-@RequiredArgsConstructor
 public class EmailSender {
     private static final String FROM = "from@example.com";
     private static final String SUBJECT = "subject";
     private static final String BODY = "body";
+    private static final String MESSAGE = "Hello!";
 
     private final MailSender mailSender;
-    private final SpringTemplateEngine emailTemplateEngine;
+    private final SpringTemplateEngine springTemplateEngine;
 
-    public void send(EmailData data) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(FROM);
-        message.setTo(data.getTo());
-        message.setSubject(getSubject(data));
-        message.setText(getBody(data));
-        mailSender.send(message);
+    public EmailSender(MailSender mailSender, SpringTemplateEngine springTemplateEngine) {
+        this.mailSender = mailSender;
+        this.springTemplateEngine = springTemplateEngine;
     }
 
-    private String getSubject(EmailData data) {
-        Context context = new Context();
-        context.setVariable("name", data.getName());
-        return emailTemplateEngine.process(SUBJECT, context);
+    public void send(String to, String name) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom(FROM);
+        mailMessage.setTo(to);
+        mailMessage.setSubject(getSubject(name));
+        mailMessage.setText(getBody(name));
+        mailSender.send(mailMessage);
     }
 
-    private String getBody(EmailData data) {
+    private String getSubject(String name) {
         Context context = new Context();
-        context.setVariable("name", data.getName());
-        context.setVariable("message", data.getMessage());
-        return emailTemplateEngine.process(BODY, context);
+        context.setVariable("name", name);
+        return springTemplateEngine.process(SUBJECT, context);
+    }
+
+    private String getBody(String name) {
+        Context context = new Context();
+        context.setVariable("name", name);
+        context.setVariable("message", MESSAGE);
+        return springTemplateEngine.process(BODY, context);
     }
 }
