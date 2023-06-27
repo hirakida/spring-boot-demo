@@ -1,0 +1,31 @@
+scalar LocalDateTime
+
+type Query {
+    user(id: ID!): User
+    users: [User!]!
+    usersByName(name: String!): [User!]!
+}
+
+type Mutation {
+    createUser(input: UserInput!): User
+    updateUser(id: ID!, input: UserInput!): User
+    deleteUser(id: ID!): Boolean
+}
+
+type User {
+    id: ID!
+    name: String!
+    role: Role
+    createdAt: LocalDateTime!
+    updatedAt: LocalDateTime!
+}
+
+type Role {
+    id: ID!
+    name: String!
+}
+
+input UserInput {
+    name: String!
+    roleId: Int!
+}
