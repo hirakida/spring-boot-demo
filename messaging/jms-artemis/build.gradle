@@ -1,0 +1,8 @@
+plugins {
+    id 'org.springframework.boot'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-artemis'
+    runtimeOnly 'org.apache.activemq:artemis-jakarta-server'
+}

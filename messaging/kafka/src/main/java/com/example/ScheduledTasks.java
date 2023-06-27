@@ -7,7 +7,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.example.model.User;
-import com.example.producer.KafkaMessageClient;
 
 import lombok.RequiredArgsConstructor;
 
