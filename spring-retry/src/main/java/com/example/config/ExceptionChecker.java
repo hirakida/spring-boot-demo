@@ -9,10 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class ExceptionChecker {
-
     public boolean shouldRetry(Throwable t) {
         log.info("{}", t.getMessage());
         return t instanceof HttpServerErrorException
-               && ((HttpServerErrorException) t).getRawStatusCode() == HttpStatus.GATEWAY_TIMEOUT.value();
+               && ((HttpServerErrorException) t).getStatusCode() == HttpStatus.GATEWAY_TIMEOUT;
     }
 }

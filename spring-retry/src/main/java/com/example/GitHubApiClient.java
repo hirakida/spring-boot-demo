@@ -35,7 +35,7 @@ public class GitHubApiClient {
         this.retryTemplate2 = retryTemplate2;
     }
 
-    @Retryable(value = { ResourceAccessException.class, HttpServerErrorException.class },
+    @Retryable(retryFor = { ResourceAccessException.class, HttpServerErrorException.class },
             maxAttempts = 4,
             backoff = @Backoff(delay = 500))
     public User getUser(String username) {
@@ -49,7 +49,7 @@ public class GitHubApiClient {
         return new User();
     }
 
-    @Retryable(exceptionExpression = "#{@exceptionChecker.shouldRetry(#root)}",
+    @Retryable(exceptionExpression = "@exceptionChecker.shouldRetry(#root)",
             maxAttemptsExpression = "#{${retry.max-attempt}}",
             backoff = @Backoff(delayExpression = "#{${retry.delay}}"))
     public Key[] getKeys(String username) {
