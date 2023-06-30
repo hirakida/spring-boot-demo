@@ -1,8 +1,11 @@
-apply plugin: 'com.gorylenko.gradle-git-properties'
+plugins {
+    id 'com.gorylenko.gradle-git-properties'
+}
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 springBoot {

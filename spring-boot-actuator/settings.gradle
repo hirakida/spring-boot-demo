@@ -3,7 +3,7 @@ rootProject.name = 'spring-boot-actuator-demo'
 include 'actuator-custom-endpoints',
         'actuator-health',
         'actuator-info',
-        'actuator-jolokia',
+        'actuator-jmx',
         'actuator-prometheus',
         'actuator-prometheus-pushgateway',
         'actuator-startup'

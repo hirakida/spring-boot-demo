@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example;
 
 import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
 import org.springframework.context.annotation.Bean;

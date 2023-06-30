@@ -2,5 +2,10 @@ spring:
   output:
     ansi:
       enabled: always
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
 github:
   base-url: https://api.github.com

@@ -1,2 +1,2 @@
 
-https://docs.spring.io/spring-boot/docs/2.7.x/reference/html/actuator.html#actuator  
+https://docs.spring.io/spring-boot/docs/3.1.x/reference/html/actuator.html

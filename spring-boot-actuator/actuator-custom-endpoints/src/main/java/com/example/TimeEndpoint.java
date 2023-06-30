@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Component
 @RestControllerEndpoint(id = "time")
 public class TimeEndpoint {
-
     @GetMapping
     public ResponseEntity<Map<String, LocalDateTime>> hello() {
         return ResponseEntity.status(HttpStatus.OK)

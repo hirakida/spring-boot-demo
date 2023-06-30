@@ -1,12 +1,4 @@
 spring:
-  datasource:
-    url: jdbc:h2:mem:h2-db
-    username: sa
-    password:
-  jpa:
-    hibernate:
-      ddl-auto: update
-    open-in-view: false
   output:
     ansi:
       enabled: always

@@ -3,9 +3,9 @@ spring:
     ansi:
       enabled: always
 management:
-  metrics:
-    export:
-      prometheus:
+  prometheus:
+    metrics:
+      export:
         pushgateway:
           enabled: true
           base-url: http://localhost:9091

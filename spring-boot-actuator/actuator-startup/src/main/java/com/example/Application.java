@@ -6,7 +6,6 @@ import org.springframework.boot.context.metrics.buffering.BufferingApplicationSt
 
 @SpringBootApplication
 public class Application {
-
     public static void main(String[] args) {
         new SpringApplicationBuilder(Application.class)
                 .applicationStartup(new BufferingApplicationStartup(2048))
