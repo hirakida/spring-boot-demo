@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Person {
     @Id
     private int id;
     private String name;
     private LocalDateTime createdAt;
 
-    public User(String name) {
+    public Person(String name) {
         this.name = name;
         createdAt = LocalDateTime.now();
     }
