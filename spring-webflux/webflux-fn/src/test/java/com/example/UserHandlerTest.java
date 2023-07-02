@@ -15,19 +15,19 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 
 @WebFluxTest
-@Import(AccountHandler.class)
-class AccountHandlerTest {
+@Import(UserHandler.class)
+class UserHandlerTest {
     @Autowired
     private WebTestClient client;
     @MockBean
-    private AccountRepository accountRepository;
+    private UserRepository userRepository;
 
     @Test
     void findAll() {
-        when(accountRepository.findAll())
-                .thenReturn(Flux.just(new Account(1, "name1", LocalDateTime.of(2020, 12, 1, 0, 0)),
-                                      new Account(2, "name2", LocalDateTime.of(2020, 12, 1, 0, 0)),
-                                      new Account(3, "name3", LocalDateTime.of(2020, 12, 1, 0, 0))));
+        when(userRepository.findAll())
+                .thenReturn(Flux.just(new User(1, "name1", LocalDateTime.of(2020, 12, 1, 0, 0)),
+                                      new User(2, "name2", LocalDateTime.of(2020, 12, 1, 0, 0)),
+                                      new User(3, "name3", LocalDateTime.of(2020, 12, 1, 0, 0))));
         String expectedJson = '[' +
                               "{\"id\":1,\"name\":\"name1\",\"createdAt\":\"2020-12-01T00:00:00\"}," +
                               "{\"id\":2,\"name\":\"name2\",\"createdAt\":\"2020-12-01T00:00:00\"}," +
