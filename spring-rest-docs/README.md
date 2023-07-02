@@ -1,5 +1,5 @@
 
-https://docs.spring.io/spring-restdocs/docs/2.0.6.RELEASE/reference/html5/
+https://docs.spring.io/spring-restdocs/docs/3.0.x/reference/htmlsingle/
 
 ```
 % ./gradlew clean build asciidoctor
