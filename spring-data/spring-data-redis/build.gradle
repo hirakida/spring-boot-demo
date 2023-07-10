@@ -1,6 +1,13 @@
-subprojects {
-    dependencies {
-        implementation 'org.apache.commons:commons-pool2'
-        compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
-    }
+plugins {
+    id 'org.springframework.boot'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-json'
+    implementation 'org.apache.commons:commons-pool2'
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    testImplementation 'org.testcontainers:junit-jupiter'
 }

@@ -1,0 +1,15 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      username: root
+      password: passwd
+      authentication-database: admin
+  output:
+    ansi:
+      enabled: always
+server:
+  error:
+    whitelabel:
+      enabled: false

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:data_jdbc_db;DB_CLOSE_ON_EXIT=FALSE;NON_KEYWORDS=USER
+    url: jdbc:h2:mem:jdbc-db;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password:
   output:

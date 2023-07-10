@@ -9,9 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.data.elasticsearch.core.SearchHit;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -20,16 +19,11 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @Testcontainers
 class UserClientTest {
     @Container
+    @ServiceConnection
     private static final ElasticsearchContainer CONTAINER =
-            new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch-oss:7.6.2")
-                    .withExposedPorts(9200);
+            new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:8.8.2");
     @Autowired
     private UserClient client;
-
-    @DynamicPropertySource
-    static void elasticsearchProperties(DynamicPropertyRegistry registry) {
-        registry.add("elasticsearch.port", () -> CONTAINER.getMappedPort(9200));
-    }
 
     @BeforeEach
     void setUp() {

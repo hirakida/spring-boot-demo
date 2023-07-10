@@ -1,19 +1,15 @@
 package com.example;
 
-import static org.elasticsearch.index.query.QueryBuilders.boolQuery;
-import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
-import static org.elasticsearch.index.query.QueryBuilders.termQuery;
-
 import java.util.List;
 
+import org.springframework.data.elasticsearch.client.elc.NativeQuery;
+import org.springframework.data.elasticsearch.client.elc.NativeQueryBuilder;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
 import org.springframework.data.elasticsearch.core.query.IndexQueryBuilder;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
@@ -40,16 +36,16 @@ public class UserClient {
         return operations.get(id, User.class);
     }
 
-    public List<SearchHit<User>> search(String name) {
-        NativeSearchQuery query = new NativeSearchQueryBuilder()
-                .withQuery(matchAllQuery())
-                .withFilter(boolQuery().must(termQuery("name", name)))
-                .build();
-        SearchHits<User> response = operations.search(query, User.class);
-        return response.getSearchHits();
-    }
-
     public String delete(String id) {
         return operations.delete(id, User.class);
+    }
+
+    public List<SearchHit<User>> search(String name) {
+        NativeQuery nativeQuery = new NativeQueryBuilder()
+                .withQuery(query -> query.match(match -> match.field("name")
+                                                              .query(name)))
+                .build();
+        SearchHits<User> response = operations.search(nativeQuery, User.class);
+        return response.getSearchHits();
     }
 }

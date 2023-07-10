@@ -1,7 +1,7 @@
 spring:
   datasource:
     sql-script-encoding: UTF-8
-    url: jdbc:h2:mem:data-rest-db;NON_KEYWORDS=USER
+    url: jdbc:h2:mem:rest-db;DB_CLOSE_ON_EXIT=FALSE;NON_KEYWORDS=USER
     username: sa
     password:
   data:
