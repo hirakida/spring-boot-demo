@@ -9,34 +9,30 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.elasticsearch.DataElasticsearchTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.context.annotation.Import;
-import org.springframework.data.elasticsearch.core.SearchHit;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 @DataElasticsearchTest
-@Import(UserClient.class)
 @Testcontainers
-class UserClientTest {
+class UserRepositoryTest {
     @Container
     @ServiceConnection
     private static final ElasticsearchContainer CONTAINER =
             new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.17.10");
     @Autowired
-    private UserClient client;
+    private UserRepository repository;
 
     @BeforeEach
     void setUp() {
         User user = new User();
         user.setName("test1");
-        client.index(user);
-        client.refresh();
+        repository.save(user);
     }
 
     @Test
-    void search() {
-        List<SearchHit<User>> response = client.search("test1");
+    void findByNameLike() {
+        List<User> response = repository.findByNameLike("test1");
         assertEquals(1, response.size());
     }
 }

@@ -1,11 +1,8 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:jpa-db;NON_KEYWORDS=USER
+    url: jdbc:h2:mem:jpa-db
     username: sa
     password:
-  h2:
-    console:
-      enabled: true
   jpa:
     hibernate:
       ddl-auto: none

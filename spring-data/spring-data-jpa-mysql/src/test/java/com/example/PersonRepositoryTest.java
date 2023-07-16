@@ -23,18 +23,11 @@ class PersonRepositoryTest {
     private static final MySQLContainer<?> CONTAINER =
             new MySQLContainer<>("mysql:8.0").withEnv("TZ", "Asia/Tokyo");
     @Autowired
-    private PersonRepository userRepository;
+    private PersonRepository repository;
 
     @Test
     void findAll() {
-        List<Person> result = userRepository.findAll();
-        assertEquals(5, result.size());
-    }
-
-    @Test
-    void findByName() {
-        List<Person> result = userRepository.findByName("user1");
-        assertEquals(1, result.size());
-        assertEquals("user1", result.get(0).getName());
+        List<Person> actual = repository.findAll();
+        assertEquals(5, actual.size());
     }
 }

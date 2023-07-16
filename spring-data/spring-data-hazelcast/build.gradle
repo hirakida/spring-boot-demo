@@ -5,4 +5,6 @@ plugins {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.hazelcast:spring-data-hazelcast:2.4.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.testcontainers:junit-jupiter'
 }

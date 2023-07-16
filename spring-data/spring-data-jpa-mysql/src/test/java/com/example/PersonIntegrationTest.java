@@ -18,29 +18,29 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Sql(scripts = "classpath:/testdata.sql")
 @Testcontainers
- class PersonIntegrationTest {
-   @Container
-   @ServiceConnection
-   private static final MySQLContainer<?> CONTAINER =
-           new MySQLContainer<>("mysql:8.0").withEnv("TZ", "Asia/Tokyo");
-   @Autowired
+class PersonIntegrationTest {
+    @Container
+    @ServiceConnection
+    private static final MySQLContainer<?> CONTAINER =
+            new MySQLContainer<>("mysql:8.0").withEnv("TZ", "Asia/Tokyo");
+    @Autowired
     private TestRestTemplate restTemplate;
 
     @Test
-     void findAll() {
-        Person[] response = restTemplate.getForObject("/persons", Person[].class);
-        assertEquals(10, response.length);
+    void findAll() {
+        Person[] actual = restTemplate.getForObject("/persons", Person[].class);
+        assertEquals(10, actual.length);
     }
 
     @Test
-     void findById() {
+    void findById() {
         Person expected = new Person();
         expected.setId(6);
         expected.setName("user6");
         expected.setCreatedAt(LocalDateTime.parse("2020-12-01T00:00:00"));
         expected.setUpdatedAt(LocalDateTime.parse("2020-12-01T00:00:00"));
 
-        Person response = restTemplate.getForObject("/persons/{id}", Person.class, 6);
-        assertEquals(expected, response);
+        Person actual = restTemplate.getForObject("/persons/{id}", Person.class, 6);
+        assertEquals(expected, actual);
     }
 }

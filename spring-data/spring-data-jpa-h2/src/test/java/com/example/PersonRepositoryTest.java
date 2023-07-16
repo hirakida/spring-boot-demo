@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.TestConstructor;
@@ -14,13 +15,10 @@ import org.springframework.test.jdbc.JdbcTestUtils;
 @DataJpaTest
 @TestConstructor(autowireMode = AutowireMode.ALL)
 class PersonRepositoryTest {
-    private final PersonRepository repository;
-    private final JdbcTemplate jdbcTemplate;
-
-    PersonRepositoryTest(PersonRepository repository, JdbcTemplate jdbcTemplate) {
-        this.repository = repository;
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    @Autowired
+    private PersonRepository repository;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Test
     void findAll() {
