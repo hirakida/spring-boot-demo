@@ -32,7 +32,7 @@ class UserRepositoryTest {
 
     @Test
     void findByNameLike() {
-        List<User> response = repository.findByNameLike("test1");
-        assertEquals(1, response.size());
+        List<User> actual = repository.findByNameLike("test1");
+        assertEquals(1, actual.size());
     }
 }

@@ -36,7 +36,7 @@ class UserClientTest {
 
     @Test
     void search() {
-        List<SearchHit<User>> response = client.search("test1");
-        assertEquals(1, response.size());
+        List<SearchHit<User>> actual = client.search("test1");
+        assertEquals(1, actual.size());
     }
 }

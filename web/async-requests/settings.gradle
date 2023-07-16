@@ -1,6 +1,3 @@
 rootProject.name = 'async-requests-demo'
 
-include 'future',
-        'http-streaming',
-        'rxjava2',
-        'single-value'
+include  'async-requests'
