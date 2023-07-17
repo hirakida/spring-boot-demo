@@ -1,0 +1,5 @@
+dependencies {
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+    implementation 'io.reactivex.rxjava3:rxjava'
+}

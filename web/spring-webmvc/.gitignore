@@ -1,0 +1,6 @@
+.idea
+build
+.gradle
+keystore.p12
+localhost.pem
+localhost-key.pem
