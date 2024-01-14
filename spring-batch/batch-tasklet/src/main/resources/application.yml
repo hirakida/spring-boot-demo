@@ -1,7 +1,4 @@
 spring:
-  batch:
-    job:
-      enabled: false
   datasource:
     url: jdbc:h2:mem:batch_tasklet_db;DB_CLOSE_ON_EXIT=FALSE;NON_KEYWORDS=USER
     username: sa

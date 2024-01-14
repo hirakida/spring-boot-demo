@@ -18,15 +18,6 @@ public class BatchConfig {
         return new JobBuilder("job1", jobRepository)
                 .incrementer(new RunIdIncrementer())
                 .start(step1)
-                .next(step2)
-                .build();
-    }
-
-    @Bean
-    public Job job2(JobRepository jobRepository, Step step1, Step step2) {
-        return new JobBuilder("job2", jobRepository)
-                .incrementer(new RunIdIncrementer())
-                .start(step1)
                 .on(ExitStatus.COMPLETED.getExitCode())
                 .to(step2)
                 .end()
