@@ -1,0 +1,21 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'spring-boot-demo'
+
+include ':caching:cache-cache2k',
+        ':caching:cache-caffeine',
+        ':caching:cache-hazelcast',
+        ':caching:cache-redis',
+        ':caching:cache-simple',
+        ':docker',
+        ':email',
+        ':graphql:webmvc',
+        ':native-image',
+        ':rest-client:http-interface',
+        ':rest-client:rest-template',
+        ':rest-client:web-client'

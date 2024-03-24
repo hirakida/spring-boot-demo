@@ -1,6 +1,14 @@
+plugins {
+    id 'spring-boot-demo.java-conventions'
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
+}
+
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'com.github.ben-manes.caffeine:caffeine'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

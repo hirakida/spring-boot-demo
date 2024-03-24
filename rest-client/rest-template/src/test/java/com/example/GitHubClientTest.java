@@ -7,7 +7,6 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -16,7 +15,6 @@ import org.springframework.test.web.client.MockRestServiceServer;
 import com.example.model.User;
 
 @RestClientTest(GitHubClient.class)
-@AutoConfigureWebClient(registerRestTemplate = true)
 class GitHubClientTest {
     @Autowired
     private MockRestServiceServer server;
@@ -32,7 +30,7 @@ class GitHubClientTest {
                                   .contentType(MediaType.APPLICATION_JSON)
                                   .body(responseBody));
 
-        User user = client.getUser("hirakida");
+        final User user = client.getUser("hirakida");
 
         assertEquals(1, user.id());
         assertEquals("hirakida", user.name());

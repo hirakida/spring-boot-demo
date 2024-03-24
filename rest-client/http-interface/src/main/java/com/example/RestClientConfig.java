@@ -13,7 +13,7 @@ public class RestClientConfig {
         WebClient client = WebClient.builder()
                                     .baseUrl(properties.baseUrl())
                                     .build();
-        HttpServiceProxyFactory factory = HttpServiceProxyFactory.builder(WebClientAdapter.forClient(client))
+        HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(WebClientAdapter.create(client))
                                                                  .build();
         return factory.createClient(GitHubService.class);
     }

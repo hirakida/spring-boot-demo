@@ -1,5 +1,0 @@
-rootProject.name = 'rest-client-demo'
-
-include 'http-interface',
-        'rest-template',
-        'web-client'

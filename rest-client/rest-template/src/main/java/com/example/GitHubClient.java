@@ -3,6 +3,7 @@ package com.example;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -22,8 +23,9 @@ public class GitHubClient {
             new ParameterizedTypeReference<>() {};
     private final RestTemplate restTemplate;
 
-    public GitHubClient(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    public GitHubClient(RestTemplateBuilder builder) {
+        restTemplate = builder.additionalInterceptors(new ClientHttpRequestInterceptorImpl())
+                              .build();
     }
 
     public User getUser(String username) {

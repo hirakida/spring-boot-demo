@@ -1,5 +1,5 @@
 
-https://docs.spring.io/spring-boot/docs/3.1.x/gradle-plugin/reference/htmlsingle/#build-image
+https://docs.spring.io/spring-boot/docs/3.2.x/gradle-plugin/reference/htmlsingle/#build-image  
 
 ```
 $ echo $GHCR_TOKEN | docker login ghcr.io -u hirakida --password-stdin

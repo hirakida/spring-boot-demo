@@ -1,0 +1,15 @@
+[versions]
+spring-boot = "3.2.4"
+spring-dependency-management = "1.1.4"
+spring-cloud = "2023.0.0"
+kotlin = "1.9.22"
+
+[libraries]
+kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-spring = { module = "org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
+spring-cloud = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
+graalvm-buildtools-native = { id = "org.graalvm.buildtools.native", version = "0.10.1" }
