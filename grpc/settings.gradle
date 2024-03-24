@@ -1,5 +1,0 @@
-rootProject.name = 'grpc-demo'
-
-include ':lognet-grpc-client',
-        ':lognet-grpc-server',
-        ':protobuf'

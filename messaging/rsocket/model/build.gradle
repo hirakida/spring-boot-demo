@@ -1,6 +1,13 @@
 plugins {
-    id 'org.springframework.boot'
+    id 'spring-boot-demo.java-conventions'
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
 }
 
 bootJar.enabled = false
 //jar.enabled = true
+
+dependencies {
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+}
