@@ -1,4 +1,0 @@
-rootProject.name = 'mybatis-demo'
-
-include 'mybatis-annotation',
-        'mybatis-xml'

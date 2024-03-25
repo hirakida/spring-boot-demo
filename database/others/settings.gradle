@@ -1,4 +1,0 @@
-rootProject.name = 'database-demo'
-
-include 'log4jdbc-log4j2',
-        'sqlcommenter'

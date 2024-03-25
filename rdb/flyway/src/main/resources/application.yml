@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:./build/db/flyway_db;NON_KEYWORDS=user
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: none
+  output:
+    ansi:
+      enabled: always
+logging:
+  level:
+    org.flywaydb.core: debug

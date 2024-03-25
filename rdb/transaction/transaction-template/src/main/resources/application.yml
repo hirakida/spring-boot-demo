@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:transaction_db;NON_KEYWORDS=user
+    username: sa
+    password:
+  output:
+    ansi:
+      enabled: always
+logging:
+  level:
+    org.springframework.jdbc.datasource: DEBUG
+    org.springframework.transaction.interceptor: TRACE

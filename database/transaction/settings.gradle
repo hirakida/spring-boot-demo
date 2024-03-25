@@ -1,5 +1,0 @@
-rootProject.name = 'transaction-demo'
-
-include 'transaction-event',
-        'transaction-manager',
-        'transaction-template'

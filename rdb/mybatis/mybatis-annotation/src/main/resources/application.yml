@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mybatis_demo
+    username: user
+    password: pass
+  sql:
+    init:
+      mode: always
+  output:
+    ansi:
+      enabled: always
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

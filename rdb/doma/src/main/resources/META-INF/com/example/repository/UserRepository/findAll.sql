@@ -1,0 +1,3 @@
+SELECT
+  /*%expand*/*
+FROM `user`

@@ -1,3 +1,0 @@
-SELECT
-  /*%expand*/*
-FROM user
