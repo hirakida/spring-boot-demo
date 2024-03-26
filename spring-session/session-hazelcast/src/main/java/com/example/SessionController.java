@@ -1,7 +1,5 @@
 package com.example;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.session.Session;
 import org.springframework.session.SessionRepository;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @RestController

@@ -16,9 +16,13 @@ doma-processor = { module = "org.seasar.doma:doma-processor", version.ref = "dom
 doma-spring-boot = { module = "org.seasar.doma.boot:doma-spring-boot-starter", version.ref = "doma-spring-boot" }
 mybatis-spring-boot = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter", version.ref = "mybatis-spring-boot" }
 mybatis-spring-boot-test = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter-test", version.ref = "mybatis-spring-boot" }
+findbugs-jsr305 = { module = "com.google.code.findbugs:jsr305", version = "3.0.2" }
+jolokia-spring = { module = "org.jolokia:jolokia-support-spring", version = "2.0.2" }
 
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
 graalvm-buildtools-native = { id = "org.graalvm.buildtools.native", version = "0.10.1" }
 doma-compile = { id = "org.domaframework.doma.compile", version = "2.0.0" }
+asciidoctor-jvm-convert = { id = "org.asciidoctor.jvm.convert", version = "4.0.2" }
+git-properties = { id = "com.gorylenko.gradle-git-properties", version = "2.4.1" }

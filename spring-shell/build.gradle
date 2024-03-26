@@ -1,22 +1,10 @@
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.1.1'
-    id 'io.spring.dependency-management' version '1.1.0'
-}
-
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = JavaVersion.VERSION_17
-
-repositories {
-    mavenCentral()
+    id 'spring-boot-demo.java-conventions'
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
 }
 
 dependencies {
-    implementation 'org.springframework.shell:spring-shell-starter:3.1.2'
+    implementation 'org.springframework.shell:spring-shell-starter:3.2.3'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
 }

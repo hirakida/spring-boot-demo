@@ -1,9 +1,0 @@
-rootProject.name = 'spring-session-demo'
-
-include 'session-data-mongodb',
-        'session-data-mongodb-reactive',
-        'session-data-redis',
-        'session-data-redis-reactive',
-        'session-hazelcast',
-        'session-jdbc',
-        'session-none'

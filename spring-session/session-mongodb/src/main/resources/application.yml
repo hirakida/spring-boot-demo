@@ -1,0 +1,20 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      username: root
+      password: pass
+      authentication-database: admin
+  output:
+    ansi:
+      enabled: always
+server:
+  servlet:
+    session:
+      cookie:
+        max-age: 60s
+        name: SPRING_SESSION_MONGODB
+        http-only: true
+        secure: false
+      timeout: 60s

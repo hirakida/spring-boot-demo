@@ -1,6 +1,0 @@
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'io.micrometer:micrometer-registry-prometheus'
-    implementation 'io.prometheus:simpleclient_pushgateway'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}

@@ -1,7 +1,0 @@
-rootProject.name = 'spring-batch-demo'
-
-include 'batch-tasklet',
-        'batch-parallel-steps',
-        'batch-partitioning',
-        'batch-scoped-bean',
-        'batch-chunk'

@@ -13,3 +13,13 @@ management:
     web:
       exposure:
         include: prometheus, metrics
+  prometheus:
+    metrics:
+      export:
+        pushgateway:
+          enabled: true
+          base-url: http://localhost:9091
+          job: pushgateway-demo
+          grouping-key:
+            key1: value1
+          shutdown-operation: put

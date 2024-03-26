@@ -1,6 +1,4 @@
 spring:
-  session:
-    store-type: none
   output:
     ansi:
       enabled: always

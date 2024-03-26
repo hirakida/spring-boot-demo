@@ -1,6 +1,0 @@
-spring:
-  jmx:
-    enabled: true
-  output:
-    ansi:
-      enabled: always

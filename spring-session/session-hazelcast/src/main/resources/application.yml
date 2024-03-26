@@ -1,6 +1,4 @@
 spring:
-  session:
-    store-type: hazelcast
   output:
     ansi:
       enabled: always
