@@ -6,6 +6,7 @@ kotlin = "1.9.22"
 doma = "2.57.0"
 doma-spring-boot = "1.7.0"
 mybatis-spring-boot = "3.0.3"
+bootstrap = "5.3.3"
 
 [libraries]
 kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -18,6 +19,7 @@ mybatis-spring-boot = { module = "org.mybatis.spring.boot:mybatis-spring-boot-st
 mybatis-spring-boot-test = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter-test", version.ref = "mybatis-spring-boot" }
 findbugs-jsr305 = { module = "com.google.code.findbugs:jsr305", version = "3.0.2" }
 jolokia-spring = { module = "org.jolokia:jolokia-support-spring", version = "2.0.2" }
+org-webjars-bootstrap = { module = "org.webjars:bootstrap", version.ref = "bootstrap" }
 
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
