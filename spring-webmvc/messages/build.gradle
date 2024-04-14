@@ -1,5 +1,13 @@
+plugins {
+    id 'spring-boot-demo.java-conventions'
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
+}
+
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.webjars:webjars-locator-core'
-    implementation 'org.webjars:bootstrap:4.6.0-1'
+    implementation libs.org.webjars.bootstrap
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

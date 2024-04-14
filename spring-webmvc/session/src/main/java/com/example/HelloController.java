@@ -22,7 +22,7 @@ public class HelloController {
     @GetMapping("/")
     public String index(HttpSession httpSession, Model model) {
         if (!model.containsAttribute(HELLO_ATTRIBUTE)) {
-            model.addAttribute(HELLO_ATTRIBUTE, new HelloSession(LocalDateTime.now()));
+            model.addAttribute(HELLO_ATTRIBUTE, new HelloSessionAttribute(LocalDateTime.now()));
         }
         model.addAttribute("sessionId", httpSession.getId());
         model.addAttribute("sessionScopedBean", sessionScopedBean);
@@ -35,4 +35,6 @@ public class HelloController {
         httpSession.invalidate();
         return "redirect:/";
     }
+
+    public record HelloSessionAttribute(LocalDateTime datetime) {}
 }

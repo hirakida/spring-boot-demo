@@ -9,22 +9,24 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.function.ServerRequest;
 import org.springframework.web.servlet.function.ServerResponse;
 
-import lombok.RequiredArgsConstructor;
-
 @Component
-@RequiredArgsConstructor
 public class UserHandler {
-    private final UserRepository userRepository;
+    private final List<User> users = List.of(new User(1, "name1"),
+                                             new User(2, "name2"),
+                                             new User(3, "name3"),
+                                             new User(4, "name4"),
+                                             new User(5, "name5"));
 
     public ServerResponse findById(ServerRequest request) {
         int id = Integer.parseInt(request.pathVariable("id"));
-        return userRepository.findById(id)
-                             .map(user -> ok().body(user))
-                             .orElse(notFound().build());
+        return users.stream()
+                    .filter(user -> user.id() == id)
+                    .findFirst()
+                    .map(user -> ok().body(user))
+                    .orElse(notFound().build());
     }
 
     public ServerResponse findAll(ServerRequest request) {
-        List<User> users = userRepository.findAll();
         return ok().body(users);
     }
 }
