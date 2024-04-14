@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -17,7 +17,6 @@ import com.example.model.User;
 
 @Controller
 public class UserController {
-
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));

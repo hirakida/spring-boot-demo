@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example;
 
 import static java.util.stream.Collectors.toList;
 
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.form.Person;
+import com.example.model.Person;
 import com.example.form.PersonForm;
 
 import lombok.RequiredArgsConstructor;

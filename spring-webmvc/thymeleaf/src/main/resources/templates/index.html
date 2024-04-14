@@ -29,11 +29,11 @@
       <td><a th:href="@{/(param1=${data1}, param2=${data2})}">params</a></td>
     </tr>
     <tr>
-      <td>@webController.message</td>
+      <td>@helloController.message</td>
       <td th:text="${@helloController.message}"></td>
     </tr>
     <tr>
-      <td>T(com.example.WebController).staticMessage</td>
+      <td>T(com.example.HelloController).staticMessage</td>
       <td th:text="${T(com.example.HelloController).staticMessage}"></td>
     </tr>
   </table>

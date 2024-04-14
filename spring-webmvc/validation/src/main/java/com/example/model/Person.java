@@ -1,4 +1,4 @@
-package com.example.form;
+package com.example.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
