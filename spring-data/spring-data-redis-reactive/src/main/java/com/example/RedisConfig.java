@@ -16,12 +16,13 @@ public class RedisConfig {
     @Bean
     public ReactiveRedisTemplate<String, User> userRedisTemplate(
             ReactiveRedisConnectionFactory connectionFactory, ObjectMapper objectMapper) {
-        StringRedisSerializer keySerializer = new StringRedisSerializer();
-        Jackson2JsonRedisSerializer<User> valueSerializer =
+        final StringRedisSerializer keySerializer = new StringRedisSerializer();
+        final Jackson2JsonRedisSerializer<User> valueSerializer =
                 new Jackson2JsonRedisSerializer<>(objectMapper, User.class);
-        RedisSerializationContextBuilder<String, User> builder =
+
+        final RedisSerializationContextBuilder<String, User> builder =
                 RedisSerializationContext.newSerializationContext(keySerializer);
-        RedisSerializationContext<String, User> context = builder.value(valueSerializer).build();
+        final RedisSerializationContext<String, User> context = builder.value(valueSerializer).build();
         return new ReactiveRedisTemplate<>(connectionFactory, context);
     }
 }
