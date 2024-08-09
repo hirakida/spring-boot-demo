@@ -17,17 +17,17 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Testcontainers
-class PersonRepositoryTest {
+class UserRepositoryTest {
     @Container
     @ServiceConnection
     private static final MySQLContainer<?> CONTAINER =
             new MySQLContainer<>("mysql:8.0").withEnv("TZ", "Asia/Tokyo");
     @Autowired
-    private PersonRepository repository;
+    private UserRepository repository;
 
     @Test
     void findAll() {
-        List<Person> actual = repository.findAll();
+        List<User> actual = repository.findAll();
         assertEquals(5, actual.size());
     }
 }

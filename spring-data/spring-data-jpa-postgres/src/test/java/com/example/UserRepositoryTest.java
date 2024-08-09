@@ -17,16 +17,16 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Testcontainers
-class PersonRepositoryTest {
+class UserRepositoryTest {
     @Container
     @ServiceConnection
     private static final PostgreSQLContainer<?> CONTAINER = new PostgreSQLContainer<>("postgres:10");
     @Autowired
-    private PersonRepository personRepository;
+    private UserRepository userRepository;
 
     @Test
     void findAll() {
-        List<Person> result = personRepository.findAll();
+        List<User> result = userRepository.findAll();
         assertEquals(5, result.size());
     }
 }

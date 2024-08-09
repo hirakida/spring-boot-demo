@@ -21,41 +21,41 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class PersonController {
-    private final PersonRepository repository;
+public class UserController {
+    private final UserRepository repository;
 
-    @GetMapping("/persons")
-    public Page<Person> findAll(@PageableDefault Pageable pageable) {
+    @GetMapping("/users")
+    public Page<User> findAll(@PageableDefault Pageable pageable) {
         return repository.findAll(pageable);
     }
 
-    @GetMapping("/persons/{id}")
-    public Person findById(@PathVariable("id") Person person) {
-        return person;
+    @GetMapping("/users/{id}")
+    public User findById(@PathVariable("id") User user) {
+        return user;
     }
 
-    @PostMapping("/persons")
+    @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public Person create(@RequestBody @Validated Request request) {
-        Person person = new Person();
-        person.setName(request.getName());
-        return repository.save(person);
+    public User create(@RequestBody @Validated Request request) {
+        User user = new User();
+        user.setName(request.getName());
+        return repository.save(user);
     }
 
-    @PutMapping("/persons/{id}")
-    public Person update(@PathVariable int id, @RequestBody @Validated Request request) {
-        Person person = repository.findById(id)
-                                  .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        person.setName(request.getName());
-        return repository.save(person);
+    @PutMapping("/users/{id}")
+    public User update(@PathVariable int id, @RequestBody @Validated Request request) {
+        User user = repository.findById(id)
+                              .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        user.setName(request.getName());
+        return repository.save(user);
     }
 
-    @DeleteMapping("/persons/{id}")
+    @DeleteMapping("/users/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
-        Person person = repository.findById(id)
-                                  .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        repository.delete(person);
+        User user = repository.findById(id)
+                              .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        repository.delete(user);
     }
 
     @Data

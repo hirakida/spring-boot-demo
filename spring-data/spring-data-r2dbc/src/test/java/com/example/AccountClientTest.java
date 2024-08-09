@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Import;
 import reactor.test.StepVerifier;
 
 @DataR2dbcTest
-@Import(PersonClient.class)
-class PersonClientTest {
+@Import(AccountClient.class)
+class AccountClientTest {
     @Autowired
-    private PersonClient client;
+    private AccountClient client;
 
     @Test
     void findAll() {

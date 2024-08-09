@@ -4,7 +4,7 @@ spring:
       host: localhost
       port: 27017
       username: root
-      password: pass
+      password: passwd
       authentication-database: admin
   output:
     ansi:

@@ -7,14 +7,14 @@ import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest;
 import reactor.test.StepVerifier;
 
 @DataR2dbcTest
-class PersonRepositoryTest {
+class AccountRepositoryTest {
     @Autowired
-    private PersonRepository repository;
+    private AccountRepository repository;
 
     @Test
     void findByName() {
-        StepVerifier.create(repository.findByName("person1"))
-                    .expectNextMatches(result -> "person1".equals(result.getName()))
+        StepVerifier.create(repository.findByName("user1"))
+                    .expectNextMatches(result -> "user1".equals(result.getName()))
                     .verifyComplete();
     }
 }

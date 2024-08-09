@@ -4,6 +4,6 @@ import org.springframework.data.r2dbc.repository.R2dbcRepository;
 
 import reactor.core.publisher.Mono;
 
-public interface PersonRepository extends R2dbcRepository<Person, Integer> {
-    Mono<Person> findByName(String name);
+public interface AccountRepository extends R2dbcRepository<Account, Integer> {
+    Mono<Account> findByName(String name);
 }

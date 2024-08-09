@@ -19,35 +19,35 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/persons")
+@RequestMapping("/accounts")
 @RequiredArgsConstructor
-public class PersonController {
-    private final PersonRepository repository;
+public class AccountController {
+    private final AccountRepository repository;
 
     @GetMapping
-    public Flux<Person> findAll() {
+    public Flux<Account> findAll() {
         return repository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Mono<Person> findById(@PathVariable int id) {
+    public Mono<Account> findById(@PathVariable int id) {
         return repository.findById(id);
     }
 
     @PostMapping
-    public Mono<Person> create(@RequestBody Request request) {
-        Person person = new Person();
-        person.setName(request.getName());
-        person.setCreatedAt(LocalDateTime.now());
-        return repository.save(person);
+    public Mono<Account> create(@RequestBody Request request) {
+        final Account account = new Account();
+        account.setName(request.getName());
+        account.setCreatedAt(LocalDateTime.now());
+        return repository.save(account);
     }
 
     @PutMapping("/{id}")
-    public Mono<Person> update(@PathVariable int id, @RequestBody Request request) {
+    public Mono<Account> update(@PathVariable int id, @RequestBody Request request) {
         return repository.findById(id)
-                         .flatMap(person -> {
-                             person.setName(request.getName());
-                             return repository.save(person);
+                         .flatMap(account -> {
+                             account.setName(request.getName());
+                             return repository.save(account);
                          });
     }
 

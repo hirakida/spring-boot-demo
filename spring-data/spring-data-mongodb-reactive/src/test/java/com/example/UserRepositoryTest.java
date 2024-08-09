@@ -22,7 +22,7 @@ import reactor.test.StepVerifier;
 class UserRepositoryTest {
     @Container
     @ServiceConnection
-    private static final GenericContainer<?> CONTAINER = new MongoDBContainer("mongo:5.0");
+    private static final GenericContainer<?> CONTAINER = new MongoDBContainer("mongo:6.0");
     @Autowired
     private UserRepository userRepository;
 

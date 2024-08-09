@@ -17,7 +17,7 @@ public class ScheduledTasks {
 
     @Scheduled(fixedRate = 5000)
     public void task1() {
-        String message = "Hello! " + LocalDateTime.now();
+        final String message = "Hello! " + LocalDateTime.now();
         stringRedisTemplate.convertAndSend(channelTopic.getTopic(), message);
     }
 }

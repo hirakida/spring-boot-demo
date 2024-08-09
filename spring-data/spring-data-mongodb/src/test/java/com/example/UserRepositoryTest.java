@@ -18,15 +18,15 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 @DataMongoTest
 @Testcontainers
-public class UserRepositoryTest {
+class UserRepositoryTest {
     @Container
     @ServiceConnection
-    private static final GenericContainer<?> CONTAINER = new MongoDBContainer("mongo:5.0");
+    private static final GenericContainer<?> CONTAINER = new MongoDBContainer("mongo:6.0");
     @Autowired
     private UserRepository userRepository;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         userRepository.deleteAll();
         List<User> users = IntStream.rangeClosed(1, 5)
                                     .mapToObj(i -> new User("name" + i))
@@ -35,7 +35,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void queryMethods() {
+    void queryMethods() {
         List<User> result = userRepository.findAll();
         assertEquals(5, result.size());
 

@@ -13,7 +13,7 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 public class RedisConfig {
     @Bean
     public ChannelTopic channelTopic() {
-        return new ChannelTopic("topic");
+        return new ChannelTopic("topic1");
     }
 
     @Bean
@@ -26,7 +26,7 @@ public class RedisConfig {
         final RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
         container.addMessageListener(messageListenerAdapter(), channelTopic());
-        container.setTaskExecutor(Executors.newFixedThreadPool(1));
+        container.setTaskExecutor(Executors.newSingleThreadExecutor());
         return container;
     }
 }

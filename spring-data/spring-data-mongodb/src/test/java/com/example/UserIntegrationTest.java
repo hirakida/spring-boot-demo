@@ -24,17 +24,17 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Testcontainers
-public class UserIntegrationTest {
+class UserIntegrationTest {
     @Container
     @ServiceConnection
-    private static final GenericContainer<?> CONTAINER = new MongoDBContainer("mongo:5.0");
+    private static final GenericContainer<?> CONTAINER = new MongoDBContainer("mongo:6.0");
     @Autowired
     private MongoTemplate mongoTemplate;
     @Autowired
     private TestRestTemplate restTemplate;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         mongoTemplate.dropCollection(User.class);
         List<User> users = IntStream.rangeClosed(1, 5)
                                     .mapToObj(i -> new User("name" + i))
@@ -43,7 +43,7 @@ public class UserIntegrationTest {
     }
 
     @Test
-    public void findById() {
+    void findById() {
         Query query = new Query();
         query.addCriteria(Criteria.where("name").is("name1"));
         User expected = mongoTemplate.findOne(query, User.class);

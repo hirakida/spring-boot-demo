@@ -34,7 +34,7 @@ public class ApplicationEventListener {
                          .doOnNext(result -> log.info("key1: {}", result))
                          .flatMap(result -> stringRedisClient.get("key10"))
                          .doOnNext(result -> log.info("key10: {}", result))
-                         .subscribe();
+                         .block();
 
         Map<String, User> users =
                 IntStream.rangeClosed(1, 5)
@@ -42,6 +42,7 @@ public class ApplicationEventListener {
                          .collect(toMap(User::getName, Function.identity()));
         userRedisClient.multiSet(users)
                        .flatMap(result -> userRedisClient.get("user1"))
-                       .subscribe(result -> log.info("{}", result));
+                       .doOnSuccess(result -> log.info("{}", result))
+                       .block();
     }
 }

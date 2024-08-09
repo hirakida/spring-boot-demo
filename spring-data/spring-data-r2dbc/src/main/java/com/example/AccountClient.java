@@ -12,36 +12,36 @@ import reactor.core.publisher.Mono;
 
 @Component
 @RequiredArgsConstructor
-public class PersonClient {
+public class AccountClient {
     private static final String COLUMN_ID = "id";
     private final R2dbcEntityTemplate template;
 
-    public Flux<Person> findAll() {
-        return template.select(Person.class)
+    public Flux<Account> findAll() {
+        return template.select(Account.class)
                        .all();
     }
 
-    public Mono<Person> findById(Integer id) {
-        return template.select(Person.class)
+    public Mono<Account> findById(Integer id) {
+        return template.select(Account.class)
                        .matching(query(where(COLUMN_ID).is(id)))
                        .first();
     }
 
-    public Mono<Person> insert(Person person) {
+    public Mono<Account> insert(Account person) {
         return template.insert(person);
     }
 
-    public Mono<Person> update(Person person) {
+    public Mono<Account> update(Account person) {
         return template.update(person);
     }
 
     public Mono<Long> deleteAll() {
-        return template.delete(Person.class)
+        return template.delete(Account.class)
                        .all();
     }
 
     public Mono<Long> deleteById(Integer id) {
-        return template.delete(Person.class)
+        return template.delete(Account.class)
                        .matching(query(where(COLUMN_ID).is(id)))
                        .all();
     }

@@ -6,62 +6,62 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.TestConstructor;
-import org.springframework.test.context.TestConstructor.AutowireMode;
 import org.springframework.test.jdbc.JdbcTestUtils;
 
 @DataJpaTest
-@TestConstructor(autowireMode = AutowireMode.ALL)
-class PersonRepositoryTest {
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+class UserRepositoryTest {
     @Autowired
-    private PersonRepository repository;
+    private UserRepository repository;
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Test
     void findAll() {
-        List<Person> result = repository.findAll();
+        List<User> result = repository.findAll();
         assertEquals(6, result.size());
     }
 
     @Test
     void save() {
-        Person person = new Person();
-        person.setName("person7");
-        repository.save(person);
+        User user = new User();
+        user.setName("user7");
+        repository.save(user);
 
-        List<Person> result = repository.findAll();
-        int count = JdbcTestUtils.countRowsInTable(jdbcTemplate, "person");
+        List<User> result = repository.findAll();
+        int count = JdbcTestUtils.countRowsInTable(jdbcTemplate, "user");
         assertEquals(7, result.size());
         assertEquals(7, count);
     }
 
     @Test
     void findByUsername() {
-        List<Person> result = repository.findByUsername("person1");
+        List<User> result = repository.findByUsername("user1");
         assertEquals(1, result.size());
-        assertEquals("person1", result.get(0).getName());
+        assertEquals("user1", result.get(0).getName());
     }
 
     @Test
     void queryMethods() {
-        List<Person> result = repository.findByName("person1");
+        List<User> result = repository.findByName("user1");
         assertEquals(1, result.size());
-        assertEquals("person1", result.get(0).getName());
+        assertEquals("user1", result.get(0).getName());
 
-        result = repository.findByNameLike("person%");
+        result = repository.findByNameLike("user%");
         assertEquals(6, result.size());
 
-        result = repository.findByNameStartingWith("person");
+        result = repository.findByNameStartingWith("user");
         assertEquals(6, result.size());
 
         result = repository.findByNameEndingWith("2");
         assertEquals(1, result.size());
-        assertEquals("person2", result.get(0).getName());
+        assertEquals("user2", result.get(0).getName());
 
-        result = repository.findByNameContaining("person");
+        result = repository.findByNameContaining("user");
         assertEquals(6, result.size());
 
         result = repository.findByIdLessThan(4);

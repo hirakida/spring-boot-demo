@@ -16,9 +16,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.redis.DataRedisTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+
+import com.redis.testcontainers.RedisContainer;
 
 @DataRedisTest
 @Testcontainers
@@ -27,8 +28,7 @@ class UserRepositoryTest {
                                                    ZoneId.systemDefault());
     @Container
     @ServiceConnection
-    private static final GenericContainer<?> CONTAINER =
-            new GenericContainer<>("redis:7.0").withExposedPorts(6379);
+    private static final RedisContainer CONTAINER = new RedisContainer("redis:7.0");
     @Autowired
     private UserRepository repository;
 
