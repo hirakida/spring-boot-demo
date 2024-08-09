@@ -1,4 +1,4 @@
-package com.example.client;
+package com.example;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,22 +16,24 @@ import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.data.redis.DataRedisTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.context.annotation.Import;
+import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import com.example.RedisConfig;
-import com.example.User;
-import com.redis.testcontainers.RedisContainer;
-
 @DataRedisTest
-@Import({ UserRedisClient.class, RedisConfig.class, JacksonAutoConfiguration.class })
+@Import({
+        UserRedisClient.class,
+        JacksonAutoConfiguration.class,
+        RedisConfig.class
+})
 @Testcontainers
 class UserRedisClientTest {
     private static final Clock CLOCK = Clock.fixed(Instant.parse("2021-01-01T00:00:00Z"),
                                                    ZoneId.systemDefault());
     @Container
     @ServiceConnection
-    private static final RedisContainer CONTAINER = new RedisContainer("redis:7.0");
+    private static final GenericContainer<?> CONTAINER =
+            new GenericContainer<>("redis:7.0").withExposedPorts(6379);
     @Autowired
     private UserRedisClient client;
 

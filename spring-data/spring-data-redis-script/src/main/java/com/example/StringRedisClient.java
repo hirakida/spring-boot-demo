@@ -1,8 +1,7 @@
-package com.example.client;
+package com.example;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.RedisScript;
@@ -25,20 +24,8 @@ public class StringRedisClient {
         redisTemplate.opsForValue().set(key, value);
     }
 
-    public void set(String key, String value, long seconds) {
-        redisTemplate.opsForValue().set(key, value, seconds, TimeUnit.SECONDS);
-    }
-
-    public Boolean expire(String key, long seconds) {
-        return redisTemplate.expire(key, seconds, TimeUnit.SECONDS);
-    }
-
     public void delete(String key) {
         redisTemplate.delete(key);
-    }
-
-    public Boolean hasKey(String key) {
-        return redisTemplate.hasKey(key);
     }
 
     public Boolean checkAndSet(String key, String oldValue, String newValue) {

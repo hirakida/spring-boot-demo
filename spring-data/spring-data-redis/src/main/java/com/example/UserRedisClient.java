@@ -1,4 +1,4 @@
-package com.example.client;
+package com.example;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -6,8 +6,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-
-import com.example.User;
 
 import lombok.RequiredArgsConstructor;
 
