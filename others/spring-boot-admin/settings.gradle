@@ -1,2 +1,0 @@
-rootProject.name = 'spring-boot-admin-demo'
-include 'admin-server', 'admin-client'

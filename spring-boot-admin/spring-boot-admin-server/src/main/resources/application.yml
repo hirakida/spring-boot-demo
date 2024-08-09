@@ -1,4 +1,6 @@
 spring:
+  thymeleaf:
+    check-template-location: false
   output:
     ansi:
       enabled: always
