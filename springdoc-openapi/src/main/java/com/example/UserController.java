@@ -1,9 +1,7 @@
 package com.example;
 
 import java.util.List;
-
-import javax.persistence.EntityNotFoundException;
-import javax.validation.constraints.NotNull;
+import java.util.NoSuchElementException;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -21,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -32,25 +32,28 @@ public class UserController {
 
     @GetMapping
     @Operation(description = "List all user")
-    public List<User> list() {
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public User getOne(@PathVariable int id) {
-        return userRepository.getOne(id);
+    public User findById(@PathVariable int id) {
+        return userRepository.findById(id).orElseThrow();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody @Validated UserRequest request) {
-        userRepository.save(request.toUser());
+        User user = new User();
+        user.setName(request.getName());
+        userRepository.save(user);
     }
 
     @PutMapping("/{id}")
-    public User update(@PathVariable int id, @RequestBody @Validated UserRequest request) {
-        User user = userRepository.getOne(id);
-        user.setName(user.getName());
+    public User update(@PathVariable int id,
+                       @RequestBody @Validated UserRequest request) {
+        User user = userRepository.findById(id).orElseThrow();
+        user.setName(request.getName());
         return userRepository.save(user);
     }
 
@@ -60,7 +63,11 @@ public class UserController {
         userRepository.deleteById(id);
     }
 
-    @ExceptionHandler({ EntityNotFoundException.class, EmptyResultDataAccessException.class })
+    @ExceptionHandler({
+            EntityNotFoundException.class,
+            EmptyResultDataAccessException.class,
+            NoSuchElementException.class
+    })
     public ResponseEntity<Void> handleNotFoundException() {
         return ResponseEntity.notFound().build();
     }
@@ -69,11 +76,5 @@ public class UserController {
     public static class UserRequest {
         @NotNull
         private String name;
-
-        public User toUser() {
-            User user = new User();
-            user.setName(name);
-            return user;
-        }
     }
 }

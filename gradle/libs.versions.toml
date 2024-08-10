@@ -29,6 +29,7 @@ io-karatelabs-karate-junit5 = { module = "io.karatelabs:karate-junit5", version 
 org-spockframework-spock-core = { module = "org.spockframework:spock-core", version.ref = "spock" }
 org-spockframework-spock-spring = { module = "org.spockframework:spock-spring", version.ref = "spock" }
 org-apache-groovy-groovy-all = { module = "org.apache.groovy:groovy-all", version.ref = "groovy" }
+org-springdoc-springdoc-openapi-starter-webmvc-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version = "2.6.0" }
 
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }

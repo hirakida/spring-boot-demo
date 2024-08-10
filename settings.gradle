@@ -102,5 +102,6 @@ include ':caching:cache-cache2k',
         ':spring-webmvc:thymeleaf',
         ':spring-webmvc:validation',
         ':spring-webmvc:webmvc-fn',
+        ':springdoc-openapi',
         ':test:karate',
         ':test:spock'
