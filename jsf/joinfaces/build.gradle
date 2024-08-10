@@ -1,0 +1,12 @@
+plugins {
+    id 'spring-boot-demo.java-conventions'
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
+}
+
+dependencies {
+    implementation platform(libs.org.joinfaces.joinfaces.platform)
+    implementation 'org.joinfaces:faces-spring-boot-starter'
+    compileOnly libs.findbugs.jsr305
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

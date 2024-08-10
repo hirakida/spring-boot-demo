@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:h2-spock-db;DB_CLOSE_ON_EXIT=FALSE;NON_KEYWORDS=USER
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  groovy:
+    template:
+      check-template-location: false
+  output:
+    ansi:
+      enabled: always

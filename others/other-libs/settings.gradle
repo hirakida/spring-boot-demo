@@ -1,7 +1,0 @@
-rootProject.name = 'other-libs-demo'
-
-include 'jasypt',
-        'joinfaces',
-        'karate',
-        'mapstruct',
-        'spock'
