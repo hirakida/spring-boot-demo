@@ -9,6 +9,7 @@ mybatis-spring-boot = "3.0.3"
 bootstrap = "5.3.3"
 spock = "2.4-M4-groovy-4.0"
 groovy = "4.0.22"
+scala = "3.4.2"
 
 [libraries]
 de-codecentric-spring-boot-admin-dependencies = { module = "de.codecentric:spring-boot-admin-dependencies", version = "3.2.3" }
@@ -30,6 +31,7 @@ org-spockframework-spock-core = { module = "org.spockframework:spock-core", vers
 org-spockframework-spock-spring = { module = "org.spockframework:spock-spring", version.ref = "spock" }
 org-apache-groovy-groovy-all = { module = "org.apache.groovy:groovy-all", version.ref = "groovy" }
 org-springdoc-springdoc-openapi-starter-webmvc-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version = "2.6.0" }
+org-scala-lang-scala3-library3 = { module = "org.scala-lang:scala3-library_3", version.ref = "scala" }
 
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
