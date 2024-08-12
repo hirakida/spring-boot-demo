@@ -1,7 +1,7 @@
 [versions]
 spring-boot = "3.2.4"
 spring-dependency-management = "1.1.4"
-spring-cloud = "2023.0.0"
+spring-cloud = "2023.0.3"
 kotlin = "1.9.22"
 doma = "2.62.0"
 doma-spring-boot = "1.8.0"
@@ -12,12 +12,12 @@ groovy = "4.0.22"
 scala = "3.4.2"
 
 [libraries]
+org-springframework-cloud-spring-cloud-dependencies = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
 de-codecentric-spring-boot-admin-dependencies = { module = "de.codecentric:spring-boot-admin-dependencies", version = "3.2.3" }
 org-joinfaces-joinfaces-platform = { module = "org.joinfaces:joinfaces-platform", version = "5.2.8" }
 
 kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-spring = { module = "org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
-spring-cloud = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
 doma-core = { module = "org.seasar.doma:doma-core", version.ref = "doma" }
 doma-processor = { module = "org.seasar.doma:doma-processor", version.ref = "doma" }
 doma-spring-boot = { module = "org.seasar.doma.boot:doma-spring-boot-starter", version.ref = "doma-spring-boot" }

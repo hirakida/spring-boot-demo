@@ -1,7 +1,9 @@
 package com.example.model;
 
+import java.time.ZonedDateTime;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import lombok.Data;
@@ -9,10 +11,11 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonNaming(SnakeCaseStrategy.class)
 @Data
-public class Follow {
-    private String login;
-    private Long id;
+public class User {
+    private long id;
     private String gravatarId;
+    private String login;
+    private String name;
     private String avatarUrl;
     private String url;
     private String htmlUrl;
@@ -26,5 +29,17 @@ public class Follow {
     private String eventsUrl;
     private String receivedEventsUrl;
     private String type;
-    private Boolean siteAdmin;
+    private String company;
+    private String blog;
+    private String location;
+    private String email;
+    private String bio;
+    private boolean siteAdmin;
+    private boolean hireable;
+    private long publicRepos;
+    private long publicGists;
+    private long followers;
+    private long following;
+    private ZonedDateTime createdAt;
+    private ZonedDateTime updatedAt;
 }

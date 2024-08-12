@@ -22,7 +22,7 @@ public class GitHubApiController {
     }
 
     @GetMapping("/users/{username}/following")
-    public List<Follow> getUserFollowing(@PathVariable String username) {
+    public List<Follow> getFollowing(@PathVariable String username) {
         return client.getUserFollowing(username);
     }
 }

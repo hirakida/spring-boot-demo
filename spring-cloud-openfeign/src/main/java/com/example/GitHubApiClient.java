@@ -11,7 +11,6 @@ import com.example.model.User;
 
 @FeignClient(name = "github", url = "https://api.github.com")
 public interface GitHubApiClient {
-
     @GetMapping("/users/{username}")
     User getUser(@PathVariable String username);
 
