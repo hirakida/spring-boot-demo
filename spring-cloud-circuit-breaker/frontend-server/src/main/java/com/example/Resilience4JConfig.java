@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example;
 
 import java.time.Duration;
 
@@ -14,8 +14,7 @@ import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import io.github.resilience4j.timelimiter.TimeLimiterConfig;
 
 @Configuration
-public class RestClientConfig {
-
+public class Resilience4JConfig {
     @Bean
     public CircuitBreaker circuitBreaker(CircuitBreakerFactory<?, ?> factory) {
         return factory.create("backend-api");
