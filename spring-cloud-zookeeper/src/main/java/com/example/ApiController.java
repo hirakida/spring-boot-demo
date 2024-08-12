@@ -32,16 +32,6 @@ public class ApiController {
         return discoveryClient.getInstances(serviceId);
     }
 
-    @GetMapping("/services")
-    public List<String> getServices() {
-        return discoveryClient.getServices();
-    }
-
-    @GetMapping("/description")
-    public String getDescription() {
-        return discoveryClient.description();
-    }
-
     @GetMapping("/order")
     public int getOrder() {
         return discoveryClient.getOrder();
