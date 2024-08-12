@@ -21,9 +21,8 @@ public class GatewayConfig {
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder
                 .routes()
-                .route(r -> r.path("/").and().query("limiter")
-                             .filters(f -> f.setPath("/datetime")
-                                            .requestRateLimiter(c -> c.setRateLimiter(redisRateLimiter())
+                .route(r -> r.path("/datetime").and().query("limiter")
+                             .filters(f -> f.requestRateLimiter(c -> c.setRateLimiter(redisRateLimiter())
                                                                       .setKeyResolver(keyResolver())))
                              .uri(SERVER1))
                 .route(r -> r.path("/datetime")
@@ -37,7 +36,7 @@ public class GatewayConfig {
 
     @Bean
     public RedisRateLimiter redisRateLimiter() {
-        return new RedisRateLimiter(3, 5);
+        return new RedisRateLimiter(1, 5);
     }
 
     @Bean
