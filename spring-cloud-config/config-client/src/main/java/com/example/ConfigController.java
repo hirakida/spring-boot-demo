@@ -9,11 +9,11 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class HelloController {
+public class ConfigController {
     private final AppProperties properties;
 
     @GetMapping("/")
-    public Map<String, Object> hello() {
+    public Map<String, Object> appProperties() {
         return Map.of("message1", properties.getMessage1(),
                       "message2", properties.getMessage2(),
                       "number1", properties.getNumber1(),

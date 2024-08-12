@@ -2,13 +2,12 @@ package com.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
+import org.springframework.cloud.config.server.EnableConfigServer;
 
 @SpringBootApplication
-@ConfigurationPropertiesScan
-public class ConfigClientApplication {
-
+@EnableConfigServer
+public class ConfigServerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ConfigClientApplication.class, args);
+        SpringApplication.run(ConfigServerApplication.class, args);
     }
 }

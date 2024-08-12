@@ -1,11 +1,10 @@
 package com.example;
 
-import javax.validation.constraints.NotNull;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.validation.annotation.Validated;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @RefreshScope

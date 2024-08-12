@@ -1,3 +1,0 @@
-rootProject.name = 'spring-cloud-config-demo'
-include 'config-client'
-include 'config-server'
