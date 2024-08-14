@@ -1,4 +1,0 @@
-rootProject.name = 'spring-cloud-loadbalancer-demo'
-include 'client',
-        'server1',
-        'server2'

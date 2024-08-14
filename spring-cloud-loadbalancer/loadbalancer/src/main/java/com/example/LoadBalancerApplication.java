@@ -4,9 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Server2Application {
-
+public class LoadBalancerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Server2Application.class, args);
+        SpringApplication.run(LoadBalancerApplication.class, args);
     }
 }

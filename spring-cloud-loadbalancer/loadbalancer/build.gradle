@@ -1,0 +1,13 @@
+plugins {
+    id 'spring-boot-demo.java-conventions'
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
+}
+
+dependencies {
+    implementation platform(libs.org.springframework.cloud.spring.cloud.dependencies)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+    implementation 'com.github.ben-manes.caffeine:caffeine'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
