@@ -1,4 +1,0 @@
-rootProject.name = 'spring-cloud-sleuth-zipkin-demo'
-include 'server1',
-        'server2',
-        'server3'
