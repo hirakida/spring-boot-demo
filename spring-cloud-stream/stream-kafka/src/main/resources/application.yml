@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    function:
+      definition: dataSupplier;uppercaseFunction;dataConsumer
+    stream:
+      bindings:
+        dataSupplier-out-0:
+          destination: uppercaseFunction-in-0
+        dataConsumer-in-0:
+          destination: uppercaseFunction-out-0
+      kafka:
+        binder:
+          brokers: localhost:9092
+  output:
+    ansi:
+      enabled: always
