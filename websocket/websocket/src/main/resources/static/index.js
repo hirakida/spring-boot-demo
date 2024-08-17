@@ -1,5 +1,4 @@
 'use strict';
-// const URL = 'ws://localhost:80/ws';
 const URL = 'ws://localhost:8080/ws';
 let ws = null;
 

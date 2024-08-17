@@ -10,7 +10,7 @@ import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping;
 @Configuration
 public class WebSocketConfig {
     @Bean
-    public HandlerMapping handlerMapping(EchoWebSocketHandler webSocketHandler) {
+    public HandlerMapping handlerMapping(WebSocketHandlerImpl webSocketHandler) {
         return new SimpleUrlHandlerMapping(Map.of("/ws/echo", webSocketHandler), -1);
     }
 }

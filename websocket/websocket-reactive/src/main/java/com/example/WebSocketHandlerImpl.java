@@ -11,13 +11,13 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Component
-public class EchoWebSocketHandler implements WebSocketHandler {
+public class WebSocketHandlerImpl implements WebSocketHandler {
     @Override
     public Mono<Void> handle(WebSocketSession session) {
         Flux<WebSocketMessage> messages =
                 session.receive()
                        .map(WebSocketMessage::getPayloadAsText)
-                       .flatMap(EchoWebSocketHandler::createResponse)
+                       .flatMap(WebSocketHandlerImpl::createResponse)
                        .map(session::textMessage);
         return session.send(messages);
     }
