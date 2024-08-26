@@ -1,5 +1,7 @@
 package com.example
 
+import jakarta.persistence.EntityNotFoundException
+import jakarta.validation.constraints.NotEmpty
 import org.hibernate.validator.constraints.Range
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -16,39 +18,40 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import java.net.URI
-import javax.persistence.EntityNotFoundException
-import javax.validation.constraints.NotEmpty
 
 @RestController
-class UserController(private val userService: UserService) {
+class UserController(private val userRepository: UserRepository) {
     companion object {
         private val log: Logger = LoggerFactory.getLogger(this::class.java)
     }
 
     @GetMapping("/users")
-    fun findAll(): List<User> = userService.findAll()
+    fun findAll(): List<User> = userRepository.findAll()
 
     @GetMapping("/users/{id}")
-    fun findById(@PathVariable id: Int): User = userService.findById(id)
+    fun findById(@PathVariable id: Int): User = userRepository.getReferenceById(id)
 
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody @Validated request: Request): ResponseEntity<User> {
         val user = User(name = request.name, age = request.age)
-        val created = userService.create(user)
+        val created = userRepository.save(user)
         return ResponseEntity.created(URI.create("/api/users/" + created.id)).body(created)
     }
 
     @PutMapping("/users/{id}")
     fun update(@PathVariable id: Int, @RequestBody @Validated request: Request): User {
-        val user = User(id = id, name = request.name, age = request.age)
-        return userService.update(user)
+        val user = userRepository.getReferenceById(id)
+        user.name = request.name
+        user.age = request.age
+        return userRepository.save(user)
     }
 
     @DeleteMapping("/users/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun delete(@PathVariable id: Int) {
-        userService.delete(id)
+        val user = userRepository.getReferenceById(id)
+        userRepository.deleteById(user.id)
     }
 
     @ExceptionHandler(EntityNotFoundException::class, NoSuchElementException::class)

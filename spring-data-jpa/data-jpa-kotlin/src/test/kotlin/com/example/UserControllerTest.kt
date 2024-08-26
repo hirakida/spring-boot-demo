@@ -21,7 +21,7 @@ class UserControllerTest {
     @Autowired
     lateinit var objectMapper: ObjectMapper
     @MockBean
-    lateinit var userService: UserService
+    lateinit var userRepository: UserRepository
 
     @Test
     fun findAll() {
@@ -30,7 +30,7 @@ class UserControllerTest {
             User(2, "name2", 30, LocalDateTime.now(), LocalDateTime.now())
         )
         val response = objectMapper.writeValueAsString(list)
-        `when`(userService.findAll()).thenReturn(list)
+        `when`(userRepository.findAll()).thenReturn(list)
 
         mockMvc.perform(get("/users"))
             .andExpect(status().isOk)
