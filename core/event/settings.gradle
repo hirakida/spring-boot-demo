@@ -1,3 +1,0 @@
-rootProject.name = 'event-demo'
-
-include 'event-application', 'event-custom', 'event-web'
