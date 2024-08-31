@@ -7,6 +7,6 @@ plugins {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation libs.jolokia.spring
+    implementation libs.org.jolokia.jolokia.support.spring
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

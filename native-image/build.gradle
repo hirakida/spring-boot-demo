@@ -2,7 +2,7 @@ plugins {
     id 'spring-boot-demo.java-conventions'
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.spring.dependency.management)
-    alias(libs.plugins.graalvm.buildtools.native)
+    alias(libs.plugins.org.graalvm.buildtools.native)
 }
 
 dependencies {

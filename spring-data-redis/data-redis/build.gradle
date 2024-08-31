@@ -8,9 +8,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-json'
     implementation 'org.apache.commons:commons-pool2'
-    compileOnly libs.findbugs.jsr305
     annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
+    compileOnly libs.com.google.code.findbugs.jsr305
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-testcontainers'
 //    testImplementation 'com.redis:testcontainers-redis:2.2.2'

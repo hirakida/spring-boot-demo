@@ -2,13 +2,13 @@ plugins {
     id 'spring-boot-demo.java-conventions'
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.spring.dependency.management)
-    alias(libs.plugins.doma.compile)
+    alias(libs.plugins.org.domaframework.doma.compile)
 }
 
 dependencies {
-    annotationProcessor libs.doma.processor
-    implementation libs.doma.core
-    implementation(libs.doma.spring.boot) {
+    annotationProcessor libs.org.seasar.doma.doma.processor
+    implementation libs.org.seasar.doma.doma.core
+    implementation(libs.org.seasar.doma.boot.doma.spring.boot.starter) {
         exclude group: 'org.seasar.doma', module: 'doma-core'
     }
     implementation 'org.springframework.boot:spring-boot-starter-web'

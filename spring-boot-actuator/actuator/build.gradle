@@ -2,7 +2,7 @@ plugins {
     id 'spring-boot-demo.java-conventions'
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.spring.dependency.management)
-    alias(libs.plugins.git.properties)
+    alias(libs.plugins.com.gorylenko.gradle.git.properties)
 }
 
 dependencies {

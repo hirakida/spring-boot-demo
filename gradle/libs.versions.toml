@@ -19,15 +19,15 @@ org-joinfaces-joinfaces-platform = { module = "org.joinfaces:joinfaces-platform"
 org-jetbrains-kotlin-kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 org-jetbrains-kotlin-plugin-spring-org-jetbrains-kotlin-plugin-spring-gradle-plugin = { module = "org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
 
-doma-core = { module = "org.seasar.doma:doma-core", version.ref = "doma" }
-doma-processor = { module = "org.seasar.doma:doma-processor", version.ref = "doma" }
-doma-spring-boot = { module = "org.seasar.doma.boot:doma-spring-boot-starter", version.ref = "doma-spring-boot" }
-mybatis-spring-boot = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter", version.ref = "mybatis-spring-boot" }
-mybatis-spring-boot-test = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter-test", version.ref = "mybatis-spring-boot" }
+org-seasar-doma-doma-core = { module = "org.seasar.doma:doma-core", version.ref = "doma" }
+org-seasar-doma-doma-processor = { module = "org.seasar.doma:doma-processor", version.ref = "doma" }
+org-seasar-doma-boot-doma-spring-boot-starter = { module = "org.seasar.doma.boot:doma-spring-boot-starter", version.ref = "doma-spring-boot" }
+org-mybatis-spring-boot-mybatis-spring-boot-starter = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter", version.ref = "mybatis-spring-boot" }
+org-mybatis-spring-boot-mybatis-spring-boot-starter-test = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter-test", version.ref = "mybatis-spring-boot" }
 org-jetbrains-exposed-exposed-spring-boot-starter = { module = "org.jetbrains.exposed:exposed-spring-boot-starter", version = "0.53.0" }
 
-findbugs-jsr305 = { module = "com.google.code.findbugs:jsr305", version = "3.0.2" }
-jolokia-spring = { module = "org.jolokia:jolokia-support-spring", version = "2.0.2" }
+com-google-code-findbugs-jsr305 = { module = "com.google.code.findbugs:jsr305", version = "3.0.2" }
+org-jolokia-jolokia-support-spring = { module = "org.jolokia:jolokia-support-spring", version = "2.0.2" }
 org-webjars-bootstrap = { module = "org.webjars:bootstrap", version.ref = "bootstrap" }
 io-karatelabs-karate-junit5 = { module = "io.karatelabs:karate-junit5", version = "1.5.0" }
 org-spockframework-spock-core = { module = "org.spockframework:spock-core", version.ref = "spock" }
@@ -39,7 +39,7 @@ org-scala-lang-scala3-library3 = { module = "org.scala-lang:scala3-library_3", v
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
-graalvm-buildtools-native = { id = "org.graalvm.buildtools.native", version = "0.10.1" }
-doma-compile = { id = "org.domaframework.doma.compile", version = "2.0.0" }
-asciidoctor-jvm-convert = { id = "org.asciidoctor.jvm.convert", version = "4.0.2" }
-git-properties = { id = "com.gorylenko.gradle-git-properties", version = "2.4.1" }
+org-graalvm-buildtools-native = { id = "org.graalvm.buildtools.native", version = "0.10.1" }
+org-domaframework-doma-compile = { id = "org.domaframework.doma.compile", version = "2.0.0" }
+org-asciidoctor-jvm-convert = { id = "org.asciidoctor.jvm.convert", version = "4.0.2" }
+com-gorylenko-gradle-git-properties = { id = "com.gorylenko.gradle-git-properties", version = "2.4.1" }
