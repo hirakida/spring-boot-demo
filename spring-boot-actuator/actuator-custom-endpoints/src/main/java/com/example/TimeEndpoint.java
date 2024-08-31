@@ -3,17 +3,17 @@ package com.example;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-import org.springframework.boot.actuate.endpoint.web.annotation.RestControllerEndpoint;
+import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
+import org.springframework.boot.actuate.endpoint.web.annotation.WebEndpoint;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Component
-@RestControllerEndpoint(id = "time")
+@WebEndpoint(id = "time")
 public class TimeEndpoint {
-    @GetMapping
-    public ResponseEntity<Map<String, LocalDateTime>> hello() {
+    @ReadOperation
+    public ResponseEntity<Map<String, LocalDateTime>> time() {
         return ResponseEntity.status(HttpStatus.OK)
                              .body(Map.of("time", LocalDateTime.now()));
     }

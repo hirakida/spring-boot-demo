@@ -1,19 +1,18 @@
 [versions]
-spring-boot = "3.2.4"
+spring-boot = "3.3.3"
 spring-dependency-management = "1.1.6"
 spring-cloud = "2023.0.3"
 kotlin = "1.9.25"
 doma = "2.62.0"
 doma-spring-boot = "1.8.0"
 mybatis-spring-boot = "3.0.3"
-bootstrap = "5.3.3"
 spock = "2.4-M4-groovy-4.0"
 groovy = "4.0.22"
 scala = "3.4.2"
 
 [libraries]
 org-springframework-cloud-spring-cloud-dependencies = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
-de-codecentric-spring-boot-admin-dependencies = { module = "de.codecentric:spring-boot-admin-dependencies", version = "3.2.3" }
+de-codecentric-spring-boot-admin-dependencies = { module = "de.codecentric:spring-boot-admin-dependencies", version = "3.3.3" }
 org-joinfaces-joinfaces-platform = { module = "org.joinfaces:joinfaces-platform", version = "5.2.8" }
 
 org-jetbrains-kotlin-kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -28,7 +27,7 @@ org-jetbrains-exposed-exposed-spring-boot-starter = { module = "org.jetbrains.ex
 
 com-google-code-findbugs-jsr305 = { module = "com.google.code.findbugs:jsr305", version = "3.0.2" }
 org-jolokia-jolokia-support-spring = { module = "org.jolokia:jolokia-support-spring", version = "2.0.2" }
-org-webjars-bootstrap = { module = "org.webjars:bootstrap", version.ref = "bootstrap" }
+org-webjars-bootstrap = { module = "org.webjars:bootstrap", version = "5.3.3" }
 io-karatelabs-karate-junit5 = { module = "io.karatelabs:karate-junit5", version = "1.5.0" }
 org-spockframework-spock-core = { module = "org.spockframework:spock-core", version.ref = "spock" }
 org-spockframework-spock-spring = { module = "org.spockframework:spock-spring", version.ref = "spock" }
