@@ -37,8 +37,8 @@ org-springdoc-springdoc-openapi-starter-webmvc-ui = { module = "org.springdoc:sp
 org-scala-lang-scala3-library3 = { module = "org.scala-lang:scala3-library_3", version.ref = "scala" }
 
 [plugins]
-spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
-spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
+org-springframework-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+io-spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
 org-graalvm-buildtools-native = { id = "org.graalvm.buildtools.native", version = "0.10.1" }
 org-domaframework-doma-compile = { id = "org.domaframework.doma.compile", version = "2.0.0" }
 org-asciidoctor-jvm-convert = { id = "org.asciidoctor.jvm.convert", version = "4.0.2" }
