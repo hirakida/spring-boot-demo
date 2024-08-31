@@ -1,8 +1,9 @@
 services:
   zookeeper:
-    image: symptoma/activemq
+    image: symptoma/activemq:latest
     ports:
       - "61616:61616"
       - "8161:8161"
     environment:
       ACTIVEMQ_DISALLOW_WEBCONSOLE: false
+      ACTIVEMQ_ENABLE_SCHEDULER: true
