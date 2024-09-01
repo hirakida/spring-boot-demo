@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,12 +15,11 @@ import lombok.extern.slf4j.Slf4j;
 @Configuration
 @Slf4j
 public class BeanConfig {
-
     @Bean
     @Primary
     public Foo foo1() {
         Foo bean = new Foo("foo1", "@Bean, @Primary");
-        log.info("{}", bean);
+        log.info("foo1: {}", bean);
         return bean;
     }
 
@@ -28,7 +27,7 @@ public class BeanConfig {
     @DependsOn({ "foo1", "foo3" })
     public Foo foo2() {
         Foo bean = new Foo("foo2", "@Bean");
-        log.info("{}", bean);
+        log.info("foo2: {}", bean);
         return bean;
     }
 
@@ -37,7 +36,7 @@ public class BeanConfig {
     @SecondaryBean
     public Foo foo3() {
         Foo bean = new Foo("foo3", "@Bean");
-        log.info("{}", bean);
+        log.info("foo3: {}", bean);
         return bean;
     }
 
@@ -45,14 +44,14 @@ public class BeanConfig {
     @Lazy
     public Foo foo4() {
         Foo bean = new Foo("foo4", "@Bean, @Lazy");
-        log.info("{}", bean);
+        log.info("foo4: {}", bean);
         return bean;
     }
 
     @Bean
     public Bar bar1() {
         Bar bean = new Bar("bar1", "@Bean");
-        log.info("{}", bean);
+        log.info("bar1: {}", bean);
         return bean;
     }
 
@@ -60,7 +59,7 @@ public class BeanConfig {
     @Primary
     public Bar bar2() {
         Bar bean = new Bar("bar2", "@Bean, @Primary");
-        log.info("{}", bean);
+        log.info("bar2: {}", bean);
         return bean;
     }
 }

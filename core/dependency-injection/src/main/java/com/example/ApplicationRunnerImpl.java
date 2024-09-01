@@ -1,10 +1,9 @@
 package com.example;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,13 +12,13 @@ import org.springframework.stereotype.Component;
 import com.example.bean.Bar;
 import com.example.bean.Foo;
 import com.example.bean.SecondaryBean;
-import com.example.config.BeanConfig;
 
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class CommandLineRunnerImpl implements CommandLineRunner {
+public class ApplicationRunnerImpl implements ApplicationRunner {
     private final ApplicationContext context;
     private final ApplicationContext xmlContext;
 
@@ -38,7 +37,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Autowired
     private Bar bar2;
 
-    public CommandLineRunnerImpl(Foo foo, Foo foo1, @Qualifier("foo2") Foo foo2) {
+    public ApplicationRunnerImpl(Foo foo, Foo foo1, @Qualifier("foo2") Foo foo2) {
         context = new AnnotationConfigApplicationContext(BeanConfig.class);
         xmlContext = new ClassPathXmlApplicationContext("bean.xml");
         this.foo = foo;
@@ -50,7 +49,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Autowired
     public void setFoo3(@SecondaryBean Foo foo3) {
         this.foo3 = foo3;
-        log.info("foo3: {}", foo3);
+        log.info("setFoo3: {}", foo3);
     }
 
     @PostConstruct
@@ -59,7 +58,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) {
+    public void run(ApplicationArguments args) throws Exception {
         log("run");
         log.info("foo4: {}", context.getBean("foo4"));
         log.info("foo5: {}", xmlContext.getBean(Foo.class));

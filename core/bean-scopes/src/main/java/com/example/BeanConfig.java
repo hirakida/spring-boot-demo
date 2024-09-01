@@ -13,7 +13,6 @@ import com.example.bean.PrototypeBean;
 
 @Configuration
 public class BeanConfig {
-
     @Bean
     @Scope(BeanDefinition.SCOPE_PROTOTYPE)
     public PrototypeBean prototypeBean() {
