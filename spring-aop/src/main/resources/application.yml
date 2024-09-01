@@ -1,11 +1,11 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:aop-db
+    url: jdbc:h2:mem:aop-db;NON_KEYWORDS=USER
     username: sa
     password:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     open-in-view: false
   output:
     ansi:

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,17 +37,14 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody Request request) {
-        log.info("create {}", request);
-        userService.insert(request.getName());
+    public void create(@RequestBody User user) {
+        log.info("create user={}", user);
+        userService.insert(user);
     }
 
     @PutMapping("/{id}")
-    public User update(@PathVariable int id, @RequestBody Request request) {
-        log.info("update id={} name={}", id, request.getName());
-        User user = new User();
-        user.setId(id);
-        user.setName(request.getName());
+    public User update(@PathVariable int id, @RequestBody User user) {
+        log.info("update id={} user={}", id, user);
         return userService.update(user);
     }
 
@@ -64,10 +60,5 @@ public class UserController {
     public void deleteById(@PathVariable int id) {
         log.info("deleteById");
         userService.deleteById(id);
-    }
-
-    @Data
-    public static class Request {
-        private String name;
     }
 }

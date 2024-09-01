@@ -1,4 +1,4 @@
-package com.example.aop;
+package com.example;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;

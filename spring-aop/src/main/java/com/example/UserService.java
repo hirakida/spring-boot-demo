@@ -23,10 +23,8 @@ public class UserService {
         return userRepository.findById(id).orElseThrow();
     }
 
-    public void insert(String name) {
-        log.info("insert name={}", name);
-        User user = new User();
-        user.setName(name);
+    public void insert(User user) {
+        log.info("insert user={}", user);
         userRepository.save(user);
     }
 
