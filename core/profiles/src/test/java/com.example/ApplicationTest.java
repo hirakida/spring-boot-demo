@@ -12,14 +12,14 @@ import org.springframework.test.context.ActiveProfiles;
 
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = WebEnvironment.NONE)
-public class ApplicationTest {
+class ApplicationTest {
     @Autowired
     private Environment environment;
     @Autowired
     private AppProperties properties;
 
     @Test
-    public void test() {
+    void test() {
         assertArrayEquals(new String[] { "test" }, environment.getActiveProfiles());
         assertEquals("test message", properties.getMessage());
     }

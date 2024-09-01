@@ -1,24 +1,12 @@
 plugins {
-    id 'org.springframework.boot' version '2.4.5'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'java'
-}
-
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = JavaVersion.VERSION_11
-
-repositories {
-    mavenCentral()
+    id 'spring-boot-demo.java-conventions'
+    alias(libs.plugins.org.springframework.boot)
+    alias(libs.plugins.io.spring.dependency.management)
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-test {
-    useJUnitPlatform()
 }
 
 bootRun {

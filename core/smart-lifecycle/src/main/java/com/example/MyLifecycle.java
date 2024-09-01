@@ -1,30 +1,30 @@
 package com.example;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.stereotype.Component;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Component
-@Slf4j
 public class MyLifecycle implements SmartLifecycle {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MyLifecycle.class);
     private volatile boolean running;
 
     @Override
     public void start() {
-        log.info("start");
+        LOGGER.info("start");
         running = true;
     }
 
     @Override
     public void stop() {
-        log.info("stop");
+        LOGGER.info("stop");
         running = false;
     }
 
     @Override
     public void stop(Runnable callback) {
-        log.info("stop callback");
+        LOGGER.info("stop callback");
         stop();
 
         new Thread(() -> {
@@ -39,7 +39,7 @@ public class MyLifecycle implements SmartLifecycle {
 
     @Override
     public boolean isRunning() {
-        log.info("isRunning: {}", running);
+        LOGGER.info("isRunning: {}", running);
         return running;
     }
 }

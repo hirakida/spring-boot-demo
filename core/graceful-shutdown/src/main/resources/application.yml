@@ -5,11 +5,7 @@ spring:
     timeout-per-shutdown-phase: 10s
 logging:
   level:
-    org:
-      springframework:
-        context:
-          support:
-            DefaultLifecycleProcessor: trace
+    org.springframework.context.support.DefaultLifecycleProcessor: trace
 management:
   endpoint:
     health:
