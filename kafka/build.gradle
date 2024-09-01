@@ -5,11 +5,9 @@ plugins {
 }
 
 dependencies {
-    annotationProcessor 'org.projectlombok:lombok'
-    compileOnly 'org.projectlombok:lombok'
     implementation 'org.springframework.kafka:spring-kafka'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+    compileOnly libs.com.google.code.findbugs.jsr305
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
 }
