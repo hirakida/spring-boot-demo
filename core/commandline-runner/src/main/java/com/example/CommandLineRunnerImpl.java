@@ -3,7 +3,9 @@ package com.example;
 import java.util.Arrays;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.ExitCodeEvent;
 import org.springframework.boot.ExitCodeGenerator;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -25,5 +27,10 @@ public class CommandLineRunnerImpl implements CommandLineRunner, ExitCodeGenerat
     @Override
     public int getExitCode() {
         return exitCode;
+    }
+
+    @EventListener(ExitCodeEvent.class)
+    public void exitCodeEvent(ExitCodeEvent event) {
+        System.out.println("ExitCodeEvent: " + event.getExitCode());
     }
 }

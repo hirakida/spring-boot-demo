@@ -3,4 +3,4 @@ spring:
     banner-mode: "off"
 logging:
   level:
-    root: warn
+    root: info

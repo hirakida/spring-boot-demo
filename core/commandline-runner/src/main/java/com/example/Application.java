@@ -7,9 +7,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-        int status = SpringApplication.exit(context);
-        System.out.println("status: " + status);
-        System.exit(status);
+        final ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+        final int exitCode = SpringApplication.exit(context);
+        System.out.println("exitCode: " + exitCode);
+        System.exit(exitCode);
     }
 }

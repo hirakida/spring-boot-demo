@@ -1,2 +1,0 @@
-rootProject.name = 'runner-demo'
-include 'application-runner', 'commandline-runner'
