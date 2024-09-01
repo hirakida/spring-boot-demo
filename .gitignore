@@ -8,3 +8,4 @@ maven-repo
 keystore.p12
 localhost.pem
 localhost-key.pem
+.docker

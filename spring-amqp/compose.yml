@@ -1,0 +1,12 @@
+# http://localhost:15672/#/queues
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+    volumes:
+      - ./.docker/rabbitmq:/var/lib/rabbitmq

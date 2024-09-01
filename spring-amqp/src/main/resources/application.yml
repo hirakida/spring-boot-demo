@@ -3,6 +3,8 @@ spring:
     listener:
       simple:
         max-concurrency: 5
+    username: user
+    password: password
   output:
     ansi:
       enabled: always
