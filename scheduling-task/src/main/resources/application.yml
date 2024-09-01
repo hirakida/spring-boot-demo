@@ -9,11 +9,6 @@ spring:
   output:
     ansi:
       enabled: always
-management:
-  endpoints:
-    web:
-      exposure:
-        include: [scheduledtasks]
 
 cron:
   once_a_minute: 0 * * * * *
