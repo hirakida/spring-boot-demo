@@ -3,9 +3,9 @@ spring-boot = "3.3.3"
 spring-dependency-management = "1.1.6"
 spring-cloud = "2023.0.3"
 kotlin = "1.9.25"
-doma = "2.62.0"
-doma-spring-boot = "1.8.0"
 mybatis-spring-boot = "3.0.3"
+doma = "3.0.0"
+doma-spring-boot = "2.0.0"
 spock = "2.4-M4-groovy-4.0"
 groovy = "4.0.22"
 scala = "3.4.2"
@@ -18,12 +18,11 @@ org-joinfaces-joinfaces-platform = { module = "org.joinfaces:joinfaces-platform"
 org-jetbrains-kotlin-kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 org-jetbrains-kotlin-plugin-spring-org-jetbrains-kotlin-plugin-spring-gradle-plugin = { module = "org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
 
-org-seasar-doma-doma-core = { module = "org.seasar.doma:doma-core", version.ref = "doma" }
-org-seasar-doma-doma-processor = { module = "org.seasar.doma:doma-processor", version.ref = "doma" }
-org-seasar-doma-boot-doma-spring-boot-starter = { module = "org.seasar.doma.boot:doma-spring-boot-starter", version.ref = "doma-spring-boot" }
+org-jetbrains-exposed-exposed-spring-boot-starter = { module = "org.jetbrains.exposed:exposed-spring-boot-starter", version = "0.53.0" }
 org-mybatis-spring-boot-mybatis-spring-boot-starter = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter", version.ref = "mybatis-spring-boot" }
 org-mybatis-spring-boot-mybatis-spring-boot-starter-test = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter-test", version.ref = "mybatis-spring-boot" }
-org-jetbrains-exposed-exposed-spring-boot-starter = { module = "org.jetbrains.exposed:exposed-spring-boot-starter", version = "0.53.0" }
+org-seasar-doma-doma-processor = { module = "org.seasar.doma:doma-processor", version.ref = "doma" }
+org-seasar-doma-boot-doma-spring-boot-starter = { module = "org.seasar.doma.boot:doma-spring-boot-starter", version.ref = "doma-spring-boot" }
 
 com-google-code-findbugs-jsr305 = { module = "com.google.code.findbugs:jsr305", version = "3.0.2" }
 org-jolokia-jolokia-support-spring = { module = "org.jolokia:jolokia-support-spring", version = "2.0.2" }
@@ -39,6 +38,6 @@ org-scala-lang-scala3-library3 = { module = "org.scala-lang:scala3-library_3", v
 org-springframework-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 io-spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
 org-graalvm-buildtools-native = { id = "org.graalvm.buildtools.native", version = "0.10.1" }
-org-domaframework-doma-compile = { id = "org.domaframework.doma.compile", version = "2.0.0" }
+org-domaframework-doma-compile = { id = "org.domaframework.doma.compile", version = "3.0.1" }
 org-asciidoctor-jvm-convert = { id = "org.asciidoctor.jvm.convert", version = "4.0.2" }
 com-gorylenko-gradle-git-properties = { id = "com.gorylenko.gradle-git-properties", version = "2.4.1" }
