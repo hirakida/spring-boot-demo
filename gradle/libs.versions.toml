@@ -3,6 +3,7 @@ spring-boot = "3.3.3"
 spring-dependency-management = "1.1.6"
 spring-cloud = "2023.0.3"
 kotlin = "1.9.25"
+exposed = "0.55.0"
 mybatis-spring-boot = "3.0.3"
 doma = "3.0.0"
 doma-spring-boot = "2.0.0"
@@ -18,7 +19,7 @@ org-joinfaces-joinfaces-platform = { module = "org.joinfaces:joinfaces-platform"
 org-jetbrains-kotlin-kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 org-jetbrains-kotlin-plugin-spring-org-jetbrains-kotlin-plugin-spring-gradle-plugin = { module = "org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
 
-org-jetbrains-exposed-exposed-spring-boot-starter = { module = "org.jetbrains.exposed:exposed-spring-boot-starter", version = "0.53.0" }
+org-jetbrains-exposed-exposed-spring-boot-starter = { module = "org.jetbrains.exposed:exposed-spring-boot-starter", version.ref = "exposed" }
 org-mybatis-spring-boot-mybatis-spring-boot-starter = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter", version.ref = "mybatis-spring-boot" }
 org-mybatis-spring-boot-mybatis-spring-boot-starter-test = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter-test", version.ref = "mybatis-spring-boot" }
 org-seasar-doma-doma-processor = { module = "org.seasar.doma:doma-processor", version.ref = "doma" }
