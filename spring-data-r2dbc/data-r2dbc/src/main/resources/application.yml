@@ -5,9 +5,6 @@ spring:
     password:
     pool:
       initial-size: 10
-  output:
-    ansi:
-      enabled: always
 logging:
   level:
     org.springframework.data.r2dbc: DEBUG

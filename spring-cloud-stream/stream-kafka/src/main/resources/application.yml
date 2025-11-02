@@ -11,6 +11,3 @@ spring:
       kafka:
         binder:
           brokers: localhost:9092
-  output:
-    ansi:
-      enabled: always

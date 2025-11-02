@@ -5,8 +5,5 @@ spring:
         git:
           uri: https://github.com/hirakida/config-repo
           search-paths: spring-cloud-config
-  output:
-    ansi:
-      enabled: always
 server:
   port: 8888

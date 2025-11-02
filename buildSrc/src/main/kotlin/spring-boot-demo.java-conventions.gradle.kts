@@ -25,3 +25,7 @@ tasks.withType<JavaCompile>().configureEach {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+tasks.bootRun {
+    systemProperty("spring.output.ansi.enabled", "ALWAYS")
+}

@@ -3,6 +3,3 @@ spring:
     broker-url: tcp://localhost:61616
     user: system
     password: manager
-  output:
-    ansi:
-      enabled: always

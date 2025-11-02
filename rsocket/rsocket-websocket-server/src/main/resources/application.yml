@@ -6,9 +6,6 @@ spring:
       address: localhost
       mapping-path: /rsocket
       transport: websocket
-  output:
-    ansi:
-      enabled: always
 logging:
   level:
     io.rsocket.FrameLogger: DEBUG

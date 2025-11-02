@@ -1,7 +1,3 @@
-spring:
-  output:
-    ansi:
-      enabled: always
 app:
   enabled: true
   test1:

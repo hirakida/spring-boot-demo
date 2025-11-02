@@ -6,9 +6,6 @@ spring:
   sql:
     init:
       mode: always
-  output:
-    ansi:
-      enabled: always
 mybatis:
   configuration:
     map-underscore-to-camel-case: true

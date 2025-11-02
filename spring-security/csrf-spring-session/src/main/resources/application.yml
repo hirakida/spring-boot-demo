@@ -1,9 +1,6 @@
 spring:
   session:
     store-type: redis
-  output:
-    ansi:
-      enabled: always
 server:
   servlet:
     session:

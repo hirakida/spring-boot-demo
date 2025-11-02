@@ -5,9 +5,6 @@ spring:
       port: 6379
       password:
       database: 0
-  output:
-    ansi:
-      enabled: always
 server:
   servlet:
     session:

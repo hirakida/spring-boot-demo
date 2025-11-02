@@ -6,9 +6,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
-  output:
-    ansi:
-      enabled: always
 logging:
   level:
     org.flywaydb.core: debug

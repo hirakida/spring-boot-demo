@@ -5,9 +5,6 @@ spring:
         strategy:
           content:
             enabled: true
-  output:
-    ansi:
-      enabled: always
 server:
   error:
     include-exception: true

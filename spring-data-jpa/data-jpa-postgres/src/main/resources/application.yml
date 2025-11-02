@@ -10,6 +10,3 @@ spring:
     hibernate:
       ddl-auto: none
     open-in-view: false
-  output:
-    ansi:
-      enabled: always

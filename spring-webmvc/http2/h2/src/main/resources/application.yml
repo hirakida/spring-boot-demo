@@ -5,7 +5,3 @@ server:
   ssl:
     certificate: classpath:localhost.pem
     certificate-private-key: classpath:localhost-key.pem
-spring:
-  output:
-    ansi:
-      enabled: always

@@ -3,6 +3,3 @@ spring:
     redis:
       host: localhost
       port: 6379
-  output:
-    ansi:
-      enabled: always

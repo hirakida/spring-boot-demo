@@ -8,9 +8,6 @@ spring:
       ddl-auto: none
     open-in-view: false
     show-sql: true
-  output:
-    ansi:
-      enabled: always
 logging:
   level:
     org.springframework.orm.jpa.JpaTransactionManager: DEBUG

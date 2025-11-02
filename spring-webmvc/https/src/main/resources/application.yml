@@ -7,7 +7,3 @@ server:
 #    key-store-type: PKCS12
     certificate: classpath:localhost.pem
     certificate-private-key: classpath:localhost-key.pem
-spring:
-  output:
-    ansi:
-      enabled: always

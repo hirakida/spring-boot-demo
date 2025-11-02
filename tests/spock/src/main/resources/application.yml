@@ -10,6 +10,3 @@ spring:
   groovy:
     template:
       check-template-location: false
-  output:
-    ansi:
-      enabled: always

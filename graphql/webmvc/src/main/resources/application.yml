@@ -13,6 +13,3 @@ spring:
         enabled: true
     graphiql:
       enabled: true
-  output:
-    ansi:
-      enabled: always

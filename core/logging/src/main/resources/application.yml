@@ -3,9 +3,6 @@ spring:
     name: logging-demo
   profiles:
     active: dev
-  output:
-    ansi:
-      enabled: always
 logging:
   file:
     path: ./logs/

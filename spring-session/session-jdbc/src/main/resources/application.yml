@@ -6,9 +6,6 @@ spring:
   h2:
     console:
       enabled: true
-  output:
-    ansi:
-      enabled: always
 server:
   servlet:
     session:

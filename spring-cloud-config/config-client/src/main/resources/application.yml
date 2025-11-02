@@ -8,9 +8,6 @@ spring:
   config:
     import:
       configserver:http://localhost:8888
-  output:
-    ansi:
-      enabled: always
 management:
   endpoint:
     refresh:

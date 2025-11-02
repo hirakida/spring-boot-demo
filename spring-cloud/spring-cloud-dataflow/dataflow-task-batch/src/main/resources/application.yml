@@ -12,6 +12,3 @@ spring:
   devtools:
     livereload:
       enabled: false
-  output:
-    ansi:
-      enabled: always

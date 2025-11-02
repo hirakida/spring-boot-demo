@@ -6,9 +6,6 @@ spring:
       username: root
       password: pass
       authentication-database: admin
-  output:
-    ansi:
-      enabled: always
 server:
   servlet:
     session:

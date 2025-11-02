@@ -3,6 +3,3 @@ spring:
     url: jdbc:h2:mem:jdbc_auth_db;IGNORECASE=TRUE
     username: sa
     password:
-  output:
-    ansi:
-      enabled: always

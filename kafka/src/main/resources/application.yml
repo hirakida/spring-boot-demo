@@ -14,6 +14,3 @@ spring:
       value-deserializer: com.example.serialization.UserJsonDeserializer
       group-id: group1
       auto-offset-reset: earliest
-  output:
-    ansi:
-      enabled: always

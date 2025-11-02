@@ -6,9 +6,6 @@ spring:
   sql:
     init:
       encoding: utf-8
-  output:
-    ansi:
-      enabled: always
 logging:
   level:
     com.zaxxer.hikari: debug

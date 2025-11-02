@@ -5,9 +5,6 @@ spring:
     admin:
       client:
         url: http://localhost:8080
-  output:
-    ansi:
-      enabled: always
 logging:
   level:
     org.springframework.cache: trace

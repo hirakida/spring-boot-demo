@@ -6,9 +6,6 @@ spring:
       username: root
       password: passwd
       authentication-database: admin
-  output:
-    ansi:
-      enabled: always
 management:
   endpoints:
     web:

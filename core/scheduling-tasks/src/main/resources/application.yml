@@ -6,9 +6,5 @@ spring:
         size: 2
       shutdown:
         await-termination: true
-  output:
-    ansi:
-      enabled: always
-
 cron:
   once_a_minute: 0 * * * * *

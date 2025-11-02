@@ -6,6 +6,3 @@ spring:
   sql:
     init:
       encoding: UTF-8
-  output:
-    ansi:
-      enabled: always

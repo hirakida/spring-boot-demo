@@ -5,6 +5,3 @@ spring:
         strategy:
           content:
             enabled: true
-  output:
-    ansi:
-      enabled: always
