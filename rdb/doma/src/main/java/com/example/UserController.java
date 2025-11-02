@@ -3,6 +3,7 @@ package com.example;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.seasar.doma.boot.Pageables;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -30,36 +31,37 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class UserController {
-    private final UserService userService;
+    private final UserRepository userRepository;
 
-    /**
-     * http://localhost:8080/users?page=0&size=2
-     */
     @GetMapping
     public List<User> findAll(@PageableDefault Pageable pageable) {
-        return userService.findAll(pageable);
+        return userRepository.findAll(Pageables.toSelectOptions(pageable));
     }
 
     @GetMapping("/{id}")
     public User findOne(@PathVariable long id) {
-        return userService.findOne(id);
+        return userRepository.findOne(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public int create(@RequestBody @Validated UserRequest request) {
-        return userService.create(request.toUser());
+        return userRepository.insert(request.toUser());
     }
 
     @PutMapping("/{id}")
     public int update(@PathVariable long id, @RequestBody @Validated UserRequest request) {
-        return userService.update(id, request.toUser());
+        User user = userRepository.findOne(id);
+        user.setName(request.getName());
+        user.setAge(request.getAge());
+        return userRepository.update(user);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id) {
-        userService.delete(id);
+        User user = userRepository.findOne(id);
+        userRepository.delete(user);
     }
 
     @ExceptionHandler(NoSuchElementException.class)

@@ -2,21 +2,20 @@ package com.example;
 
 import java.time.LocalDateTime;
 
-import org.seasar.doma.jdbc.entity.EntityListener;
-import org.seasar.doma.jdbc.entity.PreInsertContext;
-import org.seasar.doma.jdbc.entity.PreUpdateContext;
+import org.seasar.doma.boot.event.annotation.HandlePreInsert;
+import org.seasar.doma.boot.event.annotation.HandlePreUpdate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserListener implements EntityListener<User> {
-    @Override
-    public void preInsert(User entity, PreInsertContext<User> context) {
-        entity.setCreatedAt(LocalDateTime.now());
-        entity.setUpdatedAt(LocalDateTime.now());
+public class UserListener {
+    @HandlePreInsert
+    public void preInsert(User user) {
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
     }
 
-    @Override
-    public void preUpdate(User entity, PreUpdateContext<User> context) {
-        entity.setUpdatedAt(LocalDateTime.now());
+    @HandlePreUpdate
+    public void preUpdate(User user) {
+        user.setUpdatedAt(LocalDateTime.now());
     }
 }

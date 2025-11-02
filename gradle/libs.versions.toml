@@ -1,5 +1,5 @@
 [versions]
-doma = "3.6.0"
+doma = "3.11.0"
 doma-spring-boot = "2.4.0"
 exposed = "0.61.0"
 groovy = "4.0.29"
@@ -26,6 +26,7 @@ spring-cloud-dependencies = { module = "org.springframework.cloud:spring-cloud-d
 
 # libraries
 bootstrap = { module = "org.webjars:bootstrap", version = "5.3.8" }
+doma-core = { module = "org.seasar.doma:doma-core", version.ref = "doma" }
 doma-processor = { module = "org.seasar.doma:doma-processor", version.ref = "doma" }
 doma-spring-boot-starter = { module = "org.seasar.doma.boot:doma-spring-boot-starter", version.ref = "doma-spring-boot" }
 exposed-spring-boot-starter = { module = "org.jetbrains.exposed:exposed-spring-boot-starter", version.ref = "exposed" }
@@ -44,6 +45,6 @@ stomp-websocket = { module = "org.webjars:stomp-websocket", version = "2.3.4" }
 com-gorylenko-gradle-git-properties = { id = "com.gorylenko.gradle-git-properties", version = "2.5.3" }
 io-spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
 org-asciidoctor-jvm-convert = { id = "org.asciidoctor.jvm.convert", version = "4.0.5" }
-org-domaframework-doma-compile = { id = "org.domaframework.doma.compile", version = "3.0.1" }
+org-domaframework-doma-compile = { id = "org.domaframework.doma.compile", version = "4.0.3" }
 org-graalvm-buildtools-native = { id = "org.graalvm.buildtools.native", version = "0.11.2" }
 org-springframework-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }

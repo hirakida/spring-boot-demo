@@ -11,7 +11,7 @@ import org.seasar.doma.jdbc.entity.NamingType;
 
 import lombok.Data;
 
-@Entity(listener = UserListener.class, naming = NamingType.SNAKE_LOWER_CASE)
+@Entity(naming = NamingType.SNAKE_LOWER_CASE)
 @Data
 public class User {
     @Id
