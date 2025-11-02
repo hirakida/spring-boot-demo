@@ -1,7 +1,5 @@
 plugins {
     id 'spring-boot-demo.java-conventions'
-    alias(libs.plugins.org.springframework.boot)
-    alias(libs.plugins.io.spring.dependency.management)
 }
 
 dependencies {

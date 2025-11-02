@@ -15,8 +15,10 @@ spring-dependency-management = "1.1.7"
 
 [libraries]
 # plugins
+dependency-management-plugin = { module = "io.spring.gradle:dependency-management-plugin", version = "1.1.7" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-spring-gradle-plugin = { module = "org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
+spring-boot-gradle-plugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "spring-boot" }
 
 # bom
 joinfaces-platform = { module = "org.joinfaces:joinfaces-platform", version.ref = "joinfaces" }

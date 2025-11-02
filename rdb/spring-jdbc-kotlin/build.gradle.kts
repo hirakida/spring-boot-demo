@@ -1,8 +1,6 @@
 plugins {
     id("spring-boot-demo.kotlin-conventions")
     kotlin("plugin.spring")
-    alias(libs.plugins.org.springframework.boot)
-    alias(libs.plugins.io.spring.dependency.management)
 }
 
 dependencies {

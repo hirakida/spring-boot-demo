@@ -3,6 +3,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
+    id("io.spring.dependency-management")
+    id("org.springframework.boot")
 }
 
 java {
