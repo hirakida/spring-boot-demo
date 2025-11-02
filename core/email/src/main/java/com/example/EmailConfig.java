@@ -11,7 +11,7 @@ public class EmailConfig {
     @Bean
     public SpringTemplateEngine emailTemplateEngine() {
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setOrder(Integer.valueOf(1));
+        templateResolver.setOrder(1);
         templateResolver.setTemplateMode(TemplateMode.TEXT);
         templateResolver.setPrefix("/templates/email/");
         templateResolver.setSuffix(".txt");
