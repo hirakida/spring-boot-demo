@@ -1,20 +1,21 @@
 [versions]
-spring-boot = "3.3.3"
-spring-dependency-management = "1.1.6"
-spring-cloud = "2023.0.3"
-kotlin = "1.9.25"
-exposed = "0.55.0"
-mybatis-spring-boot = "3.0.3"
-doma = "3.0.0"
-doma-spring-boot = "2.0.0"
-spock = "2.4-M4-groovy-4.0"
+doma = "3.6.0"
+doma-spring-boot = "2.4.0"
+exposed = "0.61.0"
 groovy = "4.0.22"
+kotlin = "1.9.25"
+mybatis-spring-boot = "3.0.5"
 scala = "3.4.2"
+spock = "2.4-M4-groovy-4.0"
+spring-boot = "3.5.7"
+spring-boot-admin = "3.5.5"
+spring-cloud = "2025.0.0"
+spring-dependency-management = "1.1.7"
 
 [libraries]
 org-springframework-cloud-spring-cloud-dependencies = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
-de-codecentric-spring-boot-admin-dependencies = { module = "de.codecentric:spring-boot-admin-dependencies", version = "3.3.3" }
-org-joinfaces-joinfaces-platform = { module = "org.joinfaces:joinfaces-platform", version = "5.2.8" }
+de-codecentric-spring-boot-admin-dependencies = { module = "de.codecentric:spring-boot-admin-dependencies", version.ref = "spring-boot-admin" }
+org-joinfaces-joinfaces-platform = { module = "org.joinfaces:joinfaces-platform", version = "5.5.7" }
 
 org-jetbrains-kotlin-kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 org-jetbrains-kotlin-plugin-spring-org-jetbrains-kotlin-plugin-spring-gradle-plugin = { module = "org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }

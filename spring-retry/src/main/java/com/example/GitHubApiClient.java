@@ -78,7 +78,7 @@ public class GitHubApiClient {
     }
 
     private static String buildUrl(String path) {
-        return UriComponentsBuilder.fromHttpUrl(BASE_URL)
+        return UriComponentsBuilder.fromUriString(BASE_URL)
                                    .path(path)
                                    .build(false)
                                    .toUriString();

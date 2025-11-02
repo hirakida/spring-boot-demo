@@ -21,7 +21,7 @@ public class GitHubApiClient {
 
     @Cacheable(key = "'user:' + #username")
     public JsonNode getUser(String username) {
-        String uri = UriComponentsBuilder.fromHttpUrl(BASE_URL)
+        String uri = UriComponentsBuilder.fromUriString(BASE_URL)
                                          .path("/users/{username}")
                                          .build(false)
                                          .toUriString();

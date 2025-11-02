@@ -51,7 +51,7 @@ public class GitHubClient {
     }
 
     private static String buildUrl(String path, boolean encoded) {
-        return UriComponentsBuilder.fromHttpUrl(BASE_URL)
+        return UriComponentsBuilder.fromUriString(BASE_URL)
                                    .path(path)
                                    .build(encoded)
                                    .toUriString();
