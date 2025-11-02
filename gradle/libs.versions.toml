@@ -3,6 +3,7 @@ doma = "3.6.0"
 doma-spring-boot = "2.4.0"
 exposed = "0.61.0"
 groovy = "4.0.22"
+joinfaces = "5.5.7"
 kotlin = "1.9.25"
 mybatis-spring-boot = "3.0.5"
 scala = "3.4.2"
@@ -13,28 +14,33 @@ spring-cloud = "2025.0.0"
 spring-dependency-management = "1.1.7"
 
 [libraries]
-org-springframework-cloud-spring-cloud-dependencies = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
-de-codecentric-spring-boot-admin-dependencies = { module = "de.codecentric:spring-boot-admin-dependencies", version.ref = "spring-boot-admin" }
-org-joinfaces-joinfaces-platform = { module = "org.joinfaces:joinfaces-platform", version = "5.5.7" }
+# plugins
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-spring-gradle-plugin = { module = "org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
 
-org-jetbrains-kotlin-kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-org-jetbrains-kotlin-plugin-spring-org-jetbrains-kotlin-plugin-spring-gradle-plugin = { module = "org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
+# BOM
+joinfaces-platform = { module = "org.joinfaces:joinfaces-platform", version.ref = "joinfaces" }
+spring-boot-admin-dependencies = { module = "de.codecentric:spring-boot-admin-dependencies", version.ref = "spring-boot-admin" }
+spring-cloud-dependencies = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
 
-org-jetbrains-exposed-exposed-spring-boot-starter = { module = "org.jetbrains.exposed:exposed-spring-boot-starter", version.ref = "exposed" }
-org-mybatis-spring-boot-mybatis-spring-boot-starter = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter", version.ref = "mybatis-spring-boot" }
-org-mybatis-spring-boot-mybatis-spring-boot-starter-test = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter-test", version.ref = "mybatis-spring-boot" }
-org-seasar-doma-doma-processor = { module = "org.seasar.doma:doma-processor", version.ref = "doma" }
-org-seasar-doma-boot-doma-spring-boot-starter = { module = "org.seasar.doma.boot:doma-spring-boot-starter", version.ref = "doma-spring-boot" }
+# libraries
+exposed-spring-boot-starter = { module = "org.jetbrains.exposed:exposed-spring-boot-starter", version.ref = "exposed" }
+mybatis-spring-boot-starter = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter", version.ref = "mybatis-spring-boot" }
+mybatis-spring-boot-starter-test = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter-test", version.ref = "mybatis-spring-boot" }
+doma-processor = { module = "org.seasar.doma:doma-processor", version.ref = "doma" }
+doma-spring-boot-starter = { module = "org.seasar.doma.boot:doma-spring-boot-starter", version.ref = "doma-spring-boot" }
 
-com-google-code-findbugs-jsr305 = { module = "com.google.code.findbugs:jsr305", version = "3.0.2" }
-org-jolokia-jolokia-support-spring = { module = "org.jolokia:jolokia-support-spring", version = "2.0.2" }
-org-webjars-bootstrap = { module = "org.webjars:bootstrap", version = "5.3.3" }
-io-karatelabs-karate-junit5 = { module = "io.karatelabs:karate-junit5", version = "1.5.0" }
-org-spockframework-spock-core = { module = "org.spockframework:spock-core", version.ref = "spock" }
-org-spockframework-spock-spring = { module = "org.spockframework:spock-spring", version.ref = "spock" }
-org-apache-groovy-groovy-all = { module = "org.apache.groovy:groovy-all", version.ref = "groovy" }
-org-springdoc-springdoc-openapi-starter-webmvc-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version = "2.6.0" }
-org-scala-lang-scala3-library3 = { module = "org.scala-lang:scala3-library_3", version.ref = "scala" }
+jsr305 = { module = "com.google.code.findbugs:jsr305", version = "3.0.2" }
+jolokia-support-spring = { module = "org.jolokia:jolokia-support-spring", version = "2.0.2" }
+bootstrap = { module = "org.webjars:bootstrap", version = "5.3.3" }
+stomp-websocket = { module = "org.webjars:stomp-websocket", version = "2.3.4" }
+sockjs-client = { module = "org.webjars:sockjs-client", version = "1.5.1" }
+karate-junit5 = { module = "io.karatelabs:karate-junit5", version = "1.5.0" }
+spock-core = { module = "org.spockframework:spock-core", version.ref = "spock" }
+spock-spring = { module = "org.spockframework:spock-spring", version.ref = "spock" }
+groovy-all = { module = "org.apache.groovy:groovy-all", version.ref = "groovy" }
+springdoc-openapi-starter-webmvc-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version = "2.6.0" }
+scala3-library3 = { module = "org.scala-lang:scala3-library_3", version.ref = "scala" }
 
 [plugins]
 org-springframework-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }

@@ -5,8 +5,8 @@ plugins {
 }
 
 dependencies {
-    implementation platform(libs.org.joinfaces.joinfaces.platform)
+    implementation platform(libs.joinfaces.platform)
     implementation 'org.joinfaces:faces-spring-boot-starter'
-    compileOnly libs.com.google.code.findbugs.jsr305
+    compileOnly libs.jsr305
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

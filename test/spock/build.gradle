@@ -9,13 +9,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation libs.org.apache.groovy.groovy.all
+    implementation libs.groovy.all
     runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation libs.org.spockframework.spock.core
-    testImplementation libs.org.spockframework.spock.spring
+    testImplementation libs.spock.core
+    testImplementation libs.spock.spring
 }
 
 test {

@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    implementation platform(libs.org.springframework.cloud.spring.cloud.dependencies)
+    implementation platform(libs.spring.cloud.dependencies)
     implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.cloud:spring-cloud-stream-test-support'

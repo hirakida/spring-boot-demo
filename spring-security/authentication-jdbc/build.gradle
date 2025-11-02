@@ -10,7 +10,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.webjars:webjars-locator-core'
-    implementation libs.org.webjars.bootstrap
+    implementation libs.bootstrap
     runtimeOnly 'com.h2database:h2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

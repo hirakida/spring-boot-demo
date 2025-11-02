@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    implementation platform(libs.org.springframework.cloud.spring.cloud.dependencies)
+    implementation platform(libs.spring.cloud.dependencies)
     implementation 'org.springframework.cloud:spring-cloud-starter-zookeeper-discovery'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

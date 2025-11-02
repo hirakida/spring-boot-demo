@@ -12,7 +12,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
-    compileOnly libs.com.google.code.findbugs.jsr305
+    compileOnly libs.jsr305
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

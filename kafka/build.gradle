@@ -7,7 +7,7 @@ plugins {
 dependencies {
     implementation 'org.springframework.kafka:spring-kafka'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly libs.com.google.code.findbugs.jsr305
+    compileOnly libs.jsr305
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
 }
