@@ -9,3 +9,4 @@ keystore.p12
 localhost.pem
 localhost-key.pem
 .docker
+buildSrc/.kotlin/sessions

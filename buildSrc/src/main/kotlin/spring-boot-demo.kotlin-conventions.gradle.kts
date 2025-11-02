@@ -15,7 +15,7 @@ repositories {
     mavenCentral()
 }
 
-tasks.withType<KotlinCompile>().configureEach {
+kotlin {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_17)
         freeCompilerArgs.addAll(

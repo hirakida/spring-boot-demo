@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    java
 }
 
 group = "com.example"
@@ -15,11 +15,11 @@ repositories {
     mavenCentral()
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.deprecation = true
-    options.compilerArgs.add('-parameters')
+tasks.withType<JavaCompile>().configureEach {
+    options.isDeprecation = true
+    options.compilerArgs.add("-parameters")
 }
 
-tasks.named('test') {
+tasks.withType<Test> {
     useJUnitPlatform()
 }
