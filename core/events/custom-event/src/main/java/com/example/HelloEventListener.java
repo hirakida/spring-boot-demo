@@ -11,10 +11,6 @@ public class HelloEventListener {
 
     @EventListener
     public void handleEvent(HelloEvent event) {
-        LOGGER.info("HelloEvent={}", event.hello());
+        LOGGER.info("{}", event.data());
     }
-
-    public record Hello(String message) {}
-
-    public record HelloEvent(Hello hello) {}
 }

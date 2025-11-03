@@ -7,9 +7,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationEventPublisher;
 
-import com.example.HelloEventListener.Hello;
-import com.example.HelloEventListener.HelloEvent;
-
 @SpringBootApplication
 public class Application implements CommandLineRunner {
     private final ApplicationEventPublisher publisher;
@@ -24,7 +21,7 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        final Hello hello = new Hello("Hello! " + LocalDateTime.now());
-        publisher.publishEvent(new HelloEvent(hello));
+        final HelloEventData data = new HelloEventData("Hello!", LocalDateTime.now());
+        publisher.publishEvent(new HelloEvent(data));
     }
 }
