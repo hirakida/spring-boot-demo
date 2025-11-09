@@ -1,0 +1,10 @@
+plugins {
+    id 'spring-boot-demo.java-conventions'
+}
+
+dependencies {
+    implementation platform(libs.spring.cloud.dependencies)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.cloud:spring-cloud-contract-wiremock'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

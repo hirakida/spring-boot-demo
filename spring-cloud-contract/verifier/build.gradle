@@ -1,0 +1,28 @@
+import org.springframework.cloud.contract.verifier.config.TestFramework
+
+plugins {
+    id 'spring-boot-demo.java-conventions'
+    id 'maven-publish'
+    alias(libs.plugins.org.springframework.cloud.contract)
+}
+
+dependencies {
+    implementation platform(libs.spring.cloud.dependencies)
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
+}
+
+contracts {
+    testFramework = TestFramework.JUNIT5
+    testMode = 'EXPLICIT'
+    baseClassForTests = 'com.example.BaseClass'
+}
+
+publishing {
+    publications {
+        verifierDemo(MavenPublication) {
+            artifact verifierStubsJar
+        }
+    }
+}
