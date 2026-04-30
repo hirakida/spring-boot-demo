@@ -2,14 +2,14 @@
 doma = "3.11.0"
 doma-spring-boot = "2.4.0"
 exposed = "0.61.0"
-groovy = "4.0.29"
-joinfaces = "5.5.7"
+groovy = "4.0.31"
+joinfaces = "5.5.13"
 kotlin = "1.9.25"
 mybatis-spring-boot = "3.0.5"
 scala = "3.4.2"
-spock = "2.4-M6-groovy-4.0"
-spring-boot = "3.5.7"
-spring-boot-admin = "3.5.5"
+spock = "2.4-groovy-4.0"
+spring-boot = "3.5.14"
+spring-boot-admin = "3.5.8"
 spring-cloud = "2025.0.0"
 
 [libraries]
@@ -32,9 +32,9 @@ doma-processor = { module = "org.seasar.doma:doma-processor", version.ref = "dom
 doma-spring-boot-starter = { module = "org.seasar.doma.boot:doma-spring-boot-starter", version.ref = "doma-spring-boot" }
 exposed-spring-boot-starter = { module = "org.jetbrains.exposed:exposed-spring-boot-starter", version.ref = "exposed" }
 groovy-all = { module = "org.apache.groovy:groovy-all", version.ref = "groovy" }
-jolokia-support-spring = { module = "org.jolokia:jolokia-support-spring", version = "2.4.1" }
+jolokia-support-spring = { module = "org.jolokia:jolokia-support-spring", version = "2.4.3" }
 jsr305 = { module = "com.google.code.findbugs:jsr305", version = "3.0.2" }
-karate-junit5 = { module = "io.karatelabs:karate-junit5", version = "1.5.1" }
+karate-junit5 = { module = "io.karatelabs:karate-junit5", version = "1.5.2" }
 mybatis-spring-boot-starter = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter", version.ref = "mybatis-spring-boot" }
 mybatis-spring-boot-starter-test = { module = "org.mybatis.spring.boot:mybatis-spring-boot-starter-test", version.ref = "mybatis-spring-boot" }
 scala3-library3 = { module = "org.scala-lang:scala3-library_3", version.ref = "scala" }
