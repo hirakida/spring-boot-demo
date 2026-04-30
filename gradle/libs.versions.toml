@@ -43,8 +43,8 @@ springdoc-openapi-starter-webmvc-ui = { module = "org.springdoc:springdoc-openap
 stomp-websocket = { module = "org.webjars:stomp-websocket", version = "2.3.4" }
 
 [plugins]
-com-gorylenko-gradle-git-properties = { id = "com.gorylenko.gradle-git-properties", version = "2.5.3" }
+com-gorylenko-gradle-git-properties = { id = "com.gorylenko.gradle-git-properties", version = "2.5.7" }
 org-asciidoctor-jvm-convert = { id = "org.asciidoctor.jvm.convert", version = "4.0.5" }
 org-domaframework-doma-compile = { id = "org.domaframework.doma.compile", version = "4.0.3" }
-org-graalvm-buildtools-native = { id = "org.graalvm.buildtools.native", version = "0.11.2" }
-org-springframework-cloud-contract = { id = "org.springframework.cloud.contract", version = "4.3.0" }
+org-graalvm-buildtools-native = { id = "org.graalvm.buildtools.native", version = "1.1.0" }
+org-springframework-cloud-contract = { id = "org.springframework.cloud.contract", version = "5.0.2" }
